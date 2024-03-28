@@ -1,0 +1,1 @@
+export const HTWK_YELLOW = "#ffed00" as const;
