@@ -1,26 +1,92 @@
 [
     {
-        "Name": "tram10",
-        "PathToImage": "./Assets/image.png",
-        "MarkerLocation": {
-            "Latitude": 51.12345,
-            "Longitude": 12.34567
-        }
+        "Name": "htwk_north",
+        "Location": {
+            "Lat": 51.3155,
+            "Lng": 12.37335
+        },
+        "Vehicles": [
+            {
+                "Name": "Tram10",
+                "LocationOffset": {
+                    "Lat": 0,
+                    "Lng": 0
+                }
+            },
+            {
+                "Name": "Tram11",
+                "LocationOffset": {
+                    "Lat": -0.0003,
+                    "Lng": 0
+                }
+            }
+        ]
     },
     {
-        "Name": "tram11",
-        "PathToImage": "./Assets/image.png",
-        "MarkerLocation": {
-            "Latitude": 51.23456,
-            "Longitude": 12.45678
-        }
+        "Name": "htwk_east",
+        "Location": {
+            "Lat": 51.31488,
+            "Lng": 12.3739
+        },
+        "Vehicles": [
+            {
+                "Name": "Tram9",
+                "LocationOffset": {
+                    "Lat": 0,
+                    "Lng": 0
+                }
+            },
+            {
+                "Name": "Bus70",
+                "LocationOffset": {
+                    "Lat": 0,
+                    "Lng": 0.0005
+                }
+            }
+        ]
     },
     {
-        "Name": "bus58",
-        "PathToImage": "./Assets/image.png",
-        "MarkerLocation": {
-            "Latitude": 51.34567,
-            "Longitude": 12.56789
-        }
+        "Name": "connewitz_south",
+        "Location": {
+            "Lat": 51.3114,
+            "Lng": 12.37323
+        },
+        "Vehicles": [
+            {
+                "Name": "Tram9",
+                "LocationOffset": {
+                    "Lat": 0,
+                    "Lng": 0
+                }
+            },
+            {
+                "Name": "Tram10",
+                "LocationOffset": {
+                    "Lat": -0.0003,
+                    "Lng": 0
+                }
+            },
+            {
+                "Name": "Tram11",
+                "LocationOffset": {
+                    "Lat": -0.0006,
+                    "Lng": 0
+                }
+            },
+            {
+                "Name": "Bus70",
+                "LocationOffset": {
+                    "Lat": -0.0009,
+                    "Lng": 0
+                }
+            },
+            {
+                "Name": "Bus89",
+                "LocationOffset": {
+                    "Lat": 0.00023,
+                    "Lng": -0.0005
+                }
+            }
+        ]
     }
 ]

@@ -7,13 +7,17 @@ import {
   useMapEvents,
   Rectangle,
   Popup,
+  Marker,
 } from "react-leaflet";
 import L, { Map } from "leaflet";
 import { HTWK_YELLOW } from "./Color";
 import { PublicTransport } from "./PublicTransport";
+import nieper from "./Assets/Nieper.png";
+import lipsius from "./Assets/Lipsius.png";
 
 const START_ZOOM = 17 as const;
 const MAX_ZOOM = 19 as const;
+const CENTER_OF_MAP: L.LatLngExpression = L.latLng(51.313, 12.374);
 
 const boundsOfTitle = L.latLngBounds([51.3147, 12.3744], [51.3138, 12.3765]);
 
@@ -49,6 +53,9 @@ function App() {
         console.log("You clicked Building: " + feature.properties.Name);
       },
     });
+    // text to every building that is always visible and is customizable
+    // const popupContent = `<b>${feature.properties.Name}</b>`;
+    // layer.bindPopup(popupContent);
   }
 
   const mapRef = React.useRef<Map>(null);
@@ -56,7 +63,7 @@ function App() {
   return (
     <MapContainer
       id="MapContainer"
-      center={[51.3135, 12.374]}
+      center={CENTER_OF_MAP}
       zoom={START_ZOOM}
       maxZoom={MAX_ZOOM}
       ref={mapRef}
@@ -69,27 +76,15 @@ function App() {
         onEachFeature={onEachFeature}
       />
 
-      <Rectangle bounds={boundsOfTitle} color={HTWK_YELLOW} weight={5}>
-        <Popup>Hier steht text um zu zeigen dass hier was steht.</Popup>
-      </Rectangle>
-
       <PublicTransport zoom={mapRef.current?.getZoom() ?? START_ZOOM} />
-
-      {/* <SVGOverlay bounds={BoundsOfTitle}>
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <rect width="100%" height="100%" fill="#ffffff55" stroke={HTWK_YELLOW} strokeWidth={5}/>
-          <rect></rect>
-          <text x={20} y={60} fontSize={fontSize} stroke='white' fill='white'>
-            HTWK Leipzig
-          </text>
-          <text x={20} y={150} fontSize={fontSize} stroke='white' fill='white'>
-            Karl-Liebknecht
-          </text>
-          <text x={20} y={200} fontSize={fontSize} stroke='white' fill='white'>
-            Campus
-          </text>
-        </svg>
-      </SVGOverlay> */}
+      <Marker
+        position={new L.LatLng(51.313231581288704, 12.37287883331203)}
+        icon={new L.Icon({ iconUrl: nieper, iconSize: [25, 25] })}
+      ></Marker>
+      <Marker
+        position={new L.LatLng(51.31319879585476, 12.373778157922914)}
+        icon={new L.Icon({ iconUrl: lipsius, iconSize: [25, 25] })}
+      ></Marker>
 
       <TileLayer
         attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

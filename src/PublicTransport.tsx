@@ -1,66 +1,63 @@
-import { FeatureGroup, Marker } from "react-leaflet";
-import L from "leaflet";
-import tram10Image from "./Assets/Tram10.png";
-import tram11Image from "./Assets/Tram11.png";
-import tram9Image from "./Assets/Tram9.png";
-import bus70Image from "./Assets/Bus70.png";
+import { Marker } from "react-leaflet";
+import L, { Path } from "leaflet";
+import htwk_north from "./Assets/HTWK_North.png";
+import htwk_east from "./Assets/HTWK_East.png";
+import connewitz_south from "./Assets/Connewitz_South.png";
+import connewitz_west from "./Assets/Bus89.png";
 
-function createPublicTransportIcon(tramImage: string) {
-  return new L.Icon({
-    iconUrl: tramImage,
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
-  });
-}
+const OPACITY_ZOOM_LEVEL : number = 17 as const;
 
 type PublicTransportProps = {
   zoom: number;
 };
 
 export const PublicTransport: React.FC<PublicTransportProps> = ({ zoom }) => {
-  const tram10Icon = createPublicTransportIcon(tram10Image);
-  const tram11Icon = createPublicTransportIcon(tram11Image);
-  const tram9Icon = createPublicTransportIcon(tram9Image);
-  const bus70Icon = createPublicTransportIcon(bus70Image);
-
-  const stopPosition_htwkStop_north = L.latLng(51.3155, 12.37335);
-  const vehicles_htwkStop_north: { icon: L.Icon; offset: L.LatLng }[] = [
-    { icon: tram10Icon, offset: L.latLng(0, 0) },
-    { icon: tram11Icon, offset: L.latLng(-0.0003, 0) },
-  ];
-
-  const stopPosition_htwkStop_east = L.latLng(51.31487, 12.3739);
-  const vehicles_htwkStop_east: { icon: L.Icon; offset: L.LatLng }[] = [
-    { icon: tram9Icon, offset: L.latLng(0, 0) },
-    { icon: bus70Icon, offset: L.latLng(0, 0.0005) },
-  ];
-
   return (
     <div>
-      <FeatureGroup>
-        {vehicles_htwkStop_north.map((vehicle, index) => (
-          <Marker
-            key={index}
-            position={L.latLng(
-              stopPosition_htwkStop_north.lat + vehicle.offset.lat,
-              stopPosition_htwkStop_north.lng + vehicle.offset.lng
-            )}
-            icon={vehicle.icon}
-            opacity={17 <= zoom ? 1 : 0}
-          />
-        ))}
-        {vehicles_htwkStop_east.map((vehicle, index) => (
-          <Marker
-            key={index}
-            position={L.latLng(
-              stopPosition_htwkStop_east.lat + vehicle.offset.lat,
-              stopPosition_htwkStop_east.lng + vehicle.offset.lng
-            )}
-            icon={vehicle.icon}
-            opacity={17 <= zoom ? 1 : 0}
-          />
-        ))}
-      </FeatureGroup>
+      <Marker
+        position={new L.LatLng(51.31535, 12.37335)}
+        icon={
+          new L.Icon({
+            iconUrl: htwk_north,
+            iconSize: [40, 84],
+            iconAnchor: [20, 42],
+          })
+        }
+        opacity={OPACITY_ZOOM_LEVEL <= zoom ? 1 : 0}
+      />
+      <Marker
+        position={new L.LatLng(51.31488, 12.3741)}
+        icon={
+          new L.Icon({
+            iconUrl: htwk_east,
+            iconSize: [84, 40],
+            iconAnchor: [42, 20],
+          })
+        }
+        opacity={OPACITY_ZOOM_LEVEL <= zoom ? 1 : 0}
+      />
+      <Marker
+        position={new L.LatLng(51.3114, 12.37323)}
+        icon={
+          new L.Icon({
+            iconUrl: connewitz_south,
+            iconSize: [40, 172],
+            iconAnchor: [20, 20],
+          })
+        }
+        opacity={OPACITY_ZOOM_LEVEL <= zoom ? 1 : 0}
+      />
+      <Marker
+        position={new L.LatLng(51.31165, 12.3727)}
+        icon={
+          new L.Icon({
+            iconUrl: connewitz_west,
+            iconSize: [40, 40],
+            iconAnchor: [20, 20],
+          })
+        }
+        opacity={OPACITY_ZOOM_LEVEL <= zoom ? 1 : 0}
+      />
     </div>
   );
 };

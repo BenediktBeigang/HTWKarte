@@ -3,13 +3,13 @@
 
 <svg
    width="512"
-   height="512"
-   viewBox="0 0 135.46666 135.46667"
+   height="2198"
+   viewBox="0 0 135.46666 581.55404"
    version="1.1"
    id="svg1"
-   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
    sodipodi:docname="PublicTransport.svg"
-   inkscape:export-filename="Tram9.png"
+   inkscape:export-filename="HTWK_East.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -26,22 +26,22 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
-     inkscape:zoom="0.25322495"
-     inkscape:cx="106.62456"
-     inkscape:cy="223.12177"
-     inkscape:window-width="2560"
-     inkscape:window-height="1351"
-     inkscape:window-x="2391"
-     inkscape:window-y="-9"
+     inkscape:zoom="0.3257079"
+     inkscape:cx="428.29786"
+     inkscape:cy="1151.3383"
+     inkscape:window-width="1440"
+     inkscape:window-height="890"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1-7-5" />
+     inkscape:current-layer="g9" />
   <defs
      id="defs1">
     <rect
        x="-201.40195"
        y="131.30617"
        width="363.31332"
-       height="319.87368"
+       height="319.87369"
        id="rect2" />
     <rect
        x="-201.40195"
@@ -61,6 +61,144 @@
        width="363.31332"
        height="319.87369"
        id="rect2-1-1" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-1-8-5" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-1-8-5-6" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-1-8-5-6-5" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-1-8-5-6-8" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-1-8-5-6-6" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-1-8-5-6-2" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-1-8-5-6-4" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-1-8-5-6-3" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-1-8-5-6-0" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-1-8-5-6-89" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-1-8-5-6-54" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-1-8-5-6-52" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-4" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-1-5" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-1-8-3" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-1-1-4" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-1-1-5" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-2" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-1-1-59" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect2-0" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect7" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect9" />
+    <rect
+       x="-201.40195"
+       y="131.30617"
+       width="363.31332"
+       height="319.87369"
+       id="rect10" />
   </defs>
   <g
      inkscape:label="Tram11"
@@ -81,7 +219,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
          x="-201.40234"
          y="306.00268"
-         id="tspan2">11</tspan></text>
+         id="tspan8">11</tspan></text>
   </g>
   <g
      inkscape:label="Tram10"
@@ -103,16 +241,16 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-1);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
          x="-201.40234"
          y="306.00268"
-         id="tspan3">10</tspan></text>
+         id="tspan10">10</tspan></text>
   </g>
   <g
      inkscape:label="Tram9"
      inkscape:groupmode="layer"
      id="layer1-7-5"
      transform="translate(74.083332,35.983333)"
-     style="display:inline">
+     style="display:none">
     <rect
-       style="fill:#ffcc00;fill-opacity:1;stroke-width:1.23974;stroke-linecap:round;stroke-linejoin:bevel;font-variation-settings:'wght' 600, 'wdth' 70"
+       style="font-variation-settings:'wdth' 70, 'wght' 600;fill:#ffcc00;fill-opacity:1;stroke-width:1.23974;stroke-linecap:round;stroke-linejoin:bevel"
        id="rect1-5-2"
        width="135.46666"
        height="135.46666"
@@ -125,7 +263,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-1-1);display:inline;fill:#1d1d1b;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
          x="-201.40234"
          y="306.00268"
-         id="tspan4">9</tspan></text>
+         id="tspan11">9</tspan></text>
   </g>
   <g
      inkscape:label="Bus70"
@@ -146,6 +284,331 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-1-8);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
          x="-201.40234"
          y="306.00268"
-         id="tspan5">70</tspan></text>
+         id="tspan12">70</tspan></text>
+  </g>
+  <g
+     inkscape:label="Bus89"
+     inkscape:groupmode="layer"
+     id="layer1-7-3-5"
+     transform="translate(34.660414,26.722916)"
+     style="display:none">
+    <circle
+       style="font-variation-settings:'wdth' 70, 'wght' 600;display:inline;fill:#a71681;fill-opacity:1;stroke-width:0.380094;stroke-linecap:round;stroke-linejoin:bevel"
+       id="path1-5"
+       cx="33.072914"
+       cy="41.010414"
+       r="67.73333" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.59142836,0,0,0.59142836,98.703901,-99.429381)"
+       id="text1-5-9-6"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-1-8-5);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
+         x="-201.40234"
+         y="306.00268"
+         id="tspan13">89</tspan></text>
+  </g>
+  <g
+     inkscape:label="Abkürzungen"
+     inkscape:groupmode="layer"
+     id="layer1-7-3-5-6"
+     transform="translate(34.660416,26.722916)"
+     style="display:none">
+    <rect
+       style="display:none;fill:#e30613;fill-opacity:1;stroke-width:1.23974;stroke-linecap:round;stroke-linejoin:bevel"
+       id="rect1-8"
+       width="135.46666"
+       height="135.46666"
+       x="-35.85104"
+       y="-26.722916" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.59142836,0,0,0.59142836,98.874277,-95.367085)"
+       id="text1-5-9-6-1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=600';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 600;white-space:pre;shape-inside:url(#rect2-1-8-5-6);display:none;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"
+       inkscape:label="Nieper"><tspan
+         x="-201.40234"
+         y="293.37406"
+         id="tspan14">NI</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.59142836,0,0,0.59142836,97.683652,-95.367085)"
+       id="text1-5-9-6-1-4"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=600';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 600;white-space:pre;shape-inside:url(#rect2-1-8-5-6-5);display:none;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"
+       inkscape:label="Nieper"><tspan
+         x="-201.40234"
+         y="293.37406"
+         id="tspan15">NI</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.59142836,0,0,0.59142836,97.683652,-95.367085)"
+       id="text1-5-9-6-1-8"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=600';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 600;white-space:pre;shape-inside:url(#rect2-1-8-5-6-8);display:none;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"
+       inkscape:label="Nieper"><tspan
+         x="-201.40234"
+         y="293.37406"
+         id="tspan16">NI</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.59142836,0,0,0.59142836,97.683652,-95.367085)"
+       id="text1-5-9-6-1-7"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=600';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 600;white-space:pre;shape-inside:url(#rect2-1-8-5-6-6);display:none;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"
+       inkscape:label="Nieper"><tspan
+         x="-201.40234"
+         y="293.37406"
+         id="tspan17">NI</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.59142836,0,0,0.59142836,97.683652,-95.367085)"
+       id="text1-5-9-6-1-0"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=600';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 600;white-space:pre;shape-inside:url(#rect2-1-8-5-6-2);display:none;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"
+       inkscape:label="Nieper"><tspan
+         x="-201.40234"
+         y="293.37406"
+         id="tspan18">NI</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.59142836,0,0,0.59142836,97.683652,-95.367085)"
+       id="text1-5-9-6-1-81"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=600';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 600;white-space:pre;shape-inside:url(#rect2-1-8-5-6-4);display:none;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"
+       inkscape:label="Nieper"><tspan
+         x="-201.40234"
+         y="293.37406"
+         id="tspan19">NI</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.59142836,0,0,0.59142836,97.683652,-95.367085)"
+       id="text1-5-9-6-1-3"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=600';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 600;white-space:pre;shape-inside:url(#rect2-1-8-5-6-3);display:none;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"
+       inkscape:label="Nieper"><tspan
+         x="-201.40234"
+         y="293.37406"
+         id="tspan20">NI</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.59142836,0,0,0.59142836,97.683652,-95.367085)"
+       id="text1-5-9-6-1-80"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=600';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 600;white-space:pre;shape-inside:url(#rect2-1-8-5-6-0);display:none;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"
+       inkscape:label="Nieper"><tspan
+         x="-201.40234"
+         y="293.37406"
+         id="tspan21">NI</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.59142836,0,0,0.59142836,97.683652,-95.367085)"
+       id="text1-5-9-6-1-5"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=600';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 600;white-space:pre;shape-inside:url(#rect2-1-8-5-6-89);display:none;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"
+       inkscape:label="Nieper"><tspan
+         x="-201.40234"
+         y="293.37406"
+         id="tspan22">NI</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.59142836,0,0,0.59142836,106.48404,-95.367085)"
+       id="text1-5-9-6-1-2"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=600';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 600;white-space:pre;shape-inside:url(#rect2-1-8-5-6-54);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"
+       inkscape:label="Lipsius"><tspan
+         x="-201.40234"
+         y="293.37406"
+         id="tspan23">LI</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.59142836,0,0,0.59142836,97.683652,-95.367085)"
+       id="text1-5-9-6-1-1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=600';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 600;white-space:pre;shape-inside:url(#rect2-1-8-5-6-52);display:none;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"
+       inkscape:label="Nieper"><tspan
+         x="-201.40234"
+         y="293.37406"
+         id="tspan24">NI</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="HTWK_North"
+     style="display:none">
+    <g
+       inkscape:label="Tram11"
+       inkscape:groupmode="layer"
+       id="layer1-4"
+       style="display:inline"
+       transform="translate(0,148.69582)">
+      <rect
+         style="display:inline;fill:#e30613;fill-opacity:1;stroke-width:1.23974;stroke-linecap:round;stroke-linejoin:bevel"
+         id="rect1-84"
+         width="135.46666"
+         height="135.46666"
+         x="0"
+         y="0" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.59142836,0,0,0.59142836,134.03382,-72.706465)"
+         id="text1-0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-4);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
+           x="-201.40234"
+           y="306.00268"
+           id="tspan25">11</tspan></text>
+    </g>
+    <g
+       inkscape:label="Tram10"
+       inkscape:groupmode="layer"
+       id="layer1-7-6"
+       transform="translate(37.041664,17.991667)"
+       style="display:inline">
+      <rect
+         style="fill:#e30613;fill-opacity:1;stroke-width:1.23974;stroke-linecap:round;stroke-linejoin:bevel"
+         id="rect1-5-6"
+         width="135.46666"
+         height="135.46666"
+         x="-37.041664"
+         y="-17.991667" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.59142836,0,0,0.59142836,94.437574,-90.698132)"
+         id="text1-5-6"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-1-5);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
+           x="-201.40234"
+           y="306.00268"
+           id="tspan26">10</tspan></text>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="HTWK_East"
+     style="display:none">
+    <g
+       inkscape:label="Tram9"
+       inkscape:groupmode="layer"
+       id="layer1-7-5-0"
+       transform="translate(74.083332,35.983333)"
+       style="display:inline">
+      <rect
+         style="font-variation-settings:'wdth' 70, 'wght' 600;fill:#ffcc00;fill-opacity:1;stroke-width:1.23974;stroke-linecap:round;stroke-linejoin:bevel"
+         id="rect1-5-2-3"
+         width="135.46666"
+         height="135.46666"
+         x="-74.083328"
+         y="-35.983334" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.59142836,0,0,0.59142836,86.193366,-108.6898)"
+         id="text1-5-3-8"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-1-1-4);display:inline;fill:#1d1d1b;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
+           x="-201.40234"
+           y="306.00268"
+           id="tspan27">9</tspan></text>
+    </g>
+    <g
+       inkscape:label="Bus70"
+       inkscape:groupmode="layer"
+       id="layer1-7-3-3"
+       transform="translate(222.77915,35.983333)"
+       style="display:inline">
+      <circle
+         style="font-variation-settings:'wdth' 70, 'wght' 600;display:inline;fill:#a71681;fill-opacity:1;stroke-width:0.380094;stroke-linecap:round;stroke-linejoin:bevel"
+         id="path1-9"
+         cx="-6.3500023"
+         cy="31.749996"
+         r="67.73333" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.59142836,0,0,0.59142836,59.224207,-108.6898)"
+         id="text1-5-9-5"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-1-8-3);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
+           x="-201.40234"
+           y="306.00268"
+           id="tspan28">70</tspan></text>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Connewitz_South">
+    <g
+       inkscape:label="Tram11"
+       inkscape:groupmode="layer"
+       id="layer1-0"
+       style="display:inline"
+       transform="translate(0,297.39163)">
+      <rect
+         style="display:inline;fill:#e30613;fill-opacity:1;stroke-width:1.23974;stroke-linecap:round;stroke-linejoin:bevel"
+         id="rect1-4"
+         width="135.46666"
+         height="135.46666"
+         x="0"
+         y="0" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.59142836,0,0,0.59142836,134.03382,-72.706465)"
+         id="text1-8"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-2);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
+           x="-201.40234"
+           y="306.00268"
+           id="tspan29">11</tspan></text>
+    </g>
+    <g
+       inkscape:label="Tram10"
+       inkscape:groupmode="layer"
+       id="g7"
+       transform="translate(37.041667,166.68748)"
+       style="display:inline">
+      <rect
+         style="fill:#e30613;fill-opacity:1;stroke-width:1.23974;stroke-linecap:round;stroke-linejoin:bevel"
+         id="rect3"
+         width="135.46666"
+         height="135.46666"
+         x="-37.041664"
+         y="-17.991667" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.59142836,0,0,0.59142836,94.437574,-90.698132)"
+         id="text7"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect7);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
+           x="-201.40234"
+           y="306.00268"
+           id="tspan30">10</tspan></text>
+    </g>
+    <g
+       inkscape:label="Tram9"
+       inkscape:groupmode="layer"
+       id="layer1-7-5-6"
+       transform="translate(74.083328,35.983334)"
+       style="display:inline">
+      <rect
+         style="font-variation-settings:'wdth' 70, 'wght' 600;fill:#ffcc00;fill-opacity:1;stroke-width:1.23974;stroke-linecap:round;stroke-linejoin:bevel"
+         id="rect1-5-2-7"
+         width="135.46666"
+         height="135.46666"
+         x="-74.083328"
+         y="-35.983334" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.59142836,0,0,0.59142836,86.193366,-108.6898)"
+         id="text1-5-3-5"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-1-1-5);display:inline;fill:#1d1d1b;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
+           x="-201.40234"
+           y="306.00268"
+           id="tspan31">9</tspan></text>
+    </g>
+    <g
+       inkscape:label="Bus70"
+       inkscape:groupmode="layer"
+       id="g9"
+       transform="translate(74.083331,482.07077)"
+       style="display:inline">
+      <circle
+         style="font-variation-settings:'wdth' 70, 'wght' 600;display:inline;fill:#a71681;fill-opacity:1;stroke-width:0.380094;stroke-linecap:round;stroke-linejoin:bevel"
+         id="circle9"
+         cx="-6.3500023"
+         cy="31.749996"
+         r="67.73333" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.59142836,0,0,0.59142836,59.224207,-108.6898)"
+         id="text9"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect10);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
+           x="-201.40234"
+           y="306.00268"
+           id="tspan32">70</tspan></text>
+    </g>
   </g>
 </svg>
