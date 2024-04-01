@@ -6,6 +6,7 @@ module.exports = {
       properties: {
         Name: "Lipsius",
         Abbreviation: "LI",
+        Location: [51.31323, 12.37381],
         Address: "Karl-Liebknecht-Straße 145",
       },
       geometry: {
@@ -97,6 +98,7 @@ module.exports = {
       properties: {
         Name: "Bibliothek",
         Abbreviation: "HB",
+        Location: [51.312483019518254, 12.373708046968972],
         Address: "Gustav-Freytag-Straße 40",
       },
       geometry: {
@@ -119,6 +121,7 @@ module.exports = {
       properties: {
         Name: "Campus Eilenburger Straße",
         Abbreviation: "CE",
+        Location: [51.333212010542525, 12.400592720751689],
         Address: "Eilenburger Straße 13",
       },
       geometry: {
@@ -165,6 +168,7 @@ module.exports = {
       properties: {
         Name: "Campus Liebknechtstraße",
         Abbreviation: "CL",
+        Location: [51.31425754165721, 12.373827775459091],
         Address: "Karl-Liebknecht-Straße 143",
       },
       geometry: {
@@ -212,6 +216,7 @@ module.exports = {
       properties: {
         Name: "Campus Weigelstraße",
         Abbreviation: "CW",
+        Location: [51.342322991279815, 12.478175217681695],
         Address: "Hans-Weigel-Straße 2b",
       },
       geometry: {
@@ -232,6 +237,7 @@ module.exports = {
       properties: {
         Name: "Eichendorfstraße",
         Abbreviation: "E2",
+        Location: [51.31364, 12.372037309603314],
         Address: "Eichendorffstraße 2",
       },
       geometry: {
@@ -258,6 +264,7 @@ module.exports = {
       properties: {
         Name: "Föppl-Bau",
         Abbreviation: "FÖ",
+        Location: [51.314339546971894, 12.372140532223426],
         Address: "Kochstraße 85",
       },
       geometry: {
@@ -292,6 +299,7 @@ module.exports = {
       properties: {
         Name: "Geutebrück-Bau",
         Abbreviation: "GE",
+        Location: [51.31462, 12.372559405827815],
         Address: "Karl-Liebknecht-Straße 132",
       },
       geometry: {
@@ -333,6 +341,7 @@ module.exports = {
       properties: {
         Name: "Gutenberg-Bau",
         Abbreviation: "GU",
+        Location: [51.312445, 12.374988136768366],
         Address: "Gustav-Freytag-Straße 42",
       },
       geometry: {
@@ -366,6 +375,7 @@ module.exports = {
       properties: {
         Name: "Hopper-Bau",
         Abbreviation: "HO",
+        Location: [51.327500444446144, 12.3360012202605],
         Address: "Zschochersche Straße 69",
       },
       geometry: {
@@ -390,6 +400,7 @@ module.exports = {
       properties: {
         Name: "Medienzentrum",
         Abbreviation: "MZ",
+        Location: [51.3124, 12.3743],
         Address: "Gustav-Freytag-Straße 40 a",
       },
       geometry: {
@@ -412,6 +423,7 @@ module.exports = {
       properties: {
         Name: "Mensa",
         Abbreviation: "MN",
+        Location: [51.313205071012106, 12.374190273054523],
         Address: "Karl-Liebknecht-Straße 145",
       },
       geometry: {
@@ -447,6 +459,7 @@ module.exports = {
       properties: {
         Name: "Laborgebäude Naturwissenschaften",
         Abbreviation: "LN",
+        Location: [51.31282409249755, 12.374281348047788],
         Address: "Gustav-Freytag-Straße 41 a",
       },
       geometry: {
@@ -473,6 +486,7 @@ module.exports = {
       properties: {
         Name: "Nieper-Bau",
         Abbreviation: "NI",
+        Location: [51.31321382910164, 12.3729],
         Address: "Karl-Liebknecht-Straße 134",
       },
       geometry: {
@@ -493,6 +507,7 @@ module.exports = {
       properties: {
         Name: "Shannon",
         Abbreviation: "SH",
+        Location: [51.32691083297439, 12.336483153558191],
         Address: "Zschochersche Straße 69, Innenhof",
       },
       geometry: {
@@ -515,6 +530,7 @@ module.exports = {
       properties: {
         Name: "Sporthalle",
         Abbreviation: "SP",
+        Location: [51.310257561253536, 12.38372394813203],
         Address: "Arno-Nitzsche-Straße 29",
       },
       geometry: {
@@ -543,6 +559,7 @@ module.exports = {
       properties: {
         Name: "Treffts-Bau-A",
         Abbreviation: "TR_A",
+        Location: [51.312852, 12.375679000940636],
         Address: "Gustav-Freytag-Straße 43",
       },
       geometry: {
@@ -579,6 +596,7 @@ module.exports = {
       properties: {
         Name: "Treffts-Bau-B",
         Abbreviation: "TR_B",
+        Location: [51.3132148058788, 12.376],
         Address: "Gustav-Freytag-Straße 45",
       },
       geometry: {
@@ -601,6 +619,7 @@ module.exports = {
       properties: {
         Name: "Treffts-Bau-C",
         Abbreviation: "TR_C",
+        Location: [51.31346949820954, 12.37585],
         Address: "Eichendorffstraße 14",
       },
       geometry: {
@@ -625,6 +644,7 @@ module.exports = {
       properties: {
         Name: "Treffts-Bau-L",
         Abbreviation: "TR_L",
+        Location: [51.3131193830537, 12.375225927396116],
         Address: "Gustav-Freytag-Straße 43",
       },
       geometry: {
@@ -661,6 +681,7 @@ module.exports = {
       properties: {
         Name: "Wieder-Bau",
         Abbreviation: "WI",
+        Location: [51.33299642784445, 12.36616203969345],
         Address: "Wächterstraße 13",
       },
       geometry: {
@@ -711,8 +732,9 @@ module.exports = {
     {
       type: "Feature",
       properties: {
-        Name: "Zuse",
+        Name: "Zuse-Bau",
         Abbreviation: "ZU",
+        Location: [51.31244646485209, 12.375992667746544],
         Address: "Gustav-Freytag-Straße 42 a",
       },
       geometry: {
