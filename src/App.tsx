@@ -9,12 +9,6 @@ import L, { Map } from "leaflet";
 import { HTWK_YELLOW } from "./Color";
 import { PublicTransport } from "./PublicTransport";
 import { Building } from "./Building";
-// import nieper from "./Assets/Abbreviation/Nieper.png";
-// import lipsius from "./Assets/Abbreviation/Lipsius.png";
-// import geutebrueck from "./Assets/Abbreviation/Geutebrueck.png";
-// import foeppl from "./Assets/Abbreviation/Foeppl.png";
-// import eichendorfstrasse from "./Assets/Abbreviation/Eichendorfstrasse.png";
-// import htwkBuildingMarker from "./Assets/htwkBuildingMarker";
 
 const START_ZOOM = 17 as const;
 const MAX_ZOOM = 18 as const;

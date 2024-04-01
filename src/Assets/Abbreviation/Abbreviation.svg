@@ -1,0 +1,13 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+    text {
+        font-family: 'Open Sans', sans-serif;
+        /* font-size: 20; */
+        /* fill: white; */
+    }
+</style>
+<body>
+    <svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 -15 100 100">
+        <text font-family="Open Sans" font-size="20" fill="white">SP</text>
+    </svg>
+</body>
