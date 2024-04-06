@@ -11,6 +11,6 @@ This project wants to make the locations of the HTWK Leipzig transparent. Find y
 
 .The main campus at the Karl-Liebknecht-Straße
 image::Documentation/img/CampusView.png[]
-.An overview of Leizig with all its campuses of the HTWK
+.An overview of Leipzig with all its campuses of the HTWK
 image::Documentation/img/LeipzigOverview.png[]
 
