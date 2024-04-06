@@ -2,12 +2,12 @@ import { Marker, GeoJSON, FeatureGroup } from "react-leaflet";
 import L from "leaflet";
 import { LEIPZIG_RED, LEIPZIG_YELLOW, LEIPZIG_PURPLE } from "./Color";
 
-import htwk_north from "./Assets/HTWK_North.png";
-import htwk_east from "./Assets/HTWK_East.png";
-import connewitz_south from "./Assets/Connewitz_South.png";
-import connewitz_west from "./Assets/Bus89.png";
+import htwk_north from "./Assets/VehicleIcons/HTWK_North.png";
+import htwk_east from "./Assets/VehicleIcons/HTWK_East.png";
+import connewitz_south from "./Assets/VehicleIcons/Connewitz_South.png";
+import connewitz_west from "./Assets/VehicleIcons/Bus89.png";
 
-const OPACITY_ZOOM_LEVEL : number = 17 as const;
+const OPACITY_ZOOM_LEVEL : number = 16.5 as const;
 
 type PublicTransportProps = {
   zoom: number;

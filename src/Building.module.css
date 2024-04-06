@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 .abbreviation_icon {
     font-family: 'Open Sans', sans-serif;
-    font-size: 1.5em;
-    font-weight: 600;
+    font-size: 1em;
+    font-weight: 500;
+    color: #fff;
+}
+.abbreviation_icon_bigger {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2em;
+    font-weight: 500;
     color: #fff;
 }
