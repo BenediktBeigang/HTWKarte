@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import {
   MapContainer,
@@ -10,7 +10,7 @@ import { PublicTransport } from "./PublicTransport";
 import { Building } from "./Building";
 
 const START_ZOOM = 17 as const;
-const MAX_ZOOM = 18 as const;
+const MAX_ZOOM = 24 as const;
 const MIN_ZOOM = 13 as const;
 const CENTER_OF_MAP: L.LatLngExpression = L.latLng(51.313, 12.374);
 const MAX_BOUNDS: L.LatLngBoundsExpression = L.latLngBounds(
@@ -19,8 +19,14 @@ const MAX_BOUNDS: L.LatLngBoundsExpression = L.latLngBounds(
 );
 
 function App() {
-  const [zoom, setZoom] = useState<number>(START_ZOOM);
+  useEffect(() => {
+    if (!window.location.hash) {
+      window.location.hash = "loaded";
+      window.location.reload();
+    }
+  }, []);
 
+  const [zoom, setZoom] = useState<number>(START_ZOOM);
   const mapRef: React.RefObject<L.Map> = React.useRef<Map>(null);
 
   const MapEvents = () => {
@@ -46,13 +52,19 @@ function App() {
     >
       <MapEvents />
       <PublicTransport zoom={zoom} />
-      <Building key={zoom} zoom={zoom} mapRef={mapRef} />
+      <Building
+        key={zoom}
+        zoom={zoom}
+        mapRef={mapRef}
+      />
 
       <TileLayer
         attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-        maxNativeZoom={MAX_ZOOM}
+        maxNativeZoom={MAX_ZOOM - 2}
         maxZoom={MAX_ZOOM}
+        minNativeZoom={MIN_ZOOM + 2}
+        keepBuffer={4}
       />
     </MapContainer>
   );

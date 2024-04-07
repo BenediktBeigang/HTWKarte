@@ -2,6 +2,7 @@
   "name": "htwkarte",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://BenediktBeigang.github.io/HTWKarte",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -21,13 +22,16 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.16.5"
+    "@babel/plugin-proposal-private-property-in-object": "^7.16.5",
+    "gh-pages": "^6.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && mv build docs",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
