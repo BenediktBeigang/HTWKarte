@@ -1,6 +1,6 @@
 = HTWKarte
 
-This project wants to make the locations of the HTWK Leipzig transparent. Find yourt next lecture-room, search for the room of your professor or get an overview of all the campuses that the HTWK has to offer.
+This project wants to make the locations of the HTWK Leipzig transparent. Find yourt next lecture-room, search for the room of your professor or get an overview of all the campuses that the HTWK has to offer. You can find a deployed version **link:https://benediktbeigang.github.io/HTWKarte/[here]**.
 
 == How to run it
 
