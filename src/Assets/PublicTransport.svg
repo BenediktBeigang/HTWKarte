@@ -2,14 +2,14 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="25"
-   height="25"
-   viewBox="0 0 6.614583 6.614582"
+   width="40"
+   height="40"
+   viewBox="0 0 10.583333 10.583331"
    version="1.1"
    id="svg1"
-   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
    sodipodi:docname="PublicTransport.svg"
-   inkscape:export-filename="Abbreviation\Sporthalle.svg"
+   inkscape:export-filename="busAndTramStop.svg"
    inkscape:export-xdpi="4.6875"
    inkscape:export-ydpi="4.6875"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -26,15 +26,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
-     inkscape:zoom="7.3699283"
-     inkscape:cx="24.762792"
-     inkscape:cy="32.700454"
-     inkscape:window-width="1440"
-     inkscape:window-height="914"
-     inkscape:window-x="-6"
-     inkscape:window-y="-6"
+     inkscape:zoom="14.739857"
+     inkscape:cx="15.400421"
+     inkscape:cy="16.723365"
+     inkscape:window-width="2560"
+     inkscape:window-height="1351"
+     inkscape:window-x="2391"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1-7-3-5-6" />
+     inkscape:current-layer="layer5" />
   <defs
      id="defs1">
     <rect
@@ -327,7 +327,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
          x="-201.40234"
          y="306.00268"
-         id="tspan30">11</tspan></text>
+         id="tspan1">11</tspan></text>
   </g>
   <g
      inkscape:label="Tram10"
@@ -349,7 +349,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-1);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
          x="-201.40234"
          y="306.00268"
-         id="tspan31">10</tspan></text>
+         id="tspan2">10</tspan></text>
   </g>
   <g
      inkscape:label="Tram9"
@@ -371,7 +371,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-1-1);display:inline;fill:#1d1d1b;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
          x="-201.40234"
          y="306.00268"
-         id="tspan32">9</tspan></text>
+         id="tspan3">9</tspan></text>
   </g>
   <g
      inkscape:label="Bus70"
@@ -392,7 +392,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-1-8);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
          x="-201.40234"
          y="306.00268"
-         id="tspan33">70</tspan></text>
+         id="tspan4">70</tspan></text>
   </g>
   <g
      inkscape:label="Bus89"
@@ -413,14 +413,14 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-1-8-5);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
          x="-201.40234"
          y="306.00268"
-         id="tspan34">89</tspan></text>
+         id="tspan6">89</tspan></text>
   </g>
   <g
      inkscape:label="Abkürzungen"
      inkscape:groupmode="layer"
      id="layer1-7-3-5-6"
      transform="translate(34.660416,26.722916)"
-     style="display:inline">
+     style="display:none">
     <rect
        style="font-variation-settings:'wght' 600;display:inline;fill:#e30613;fill-opacity:1;stroke-width:0.0605341;stroke-linecap:round;stroke-linejoin:bevel"
        id="rect1-8"
@@ -445,7 +445,7 @@
        inkscape:label="Nieper"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan35">NI</tspan></text>
+         id="tspan7">NI</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,45.39631,-13.784857)"
@@ -454,7 +454,7 @@
        inkscape:label="Nieper"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan36">NI</tspan></text>
+         id="tspan8">NI</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,45.39631,-13.784857)"
@@ -463,7 +463,7 @@
        inkscape:label="Nieper"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan37">NI</tspan></text>
+         id="tspan9">NI</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,45.39631,-13.784857)"
@@ -472,7 +472,7 @@
        inkscape:label="Nieper"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan38">NI</tspan></text>
+         id="tspan10">NI</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,45.39631,-13.784857)"
@@ -481,7 +481,7 @@
        inkscape:label="Nieper"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan39">NI</tspan></text>
+         id="tspan11">NI</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,45.39631,-13.784857)"
@@ -490,7 +490,7 @@
        inkscape:label="Nieper"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan40">NI</tspan></text>
+         id="tspan12">NI</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,45.39631,-13.784857)"
@@ -499,7 +499,7 @@
        inkscape:label="Nieper"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan41">NI</tspan></text>
+         id="tspan13">NI</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,45.39631,-13.784857)"
@@ -508,7 +508,7 @@
        inkscape:label="Nieper"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan42">NI</tspan></text>
+         id="tspan14">NI</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.02796563,0,0,0.02796563,-28.89578,-30.006445)"
@@ -517,9 +517,9 @@
        inkscape:label="Sporthalle"><tspan
          x="-201.40234"
          y="301.6758"
-         id="tspan44"><tspan
+         id="tspan16"><tspan
            style="font-size:201.835px"
-           id="tspan43">SP</tspan></tspan></text>
+           id="tspan15">SP</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,140.37649,-95.367085)"
@@ -528,7 +528,7 @@
        inkscape:label="Mensa"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan45">MN</tspan></text>
+         id="tspan17">MN</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,87.348525,-95.367085)"
@@ -537,7 +537,7 @@
        inkscape:label="Treffts"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan46">TR</tspan></text>
+         id="tspan18">TR</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,89.960234,-95.367085)"
@@ -546,7 +546,7 @@
        inkscape:label="CampusLiebknecht"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan47">CL</tspan></text>
+         id="tspan19">CL</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,98.702102,-102.91844)"
@@ -555,7 +555,7 @@
        inkscape:label="Treffts_L"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan48">TR_L</tspan></text>
+         id="tspan20">TR_L</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,94.330264,-102.23712)"
@@ -564,7 +564,7 @@
        inkscape:label="Treffts_C"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan49">TR_C</tspan></text>
+         id="tspan21">TR_C</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,93.648938,-102.91844)"
@@ -573,7 +573,7 @@
        inkscape:label="Treffts_B"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan50">TR_B</tspan></text>
+         id="tspan22">TR_B</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,-26.976922,-21.19319)"
@@ -582,7 +582,7 @@
        inkscape:label="Treffts_A"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan51">TR_A</tspan></text>
+         id="tspan23">TR_A</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,72.643176,-95.367085)"
@@ -591,7 +591,7 @@
        inkscape:label="Mensa"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan52">MN</tspan></text>
+         id="tspan24">MN</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,87.178128,-96.04841)"
@@ -600,7 +600,7 @@
        inkscape:label="Zuse"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan53">ZU</tspan></text>
+         id="tspan25">ZU</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,81.103,-95.367085)"
@@ -609,7 +609,7 @@
        inkscape:label="Gutenberg"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan54">GU</tspan></text>
+         id="tspan26">GU</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,76.674351,-95.367085)"
@@ -618,7 +618,7 @@
        inkscape:label="Medienzentrum"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan55">MZ</tspan></text>
+         id="tspan27">MZ</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,78.037044,-95.367085)"
@@ -627,7 +627,7 @@
        inkscape:label="Bibliothek"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan56">HB</tspan></text>
+         id="tspan28">HB</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,90.357679,-95.367085)"
@@ -636,7 +636,7 @@
        inkscape:label="Eichendorfstrasse"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan57">E2</tspan></text>
+         id="tspan29">E2</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,83.544431,-86.225968)"
@@ -645,7 +645,7 @@
        inkscape:label="Föppl"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan58">FÖ</tspan></text>
+         id="tspan30">FÖ</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,86.099387,-95.367085)"
@@ -654,7 +654,7 @@
        inkscape:label="Geutebrück"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan59">GE</tspan></text>
+         id="tspan31">GE</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,106.48404,-95.367085)"
@@ -663,7 +663,7 @@
        inkscape:label="Lipsius"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan60">LI</tspan></text>
+         id="tspan32">LI</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.59142836,0,0,0.59142836,97.683652,-95.367085)"
@@ -672,7 +672,35 @@
        inkscape:label="Nieper"><tspan
          x="-201.40234"
          y="293.37406"
-         id="tspan61">NI</tspan></text>
+         id="tspan33">NI</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="Haltestelle">
+    <circle
+       style="font-variation-settings:'wdth' 70, 'wght' 600;fill:#032c58;fill-opacity:1;stroke:#fbc10f;stroke-width:0.42677;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path6"
+       cx="5.291666"
+       cy="5.291666"
+       r="5.0782809" />
+    <circle
+       style="font-variation-settings:'wdth' 70, 'wght' 600;fill:#fbc10f;fill-opacity:1;stroke:none;stroke-width:0.400675;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path6-2"
+       cx="5.291666"
+       cy="5.291666"
+       r="3.9687495" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.96638px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;fill:#032c58;fill-opacity:1;stroke:none;stroke-width:0.102852;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       x="2.9137015"
+       y="8.135664"
+       id="text5"><tspan
+         sodipodi:role="line"
+         id="tspan5"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.96638px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;fill:#032c58;fill-opacity:1;stroke:none;stroke-width:0.102852;stroke-dasharray:none"
+         x="2.9137015"
+         y="8.135664">H</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -699,7 +727,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-4);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
            x="-201.40234"
            y="306.00268"
-           id="tspan62">11</tspan></text>
+           id="tspan34">11</tspan></text>
     </g>
     <g
        inkscape:label="Tram10"
@@ -721,7 +749,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-1-5);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
            x="-201.40234"
            y="306.00268"
-           id="tspan63">10</tspan></text>
+           id="tspan35">10</tspan></text>
     </g>
   </g>
   <g
@@ -749,7 +777,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-1-1-4);display:inline;fill:#1d1d1b;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
            x="-201.40234"
            y="306.00268"
-           id="tspan64">9</tspan></text>
+           id="tspan36">9</tspan></text>
     </g>
     <g
        inkscape:label="Bus70"
@@ -770,7 +798,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-1-8-3);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
            x="-201.40234"
            y="306.00268"
-           id="tspan65">70</tspan></text>
+           id="tspan37">70</tspan></text>
     </g>
   </g>
   <g
@@ -798,7 +826,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-2);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
            x="-201.40234"
            y="306.00268"
-           id="tspan66">11</tspan></text>
+           id="tspan38">11</tspan></text>
     </g>
     <g
        inkscape:label="Tram10"
@@ -820,7 +848,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect7);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
            x="-201.40234"
            y="306.00268"
-           id="tspan67">10</tspan></text>
+           id="tspan39">10</tspan></text>
     </g>
     <g
        inkscape:label="Tram9"
@@ -842,7 +870,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect2-1-1-5);display:inline;fill:#1d1d1b;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
            x="-201.40234"
            y="306.00268"
-           id="tspan68">9</tspan></text>
+           id="tspan40">9</tspan></text>
     </g>
     <g
        inkscape:label="Bus70"
@@ -863,7 +891,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, @wght=600,wdth=70.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 70, 'wght' 600;white-space:pre;shape-inside:url(#rect10);display:inline;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:bevel"><tspan
            x="-201.40234"
            y="306.00268"
-           id="tspan69">70</tspan></text>
+           id="tspan41">70</tspan></text>
     </g>
   </g>
 </svg>

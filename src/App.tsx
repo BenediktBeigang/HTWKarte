@@ -11,7 +11,7 @@ import { Building } from "./Building";
 
 const START_ZOOM = 17 as const;
 const MAX_ZOOM = 24 as const;
-const MIN_ZOOM = 13 as const;
+const MIN_ZOOM = 12 as const;
 const CENTER_OF_MAP: L.LatLngExpression = L.latLng(51.313, 12.374);
 const MAX_BOUNDS: L.LatLngBoundsExpression = L.latLngBounds(
   L.latLng(51.39666318732199, 12.250913752241985),
