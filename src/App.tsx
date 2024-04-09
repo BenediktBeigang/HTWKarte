@@ -49,6 +49,7 @@ function App() {
       ref={mapRef}
       maxBounds={MAX_BOUNDS}
       zoomSnap={0.1}
+      doubleClickZoom={false}
     >
       <MapEvents />
       <PublicTransport zoom={zoom} />

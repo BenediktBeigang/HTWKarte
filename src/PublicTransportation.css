@@ -16,26 +16,10 @@
     display: none;
 }
 
-.htwk_north {
+.vehicle {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 0.5em;
-}
-
-.htwk_east {
-    display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5em;
-}
-
-.htwk_south {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5em;
 }

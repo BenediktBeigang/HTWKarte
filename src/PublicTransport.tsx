@@ -3,6 +3,7 @@ import L from "leaflet";
 import { LEIPZIG_RED, LEIPZIG_YELLOW, LEIPZIG_PURPLE } from "./Color";
 import "./PublicTransportation.css";
 import { Tram9, Tram10, Tram11, Bus70, Bus89 } from "./VehicleIconFactory";
+import React from "react";
 
 const OPACITY_ZOOM_LEVEL : number = 16.5 as const;
 
@@ -37,60 +38,83 @@ const busAndTramStopIcon = new L.DivIcon({
   iconAnchor: [20, 20],
 });
 
+function CreateBusAndTramMarker({
+  name,
+  location,
+  vehicles,
+  zoom,
+  popupOffset,
+}: {
+  name: string;
+  location: L.LatLng;
+  vehicles: React.ReactNode[];
+  zoom: number;
+  popupOffset: L.Point;
+}) {  
+  return (
+    <Marker
+      position={location}
+      icon={busAndTramStopIcon}
+      opacity={zoom >= OPACITY_ZOOM_LEVEL ? 1 : 0}
+      eventHandlers={{
+        click: (e) => {
+          e.target.openPopup();
+        },
+        mouseout: (e) => {
+          e.target.closePopup();
+        },
+        mouseover: (e) => {
+          e.target.openPopup();
+        }
+      }}
+    >
+      <Popup className="popup" offset={popupOffset}>
+        <div id={name} className="vehicle">
+          {vehicles.map((vehicle, index) => (
+            <div key={index}>{vehicle}</div>
+          ))}
+        </div>
+      </Popup>
+    </Marker>
+  );
+}
+
 export const PublicTransport: React.FC<PublicTransportProps> = ({ zoom }) => {
   return (
     <div>
-      <Marker
-        position={new L.LatLng(51.31535, 12.37335)}
-        icon={busAndTramStopIcon}
-        opacity={zoom >= OPACITY_ZOOM_LEVEL ? 1 : 0}
-      >
-        <Popup className="popup" offset={new L.Point(2, 0)}>
-          <div className="htwk_north">
-            <Tram10 />
-            <Tram11 />
-          </div>
-        </Popup>
-      </Marker>
-      <Marker
-        position={new L.LatLng(51.31488, 12.3741)}
-        icon={busAndTramStopIcon}
-        opacity={zoom >= OPACITY_ZOOM_LEVEL ? 1 : 0}
-      >
-        <Popup className="popup" offset={new L.Point(80, 55)}>
-          <div className="htwk_east">
-            <Tram9 />
-            <Bus70 />
-          </div>
-        </Popup>
-      </Marker>
-
-      <Marker
-        position={new L.LatLng(51.3114, 12.37323)}
-        icon={busAndTramStopIcon}
-        opacity={zoom >= OPACITY_ZOOM_LEVEL ? 1 : 0}
-      >
-        <Popup className="popup" offset={new L.Point(2, 245)}>
-          <div className="htwk_south">
-            <Tram9 />
-            <Tram10 />
-            <Tram11 />
-            <Bus70 />
-          </div>
-        </Popup>
-      </Marker>
-
-      <Marker
-        position={new L.LatLng(51.31165, 12.3727)}
-        icon={busAndTramStopIcon}
-        opacity={zoom >= OPACITY_ZOOM_LEVEL ? 1 : 0}
-      >
-        <Popup className="popup" offset={new L.Point(-44, 59)}>
-          <div className="htwk_west">
-            <Bus89 />
-          </div>
-        </Popup>
-      </Marker>
+      {CreateBusAndTramMarker({
+        name: "htwk_north",
+        location: new L.LatLng(51.31535, 12.37335),
+        vehicles: [<Tram10 />, <Tram11 />] as React.ReactNode[],
+        zoom: zoom,
+        popupOffset: new L.Point(80, 59),
+      })}
+      {CreateBusAndTramMarker({
+        name: "htwk_east",
+        location: new L.LatLng(51.31488, 12.3741),
+        vehicles: [<Tram9 />, <Bus70 />] as React.ReactNode[],
+        zoom: zoom,
+        popupOffset: new L.Point(80, 59),
+      })}
+      {CreateBusAndTramMarker({
+        name: "htwk_south",
+        location: new L.LatLng(51.3114, 12.37323),
+        vehicles: [
+          <Tram9 />,
+          <Tram10 />,
+          <Tram11 />,
+          <Bus70 />,
+        ] as React.ReactNode[],
+        zoom: zoom,
+        popupOffset: new L.Point(0, 110),
+      })}
+      {CreateBusAndTramMarker({
+        name: "htwk_west",
+        location: new L.LatLng(51.31165, 12.3727),
+        vehicles: [<Bus89 />] as React.ReactNode[],
+        zoom: zoom,
+        popupOffset: new L.Point(-50, 59),
+      })}
 
       <FeatureGroup>
         <GeoJSON
