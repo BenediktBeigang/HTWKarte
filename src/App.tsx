@@ -8,6 +8,7 @@ import {
 import L, { Map } from "leaflet";
 import { PublicTransport } from "./PublicTransport";
 import { Building } from "./Building";
+import { BuildingInsideView } from "./BuildingInsideView";
 
 const START_ZOOM = 17 as const;
 const MAX_ZOOM = 24 as const;
@@ -58,6 +59,7 @@ function App() {
         zoom={zoom}
         mapRef={mapRef}
       />
+      <BuildingInsideView zoom={zoom} mapRef={mapRef} />
 
       <TileLayer
         attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
