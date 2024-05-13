@@ -1,16 +1,16 @@
-import zuse_0 from "./Assets/Buildings/ZU/ZU_0.svg";
-import zuse_1 from "./Assets/Buildings/ZU/ZU_1.svg";
-import zuse_2 from "./Assets/Buildings/ZU/ZU_2.svg";
-import zuse_3 from "./Assets/Buildings/ZU/ZU_3.svg";
-import zuse_4 from "./Assets/Buildings/ZU/ZU_4.svg";
-import zuse_5 from "./Assets/Buildings/ZU/ZU_5.svg";
-import zuse_roof from "./Assets/Buildings/ZU/ZU_Roof.svg";
+import zuse_0 from "/Assets/Buildings/ZU/ZU_0.svg";
+import zuse_1 from "/Assets/Buildings/ZU/ZU_1.svg";
+import zuse_2 from "/Assets/Buildings/ZU/ZU_2.svg";
+import zuse_3 from "/Assets/Buildings/ZU/ZU_3.svg";
+import zuse_4 from "/Assets/Buildings/ZU/ZU_4.svg";
+import zuse_5 from "/Assets/Buildings/ZU/ZU_5.svg";
+import zuse_roof from "/Assets/Buildings/ZU/ZU_Roof.svg";
 
-import gutenberg_0 from "./Assets/Buildings/GU/GU_0.svg";
-import gutenberg_1 from "./Assets/Buildings/GU/GU_1.svg";
-import gutenberg_2 from "./Assets/Buildings/GU/GU_2.svg";
-import gutenberg_3 from "./Assets/Buildings/GU/GU_3.svg";
-import gutenberg_roof from "./Assets/Buildings/GU/GU_Roof.svg";
+import gutenberg_0 from "/Assets/Buildings/GU/GU_0.svg";
+import gutenberg_1 from "/Assets/Buildings/GU/GU_1.svg";
+import gutenberg_2 from "/Assets/Buildings/GU/GU_2.svg";
+import gutenberg_3 from "/Assets/Buildings/GU/GU_3.svg";
+import gutenberg_roof from "/Assets/Buildings/GU/GU_Roof.svg";
 
 const floors_zuse = [zuse_0, zuse_1, zuse_2, zuse_3, zuse_4, zuse_5, zuse_roof];
 

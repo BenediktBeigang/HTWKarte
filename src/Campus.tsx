@@ -14,7 +14,6 @@ import {
 } from "./Building";
 import { useCampusState } from "./campus-context";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
-import { campusOfRoom } from "./CampusUtils";
 import { HTWK_GRAY } from "./Color";
 import { createZoom } from "./ZoomHandler";
 
@@ -138,7 +137,7 @@ const Campus = () => {
   const [alertOpen, setAlertOpen] = useState(false);
 
   const handleClose = (
-    event?: Event | React.SyntheticEvent<any, Event>,
+    _event?: Event | React.SyntheticEvent<any, Event>,
     reason?: SnackbarCloseReason,
   ) => {
     if (reason === "clickaway") return;
@@ -158,7 +157,7 @@ const Campus = () => {
     updateCurrentBuilding(stateRef);
   }, [state.position, state.zoomFactor]);
 
-  const campus: string = campusOfRoom(roomID, state.dataOfBuildings);
+  // const campus: string = campusOfRoom(roomID, state.dataOfBuildings);
 
   const CAMPUS_MAP_WIDTH: number = 36000 as const;
   const CAMPUS_MAP_HEIGHT: number = 58000 as const;

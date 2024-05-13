@@ -8,7 +8,7 @@ import RoomInfo from "./RoomInfo";
 import { useCampusState } from "./campus-context";
 
 export const CampusMap = () => {
-  const [state, dispatch] = useCampusState();
+  const [, dispatch] = useCampusState();
 
   return (
     <div id="campus-map" style={{ width: "100vw", height: "100lvh" }}>
