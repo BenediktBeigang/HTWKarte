@@ -2,7 +2,7 @@ import * as d3 from "d3";
 import { MutableRefObject } from "react";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer.ts";
 
-const MIN_ZOOM: number = window.innerWidth * 0.00002;
+const MIN_ZOOM: number = window.innerWidth * 0.00001;
 const MAX_ZOOM: number = window.innerWidth * 0.0005;
 
 const START_ZOOM: number = 0.03 as const;
@@ -69,3 +69,4 @@ const createZoom = (
 };
 
 export { createZoom };
+
