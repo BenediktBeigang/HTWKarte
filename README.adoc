@@ -2,7 +2,7 @@
 
 This project wants to make the locations of the HTWK Leipzig transparent. Find your next lecture-room, search for the room of your professor or get an overview of all the campuses that the HTWK has to offer.
 
-.See the current state of development link:https://871ccdf5.htwkarte.pages.dev/[here]
+.See the current state of development link:https://htwkarte.pages.dev/[here]
 ****
 ****
 
