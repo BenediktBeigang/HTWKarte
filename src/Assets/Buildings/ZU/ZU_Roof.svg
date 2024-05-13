@@ -1,0 +1,374 @@
+<svg width="5080.452" height="1895.177" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter style="color-interpolation-filters:sRGB" id="k" x="-.04" y="-.227" width="1.08" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="l" x="-.04" y="-.227" width="1.08" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="m" x="-.04" y="-.227" width="1.08" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="n" x="-.04" y="-.227" width="1.08" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="o" x="-.04" y="-.227" width="1.08" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="p" x="-.04" y="-.227" width="1.08" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="q" x="-.04" y="-.227" width="1.08" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="r" x="-.04" y="-.227" width="1.08" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="s" x="-.04" y="-.227" width="1.08" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="t" x="-.04" y="-.227" width="1.08" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="a" x="-.039" y="-.227" width="1.079" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="b" x="-.039" y="-.227" width="1.079" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="c" x="-.039" y="-.227" width="1.079" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="d" x="-.039" y="-.227" width="1.079" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="e" x="-.039" y="-.227" width="1.079" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="f" x="-.039" y="-.227" width="1.079" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="g" x="-.039" y="-.227" width="1.079" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="h" x="-.039" y="-.227" width="1.079" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="i" x="-.039" y="-.227" width="1.079" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="j" x="-.039" y="-.227" width="1.079" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="z" x="-.151" y="-.072" width="1.302" height="1.144">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="3" />
+      <feOffset result="offset" in="blur" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="y" x="-.193" y="-.072" width="1.386" height="1.144">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="3" />
+      <feOffset result="offset" in="blur" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="A" x="-.107" y="-.103" width="1.214" height="1.206">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="3" />
+      <feOffset result="offset" in="blur" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="x" x="-.101" y="-.101" width="1.202" height="1.202">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="3" />
+      <feOffset result="offset" in="blur" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="G" x="-.103" y="-.072" width="1.207" height="1.144">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="3" />
+      <feOffset result="offset" in="blur" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="B" x="-.018" y="-.16" width="1.037" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="C" x="-.018" y="-.16" width="1.037" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="D" x="-.018" y="-.16" width="1.037" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="E" x="-.018" y="-.16" width="1.037" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="F" x="-.018" y="-.079" width="1.037" height="1.19">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="v" x="-.039" y="-.227" width="1.079" height="1.387">
+      <feFlood result="flood" flood-opacity=".396" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="-2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <filter style="color-interpolation-filters:sRGB" id="u" x="-.039" y="-.16" width="1.079" height="1.387">
+      <feFlood result="flood" flood-opacity="1" flood-color="#000" />
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2" />
+      <feOffset result="offset" in="blur" dy="2" />
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" />
+      <feComposite result="comp2" in="SourceGraphic" in2="comp1" />
+    </filter>
+    <marker style="overflow:visible" id="w" refX="0" refY="0" orient="auto-start-reverse" markerWidth="1"
+      markerHeight="1" viewBox="0 0 1 1" preserveAspectRatio="xMidYMid">
+      <path transform="scale(.5)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+        d="m5.77 0-8.65 5V-5Z" />
+    </marker>
+  </defs>
+  <g style="display:inline">
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;fill:#404a4f;fill-opacity:1;stroke:none;stroke-width:45;stroke-dasharray:none;stroke-opacity:1"
+      d="M222.767-111.9H2112.72l-183.758-196.091-1914.497-.012Z" transform="matrix(1 0 0 1 -14.466 478.368)" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;fill:#4c5a5f;fill-opacity:1;stroke:none;stroke-width:45;stroke-dasharray:none;stroke-opacity:1"
+      d="M2112.721-111.9v-171.994l-183.757-194.474v170.379z" transform="matrix(1 0 0 1 -14.466 478.368)" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;fill:#404a4f;fill-opacity:1;stroke:none;stroke-width:45;stroke-dasharray:none;stroke-opacity:1"
+      d="M2112.721-283.894h2800l182.197-194.474H1928.964Z" transform="matrix(1 0 0 1 -14.466 478.368)" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;fill:#4c5a5f;fill-opacity:1;stroke:none;stroke-width:45;stroke-dasharray:none;stroke-opacity:1"
+      d="M4912.722-283.894v1000l182.196 196.58V-478.369Z" transform="matrix(1 0 0 1 -14.466 478.368)" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;fill:#5a6d72;fill-opacity:1;stroke:none;stroke-width:45;stroke-dasharray:none;stroke-opacity:1"
+      d="M4912.722 716.106h-3186l192.135 196.615 3176.061-.036z" transform="matrix(1 0 0 1 -14.466 478.368)" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;fill:#4c5a5f;fill-opacity:1;stroke:none;stroke-width:45;stroke-dasharray:none;stroke-opacity:1"
+      d="M1726.721 716.106V1188.1l192.135 208.298V912.72Z" transform="matrix(1 0 0 1 -14.466 478.368)" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;fill:#4c5a5f;fill-opacity:1;stroke:none;stroke-width:45.0896;stroke-dasharray:none;stroke-opacity:1"
+      d="M222.767 1188.1v-1300L14.468-308.002v1704.398Z" transform="matrix(1 0 0 1 -14.466 478.368)" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;fill:#5a6d72;fill-opacity:1;stroke:none;stroke-width:45.0896;stroke-dasharray:none;stroke-opacity:1"
+      d="M1726.721 1188.1H222.767L14.468 1396.396h1904.389z" transform="matrix(1 0 0 1 -14.466 478.368)" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#e7ebef;fill-opacity:1;stroke:none;stroke-width:5"
+      d="M222.767 371.32H2112.72V199.325h2800v1000h-3186v471.993H222.767Z" transform="matrix(1 0 0 1 -14.466 -4.852)" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#f4f7f8;fill-opacity:1;stroke:none;stroke-width:5.41803"
+      transform="matrix(1 0 0 1 -14.466 -4.852)" d="M2292 726h380v473.326h-380z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#b1b1b1;fill-opacity:1;stroke:none;stroke-width:10.7959;stroke-dasharray:none;stroke-opacity:1"
+      transform="matrix(1 0 0 1 -14.466 -4.852)" d="M457.251 1279.836h892.725v391.483H457.251z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#6f849e;fill-opacity:1;stroke:none;stroke-width:.0898305"
+      d="M.329 267.13H5.41v14.148H.329z" transform="matrix(40.99417 0 0 40.99417 -13.464 -10015.609)" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#c2c3c2;fill-opacity:1;stroke:none;stroke-width:8;stroke-dasharray:none;stroke-opacity:1"
+      transform="matrix(1 0 0 1 -14.466 -4.852)" d="M1064.298 1555.354h156.656v115.966h-156.656z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#c2c3c2;fill-opacity:1;stroke:none;stroke-width:6.74267;stroke-dasharray:none;stroke-opacity:1"
+      transform="matrix(1 0 0 1 -14.466 -4.852)"
+      d="M913.86 1555.354h111.284v115.966H913.86zM763.421 1555.354h111.284v115.966H763.421z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#c2c3c2;fill-opacity:1;stroke:none;stroke-width:8;stroke-dasharray:none;stroke-opacity:1"
+      transform="matrix(1 0 0 1 -14.466 -4.852)" d="M566.804 1555.354H723.46v115.966H566.804z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#c2c3c2;fill-opacity:1;stroke:none;stroke-width:6.74267;stroke-dasharray:none;stroke-opacity:1"
+      transform="matrix(1 0 0 1 -14.466 -4.852)" d="M428.923 1555.354h111.284v115.966H428.923z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#ddd3c7;fill-opacity:1;stroke:none;stroke-width:8.16779;stroke-dasharray:none;stroke-opacity:1"
+      transform="matrix(1 0 0 1 -14.466 -4.852)" d="M420.438 1356.204h837.88v238.748h-837.88z" />
+    <g transform="matrix(.80546 0 0 .80546 263.616 248.044)" style="display:inline">
+      <path
+        style="font-variation-settings:'wdth' 70,'wght' 600;opacity:1;fill:#f7fbff;fill-opacity:1;stroke:none;stroke-width:2.66949"
+        transform="matrix(.85455 0 0 1 159.413 0)" d="M972 1435.645h252v168.712H972z" />
+      <circle
+        style="font-variation-settings:'wdth' 70,'wght' 600;opacity:1;fill:#73757b;fill-opacity:1;stroke:none;stroke-width:3.31445"
+        cx="1098" cy="1506.653" r="57.009" />
+      <circle
+        style="font-variation-settings:'wdth' 70,'wght' 600;opacity:1;fill:#aba8bb;fill-opacity:1;stroke:none;stroke-width:.494686"
+        cx="1098" cy="1506.653" r="8.509" />
+      <circle
+        style="font-variation-settings:'wdth' 70,'wght' 600;opacity:1;fill:none;fill-opacity:1;stroke:#aba8bb;stroke-width:8;stroke-dasharray:none;stroke-opacity:1"
+        cx="1098" cy="1506.653" r="57.009" />
+    </g>
+    <g transform="matrix(.80546 0 0 .80546 77.499 248.044)" style="display:inline">
+      <path
+        style="font-variation-settings:'wdth' 70,'wght' 600;opacity:1;fill:#f7fbff;fill-opacity:1;stroke:none;stroke-width:2.66949"
+        transform="matrix(.85455 0 0 1 159.413 0)" d="M972 1435.645h252v168.712H972z" />
+      <circle
+        style="font-variation-settings:'wdth' 70,'wght' 600;opacity:1;fill:#73757b;fill-opacity:1;stroke:none;stroke-width:3.31445"
+        cx="1098" cy="1506.653" r="57.009" />
+      <circle
+        style="font-variation-settings:'wdth' 70,'wght' 600;opacity:1;fill:#aba8bb;fill-opacity:1;stroke:none;stroke-width:.494686"
+        cx="1098" cy="1506.653" r="8.509" />
+      <circle
+        style="font-variation-settings:'wdth' 70,'wght' 600;opacity:1;fill:none;fill-opacity:1;stroke:#aba8bb;stroke-width:8;stroke-dasharray:none;stroke-opacity:1"
+        cx="1098" cy="1506.653" r="57.009" />
+    </g>
+    <g transform="matrix(.80546 0 0 .80546 -108.618 248.044)" style="display:inline">
+      <path
+        style="font-variation-settings:'wdth' 70,'wght' 600;opacity:1;fill:#f7fbff;fill-opacity:1;stroke:none;stroke-width:2.66949"
+        transform="matrix(.85455 0 0 1 159.413 0)" d="M972 1435.645h252v168.712H972z" />
+      <circle
+        style="font-variation-settings:'wdth' 70,'wght' 600;opacity:1;fill:#73757b;fill-opacity:1;stroke:none;stroke-width:3.31445"
+        cx="1098" cy="1506.653" r="57.009" />
+      <circle
+        style="font-variation-settings:'wdth' 70,'wght' 600;opacity:1;fill:#aba8bb;fill-opacity:1;stroke:none;stroke-width:.494686"
+        cx="1098" cy="1506.653" r="8.509" />
+      <circle
+        style="font-variation-settings:'wdth' 70,'wght' 600;opacity:1;fill:none;fill-opacity:1;stroke:#aba8bb;stroke-width:8;stroke-dasharray:none;stroke-opacity:1"
+        cx="1098" cy="1506.653" r="57.009" />
+    </g>
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#afbcd0;fill-opacity:1;stroke:none;stroke-width:5.26618;stroke-dasharray:none;stroke-opacity:1"
+      transform="matrix(1 0 0 1 -14.466 -4.852)" d="M546.194 1407.117h136.921v136.921H546.194z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#adbac6;fill-opacity:1;stroke:none;stroke-width:7.42906;stroke-dasharray:none;stroke-opacity:1"
+      transform="matrix(1 0 0 1 -14.466 -4.852)" d="M1855.378 371.326h187.172v828h-187.172z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#b1b1b1;fill-opacity:1;stroke:none;stroke-width:4.64947;stroke-dasharray:none;stroke-opacity:1"
+      transform="matrix(1 0 0 1 -14.466 -4.852)" d="M1260.109 950h89.866v721.319h-89.866z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#b1b1b1;fill-opacity:1;stroke:none;stroke-width:3.1918;stroke-dasharray:none;stroke-opacity:1"
+      transform="matrix(1 0 0 1 -14.466 -4.852)" d="M1260.109 950h595.268v51.319h-595.268z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#94a7cb;fill-opacity:1;stroke:none;stroke-width:7.42078;stroke-dasharray:none;stroke-opacity:1"
+      transform="matrix(1 0 0 1 -14.466 -4.852)" d="M667.558 1196.636h573.404v64.921H667.558z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#94a7cb;fill-opacity:1;stroke:none;stroke-width:4.6897;stroke-dasharray:none;stroke-opacity:1"
+      transform="matrix(1 0 0 1 -14.466 -4.852)" d="M420.438 1196.636h229.008v64.921H420.438z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#94a7cb;fill-opacity:1;stroke:none;stroke-width:6.4102;stroke-dasharray:none;stroke-opacity:1"
+      transform="rotate(-90 -9.659 4.807)" d="M-1318.6 337.404h427.862v64.921H-1318.6z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#94a7cb;fill-opacity:1;stroke:none;stroke-width:4.94478;stroke-dasharray:none;stroke-opacity:1"
+      transform="rotate(-90 -9.659 4.807)" d="M-1594.951 337.404h254.597v64.921h-254.597z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#94a7cb;fill-opacity:1;stroke:none;stroke-width:6.69887;stroke-dasharray:none;stroke-opacity:1"
+      transform="rotate(-90 -9.659 4.807)" d="M-1642.876 254.371h467.266v64.921h-467.266z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#94a7cb;fill-opacity:1;stroke:none;stroke-width:5.01585;stroke-dasharray:none;stroke-opacity:1"
+      transform="rotate(-90 -9.659 4.807)" d="M-1152.707 254.371h261.969v64.921h-261.969z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#b0b9d1;fill-opacity:1;stroke:none;stroke-width:1.6403"
+      transform="matrix(1 0 0 1 -14.466 -4.852)" d="M2121.358 858.021h115.044v143.299h-115.044z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#b0b9d1;fill-opacity:1;stroke:none;stroke-width:1.45208"
+      transform="matrix(1 0 0 1 -14.466 -4.852)" d="M1714.358 817.371h115.044V929.67h-115.044z" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#949aad;fill-opacity:1;stroke:none;stroke-width:.72604"
+      transform="matrix(1 0 0 1 -14.466 -4.852)" d="M2421.465 893.851h57.522V950h-57.522z" />
+    <path style="font-variation-settings:'wght' 600;fill:#e7ebef;fill-opacity:1;stroke-width:.0344863"
+      d="M95.379 278.252h13.111v12.297H95.379z" transform="matrix(40.99417 0 0 40.99417 -13.464 -10015.609)" />
+    <path
+      style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;fill:#4c5a5f;fill-opacity:1;stroke:none;stroke-width:1.09772;stroke-dasharray:none;stroke-opacity:1"
+      d="M108.49 278.252v12.296h4.445v-12.296ZM90.935 278.252v12.296h4.444v-12.296Z"
+      transform="matrix(40.99417 0 0 40.99417 -13.464 -10015.609)" />
+  </g>
+</svg>
