@@ -17,7 +17,7 @@
 }
 
 body {
-  overscroll-behavior-y: contain;
+  overflow: hidden;
 }
 
 a {
