@@ -13,6 +13,7 @@ export type CampusContextProps = {
   dataOfRooms: RoomInJson[];
   dataOfBuildings: BuildingInJson[];
   dataOfCampus: CampusInJson[];
+  insideBuilding: boolean;
 };
 
 export type CampusContextAction =
@@ -25,7 +26,8 @@ export type CampusContextAction =
   | { type: "UPDATE_ROOM"; currentRoomID: string }
   | { type: "UPDATE_DATA_OF_ROOMS"; dataOfRooms: RoomInJson[] }
   | { type: "UPDATE_DATA_OF_BUILDINGS"; dataOfBuildings: BuildingInJson[] }
-  | { type: "UPDATE_DATA_OF_CAMPUS"; dataOfCampus: CampusInJson[] };
+  | { type: "UPDATE_DATA_OF_CAMPUS"; dataOfCampus: CampusInJson[] }
+  | { type: "UPDATE_INSIDE_BUILDING"; insideBuilding: boolean };
 
 const campusReducer = (
   state: CampusContextProps,
@@ -52,6 +54,8 @@ const campusReducer = (
       return { ...state, dataOfBuildings: action.dataOfBuildings };
     case "UPDATE_DATA_OF_CAMPUS":
       return { ...state, dataOfCampus: action.dataOfCampus };
+    case "UPDATE_INSIDE_BUILDING":
+      return { ...state, insideBuilding: action.insideBuilding };
     default:
       return state;
   }

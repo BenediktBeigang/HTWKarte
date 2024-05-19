@@ -6,6 +6,7 @@ import $ from "jquery";
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
+  BuildingInJson,
   cleanBuilding,
   createBuildings,
   drawBuildingOutlines,
@@ -17,9 +18,7 @@ import { CampusContextAction, CampusContextProps } from "./campus-reducer";
 import { HTWK_GRAY } from "./Color";
 import { createZoom } from "./ZoomHandler";
 
-// const CAMPUS_MAP_WIDTH: number = 36000 as const;
-// const CAMPUS_MAP_HEIGHT: number = 58000 as const;
-const ZOOM_INSIDE_BUILDING_THRESHOLD: number = 0.0001 * window.innerWidth;
+const ZOOM_INSIDE_BUILDING_THRESHOLD: number = 0.00008 * window.innerWidth;
 
 export type CampusInJson = {
   type: string;
@@ -89,6 +88,40 @@ const createProjection = (
   return projection;
 };
 
+const switchToOutside = (
+  stateRef: MutableRefObject<{
+    state: CampusContextProps;
+    dispatch: (value: CampusContextAction) => void;
+  }>,
+) => {
+  const state = stateRef.current.state;
+  cleanBuilding(state.currentBuilding);
+  drawRoof(state.currentBuilding);
+  stateRef.current.dispatch({ type: "UPDATE_BUILDING", currentBuilding: "None" });
+  stateRef.current.dispatch({ type: "UPDATE_LEVEL_COUNT", levelCount: -1 });
+  stateRef.current.dispatch({ type: "UPDATE_LEVEL", level: 0 });
+  stateRef.current.dispatch({ type: "UPDATE_ROOM", currentRoomID: "None" });
+  stateRef.current.dispatch({ type: "UPDATE_INSIDE_BUILDING", insideBuilding: false });
+};
+
+const switchToInside = (
+  stateRef: MutableRefObject<{
+    state: CampusContextProps;
+    dispatch: (value: CampusContextAction) => void;
+  }>,
+  building: BuildingInJson,
+) => {
+  stateRef.current.dispatch({
+    type: "UPDATE_BUILDING",
+    currentBuilding: building.properties.Abbreviation,
+  });
+  const newLevelCount = (building.properties.FloorCount ?? 0) - 1;
+  stateRef.current.dispatch({ type: "UPDATE_LEVEL", level: 0 });
+  stateRef.current.dispatch({ type: "UPDATE_LEVEL_COUNT", levelCount: newLevelCount });
+  stateRef.current.dispatch({ type: "UPDATE_INSIDE_BUILDING", insideBuilding: true });
+  loadBuilding(building.properties.Abbreviation, 0, stateRef);
+};
+
 const updateCurrentBuilding = (
   stateRef: MutableRefObject<{
     state: CampusContextProps;
@@ -98,12 +131,8 @@ const updateCurrentBuilding = (
   const state = stateRef.current.state;
 
   if (state.zoomFactor < ZOOM_INSIDE_BUILDING_THRESHOLD) {
-    cleanBuilding(state.currentBuilding);
-    drawRoof(state.currentBuilding);
-    stateRef.current.dispatch({ type: "UPDATE_BUILDING", currentBuilding: "None" });
-    stateRef.current.dispatch({ type: "UPDATE_LEVEL_COUNT", levelCount: -1 });
-    stateRef.current.dispatch({ type: "UPDATE_LEVEL", level: 0 });
-    stateRef.current.dispatch({ type: "UPDATE_ROOM", currentRoomID: "None" });
+    if (!state.insideBuilding) return;
+    switchToOutside(stateRef);
     return;
   }
 
@@ -116,18 +145,11 @@ const updateCurrentBuilding = (
     if (
       !turf.booleanPointInPolygon(point, polygon) ||
       building.properties.Abbreviation === state.currentBuilding
-    ) {
+    )
       return;
-    }
 
-    stateRef.current.dispatch({
-      type: "UPDATE_BUILDING",
-      currentBuilding: building.properties.Abbreviation,
-    });
-    const newLevelCount = (building.properties.FloorCount ?? 0) - 1;
-    stateRef.current.dispatch({ type: "UPDATE_LEVEL", level: 0 });
-    stateRef.current.dispatch({ type: "UPDATE_LEVEL_COUNT", levelCount: newLevelCount });
-    loadBuilding(building.properties.Abbreviation, 0, stateRef);
+    switchToInside(stateRef, building);
+    return;
   });
 };
 
@@ -157,10 +179,12 @@ const Campus = () => {
     updateCurrentBuilding(stateRef);
   }, [state.position, state.zoomFactor]);
 
-  // const campus: string = campusOfRoom(roomID, state.dataOfBuildings);
-
-  const CAMPUS_MAP_WIDTH: number = 36000 as const;
-  const CAMPUS_MAP_HEIGHT: number = 58000 as const;
+  // Get the campus map width and height
+  const campus = state.dataOfCampus.find(
+    (campus) => campus.properties.Name === state.currentCampus,
+  )?.properties;
+  const CAMPUS_MAP_WIDTH: number = campus ? campus.MapWidth : 0;
+  const CAMPUS_MAP_HEIGHT: number = campus ? campus.MapHeight : 0;
 
   // Create the campus map
   useEffect(() => {
@@ -189,7 +213,7 @@ const Campus = () => {
     );
     if (!projection) return;
 
-    createGrid(buildingContainer, CAMPUS_MAP_WIDTH, CAMPUS_MAP_HEIGHT, 1000);
+    // createGrid(buildingContainer, CAMPUS_MAP_WIDTH, CAMPUS_MAP_HEIGHT, 1000);
 
     createBuildings(buildingContainer, projection, state.dataOfBuildings);
 

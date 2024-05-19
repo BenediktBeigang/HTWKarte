@@ -3,9 +3,11 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { styled } from "@mui/system";
 import * as d3 from "d3";
 import * as React from "react";
-import { switchFloor } from "./Building";
+import { MutableRefObject, useEffect, useRef } from "react";
+import { switchToFloor } from "./Building";
 import { HTWK_DARK_TEXT, HTWK_GRAY, HTWK_LIGHT_GRAY, HTWK_YELLOW } from "./Color";
 import { useCampusState } from "./campus-context";
+import { CampusContextAction, CampusContextProps } from "./campus-reducer";
 
 const buttonSize: number = 3 as const;
 
@@ -96,23 +98,35 @@ const levelChangeAnimation = (level: number, levelCount: number) => {
   marker.transition().duration(200).style("top", `${newTop}%`);
 };
 
+const handleLevelChange = (
+  _event: React.MouseEvent<HTMLElement>,
+  newLevel: number | null,
+  stateRef: MutableRefObject<{
+    state: CampusContextProps;
+    dispatch: (value: CampusContextAction) => void;
+  }>,
+) => {
+  if (newLevel === null) return;
+  switchToFloor(stateRef.current.state.currentBuilding, newLevel, stateRef);
+  stateRef.current.dispatch({ type: "UPDATE_LEVEL", level: newLevel });
+};
+
 const LevelButtons = (): JSX.Element => {
   const [state, dispatch] = useCampusState();
+  const stateRef = useRef({ state, dispatch });
   const [hoverLevel, setHoverLevel] = React.useState<number | null>(null);
 
-  const handleLevelChange = (_event: React.MouseEvent<HTMLElement>, newLevel: number | null) => {
-    if (newLevel === null) return;
-    switchFloor(state.currentBuilding, newLevel, state.level);
-    dispatch({ type: "UPDATE_LEVEL", level: newLevel });
-  };
-
-  React.useEffect(() => {
+  useEffect(() => {
     hoverAnimation(state.level, state.levelCount, hoverLevel);
   }, [hoverLevel, state.level, state.levelCount]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     levelChangeAnimation(state.level, state.levelCount);
   }, [state.level, state.levelCount]);
+
+  useEffect(() => {
+    stateRef.current = { state, dispatch };
+  }, [state, dispatch]);
 
   return (
     <ToggleButtonGroup
@@ -121,7 +135,7 @@ const LevelButtons = (): JSX.Element => {
       exclusive
       orientation="vertical"
       size="large"
-      onChange={handleLevelChange}
+      onChange={(event, newLevel) => handleLevelChange(event, newLevel, stateRef)}
       aria-label="Level"
       style={buttonGroupStyle(state.levelCount)}
     >

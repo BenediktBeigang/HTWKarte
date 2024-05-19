@@ -12,6 +12,7 @@ export const initialCampusState: CampusContextProps = {
   dataOfRooms: [],
   dataOfBuildings: [],
   dataOfCampus: [],
+  insideBuilding: false,
 };
 
 export const CampusStateContext = createContext<CampusContextProps>(initialCampusState);

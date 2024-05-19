@@ -41,18 +41,13 @@ export const adressOfBuilding = (abbreviation: string, buildingData: BuildingInJ
 export const cleanBuilding = (buildingAbbreviation: string) => {
   const buildingSVG = d3.select(`#${buildingAbbreviation}`);
   if (!buildingSVG) return;
-  buildingSVG.selectAll("*").remove();
+  buildingSVG
+    .selectAll("*")
+    .transition()
+    .duration(200)
+    .style("opacity", 0)
+    .remove();
   return buildingSVG;
-};
-
-export const switchFloor = (buildingAbbreviation: string, newLevel: number, oldLevel: number) => {
-  const newFloor = d3.select(`#${buildingAbbreviation}_${newLevel}`);
-  const oldFloor = d3.select(`#${buildingAbbreviation}_${oldLevel}`);
-  if (!newFloor || !oldFloor) return;
-  oldFloor.transition().duration(200).style("opacity", 0);
-  oldFloor.style("pointer-events", "none");
-  newFloor.transition().duration(200).style("opacity", 1);
-  newFloor.style("pointer-events", "auto");
 };
 
 const prepareRooms = (
@@ -108,6 +103,33 @@ const prepareRooms = (
   });
 };
 
+export const switchToFloor = (
+  buildingAbbreviation: string,
+  newLevel: number,
+  stateRef: MutableRefObject<{
+    state: CampusContextProps;
+    dispatch: (value: CampusContextAction) => void;
+  }>,
+) => {
+  cleanBuilding(buildingAbbreviation);
+
+  const pathToFloor = `/Assets/Buildings/${buildingAbbreviation}/${buildingAbbreviation}_${newLevel}.svg`;
+  const buildingSVG = d3.select(`#${buildingAbbreviation}`);
+  if (!buildingSVG) return;
+
+  d3.xml(pathToFloor).then((xmlData: XMLDocument) => {
+    const floorSVG_data = document.importNode(xmlData.documentElement, true);
+    const floorContainer = d3.select(buildingSVG.node()).append(() => floorSVG_data);
+    floorContainer.attr("id", `${buildingAbbreviation}_${newLevel}`);
+    const floor = d3.select(`#${buildingAbbreviation}_${newLevel}`);
+    floor.style("opacity", 0);
+    floor.style("pointer-events", "none");
+    prepareRooms(newLevel, buildingAbbreviation, stateRef);
+    floor.transition().duration(200).style("opacity", 1);
+    floor.style("pointer-events", "auto");
+  });
+};
+
 export const loadBuilding = (
   buildingAbbreviation: string,
   startFloor: number,
@@ -131,26 +153,9 @@ export const loadBuilding = (
   const oldBuildingSVG = cleanBuilding(state.currentBuilding);
   if (!buildingSVG || !oldBuildingSVG) return;
 
+  cleanBuilding(state.currentBuilding);
   drawRoof(state.currentBuilding, oldBuildingSVG);
-
-  pathToFloors.forEach((floor, index) => {
-    const level = levels[index];
-    if (!level && level != 0) return;
-
-    d3.xml(floor).then((xmlData: XMLDocument) => {
-      const floorSVG_data = document.importNode(xmlData.documentElement, true);
-      const floorContainer = d3.select(buildingSVG.node()).append(() => floorSVG_data);
-      floorContainer.attr("id", `${buildingAbbreviation}_${level}`);
-      const floor = d3.select(`#${buildingAbbreviation}_${level}`);
-      floor.style("opacity", 0);
-      floor.style("pointer-events", "none");
-      prepareRooms(level, buildingAbbreviation, stateRef);
-      if (level === startFloor) {
-        floor.transition().duration(200).style("opacity", 1);
-        floor.style("pointer-events", "auto");
-      }
-    });
-  });
+  switchToFloor(buildingAbbreviation, startFloor, stateRef);
 };
 
 export const drawRoof = (buildingAbbreviation: string, buildingSVG: any = null) => {
