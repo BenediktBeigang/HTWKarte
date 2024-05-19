@@ -34,35 +34,6 @@ export type CampusInJson = {
   };
 };
 
-function createGrid(svg: any, width: number, height: number, gridSpacing: number) {
-  const xLines = d3.range(0, width + 1, gridSpacing);
-  const yLines = d3.range(0, height + 1, gridSpacing);
-
-  const grid = svg.append("g").attr("id", "grid");
-
-  xLines.forEach((x) => {
-    grid
-      .append("line")
-      .attr("x1", x)
-      .attr("y1", 0)
-      .attr("x2", x)
-      .attr("y2", height)
-      .style("stroke", "#ffffff77")
-      .style("stroke-width", "5");
-  });
-
-  yLines.forEach((y) => {
-    grid
-      .append("line")
-      .attr("x1", 0)
-      .attr("y1", y)
-      .attr("x2", width)
-      .attr("y2", y)
-      .style("stroke", "#ffffff77")
-      .style("stroke-width", "5");
-  });
-}
-
 const createProjection = (
   campusName: string,
   stateRef: MutableRefObject<{
@@ -213,14 +184,12 @@ const Campus = () => {
     );
     if (!projection) return;
 
-    // createGrid(buildingContainer, CAMPUS_MAP_WIDTH, CAMPUS_MAP_HEIGHT, 1000);
-
     createBuildings(buildingContainer, projection, state.dataOfBuildings);
 
     drawBuildingOutlines(buildingContainer, projection, state.dataOfBuildings);
 
     createZoom(campusSVG, buildingContainer, projection, stateRef);
-  }, [roomID, state.dataOfBuildings, state.dataOfCampus]);
+  }, [CAMPUS_MAP_HEIGHT, CAMPUS_MAP_WIDTH, roomID, state.dataOfBuildings, state.dataOfCampus]);
 
   return (
     <>
