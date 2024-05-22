@@ -1,6 +1,5 @@
 import * as d3 from "d3";
 import { MutableRefObject } from "react";
-import buildingFactory from "./BuildingFactory";
 import { HTWK_LIGHT_TEXT } from "./Color";
 import { getFontSizeOfRoom, getRoomName, roomClickedHandler } from "./Room";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
@@ -15,6 +14,7 @@ export type BuildingInJson = {
     Address: string;
     FloorCount: number;
     Floors: [number];
+    TextXOffset: number;
     TextYOffset: number;
     Campus: string;
   };
@@ -41,12 +41,7 @@ export const adressOfBuilding = (abbreviation: string, buildingData: BuildingInJ
 export const cleanBuilding = (buildingAbbreviation: string) => {
   const buildingSVG = d3.select(`#${buildingAbbreviation}`);
   if (!buildingSVG) return;
-  buildingSVG
-    .selectAll("*")
-    .transition()
-    .duration(200)
-    .style("opacity", 0)
-    .remove();
+  buildingSVG.selectAll("*").transition().duration(200).style("opacity", 0).remove();
   return buildingSVG;
 };
 
@@ -64,6 +59,11 @@ const prepareRooms = (
       .selectAll(`g[id='floor_${level}'] > g[id='rooms_${level}'] *[id*='${buildingAbbreviation}']`)
       .nodes(),
   );
+
+  const xOffset =
+    stateRef.current.state.dataOfBuildings.find(
+      (b) => b.properties.Abbreviation === buildingAbbreviation,
+    )?.properties.TextXOffset ?? 0;
 
   const yOffset =
     stateRef.current.state.dataOfBuildings.find(
@@ -85,7 +85,7 @@ const prepareRooms = (
 
     const textElement = floor
       .append("text")
-      .attr("x", roomCenterX)
+      .attr("x", roomCenterX + xOffset)
       .attr("y", roomCenterY + yOffset)
       .attr("text-anchor", "middle")
       .attr("dominant-baseline", "central")
@@ -95,8 +95,16 @@ const prepareRooms = (
       .attr("opacity", 0.65)
       .attr("font-weight", 1000)
       .style("cursor", "default");
-    textElement.append("tspan").attr("x", roomCenterX).attr("dy", "0em").text(firstPart);
-    textElement.append("tspan").attr("x", roomCenterX).attr("dy", "1em").text(secondPart);
+    textElement
+      .append("tspan")
+      .attr("x", roomCenterX + xOffset)
+      .attr("dy", "0em")
+      .text(firstPart);
+    textElement
+      .append("tspan")
+      .attr("x", roomCenterX + xOffset)
+      .attr("dy", "1em")
+      .text(secondPart);
     textElement.on("click", function () {
       roomClickedHandler(roomID, stateRef);
     });
@@ -139,10 +147,6 @@ export const loadBuilding = (
   }>,
 ) => {
   const state = stateRef.current.state;
-
-  const pathToFloors = buildingFactory.getBuilding(buildingAbbreviation);
-  if (!pathToFloors) return;
-
   const buildingInData: any = state.dataOfBuildings.find(
     (b) => b.properties.Abbreviation === buildingAbbreviation,
   );
@@ -160,10 +164,7 @@ export const loadBuilding = (
 
 export const drawRoof = (buildingAbbreviation: string, buildingSVG: any = null) => {
   if (!buildingSVG) buildingSVG = d3.select(`#${buildingAbbreviation}`);
-
-  const pathToRoof = buildingFactory.getRoof(buildingAbbreviation);
-  if (!pathToRoof) return;
-
+  const pathToRoof = `/Assets/Buildings/${buildingAbbreviation}/${buildingAbbreviation}_Roof.svg`;
   d3.xml(pathToRoof).then((xmlData: XMLDocument) => {
     const floorSVG_data = document.importNode(xmlData.documentElement, true);
     const floorSVG = d3.select(buildingSVG.node()).append(() => floorSVG_data);
@@ -179,8 +180,7 @@ const drawBuilding = (
   location: number[],
   projection: d3.GeoProjection,
 ) => {
-  const pathToRoof = buildingFactory.getRoof(buildingAbbreviation);
-  if (!buildingSVG || !pathToRoof || location.length !== 2) return;
+  if (!buildingSVG || location.length !== 2) return;
 
   drawRoof(buildingAbbreviation, buildingSVG);
 
@@ -220,12 +220,12 @@ export const drawBuildingOutlines = (
   dataOfBuildings: BuildingInJson[],
 ) => {
   dataOfBuildings.map((building) => {
+    const skipBuildings = ["GU", "ZU", "MZ"];
     if (
       !buildingContainer ||
       !building.geometry.coordinates ||
       building.geometry.coordinates.length === 0 ||
-      building.properties.Abbreviation === "GU" ||
-      building.properties.Abbreviation === "ZU"
+      skipBuildings.includes(building.properties.Abbreviation)
     )
       return;
     const polygon = building.geometry.coordinates[0].map((coord) => {

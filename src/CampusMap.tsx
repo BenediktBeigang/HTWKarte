@@ -3,7 +3,6 @@ import LevelButtons from "./LevelButtons";
 import RoomInfo from "./RoomInfo";
 
 export const CampusMap = () => {
-
   return (
     <div id="campus-map" style={{ width: "100vw", height: "100lvh" }}>
       <Campus />

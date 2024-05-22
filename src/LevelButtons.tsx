@@ -116,13 +116,19 @@ const LevelButtons = (): JSX.Element => {
   const stateRef = useRef({ state, dispatch });
   const [hoverLevel, setHoverLevel] = React.useState<number | null>(null);
 
-  useEffect(() => {
-    hoverAnimation(state.level, state.levelCount, hoverLevel);
-  }, [hoverLevel, state.level, state.levelCount]);
+  const building = state.dataOfBuildings.find(
+    (b) => b.properties.Abbreviation === state.currentBuilding,
+  );
+  const minFloor = building ? Math.min(...building.properties.Floors) : 0;
+  const adjustedLevel = state.level - minFloor;
 
   useEffect(() => {
-    levelChangeAnimation(state.level, state.levelCount);
-  }, [state.level, state.levelCount]);
+    hoverAnimation(adjustedLevel, state.levelCount, hoverLevel);
+  }, [adjustedLevel, hoverLevel, state.level, state.levelCount]);
+
+  useEffect(() => {
+    levelChangeAnimation(adjustedLevel, state.levelCount);
+  }, [adjustedLevel, state.level, state.levelCount]);
 
   useEffect(() => {
     stateRef.current = { state, dispatch };
@@ -140,18 +146,19 @@ const LevelButtons = (): JSX.Element => {
       style={buttonGroupStyle(state.levelCount)}
     >
       <div id="level-marker" style={markerStyle(state.levelCount + 1)} />
-      {Array.from({ length: state.levelCount + 1 }, (_, i) => state.levelCount - i).map((level) => (
-        <StyledToggleButton
-          key={level}
-          value={level}
-          onMouseEnter={() => setHoverLevel(level)}
-          onMouseLeave={() => setHoverLevel(null)}
-          aria-label={`Level ${level}`}
-          levelcount={0}
-        >
-          {level}
-        </StyledToggleButton>
-      ))}
+      {building &&
+        building.properties.Floors.map((level) => (
+          <StyledToggleButton
+            key={level}
+            value={level}
+            onMouseEnter={() => setHoverLevel(level)}
+            onMouseLeave={() => setHoverLevel(null)}
+            aria-label={`Level ${level}`}
+            levelcount={0}
+          >
+            {level}
+          </StyledToggleButton>
+        ))}
     </ToggleButtonGroup>
   );
 };

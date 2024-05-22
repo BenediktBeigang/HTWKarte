@@ -145,6 +145,10 @@ const Campus = () => {
     stateRef.current = { state, dispatch };
   }, [state, dispatch]);
 
+  useEffect(() => {
+    console.log("Current Building:", state.currentBuilding);
+  }, [state.currentBuilding]);
+
   // Update the current building when the position or zoom factor changes
   useEffect(() => {
     updateCurrentBuilding(stateRef);

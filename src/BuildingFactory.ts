@@ -12,9 +12,23 @@ import gutenberg_2 from "/Assets/Buildings/GU/GU_2.svg";
 import gutenberg_3 from "/Assets/Buildings/GU/GU_3.svg";
 import gutenberg_roof from "/Assets/Buildings/GU/GU_Roof.svg";
 
+import medienzentrum_0 from "/Assets/Buildings/MZ/MZ_0.svg";
+import medienzentrum_1 from "/Assets/Buildings/MZ/MZ_1.svg";
+import medienzentrum_2 from "/Assets/Buildings/MZ/MZ_2.svg";
+import medienzentrum_3 from "/Assets/Buildings/MZ/MZ_3.svg";
+import medienzentrum_roof from "/Assets/Buildings/MZ/MZ_Roof.svg";
+
 const floors_zuse = [zuse_0, zuse_1, zuse_2, zuse_3, zuse_4, zuse_5, zuse_roof];
 
 const floors_gutenberg = [gutenberg_0, gutenberg_1, gutenberg_2, gutenberg_3, gutenberg_roof];
+
+const floors_medienzentrum = [
+  medienzentrum_0,
+  medienzentrum_1,
+  medienzentrum_2,
+  medienzentrum_3,
+  medienzentrum_roof,
+];
 
 const buildingFactory = {
   getBuilding: (abbreviation: string): string[] | undefined => {
@@ -23,6 +37,8 @@ const buildingFactory = {
         return floors_zuse;
       case "GU":
         return floors_gutenberg;
+      case "MZ":
+        return floors_medienzentrum;
       default:
         return undefined;
     }
