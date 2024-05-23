@@ -377,8 +377,8 @@
       "Location": [12.3743, 51.3124],
       "Location_SVG": [12.373954, 51.312511],
       "Address": "Gustav-Freytag-Straße 40 a",
-      "FloorCount": 4,
-      "Floors": [3, 2, 1, 0],
+      "FloorCount": 5,
+      "Floors": [3, 2, 1, 0, -1],
       "TextXOffset": 885,
       "TextYOffset": 1500,
       "Campus": "Campus-Karl-Liebknecht-Strasse"

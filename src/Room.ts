@@ -29,10 +29,20 @@ export const getFontSizeOfRoom = (roomWidth: number, roomHeight: number, text: s
   return `${newFontSize}em`;
 };
 
+const oneLetterAbbreviation = (name: string): boolean => {
+  switch (name[0]) {
+    case 'K':
+      return true;
+    default:
+      return false;
+  }
+};
+
 export const getRoomName = (roomID: string, rooms: RoomInJson[]) => {
   if (!rooms || !Array.isArray(rooms)) return "";
   const room = rooms.find((room: RoomInJson) => room.id === roomID);
   const name = room && (room.name || room.name === "") ? room.name : roomID;
+  if (oneLetterAbbreviation(name)) return name.slice(0, 1) + "\n" + name.slice(1);
   return name.slice(0, 2) + "\n" + name.slice(2);
 };
 

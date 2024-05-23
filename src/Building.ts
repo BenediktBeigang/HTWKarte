@@ -45,6 +45,14 @@ export const cleanBuilding = (buildingAbbreviation: string) => {
   return buildingSVG;
 };
 
+const specialAbbreviationForRooms = (buildingAbbreviation: string, level: number): string => {
+  switch (buildingAbbreviation) {
+    case "MZ":
+      if (level === -1) return "K";
+  }
+  return buildingAbbreviation;
+};
+
 const prepareRooms = (
   level: number,
   buildingAbbreviation: string,
@@ -53,10 +61,14 @@ const prepareRooms = (
     dispatch: (value: CampusContextAction) => void;
   }>,
 ) => {
+  const validBuildingAbbreviation = specialAbbreviationForRooms(buildingAbbreviation, level);
+  if (level === -1) console.log(validBuildingAbbreviation);
   const floor = d3.select(`#${buildingAbbreviation}_${level}`);
   const rooms = Array.from(
     floor
-      .selectAll(`g[id='floor_${level}'] > g[id='rooms_${level}'] *[id*='${buildingAbbreviation}']`)
+      .selectAll(
+        `g[id='floor_${level}'] > g[id='rooms_${level}'] *[id*='${validBuildingAbbreviation}']`,
+      )
       .nodes(),
   );
 
