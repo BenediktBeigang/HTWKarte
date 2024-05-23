@@ -31,7 +31,7 @@ export const getFontSizeOfRoom = (roomWidth: number, roomHeight: number, text: s
 
 const oneLetterAbbreviation = (name: string): boolean => {
   switch (name[0]) {
-    case 'K':
+    case "K":
       return true;
     default:
       return false;

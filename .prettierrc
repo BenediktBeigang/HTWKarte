@@ -1,5 +1,13 @@
 {
   "tabWidth": 2,
   "endOfLine": "crlf",
-  "printWidth": 100
+  "printWidth": 100,
+  "overrides": [
+    {
+      "files": "*.svg",
+      "options": {
+        "printWidth": 99999
+      }
+    }
+  ]
 }
