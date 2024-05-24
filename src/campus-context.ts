@@ -13,6 +13,7 @@ export const initialCampusState: CampusContextProps = {
   dataOfBuildings: [],
   dataOfCampus: [],
   insideBuilding: false,
+  darkMode: true,
 };
 
 export const CampusStateContext = createContext<CampusContextProps>(initialCampusState);

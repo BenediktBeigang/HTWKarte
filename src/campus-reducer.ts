@@ -14,6 +14,7 @@ export type CampusContextProps = {
   dataOfBuildings: BuildingInJson[];
   dataOfCampus: CampusInJson[];
   insideBuilding: boolean;
+  darkMode: boolean;
 };
 
 export type CampusContextAction =
@@ -27,7 +28,8 @@ export type CampusContextAction =
   | { type: "UPDATE_DATA_OF_ROOMS"; dataOfRooms: RoomInJson[] }
   | { type: "UPDATE_DATA_OF_BUILDINGS"; dataOfBuildings: BuildingInJson[] }
   | { type: "UPDATE_DATA_OF_CAMPUS"; dataOfCampus: CampusInJson[] }
-  | { type: "UPDATE_INSIDE_BUILDING"; insideBuilding: boolean };
+  | { type: "UPDATE_INSIDE_BUILDING"; insideBuilding: boolean }
+  | { type: "TOGGLE_DARK_MODE" };
 
 const campusReducer = (
   state: CampusContextProps,
@@ -56,6 +58,8 @@ const campusReducer = (
       return { ...state, dataOfCampus: action.dataOfCampus };
     case "UPDATE_INSIDE_BUILDING":
       return { ...state, insideBuilding: action.insideBuilding };
+    case "TOGGLE_DARK_MODE":
+      return { ...state, darkMode: !state.darkMode };
     default:
       return state;
   }

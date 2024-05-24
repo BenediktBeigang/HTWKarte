@@ -5,8 +5,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { CampusMap } from "./CampusMap.tsx";
 import CampusProvider from "./CampusProvider.tsx";
 import { CityMap } from "./CityMap.tsx";
-import { HTWK_GRAY, ROOM } from "./Color.ts";
+import { HTWKALENDER_GRAY, ROOM } from "./Color.ts";
 import { ErrorPage } from "./ErrorPage.tsx";
+import "./fonts.css";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -16,30 +17,41 @@ const router = createBrowserRouter([
   { path: "/city", element: <CityMap /> },
 ]);
 
+// text should be white
 const theme = createTheme({
   palette: {
     primary: {
-      main: HTWK_GRAY,
+      main: HTWKALENDER_GRAY,
     },
     secondary: {
       main: ROOM,
     },
+    text: {
+      primary: "#ffffff",
+    },
   },
   typography: {
-    fontFamily: ["Source Sans 3", "sans-serif"].join(","),
+    fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+    fontSize: 16,
   },
   components: {
-    MuiCssBaseline: {
-      styleOverrides: `
-        @font-face {
-          font-family: 'Source Sans 3';
-          font-style: normal;
-          font-display: swap;
-          font-weight: 400;
-          src: local('Source Sans 3'), local('SourceSans3-Regular'), url(/fonts/SourceSans3.ttf) format('truetype');
-          unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
-        }
-      `,
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: "none",
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#bec3c6",
+          borderRadius: "10px 10px 0 0",
+          "& .MuiInputBase-input": {
+            color: "black",
+          },
+        },
+      },
     },
   },
 });
