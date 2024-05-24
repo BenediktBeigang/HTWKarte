@@ -59,7 +59,6 @@ const StyledToggleButton = styled(ToggleButton)<{ levelcount: number }>(({ level
   backgroundColor: "transparent",
   color: HTWK_LIGHT_GRAY,
   height: isNaN(levelcount) ? 0 : `calc(${buttonSize}em / ${levelcount + 1})`,
-  fontWeight: "bold",
   fontSize: "1.5em",
   margin: "0",
   padding: "0",

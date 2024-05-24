@@ -5,8 +5,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { CampusMap } from "./CampusMap.tsx";
 import CampusProvider from "./CampusProvider.tsx";
 import { CityMap } from "./CityMap.tsx";
-import { HTWKALENDER_GRAY, ROOM } from "./Color.ts";
+import { HTWK_LIGHT_TEXT, HTWK_YELLOW, HTWKALENDER_GRAY, ROOM } from "./Color.ts";
 import { ErrorPage } from "./ErrorPage.tsx";
+import { FAQ } from "./faq.tsx";
 import "./fonts.css";
 import "./index.css";
 
@@ -15,16 +16,21 @@ const router = createBrowserRouter([
   { path: "/room/:roomID", element: <CampusMap />, errorElement: <ErrorPage /> },
   { path: "/campus/:campusID", element: <CampusMap />, errorElement: <ErrorPage /> },
   { path: "/city", element: <CityMap /> },
+  { path: "/faq", element: <FAQ /> },
 ]);
 
 // text should be white
 const theme = createTheme({
   palette: {
+    mode: "dark",
     primary: {
-      main: HTWKALENDER_GRAY,
+      main: HTWK_LIGHT_TEXT,
     },
     secondary: {
       main: ROOM,
+    },
+    background: {
+      default: HTWKALENDER_GRAY,
     },
     text: {
       primary: "#ffffff",
@@ -38,17 +44,13 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
+          variant: "contained",
           textTransform: "none",
-        },
-      },
-    },
-    MuiTextField: {
-      styleOverrides: {
-        root: {
-          backgroundColor: "#bec3c6",
-          borderRadius: "10px 10px 0 0",
-          "& .MuiInputBase-input": {
-            color: "black",
+          "&.Mui-focusVisible": {
+            textDecoration: "underline",
+            textDecorationColor: "yellow",
+            color: HTWK_YELLOW,
+            // color: "inherit", // behält die ursprüngliche Textfarbe bei
           },
         },
       },
