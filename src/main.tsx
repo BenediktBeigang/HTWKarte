@@ -6,10 +6,11 @@ import { CampusMap } from "./CampusMap.tsx";
 import CampusProvider from "./CampusProvider.tsx";
 import { CityMap } from "./CityMap.tsx";
 import { HTWK_LIGHT_TEXT, HTWK_YELLOW, HTWKALENDER_GRAY, ROOM } from "./Color.ts";
-import { ErrorPage } from "./ErrorPage.tsx";
-import { FAQ } from "./faq.tsx";
 import "./fonts.css";
 import "./index.css";
+import { ErrorPage } from "./Subpages/ErrorPage.tsx";
+import { FAQ } from "./Subpages/FAQ.tsx";
+import { Imprint } from "./Subpages/Imprint.tsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <CampusMap />, errorElement: <ErrorPage /> },
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
   { path: "/campus/:campusID", element: <CampusMap />, errorElement: <ErrorPage /> },
   { path: "/city", element: <CityMap /> },
   { path: "/faq", element: <FAQ /> },
+  { path: "/imprint", element: <Imprint /> },
 ]);
 
 // text should be white
@@ -39,6 +41,9 @@ const theme = createTheme({
   typography: {
     fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
     fontSize: 16,
+    subtitle1: {
+      fontWeight: 650,
+    },
   },
   components: {
     MuiButton: {
@@ -51,6 +56,20 @@ const theme = createTheme({
             textDecorationColor: "yellow",
             color: HTWK_YELLOW,
             // color: "inherit", // behält die ursprüngliche Textfarbe bei
+          },
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& .MuiInput-underline:after": {
+            borderBottomColor: HTWK_YELLOW,
+          },
+          "& .MuiOutlinedInput-root": {
+            "&.Mui-focused fieldset": {
+              borderColor: HTWK_YELLOW,
+            },
           },
         },
       },

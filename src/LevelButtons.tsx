@@ -23,7 +23,6 @@ const buttonGroupStyle = (levelCount: number): React.CSSProperties => {
     border: `2px solid ${HTWK_LIGHT_GRAY}`,
     backgroundColor: HTWK_GRAY,
     opacity: levelCount === -1 ? "0" : "0.9",
-
     margin: "0",
     padding: "0",
   };
@@ -60,6 +59,7 @@ const StyledToggleButton = styled(ToggleButton)<{ levelcount: number }>(({ level
   color: HTWK_LIGHT_GRAY,
   height: isNaN(levelcount) ? 0 : `calc(${buttonSize}em / ${levelcount + 1})`,
   fontSize: "1.5em",
+  fontWeight: "bold",
   margin: "0",
   padding: "0",
 }));

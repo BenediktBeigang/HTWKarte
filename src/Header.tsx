@@ -28,7 +28,9 @@ export const Header = () => {
             </Link>
           </Box>
           <Box m={1}>
-            <Button color="inherit">imprint</Button>
+            <Link to="/imprint">
+              <Button color="inherit">imprint</Button>
+            </Link>
           </Box>
           <Box m={1}>
             <Button color="inherit">privacy</Button>
