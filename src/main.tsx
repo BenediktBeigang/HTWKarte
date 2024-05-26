@@ -55,8 +55,37 @@ const theme = createTheme({
             textDecoration: "underline",
             textDecorationColor: "yellow",
             color: HTWK_YELLOW,
-            // color: "inherit", // behält die ursprüngliche Textfarbe bei
           },
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            borderRadius: "6px",
+          },
+        },
+      },
+    },
+    MuiListItemIcon: {
+      styleOverrides: {
+        root: {
+          marginRight: "-1em",
+        },
+      },
+    },
+    MuiListItemText: {
+      styleOverrides: {
+        primary: {
+          color: HTWK_LIGHT_TEXT,
+        },
+      },
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          textDecoration: "none",
         },
       },
     },

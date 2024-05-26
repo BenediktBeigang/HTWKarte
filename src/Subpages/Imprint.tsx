@@ -19,16 +19,13 @@ export const Imprint = () => {
         margin="auto"
         justifyContent="center"
         alignItems="center"
-        sx={{ paddingTop: "5em" }}
+        sx={{ paddingTop: "5em", maxWidth: "30%"  }}
       >
         <Typography variant="h2" gutterBottom>
           Impressum
         </Typography>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "2em" }}>
           <Box>
-            <Typography variant="body1" gutterBottom sx={{ fontWeight: "bold" }}>
-              Angaben gemäß § 5 TMG:
-            </Typography>
             <Typography variant="body1" gutterBottom>
               Benedikt Beigang <br /> Hans-Beimler-Straße 46 <br /> 04159 Leipzig, Deutschland
             </Typography>
@@ -56,7 +53,9 @@ export const Imprint = () => {
               </Box>
               <Box sx={{ display: "flex", alignItems: "center", gap: "0.5em" }}>
                 <GitHubIcon />
-                GitHub
+                <a href="https://github.com/BenediktBeigang" style={{ color: "#fff" }}>
+                  GitHub
+                </a>
               </Box>
             </Typography>
           </Box>
@@ -65,7 +64,7 @@ export const Imprint = () => {
               Haftungsausschluss:
             </Typography>
             <Typography variant="body1" gutterBottom>
-              Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit,
+              Die Inhalte der HTWKarte wurden mit größter Sorgfalt erstellt. Für die Richtigkeit,
               Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.
             </Typography>
           </Box>
