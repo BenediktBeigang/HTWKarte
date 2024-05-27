@@ -1,5 +1,12 @@
-= Steckbrief link:https://htwkarte.pages.dev/[HTWKarte]
-:author: Benedikt Beigang, INM-22
+= Steckbrief link:http://htwkarte.de[HTWKarte]
+:author: Projektmitglieder: Benedikt Beigang, INM-22
+:data-uri:
+
+[cols="1,1", grid="none", frame="none"]
+|===
+a| image::img/CampusView_v3.png[]
+a| image::img/InsideZuse_v3.png[]
+|===
 
 == Problemstellung
 
@@ -22,12 +29,14 @@ Im Rahmen des Moduls Progressiv-Web-Apps, soll eine Karten-App entwickelt werden
 
 .State-Management
 ****
-* **Laufzeit-State:** Für den State zur Laufzeit wird mit den in React neu eingeführten Reducern gearbeitet.
-* **Persistenter-State:** Geplant ist zunächst den localStorage direkt zu verwenden. Sollte dies nicht ausreichen, wird auf die Verwendung von _persistent-storage-libraries_ wie zB _Redux Persist_ zurückgegriffen.
+* **Laufzeit-State:** Für den State zur Laufzeit wird mit den in React neu eingeführten Reducern gearbeitet. Diese wurden von Redux übernommen, haben jedoch den Vorteil, weniger Abhängig von externen Libraries zu sein.
+* **Persistenter-State:** Um die Daten auch nach Abbruch einer Internetverbindung noch Verfügbar zu haben, soll _tanstack query_ genutzt werden. Außerdem bietet die Library einfaches, automatisch gecachte Abfragen von Ressourcen.
 ****
 
 .Offline-Fähigkeit
 ****
+Die Hauptfeatures der Karte greifen ausschließlich auf gut cache-bare Dateien zu. Primär wären hier zu nennen die SVGs aller Etagen der Gebäude, sowie die Metainformationen über Campusse, Gebäude und Räume. Das Anzeigen der Verfügbarkeit eines Raumes, ist dabei etwas komplizierter, da diese Daten sich schneller ändern können. Die Raumbelegung aller Räume könnte daher bei jedem Start der App mit Internet-Verbindung, neu abgefragt werden, sodass dynamisch zur Laufzeit entschieden werden kann, ob ein Raum frei ist oder nicht. So wäre keine permanente Internetverbindung notwendig.
+
 * **Service Worker:** Der Service Worker wird verwendet, um die App offline-fähig zu machen. Er wird dazu genutzt, um die App-Shell zu cachen und die App im Offline-Modus zu starten.
 * **Cache API:** Die Cache API wird verwendet, um Daten im Cache zu speichern. So können im besonderen die SVG-Daten der Etagen aller Gebäude, sowie die Daten über die Campusse, Gebäude und Räume auch offline abgerufen werden.
 ****
@@ -35,11 +44,11 @@ Im Rahmen des Moduls Progressiv-Web-Apps, soll eine Karten-App entwickelt werden
 == Erwartete Hindernisse und andere Informationen
 
 * Obwohl D3.js ein potentes Framework für die Visualisierung von SVG-Elementen ist, kann bei zu umfangreichen Objekten die Performance leiden. Deshalb soll von Anfang an darauf geachtet werden, dass nur die nötigsten Daten geladen und angezeigt werden. Dadurch soll eine positive Nutzererfahrung bestmöglich gewährleistet werden.
-* Zwar gibt es verfügbare Daten zu den Räumen der HTWK, jedoch sind diese Teilweise veraltet und müssen unter Umständen manuell aktualisiert werden. Je nach Umfang und Entwicklungsstand muss über die Umsetzung von den Raumdaten nachgedacht werden. 
+* Zwar gibt es verfügbare Daten zu den Räumen der HTWK, jedoch sind diese Teilweise veraltet und müssen unter Umständen manuell aktualisiert werden. Je nach Umfang und Entwicklungsstand muss über die Umsetzbarkeit der Anzeige aller Raumdaten bis zur Abgabe entschieden werden. 
 * Da keine Grundrisse der Gebäude der HTWK für Aussenstehende verfügbar sind, muss auf die Brandschutzpläne in den Gebäuden zurückgegriffen werden. Die Aufbereitung zu verwendbaren SVG-Dateien in der App ist je nach Gebäude unterschiedlich aufwendig, erfordert in jedem Fall aber deutlich Zeit für den gesamten Campus.
 * Die App soll durch den HTWKalender verwendet werden, sodass angezeigt Räume in Terminen per Link direkt auf die Karte verweisen. Dafür sind Absprachen bezüglich des URL-Schemas notwendig.
 * Die App wird auf den link:https://gitlab.dit.htwk-leipzig.de/htwk-software/htwkarte[GitLab-Server] der HTWK entwickelt.
-* Der aktuell Stand der App kann sich link:https://htwkarte.pages.dev/[hier] angesehen werden. (Das erstmalige Laden dauert manchmal etwas)
+* Der aktuell Stand der App kann sich link:https://htwkarte.pages.dev/[hier] angesehen werden.
 
 == Zusammenfassung der geplanten Features
 
@@ -58,4 +67,5 @@ Im Rahmen des Moduls Progressiv-Web-Apps, soll eine Karten-App entwickelt werden
 * link:https://vite-pwa-org.netlify.app/guide/[Vite PWA Plugin]
 * link:https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API[Service Worker API]
 * link:https://d3js.org/[D3.js]
+* link:https://tanstack.com/query/latest[TanStack Query]
 * link:https://mensa.heylinus.de/[Inspiration: HTWK Mensa Mate]
