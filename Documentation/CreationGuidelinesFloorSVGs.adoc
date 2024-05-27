@@ -1,0 +1,62 @@
+= Creation guidelines for the creation of Floor-SVGs
+:data-uri:
+
+.Prerequisites
+****
+* link:https://inkscape.org[Inkscape]
+* Rectified photo's of the _Fire protection plan_ of every floor
+* Measurements of the scale of the Building (measurements with link:https://www.google.de/maps[Google Maps] are accurate enough)
+* It is useful to duplicate an existing SVG file and modify it to create a new one
+* Match the colors of the existing SVG files, or better duplicate (not copy, you can duplicate with CTRL + D) the existing objects and modify them
+****
+
+== Preparations
+
+1. Set the Layout of the Document. +
+1.1. Set the unit to **px** and the Scale to **1 per User-Unit**. +
+1.2. Check what are the longest and widest measurements of the building in meters, multiply them by 100 and set them as the width and height of the document. The top should always be the north side of the building. +
+2. Add a Fire protection plan. +
+2.1. Import the photo of the Fire protection plan of the floor you are creating the SVG for and lock the scale so that the ratio keeps the same. +
+2.2. Resize the photo so it matches the real measurements, and fits as close as possible to the real position of the building (lock the manipulation with the lock icon, so it cant move anymore). +
+3. Modify the Walls. +
+3.1. After duplicating a floor from the old SVG, hide everything except the walls. +
+3.2. Modify the walls so they match the real positions of the walls in the building. +
+3.2.1. Use the align-tools of Inkscape, so that every point is aligned right. +
+3.2.1. The outside walls should be inside the layout and not on top of the edge of the layout anchor-points should be in the middle of the orthogonal wall. The magnet-tool in combination with CTRL helps align the objects right. +
+3.3. There are some values to remember: +
+3.3.1. Thick walls (mostly the outside walls) are 45px wide. +
+3.3.2. Walls inside are 35px wide. +
+3.3.3. Thin walls are 10px wide. (some doors may be smaller, but it helps force equal measurements so that not so many measurements have to be remembered and changing the floor changes as minimal on the screen as possible) +
+3.3.4. Normal doors are 100px wide. +
+3.3.5. Double doors are 200px wide. Some really big doors can be 250px wide. +
+3.3.6. Stair-railings are 20px wide. +
+4. Modify the Rooms. +
+4.1. Make the rooms a bit transparent. +
+4.2. Scale every room so that it fits between the walls. Try to path the anchor-points of the walls in the middle. If the walls left and right are different in widens, try to math as close as possible the edge of each wall. This is because of the alignment of every text, that happens on rendering. +
+4.3. Scale the background (the corridor) so that it fits between the walls. +
+4.4. Rename every room object to the name of the room with no space between. Room-Abbreviation + Level-Number + Room-Number. For example _ZU229_. +
+4.5. Open for a random room the _Object-Properties_ and set the _ID_ to the exact name of the room (you have to press the _Set_-button). +
+4.6. Set the _ID_ also for the groups (the most importend is the room_<level> and floor_<level> group (use lowerCase)). +
+4.6. Set and center the icons of the toilets and the elevators. +
+5. Modify the Stairs. +
+5.1. Match the stairs and try to not change the width of the stairs. +
+5.2. Each step should have a slightly darker/lighter color (On click of the L Parameter in the HSL-Color-Panel). +
+5.3. Check that the Box-Shadows are right and match the walking-direction. Also check that the shadow not overlaps on the other side with the corridors. +
+5.4. Set the arrows. They are 5px wide. +
+6. Design the Roof. +
+6.1. The roof can be designed more freely than the other floors. Try to match the scale of the building with the walls of the other floors. +
+6.2. Try to visualize the objects on top of the roof with there colors. Don't use box-shadows. You don't have to recrate every object. Importend is that the user instantly can recognize the building. An image of the roof with _Google Maps_ can help to place the objects right. + 
+7. Export the SVG. +
+7.1. Select the floor_<level> group and switch to the export-menu. +
+7.2. Select _Only export selected_. +
+7.3. Name the file <buildingAbbreviation>_<level>.svg. For example MZ_-1.svg For the basement of the _Medienzentrum_ building. It's importend that _Plain-SVG_ is selected. +
+7.4. Use link:https://svgomg.net/[SVGOMG] to optimize the SVG. Set the togglebuttons accordingly to the images provided. +
+7.5. Copy the improved svg in the svg created by Inkscape. +
+
+[cols=",,,"]
+|===
+a| image::img/SVGOMG_options_1.png[Preparations]
+a| image::img/SVGOMG_options_2.png[Preparations]
+a| image::img/SVGOMG_options_3.png[Preparations]
+a| image::img/SVGOMG_options_4.png[Preparations]
+|===
