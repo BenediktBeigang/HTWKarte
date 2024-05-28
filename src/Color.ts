@@ -13,6 +13,9 @@ export const HTWK_DARK_BLUE = "#022541" as const;
 export const HTWK_LIGHT_TEXT = "#ffffff" as const;
 export const HTWK_DARK_TEXT = "#000000" as const;
 
+// Other
+export const HTWKALENDER_GRAY = "#1b2022";
+
 // Room-Colors
 export const ROOM = "#454c7f" as const;
 export const ROOM_HIGHTLIGHTED = "#6e79cb" as const;

@@ -11,7 +11,7 @@ export const ErrorPage = () => {
         height: "100vh",
       }}
     >
-      <div style={{ width: "50%" }}>
+      <div style={{ width: "30%" }}>
         <img src={ErrorPage_SVG} style={{ width: "100%" }} alt="Error" />
       </div>
       <h1>Seite nicht gefunden.</h1>

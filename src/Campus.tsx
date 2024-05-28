@@ -15,7 +15,7 @@ import {
 } from "./Building";
 import { useCampusState } from "./campus-context";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
-import { HTWK_GRAY } from "./Color";
+import { HTWKALENDER_GRAY } from "./Color";
 import { createZoom } from "./ZoomHandler";
 
 const ZOOM_INSIDE_BUILDING_THRESHOLD: number = 0.00008 * window.innerWidth;
@@ -199,7 +199,7 @@ const Campus = () => {
     <>
       <div
         id="campus-container"
-        style={{ width: "100%", height: "100%", backgroundColor: HTWK_GRAY }}
+        style={{ width: "100%", height: "100%", backgroundColor: HTWKALENDER_GRAY }}
       ></div>
       <Snackbar
         key={`${roomID}-${Date.now()}`}

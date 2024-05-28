@@ -5,41 +5,105 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { CampusMap } from "./CampusMap.tsx";
 import CampusProvider from "./CampusProvider.tsx";
 import { CityMap } from "./CityMap.tsx";
-import { HTWK_GRAY, ROOM } from "./Color.ts";
-import { ErrorPage } from "./ErrorPage.tsx";
+import { HTWK_LIGHT_TEXT, HTWK_YELLOW, HTWKALENDER_GRAY, ROOM } from "./Color.ts";
+import "./fonts.css";
 import "./index.css";
+import { ErrorPage } from "./Subpages/ErrorPage.tsx";
+import { FAQ } from "./Subpages/FAQ.tsx";
+import { Imprint } from "./Subpages/Imprint.tsx";
+import { Privacy } from "./Subpages/Privacy.tsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <CampusMap />, errorElement: <ErrorPage /> },
   { path: "/room/:roomID", element: <CampusMap />, errorElement: <ErrorPage /> },
   { path: "/campus/:campusID", element: <CampusMap />, errorElement: <ErrorPage /> },
   { path: "/city", element: <CityMap /> },
+  { path: "/faq", element: <FAQ /> },
+  { path: "/imprint", element: <Imprint /> },
+  { path: "/privacy", element: <Privacy /> },
 ]);
 
+// text should be white
 const theme = createTheme({
   palette: {
+    mode: "dark",
     primary: {
-      main: HTWK_GRAY,
+      main: HTWK_LIGHT_TEXT,
     },
     secondary: {
       main: ROOM,
     },
+    background: {
+      default: HTWKALENDER_GRAY,
+    },
+    text: {
+      primary: "#ffffff",
+    },
   },
   typography: {
-    fontFamily: ["Source Sans 3", "sans-serif"].join(","),
+    fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+    fontSize: 16,
+    subtitle1: {
+      fontWeight: 650,
+    },
   },
   components: {
-    MuiCssBaseline: {
-      styleOverrides: `
-        @font-face {
-          font-family: 'Source Sans 3';
-          font-style: normal;
-          font-display: swap;
-          font-weight: 400;
-          src: local('Source Sans 3'), local('SourceSans3-Regular'), url(/fonts/SourceSans3.ttf) format('truetype');
-          unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
-        }
-      `,
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          variant: "contained",
+          textTransform: "none",
+          "&.Mui-focusVisible": {
+            textDecoration: "underline",
+            textDecorationColor: "yellow",
+            color: HTWK_YELLOW,
+          },
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            borderRadius: "6px",
+          },
+        },
+      },
+    },
+    MuiListItemIcon: {
+      styleOverrides: {
+        root: {
+          marginRight: "-1.5em",
+        },
+      },
+    },
+    MuiListItemText: {
+      styleOverrides: {
+        primary: {
+          color: HTWK_LIGHT_TEXT,
+        },
+      },
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          textDecoration: "none",
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& .MuiInput-underline:after": {
+            borderBottomColor: HTWK_YELLOW,
+          },
+          "& .MuiOutlinedInput-root": {
+            "&.Mui-focused fieldset": {
+              borderColor: HTWK_YELLOW,
+            },
+          },
+        },
+      },
     },
   },
 });
