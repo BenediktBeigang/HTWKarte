@@ -52,13 +52,17 @@ export const Imprint = () => {
           },
           overflowX: "hidden",
           overflowY: "scroll",
+          scrollbarWidth: "none",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
         }}
       >
         <Typography variant="h2" gutterBottom>
           Impressum
         </Typography>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "2em" }}>
-          <Box>
+          {/*
             <Typography variant="body1" gutterBottom>
               <b style={{ marginBottom: "0.5em", display: "inline-block" }}>Postanschrift:</b>{" "}
               <br />
@@ -67,43 +71,39 @@ export const Imprint = () => {
               Postfach 30 11 66 <br />
               04251 Leipzig
             </Typography>
-          </Box>
-          <Box>
-            <Typography variant="body1" gutterBottom component="div">
-              <b style={{ marginBottom: "0.5em", display: "inline-block" }}>
-                Verantwortlicher der Website:
-              </b>
-              <br />
-              Benedikt Beigang <br />
-              <ContactInfo
-                icon="mui_mail"
-                text="benedikt.beigang@stud.htwk-leipzig.de"
-                link="mailto:benedikt.beigang@stud.htwk-leipzig.de"
-                alt="Mail Icon"
-              />
-              <ContactInfo
-                icon="./Assets/Icons/discordIcon.svg"
-                text="HTWK Software Discord Server (Bene)"
-                link="https://discord.gg/Z3gcuy7ZB5"
-                alt="Discord Icon"
-              />
-              <ContactInfo
-                icon="./Assets/Icons/gitlabIcon.svg"
-                text="GitLab Repository"
-                link="https://gitlab.dit.htwk-leipzig.de/htwk-software/htwkarte"
-                alt="GitLab Icon"
-              />
-            </Typography>
-          </Box>
-          <Box>
-            <Typography variant="body1" gutterBottom sx={{ fontWeight: "bold" }}>
-              Haftungsausschluss:
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              Die Inhalte der HTWKarte wurden mit größter Sorgfalt erstellt. Für die Richtigkeit,
-              Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.
-            </Typography>
-          </Box>
+           */}
+          <Typography variant="body1" gutterBottom component="div">
+            <b style={{ marginBottom: "0.5em", display: "inline-block" }}>
+              Verantwortlicher der Website
+            </b>
+            <br />
+            Benedikt Beigang <br />
+            <ContactInfo
+              icon="mui_mail"
+              text="benedikt.beigang@stud.htwk-leipzig.de"
+              link="mailto:benedikt.beigang@stud.htwk-leipzig.de"
+              alt="Mail Icon"
+            />
+            <ContactInfo
+              icon="./Assets/Icons/discordIcon.svg"
+              text="HTWK Software Discord Server (Bene)"
+              link="https://discord.gg/Z3gcuy7ZB5"
+              alt="Discord Icon"
+            />
+            <ContactInfo
+              icon="./Assets/Icons/gitlabIcon.svg"
+              text="GitLab Repository"
+              link="https://gitlab.dit.htwk-leipzig.de/htwk-software/htwkarte"
+              alt="GitLab Icon"
+            />
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <b style={{ marginBottom: "0.5em", display: "inline-block" }}>Haftungsausschluss</b>
+            <br />
+            Die Inhalte der HTWKarte wurden mit größter Sorgfalt erstellt. Für die Richtigkeit,
+            Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.
+            <br />
+          </Typography>
         </Box>
       </Box>
     </Box>

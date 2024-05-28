@@ -11,6 +11,7 @@ import "./index.css";
 import { ErrorPage } from "./Subpages/ErrorPage.tsx";
 import { FAQ } from "./Subpages/FAQ.tsx";
 import { Imprint } from "./Subpages/Imprint.tsx";
+import { Privacy } from "./Subpages/Privacy.tsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <CampusMap />, errorElement: <ErrorPage /> },
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
   { path: "/city", element: <CityMap /> },
   { path: "/faq", element: <FAQ /> },
   { path: "/imprint", element: <Imprint /> },
+  { path: "/privacy", element: <Privacy /> },
 ]);
 
 // text should be white

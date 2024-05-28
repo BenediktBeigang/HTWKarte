@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import { Header } from "../Header";
 import { faqData } from "./faqData";
 
@@ -8,6 +8,8 @@ type FaqDataInJson = {
 };
 
 export const FAQ = () => {
+  const matches = useMediaQuery("(min-width:600px)");
+  
   return (
     <Box
       sx={{
@@ -24,7 +26,7 @@ export const FAQ = () => {
         justifyContent="center"
         alignItems="center"
         sx={{
-          paddingTop: "5em",
+          paddingTop: matches ? "7em" : "10em",
           overflow: "auto",
           "::-webkit-scrollbar": {
             display: "none",
@@ -34,7 +36,7 @@ export const FAQ = () => {
         }}
       >
         <Box sx={{ justifyContent: "center", width: "auto", padding: "1em" }}>
-          <Typography variant="h3" style={{ textAlign: "center" }}>
+          <Typography variant="h2" style={{ textAlign: "center" }}>
             faq
           </Typography>
         </Box>
@@ -42,9 +44,18 @@ export const FAQ = () => {
           <Grid
             container
             key={index}
-            sx={{ display: "flex", justifyContent: "center", marginBottom: "3em" }}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: "3em",
+            }}
           >
-            <Grid item xs={12} sm={4} sx={{ marginRight: { sm: "2em" } }}>
+            <Grid
+              item
+              xs={12}
+              sm={4}
+              sx={{ marginRight: { sm: "2em" }, marginBottom: { xs: "1.1em" } }}
+            >
               <Typography variant="subtitle1">{faq.question}</Typography>
             </Grid>
             <Grid item xs={12} sm={4} sx={{ marginLeft: { sm: "2em" } }}>
