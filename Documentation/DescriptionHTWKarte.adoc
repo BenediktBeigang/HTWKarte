@@ -4,51 +4,55 @@
 
 [cols="1,1", grid="none", frame="none"]
 |===
-a| image::img/CampusView_v3.png[]
-a| image::img/InsideZuse_v3.png[]
+a|
+.Sicht auf den Campus mit drei fertiggestellten Gebäuden
+image::img/CampusView_v3.png[]
+a| 
+.Sicht auf das Innere eines Gebäudes
+image::img/InsideZuse_v3.png[]
 |===
 
 == Problemstellung
 
-Das finden von Räumen kann besonders in den ersten Tagen des eigenen Studiums ein schwieriges Unterfangen sein. Aber auch später kann es vorkommen, dass durch neue Module und Veranstaltungen Räume gefunden werden müssen, die in weniger Vertrauten Gebäuden liegen. Die **HTWKarte** möchte bei diesen alltäglichen Unterfangen helfen.
+Das Finden von Räumen kann besonders in den ersten Tagen des eigenen Studiums ein schwieriges Unterfangen sein. Aber auch später kann es vorkommen, dass durch neue Module und Veranstaltungen Räume gefunden werden müssen, die in weniger vertrauten Gebäuden liegen. Die **HTWKarte** möchte bei diesen alltäglichen Unterfangen helfen.
 
 == Projektbeschreibung
 
-Im Rahmen des Moduls Progressiv-Web-Apps, soll eine Karten-App entwickelt werden der den Campus (oder Campusse) der HTWK Leipzig abbildet. Die App soll es ermöglichen, Räume über eine Suchleiste oder per Direkt-Link zu finden und sich zu diesen navigieren zu lassen. Je nach Verfügbarkeit von Raumdaten, sollen diese Daten zu jedem Raum angezeigt werden. Dazu gehört auch eine Anzeige, welche Räume gerade frei sind und welche belegt sind. Die App soll dabei auch offline als PWA nutzbar sein, um auch bei fehlender Internetverbindung seinen nächsten Raum zu finden.
+Im Rahmen des Moduls Progressiv-Web-Apps soll eine Karten-App entwickelt werden, der den Campus (oder Campusse) der HTWK Leipzig abbildet. Die App soll es ermöglichen, Räume über eine Suchleiste oder per Direkt-Link zu finden und sich zu diesen navigieren zu lassen. Je nach Verfügbarkeit von Raumdaten sollen diese Daten zu jedem Raum angezeigt werden. Dazu gehört auch eine Anzeige, welche Räume gerade frei sind und welche belegt sind. Die App soll dabei auch offline als PWA nutzbar sein, um auch bei fehlender Internetverbindung seinen nächsten Raum zu finden.
 
 == Technologische Umsetzung
 
 .Frameworks
 ****
 * **React/TS:** Die App soll in React mit TypeScript entwickelt werden. React bietet sich hier besonders an, da es eine gute Strukturierung von Komponenten ermöglicht und durch die Verwendung von TypeScript eine bessere Codequalität erreicht werden kann. Außerdem ist durch die Verbreitung von React auf eine große Community zurückzugreifen.
-* **Vite:**  soll als Build-Tool verwendet werden, da es schnelle Build-Zeiten ermöglicht und durch die Verwendung von ES-Module eine bessere Performance erreicht werden kann.
-* **Material-UI:** soll als UI-Framework verwendet werden, um eine schnelle und moderne UI zu erstellen. Material-UI bietet viele vorgefertigte Komponenten, ermöglicht aber auch das erstellen von Themes für eine individuelle Anpassung.
-* **D3.js:** soll für die Visualisierung der Karte verwendet werden. Da die Karte aus mehreren Campussen, mit vielen Gebäuden und Räumen aufgebaut ist wird ein featurerreiches performantes Framework benötigt. D3.js bietet die Möglichkeit SVG-Elemente zu laden, zu erstellen, zielgerichtet anzusteuern, um diese zu animieren und zu manipulieren.
+* **Vite:** soll als Build-Tool verwendet werden, da es schnelle Build-Zeiten ermöglicht und durch die Verwendung von _ES-Module_ eine bessere Performance erreicht werden kann.
+* **Material-UI:** soll als UI-Framework verwendet werden, um eine schnelle und moderne UI zu erstellen. Material-UI bietet viele vorgefertigte Komponenten, ermöglicht aber auch das Erstellen von Themes für eine individuelle Anpassung.
+* **D3.js:** soll für die Visualisierung der Karte verwendet werden. Da die Karte aus mehreren Campussen, mit vielen Gebäuden und Räumen aufgebaut ist, wird ein featurereiches performantes Framework benötigt. D3.js bietet die Möglichkeit SVG-Elemente zu laden, zu erstellen, zielgerichtet anzusteuern, um diese zu animieren und zu manipulieren.
 * **React-Router:** soll ermöglichen von anderen Apps auf bestimmte Räume zu verlinken.
 ****
 
 .State-Management
 ****
-* **Laufzeit-State:** Für den State zur Laufzeit wird mit den in React neu eingeführten Reducern gearbeitet. Diese wurden von Redux übernommen, haben jedoch den Vorteil, weniger Abhängig von externen Libraries zu sein.
+* **Laufzeit-State:** Für den State zur Laufzeit wird mit den in React neu eingeführten Reducern gearbeitet. Diese wurden von Redux übernommen, haben jedoch den Vorteil, weniger abhängig von externen Libraries zu sein.
 * **Persistenter-State:** Um die Daten auch nach Abbruch einer Internetverbindung noch Verfügbar zu haben, soll _tanstack query_ genutzt werden. Außerdem bietet die Library einfaches, automatisch gecachte Abfragen von Ressourcen.
 ****
 
 .Offline-Fähigkeit
 ****
-Die Hauptfeatures der Karte greifen ausschließlich auf gut cache-bare Dateien zu. Primär wären hier zu nennen die SVGs aller Etagen der Gebäude, sowie die Metainformationen über Campusse, Gebäude und Räume. Das Anzeigen der Verfügbarkeit eines Raumes, ist dabei etwas komplizierter, da diese Daten sich schneller ändern können. Die Raumbelegung aller Räume könnte daher bei jedem Start der App mit Internet-Verbindung, neu abgefragt werden, sodass dynamisch zur Laufzeit entschieden werden kann, ob ein Raum frei ist oder nicht. So wäre keine permanente Internetverbindung notwendig.
+Die Hauptfeatures der Karte greifen ausschließlich auf gut cache-bare Dateien zu. Primär wären hier zu nennen die SVGs aller Etagen der Gebäude, sowie die Metainformationen über Campusse, Gebäude und Räume. Das Anzeigen der Verfügbarkeit eines Raumes, ist dabei etwas komplizierter, da diese Daten sich schneller ändern können. Die Raumbelegung aller Räume könnte daher bei jedem Start der App, mit Internetverbindung, neu abgefragt werden, sodass dynamisch zur Laufzeit entschieden werden kann, ob ein Raum frei ist oder nicht. So wäre keine permanente Internetverbindung notwendig.
 
 * **Service Worker:** Der Service Worker wird verwendet, um die App offline-fähig zu machen. Er wird dazu genutzt, um die App-Shell zu cachen und die App im Offline-Modus zu starten.
-* **Cache API:** Die Cache API wird verwendet, um Daten im Cache zu speichern. So können im besonderen die SVG-Daten der Etagen aller Gebäude, sowie die Daten über die Campusse, Gebäude und Räume auch offline abgerufen werden.
+* **Cache API:** Die Cache API wird verwendet, um Daten im Cache zu speichern. So können im Besonderen die SVG-Daten der Etagen aller Gebäude, sowie die Daten über die Campusse, Gebäude und Räume auch offline abgerufen werden.
 ****
 
 == Erwartete Hindernisse und andere Informationen
 
 * Obwohl D3.js ein potentes Framework für die Visualisierung von SVG-Elementen ist, kann bei zu umfangreichen Objekten die Performance leiden. Deshalb soll von Anfang an darauf geachtet werden, dass nur die nötigsten Daten geladen und angezeigt werden. Dadurch soll eine positive Nutzererfahrung bestmöglich gewährleistet werden.
-* Zwar gibt es verfügbare Daten zu den Räumen der HTWK, jedoch sind diese Teilweise veraltet und müssen unter Umständen manuell aktualisiert werden. Je nach Umfang und Entwicklungsstand muss über die Umsetzbarkeit der Anzeige aller Raumdaten bis zur Abgabe entschieden werden. 
-* Da keine Grundrisse der Gebäude der HTWK für Aussenstehende verfügbar sind, muss auf die Brandschutzpläne in den Gebäuden zurückgegriffen werden. Die Aufbereitung zu verwendbaren SVG-Dateien in der App ist je nach Gebäude unterschiedlich aufwendig, erfordert in jedem Fall aber deutlich Zeit für den gesamten Campus.
+* Zwar gibt es verfügbare Daten zu den Räumen der HTWK, jedoch sind diese teilweise veraltet und müssen unter Umständen manuell aktualisiert werden. Je nach Umfang und Entwicklungsstand muss über die Umsetzbarkeit der Anzeige aller Raumdaten bis zur Abgabe entschieden werden.
+* Da keine Grundrisse der Gebäude der HTWK für Außenstehende verfügbar sind, muss auf die Brandschutzpläne in den Gebäuden zurückgegriffen werden. Die Aufbereitung zu verwendbaren SVG-Dateien in der App ist je nach Gebäude unterschiedlich aufwendig, erfordert in jedem Fall aber deutlich Zeit für den gesamten Campus.
 * Die App soll durch den HTWKalender verwendet werden, sodass angezeigt Räume in Terminen per Link direkt auf die Karte verweisen. Dafür sind Absprachen bezüglich des URL-Schemas notwendig.
 * Die App wird auf den link:https://gitlab.dit.htwk-leipzig.de/htwk-software/htwkarte[GitLab-Server] der HTWK entwickelt.
-* Der aktuell Stand der App kann sich link:https://htwkarte.pages.dev/[hier] angesehen werden.
+* Der aktuelle Stand der App kann sich link:https://htwkarte.pages.dev/[hier] angesehen werden.
 
 == Zusammenfassung der geplanten Features
 
