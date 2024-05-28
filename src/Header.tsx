@@ -13,8 +13,9 @@ import {
   ListItemText,
   Link as MuiLink,
   TextField,
-  Toolbar
+  Toolbar,
 } from "@mui/material";
+import "primeicons/primeicons.css";
 import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { HTWKALENDER_GRAY } from "./Color";
@@ -63,7 +64,7 @@ export const Header = () => {
   );
 
   return (
-    <AppBar position="fixed" elevation={0} sx={{ backgroundColor: HTWKALENDER_GRAY + "ee" }}>
+    <AppBar position="fixed" elevation={0} sx={{ backgroundColor: "transparent" }}>
       <Toolbar>
         <Box display="flex">
           <Box m={1}>
@@ -84,9 +85,13 @@ export const Header = () => {
             <MenuIcon />
           </IconButton>
         </Hidden>
-        <Box display="flex" justifyContent="center"  flexWrap="wrap">
+        <Box display="flex" justifyContent="center" flexWrap="wrap">
           <Box m={1}>
-            <TextField label="Raum suchen..." variant="outlined" sx={{ minWidth: "5em" }} />
+            <TextField
+              label="Raum suchen..."
+              variant="outlined"
+              sx={{ backgroundColor: HTWKALENDER_GRAY + "aa", minWidth: "5em" }}
+            />
           </Box>
         </Box>
         <Drawer variant="temporary" anchor="top" open={mobileOpen} onClose={handleDrawerToggle}>
@@ -97,16 +102,16 @@ export const Header = () => {
             <MuiLink to="/faq" component={RouterLink}>
               <ListItemButton>
                 <ListItemIcon>
-                  <LibraryBooksIcon />
+                  <i className="pi pi-book" style={{ fontSize: "1.2rem" }} />
                 </ListItemIcon>
-                <ListItemText primary="faq" sx={{ textDecoration: "none" }} />
+                <ListItemText primary="faq" />
               </ListItemButton>
             </MuiLink>
 
             <MuiLink to="/imprint" component={RouterLink}>
               <ListItemButton>
                 <ListItemIcon>
-                  <ContactMailIcon />
+                  <i className="pi pi-id-card" style={{ fontSize: "1.2rem" }} />
                 </ListItemIcon>
                 <ListItemText primary="imprint" />
               </ListItemButton>
@@ -115,7 +120,7 @@ export const Header = () => {
             <MuiLink to="/privacy" component={RouterLink}>
               <ListItemButton>
                 <ListItemIcon>
-                  <WarningAmberIcon />
+                  <i className="pi pi-exclamation-triangle" style={{ fontSize: "1.2rem" }} />
                 </ListItemIcon>
                 <ListItemText primary="privacy" />
               </ListItemButton>

@@ -71,7 +71,7 @@ const theme = createTheme({
     MuiListItemIcon: {
       styleOverrides: {
         root: {
-          marginRight: "-1em",
+          marginRight: "-1.5em",
         },
       },
     },

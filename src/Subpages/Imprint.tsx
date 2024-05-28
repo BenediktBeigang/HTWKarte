@@ -1,7 +1,18 @@
-import GitHubIcon from "@mui/icons-material/GitHub";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import { Box, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { Header } from "../Header";
+
+const ContactInfo = ({ icon, text, link, alt }: { icon: string, text: string, link: string, alt: string }) => (
+  <Grid container alignItems="center" gap={2}>
+    <Grid item>
+      <img src={icon} alt={alt} style={{ width: "1.5em" }} />
+    </Grid>
+    <Grid item>
+      <a href={link} style={{ color: "#fff" }}>
+        {text}
+      </a>
+    </Grid>
+  </Grid>
+);
 
 export const Imprint = () => {
   return (
@@ -15,11 +26,16 @@ export const Imprint = () => {
     >
       <Header />
       <Box
-        maxWidth="40%"
         margin="auto"
         justifyContent="center"
         alignItems="center"
-        sx={{ paddingTop: "5em", maxWidth: "30%"  }}
+        sx={{
+          paddingTop: "5em",
+          maxWidth: {
+            xs: "90%",
+            sm: "45%",
+          },
+        }}
       >
         <Typography variant="h2" gutterBottom>
           Impressum
@@ -27,36 +43,39 @@ export const Imprint = () => {
         <Box sx={{ display: "flex", flexDirection: "column", gap: "2em" }}>
           <Box>
             <Typography variant="body1" gutterBottom>
-              Benedikt Beigang <br /> Hans-Beimler-Straße 46 <br /> 04159 Leipzig, Deutschland
+              <b style={{ marginBottom: "0.5em", display: "inline-block" }}>Postanschrift:</b>{" "}
+              <br />
+              HTWK Leipzig <br />
+              Fachschaftsrat Informatik & Medien <br />
+              Postfach 30 11 66 <br />
+              04251 Leipzig
             </Typography>
           </Box>
           <Box>
-            <Typography variant="body1" gutterBottom sx={{ fontWeight: "bold" }}>
-              Kontakt: <br />
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              <Box sx={{ display: "flex", alignItems: "center", gap: "0.5em" }}>
-                <MailOutlineIcon />
-                <span>benedikt.beigang@stud.htwk-leipzig.de</span>
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "center", gap: "0.5em" }}>
-                <img
-                  src="./Assets/Icons/discordIcon.svg"
-                  alt="Discord Icon"
-                  style={{ width: "1.5em" }}
-                />
-                <span>
-                  <a href="https://discord.gg/Z3gcuy7ZB5" style={{ color: "#fff" }}>
-                    HTWK Software Discord Server
-                  </a>
-                </span>
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "center", gap: "0.5em" }}>
-                <GitHubIcon />
-                <a href="https://github.com/BenediktBeigang" style={{ color: "#fff" }}>
-                  GitHub
-                </a>
-              </Box>
+            <Typography variant="body1" gutterBottom component="div">
+              <b style={{ marginBottom: "0.5em", display: "inline-block" }}>
+                Verantwortlicher der Website:
+              </b>
+              <br />
+              Benedikt Beigang <br />
+              <ContactInfo
+                icon="./Assets/Icons/mailIcon.svg"
+                text="benedikt.beigang@stud.htwk-leipzig.de"
+                link="mailto:benedikt.beigang@stud.htwk-leipzig.de"
+                alt="Mail Icon"
+              />
+              <ContactInfo
+                icon="./Assets/Icons/discordIcon.svg"
+                text="HTWK Software Discord Server"
+                link="https://discord.gg/Z3gcuy7ZB5"
+                alt="Discord Icon"
+              />
+              <ContactInfo
+                icon="./Assets/Icons/gitlabIcon.svg"
+                text="GitLab Repository"
+                link="https://gitlab.dit.htwk-leipzig.de/htwk-software/htwkarte"
+                alt="GitLab Icon"
+              />
             </Typography>
           </Box>
           <Box>
