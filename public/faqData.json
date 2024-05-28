@@ -16,7 +16,7 @@
     "answer": "Der Hauptentwickler ist Benedikt Beigang (INM), der das Projekt in Kooperation mit dem HTWKalender entwickelt. Perspektivisch sollen die Projekte zusammenarbeiten, sodass über Termine im HTWKalender direkt auf den Raum in diesem Termin gesprungen werden kann."
   },
   {
-    "question": "Wie kann ich die HTWKarte unterstützen?",
-    "answer": "Das Projekt entsteht im Rahmen des Moduls Progressiv-Web-Apps und befindet sich derzeit noch in Entwicklung. Im Moment werden im besonderen Kartendaten, Raumdaten, etc. benötigt. Nach Vollendigung der Version 1.0 soll das Projekt Open-Source werden und kann dann durch jeden Interessenten weiter entwickelt werden."
+    "question": "Kann ich an der HTWKarte mitarbeiten?",
+    "answer": "Das Projekt entsteht im Rahmen des Moduls Progressiv-Web-Apps und ist daher eine Prüfungsleistung. Nach Abschluss des Moduls wird die HTWKarte OpenSource und jeder kann daran mitarbeiten. Du kannst aber natürlich schon jetzt dir das Repo auf dem GitLab-Server angucken."
   }
 ]

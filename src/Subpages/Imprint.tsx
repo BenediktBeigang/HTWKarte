@@ -1,10 +1,25 @@
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { Box, Grid, Typography } from "@mui/material";
 import { Header } from "../Header";
 
-const ContactInfo = ({ icon, text, link, alt }: { icon: string, text: string, link: string, alt: string }) => (
+const ContactInfo = ({
+  icon,
+  text,
+  link,
+  alt,
+}: {
+  icon: string;
+  text: string;
+  link: string;
+  alt: string;
+}) => (
   <Grid container alignItems="center" gap={2}>
-    <Grid item>
-      <img src={icon} alt={alt} style={{ width: "1.5em" }} />
+    <Grid item sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+      {icon === "mui_mail" ? (
+        <MailOutlineIcon />
+      ) : (
+        <img src={icon} alt={alt} style={{ width: "1.5em" }} />
+      )}
     </Grid>
     <Grid item>
       <a href={link} style={{ color: "#fff" }}>
@@ -35,6 +50,8 @@ export const Imprint = () => {
             xs: "90%",
             sm: "45%",
           },
+          overflowX: "hidden",
+          overflowY: "scroll",
         }}
       >
         <Typography variant="h2" gutterBottom>
@@ -59,14 +76,14 @@ export const Imprint = () => {
               <br />
               Benedikt Beigang <br />
               <ContactInfo
-                icon="./Assets/Icons/mailIcon.svg"
+                icon="mui_mail"
                 text="benedikt.beigang@stud.htwk-leipzig.de"
                 link="mailto:benedikt.beigang@stud.htwk-leipzig.de"
                 alt="Mail Icon"
               />
               <ContactInfo
                 icon="./Assets/Icons/discordIcon.svg"
-                text="HTWK Software Discord Server"
+                text="HTWK Software Discord Server (Bene)"
                 link="https://discord.gg/Z3gcuy7ZB5"
                 alt="Discord Icon"
               />

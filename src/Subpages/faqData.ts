@@ -24,4 +24,4 @@ export const faqData = [
     answer:
       "Das Projekt entsteht im Rahmen des Moduls Progressiv-Web-Apps und befindet sich derzeit noch in Entwicklung. Im Moment werden im besonderen Kartendaten, Raumdaten, etc. benötigt. Nach Vollendigung der Version 1.0 soll das Projekt Open-Source werden und kann dann durch jeden Interessenten weiter entwickelt werden.",
   },
-]; 
+];

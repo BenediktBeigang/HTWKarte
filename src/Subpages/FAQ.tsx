@@ -44,10 +44,10 @@ export const FAQ = () => {
             key={index}
             sx={{ display: "flex", justifyContent: "center", marginBottom: "3em" }}
           >
-            <Grid item xs={4} sx={{ marginRight: "2em" }}>
+            <Grid item xs={12} sm={4} sx={{ marginRight: { sm: "2em" } }}>
               <Typography variant="subtitle1">{faq.question}</Typography>
             </Grid>
-            <Grid item xs={4} sx={{ marginLeft: "2em" }}>
+            <Grid item xs={12} sm={4} sx={{ marginLeft: { sm: "2em" } }}>
               <Typography variant="body1">{faq.answer}</Typography>
             </Grid>
           </Grid>
