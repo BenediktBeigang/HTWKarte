@@ -1,0 +1,1 @@
+export const FinishedBuildings = ["ZU", "GU", "MZ"] as string[];

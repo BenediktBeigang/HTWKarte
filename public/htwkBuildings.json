@@ -6,7 +6,6 @@
       "Abbreviation": "LI",
       "Location": [12.373775, 51.31323],
       "Address": "Karl-Liebknecht-Straße 145",
-      "FloorCount": 6,
       "Campus": "Campus-Karl-Liebknecht-Strasse"
     },
     "geometry": {
@@ -478,7 +477,7 @@
     "type": "Feature",
     "properties": {
       "Name": "Fechner-Bau",
-      "Abbreviation": "LN",
+      "Abbreviation": "FE",
       "Location": [12.374281348047788, 51.31285],
       "Address": "Gustav-Freytag-Straße 41 a",
       "Campus": "Campus-Karl-Liebknecht-Strasse"

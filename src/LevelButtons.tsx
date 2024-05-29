@@ -4,10 +4,11 @@ import { styled } from "@mui/system";
 import * as d3 from "d3";
 import * as React from "react";
 import { MutableRefObject, useEffect, useRef } from "react";
-import { switchToFloor } from "./Building";
-import { HTWK_DARK_TEXT, HTWK_GRAY, HTWK_LIGHT_GRAY, HTWK_YELLOW } from "./Color";
+import { BuildingInJson, switchToFloor } from "./Building";
 import { useCampusState } from "./campus-context";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
+import { HTWK_DARK_TEXT, HTWK_GRAY, HTWK_LIGHT_GRAY, HTWK_YELLOW } from "./Color";
+import { FinishedBuildings } from "./Constants";
 
 const buttonSize: number = 3 as const;
 
@@ -115,11 +116,17 @@ const LevelButtons = (): JSX.Element => {
   const stateRef = useRef({ state, dispatch });
   const [hoverLevel, setHoverLevel] = React.useState<number | null>(null);
 
-  const building = state.dataOfBuildings.find(
-    (b) => b.properties.Abbreviation === state.currentBuilding,
-  );
-  const minFloor = building ? Math.min(...building.properties.Floors) : 0;
-  const adjustedLevel = state.level - minFloor;
+  let building: BuildingInJson | undefined;
+  let minFloor: number;
+  let adjustedLevel: number = 0;
+
+  if (FinishedBuildings.includes(state.currentBuilding)) {
+    building = state.dataOfBuildings.find(
+      (b) => b.properties.Abbreviation === state.currentBuilding,
+    );
+    minFloor = building ? Math.min(...building.properties.Floors) : 0;
+    adjustedLevel = state.level - minFloor;
+  }
 
   useEffect(() => {
     hoverAnimation(adjustedLevel, state.levelCount, hoverLevel);
@@ -132,6 +139,8 @@ const LevelButtons = (): JSX.Element => {
   useEffect(() => {
     stateRef.current = { state, dispatch };
   }, [state, dispatch]);
+
+  if (FinishedBuildings.includes(state.currentBuilding)) return <></>;
 
   return (
     <ToggleButtonGroup
