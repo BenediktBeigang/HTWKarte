@@ -140,7 +140,7 @@ const LevelButtons = (): JSX.Element => {
     stateRef.current = { state, dispatch };
   }, [state, dispatch]);
 
-  if (FinishedBuildings.includes(state.currentBuilding)) return <></>;
+  if (!FinishedBuildings.includes(state.currentBuilding)) return <></>;
 
   return (
     <ToggleButtonGroup
