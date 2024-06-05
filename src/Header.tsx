@@ -1,4 +1,3 @@
-import ContactMailIcon from "@mui/icons-material/ContactMail";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import MenuIcon from "@mui/icons-material/Menu";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
@@ -14,6 +13,8 @@ import {
   Link as MuiLink,
   TextField,
   Toolbar,
+  Tooltip,
+  Typography,
 } from "@mui/material";
 import "primeicons/primeicons.css";
 import { useState } from "react";
@@ -43,14 +44,14 @@ export const Header = () => {
         </ListItemButton>
       </MuiLink>
 
-      <MuiLink to="/imprint" component={RouterLink}>
+      {/*<MuiLink to="/imprint" component={RouterLink}>
         <ListItemButton>
           <ListItemIcon>
             <ContactMailIcon />
           </ListItemIcon>
           <ListItemText primary="imprint" />
         </ListItemButton>
-      </MuiLink>
+    </MuiLink>*/}
 
       <MuiLink to="/privacy" component={RouterLink}>
         <ListItemButton>
@@ -94,6 +95,16 @@ export const Header = () => {
             />
           </Box>
         </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          flexWrap="wrap"
+          sx={{ padding: "0.5em", borderRadius: "10px", backgroundColor: "#ff0000" + "cc" }}
+        >
+          <Tooltip title="Die Seite befindet sich noch in der Entwicklung. Features können fehlerhaft oder nicht fertiggestellt sein.">
+            <Typography>Alpha Version</Typography>
+          </Tooltip>
+        </Box>
         <Drawer variant="temporary" anchor="top" open={mobileOpen} onClose={handleDrawerToggle}>
           {drawer}
         </Drawer>
@@ -108,14 +119,14 @@ export const Header = () => {
               </ListItemButton>
             </MuiLink>
 
-            <MuiLink to="/imprint" component={RouterLink}>
+            {/*<MuiLink to="/imprint" component={RouterLink}>
               <ListItemButton>
                 <ListItemIcon>
                   <i className="pi pi-id-card" style={{ fontSize: "1.2rem" }} />
                 </ListItemIcon>
                 <ListItemText primary="imprint" />
               </ListItemButton>
-            </MuiLink>
+            </MuiLink>*/}
 
             <MuiLink to="/privacy" component={RouterLink}>
               <ListItemButton>
