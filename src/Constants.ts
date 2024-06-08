@@ -1,1 +1,1 @@
-export const FinishedBuildings = ["ZU", "GU", "MZ"] as string[];
+export const FinishedBuildings = ["ZU", "GU", "MZ", "TR_L"] as string[];

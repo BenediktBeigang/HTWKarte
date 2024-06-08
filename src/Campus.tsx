@@ -16,6 +16,7 @@ import {
 import { useCampusState } from "./campus-context";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
 import { HTWKALENDER_GRAY } from "./Color";
+import { FinishedBuildings } from "./Constants";
 import { createZoom } from "./ZoomHandler";
 
 const ZOOM_INSIDE_BUILDING_THRESHOLD: number = 0.00008 * window.innerWidth;
@@ -106,14 +107,12 @@ const updateCurrentBuilding = (
     switchToOutside(stateRef);
     return;
   }
-
-  const finishedBuildingAbbreviations = ["MZ", "GU", "ZU", "TR_L"];
   
-  const finishedBuildings: BuildingInJson[] = state.dataOfBuildings.filter((building) =>
-    finishedBuildingAbbreviations.includes(building.properties.Abbreviation),
+  const buildingsToUpdate: BuildingInJson[] = state.dataOfBuildings.filter((building) =>
+    FinishedBuildings.includes(building.properties.Abbreviation),
   );
 
-  finishedBuildings.forEach((building: BuildingInJson) => {
+  buildingsToUpdate.forEach((building: BuildingInJson) => {
     if (!building.properties.Location) return;
 
     const polygon = turf.polygon(building.geometry.coordinates);
