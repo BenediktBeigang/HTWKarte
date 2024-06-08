@@ -1,11 +1,12 @@
 stages:
-  - build
   - build-image
 
 variables:
   DOCKER_IMAGE: gitlab.dit.htwk-leipzig.de:5050/htwk-software/htwkarte
+  DOCKER_HOST: tcp://docker:2375/
+  DOCKER_TLS_CERTDIR: ""
 
-build:
+.build:
   image: node:lts
   stage: build
   script:
@@ -14,6 +15,9 @@ build:
 
 build-image:
   stage: build-image
+  image: docker:20.10.7
+  services:
+    - docker:20.10.7-dind
   script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
     - docker build -t $DOCKER_IMAGE:latest .
