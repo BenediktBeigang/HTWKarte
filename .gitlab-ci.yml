@@ -20,11 +20,3 @@ build-image:
     - docker push $DOCKER_IMAGE:latest
   only:
     - main
-
-deploy:
-  stage: deploy
-  image: alpine:latest
-  script:
-    - echo "Deploy steps here"
-  only:
-    - main
