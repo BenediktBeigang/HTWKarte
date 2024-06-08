@@ -39,7 +39,7 @@ deploy:
       ssh -p $CI_SSH_PORT -o StrictHostKeyChecking=no -o LogLevel=ERROR $CI_SSH_USER@$CI_SSH_HOST
       "cd /home/$CI_SSH_USER/docker/htwkarte/ &&
       docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY &&
-      (docker ps -a -q | grep -q . && docker stop $(docker ps -a -q)) &&
+      (docker ps -a -q | grep -q . && docker stop $(docker ps -a -q)) ||
       docker pull $DOCKER_IMAGE:latest &&
       docker run --name htwkarte-container -d -p 80:80 --rm $DOCKER_IMAGE:latest &&
       docker logout &&
