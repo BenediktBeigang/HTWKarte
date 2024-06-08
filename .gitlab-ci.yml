@@ -6,13 +6,14 @@ variables:
   DOCKER_IMAGE: gitlab.dit.htwk-leipzig.de:5050/htwk-software/htwkarte
 
 build:
-    image: node:lts
-    stage: build
-    script:
-      - npm clean-install --progress=false
-      - npm run build
+  image: node:lts
+  stage: build
+  script:
+    - npm clean-install --progress=false
+    - npm run build
 
 build-image:
+  stage: build-image
   script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - docker build -t $DOCKER_IMAGE:latest .
