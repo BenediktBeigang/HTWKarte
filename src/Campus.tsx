@@ -107,7 +107,13 @@ const updateCurrentBuilding = (
     return;
   }
 
-  state.dataOfBuildings.forEach((building) => {
+  const finishedBuildingAbbreviations = ["MZ", "GU", "ZU", "TR_L"];
+  
+  const finishedBuildings: BuildingInJson[] = state.dataOfBuildings.filter((building) =>
+    finishedBuildingAbbreviations.includes(building.properties.Abbreviation),
+  );
+
+  finishedBuildings.forEach((building: BuildingInJson) => {
     if (!building.properties.Location) return;
 
     const polygon = turf.polygon(building.geometry.coordinates);
@@ -147,7 +153,7 @@ const Campus = () => {
 
   useEffect(() => {
     console.log("Current Building:", state.currentBuilding);
-  }, [state.currentBuilding]);
+  }, [state.currentBuilding, state.level]);
 
   // Update the current building when the position or zoom factor changes
   useEffect(() => {

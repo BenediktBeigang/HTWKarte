@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import { MutableRefObject } from "react";
 import { HTWK_LIGHT_TEXT } from "./Color";
-import { getFontSizeOfRoom, getRoomName, roomClickedHandler } from "./Room";
+import { getFontSizeOfRoom, getRoomName, roomClickedHandler, splitRoomName } from "./Room";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
 
 export type BuildingInJson = {
@@ -92,8 +92,8 @@ const prepareRooms = (
     const roomCenterX: number = roomBBox.x + roomBBox.width / 2;
     const roomCenterY: number = roomBBox.y + roomBBox.height / 2;
 
-    const roomName = getRoomName(roomID, stateRef.current.state.dataOfRooms);
-    const [firstPart, secondPart] = roomName.split("\n");
+    const roomName: string = getRoomName(roomID, stateRef.current.state.dataOfRooms);
+    const [firstPart, secondPart] = splitRoomName(roomName);
 
     const textElement = floor
       .append("text")
@@ -180,6 +180,7 @@ export const drawRoof = (buildingAbbreviation: string, buildingSVG: any = null) 
   d3.xml(pathToRoof).then((xmlData: XMLDocument) => {
     const floorSVG_data = document.importNode(xmlData.documentElement, true);
     const floorSVG = d3.select(buildingSVG.node()).append(() => floorSVG_data);
+    console.log(buildingAbbreviation);
     floorSVG.attr("id", `${buildingAbbreviation}_roof`);
     floorSVG.style("opacity", 0);
     floorSVG.transition().duration(200).style("opacity", 1);
@@ -232,7 +233,7 @@ export const drawBuildingOutlines = (
   dataOfBuildings: BuildingInJson[],
 ) => {
   dataOfBuildings.map((building) => {
-    const skipBuildings = ["GU", "ZU", "MZ"];
+    const skipBuildings = ["GU", "ZU", "MZ", "TR_L"];
     if (
       !buildingContainer ||
       !building.geometry.coordinates ||

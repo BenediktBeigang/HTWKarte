@@ -7,7 +7,7 @@ import React, { useEffect } from "react";
 import { adressOfBuilding, fullBuildingName } from "./Building";
 import { useCampusState } from "./campus-context";
 import { ROOM } from "./Color";
-import { RoomInJson, updateRoomHighlighting } from "./Room";
+import { RoomInJson, splitRoomName, updateRoomHighlighting } from "./Room";
 import "./RoomInfo.css";
 
 type RoomInfo = {
@@ -36,7 +36,7 @@ const RoomInfoStyle = {
 const getRoomInfo = (roomID: string, rooms: RoomInJson[], building: string, adress: string) => {
   const roomData = rooms.find((room) => room.id === roomID);
   let roomName = roomData?.name ?? roomID;
-  roomName = roomName.replace(/^(.{2})/, "$1 ") ?? roomName;
+  roomName = splitRoomName(roomName).join(" ") ?? roomName;
 
   const room: RoomInfo = {
     name: roomName,

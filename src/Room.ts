@@ -29,21 +29,19 @@ export const getFontSizeOfRoom = (roomWidth: number, roomHeight: number, text: s
   return `${newFontSize}em`;
 };
 
-const oneLetterAbbreviation = (name: string): boolean => {
-  switch (name[0]) {
-    case "K":
-      return true;
-    default:
-      return false;
-  }
+export const splitRoomName = (name: string): string[] => {
+  if (name.startsWith("K")) return [name.slice(0, 1), name.slice(1)];
+  if (name.startsWith("TR_L")) return [name.slice(0, 4), name.slice(4)];
+  if (name.startsWith("TR_A")) return [name.slice(0, 4), name.slice(4)];
+  if (name.startsWith("TR_B")) return [name.slice(0, 4), name.slice(4)];
+  if (name.startsWith("TR_C")) return [name.slice(0, 4), name.slice(4)];
+  return [name.slice(0, 2), name.slice(2)];
 };
 
 export const getRoomName = (roomID: string, rooms: RoomInJson[]) => {
   if (!rooms || !Array.isArray(rooms)) return "";
   const room = rooms.find((room: RoomInJson) => room.id === roomID);
-  const name = room && (room.name || room.name === "") ? room.name : roomID;
-  if (oneLetterAbbreviation(name)) return name.slice(0, 1) + "\n" + name.slice(1);
-  return name.slice(0, 2) + "\n" + name.slice(2);
+  return room && (room.name || room.name === "") ? room.name : roomID;
 };
 
 export const updateRoomHighlighting = (roomID: string, active: boolean) => {
