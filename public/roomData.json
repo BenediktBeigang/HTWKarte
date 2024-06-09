@@ -46,5 +46,13 @@
   {
     "id": "TR_L1_toilet_handicapped",
     "name": ""
+  },
+  {
+    "id": "TR_L2_toilet_man",
+    "name": ""
+  },
+  {
+    "id": "TR_L2_toilet_woman",
+    "name": ""
   }
 ]

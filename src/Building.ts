@@ -210,7 +210,6 @@ export const createBuildings = (
   dataOfBuildings.map((building) => {
     if (
       !buildingContainer ||
-      !building.properties.FloorCount ||
       !building.properties.Abbreviation ||
       !building.properties.Location_SVG
     )

@@ -376,7 +376,6 @@
       "Location": [12.3743, 51.3124],
       "Location_SVG": [12.373954, 51.312511],
       "Address": "Gustav-Freytag-Straße 40 a",
-      "FloorCount": 5,
       "Floors": [3, 2, 1, 0, -1],
       "TextXOffset": 885,
       "TextYOffset": 1500,
@@ -405,7 +404,6 @@
       "Location": [12.37497, 51.31245],
       "Location_SVG": [12.374551592814928, 51.31256],
       "Address": "Gustav-Freytag-Straße 42",
-      "FloorCount": 4,
       "Floors": [3, 2, 1, 0],
       "TextYOffset": 820,
       "Campus": "Campus-Karl-Liebknecht-Strasse"
@@ -678,8 +676,7 @@
       "Address": "Gustav-Freytag-Straße 43",
       "Campus": "Campus-Karl-Liebknecht-Strasse",
       "Location_SVG": [12.3748, 51.31322],
-      "FloorCount": 2,
-      "Floors": [1, 0],
+      "Floors": [2, 1, 0],
       "TextXOffset": 0,
       "TextYOffset": 630
     },
@@ -766,7 +763,6 @@
       "Location": [12.375992667746544, 51.31247],
       "Location_SVG": [12.3756565, 51.3125247],
       "Address": "Gustav-Freytag-Straße 42 a",
-      "FloorCount": 6,
       "Floors": [5, 4, 3, 2, 1, 0],
       "TextYOffset": 420,
       "Campus": "Campus-Karl-Liebknecht-Strasse"
