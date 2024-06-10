@@ -28,31 +28,55 @@
     "name": "MZPatio"
   },
   {
-    "id": "TR_L0_toilet_man",
+    "id": "TR_L001",
     "name": ""
   },
   {
-    "id": "TR_L0_toilet_woman",
+    "id": "TR_L021",
     "name": ""
   },
   {
-    "id": "TR_L1_toilet_man",
+    "id": "TR_L0_storage_0",
     "name": ""
   },
   {
-    "id": "TR_L1_toilet_woman",
+    "id": "TR_L0_storage_1",
     "name": ""
   },
   {
-    "id": "TR_L1_toilet_handicapped",
+    "id": "TR_L102",
     "name": ""
   },
   {
-    "id": "TR_L2_toilet_man",
+    "id": "TR_L101",
     "name": ""
   },
   {
-    "id": "TR_L2_toilet_woman",
+    "id": "TR_L121",
+    "name": ""
+  },
+  {
+    "id": "TR_L201",
+    "name": ""
+  },
+  {
+    "id": "TR_L219",
+    "name": ""
+  },
+  {
+    "id": "TR_L2_storage_0",
+    "name": ""
+  },
+  {
+    "id": "TR_L306",
+    "name": ""
+  },
+  {
+    "id": "TR_L307",
+    "name": ""
+  },
+  {
+    "id": "TR_L3_storage_0",
     "name": ""
   }
 ]
