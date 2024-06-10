@@ -1,3 +1,4 @@
+import ContactMailIcon from "@mui/icons-material/ContactMail";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import MenuIcon from "@mui/icons-material/Menu";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
@@ -44,14 +45,14 @@ export const Header = () => {
         </ListItemButton>
       </MuiLink>
 
-      {/*<MuiLink to="/imprint" component={RouterLink}>
+      <MuiLink to="/imprint" component={RouterLink}>
         <ListItemButton>
           <ListItemIcon>
             <ContactMailIcon />
           </ListItemIcon>
           <ListItemText primary="imprint" />
         </ListItemButton>
-    </MuiLink>*/}
+      </MuiLink>
 
       <MuiLink to="/privacy" component={RouterLink}>
         <ListItemButton>
@@ -119,14 +120,14 @@ export const Header = () => {
               </ListItemButton>
             </MuiLink>
 
-            {/*<MuiLink to="/imprint" component={RouterLink}>
+            <MuiLink to="/imprint" component={RouterLink}>
               <ListItemButton>
                 <ListItemIcon>
                   <i className="pi pi-id-card" style={{ fontSize: "1.2rem" }} />
                 </ListItemIcon>
                 <ListItemText primary="imprint" />
               </ListItemButton>
-            </MuiLink>*/}
+            </MuiLink>
 
             <MuiLink to="/privacy" component={RouterLink}>
               <ListItemButton>
