@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import { MutableRefObject } from "react";
 import { HTWK_LIGHT_TEXT } from "./Color";
-import { getFontSizeOfRoom, getRoomName, roomClickedHandler, splitRoomName } from "./Room";
+import { getFontSizeOfRoom, getRoomName, roomClickedHandler, RoomInJson, splitRoomName } from "./Room";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
 
 export type BuildingInJson = {
@@ -72,12 +72,12 @@ const prepareRooms = (
       .nodes(),
   );
 
-  const xOffset =
+  const xBuildingOffset =
     stateRef.current.state.dataOfBuildings.find(
       (b) => b.properties.Abbreviation === buildingAbbreviation,
     )?.properties.TextXOffset ?? 0;
 
-  const yOffset =
+  const yBuildingOffset =
     stateRef.current.state.dataOfBuildings.find(
       (b) => b.properties.Abbreviation === buildingAbbreviation,
     )?.properties.TextYOffset ?? 0;
@@ -92,16 +92,25 @@ const prepareRooms = (
     const roomCenterX: number = roomBBox.x + roomBBox.width / 2;
     const roomCenterY: number = roomBBox.y + roomBBox.height / 2;
 
+    const roomData: RoomInJson | undefined = stateRef.current.state.dataOfRooms.find(
+      (r) => r.id === roomID,
+    );
+    const xRoomOffset = roomData?.xTextOffset ?? 0;
+    const yRoomOffset = roomData?.yTextOffset ?? 0;
+    
     const roomName: string = getRoomName(roomID, stateRef.current.state.dataOfRooms);
     const [firstPart, secondPart] = splitRoomName(roomName);
 
     const textElement = floor
       .append("text")
-      .attr("x", roomCenterX + xOffset)
-      .attr("y", roomCenterY + yOffset)
+      .attr("x", roomCenterX + xBuildingOffset)
+      .attr("y", roomCenterY + yBuildingOffset + Number(yRoomOffset))
       .attr("text-anchor", "middle")
       .attr("dominant-baseline", "central")
-      .attr("font-size", getFontSizeOfRoom(roomBBox.width, roomBBox.height, roomName))
+      .attr(
+        "font-size",
+        getFontSizeOfRoom(roomBBox.width, roomBBox.height, roomName, roomData?.textFontSize ?? -1),
+      )
       .attr("font-family", "Source Sans Pro, sans-serif")
       .attr("fill", HTWK_LIGHT_TEXT)
       .attr("opacity", 0.65)
@@ -109,12 +118,12 @@ const prepareRooms = (
       .style("cursor", "default");
     textElement
       .append("tspan")
-      .attr("x", roomCenterX + xOffset)
+      .attr("x", roomCenterX + xBuildingOffset + xRoomOffset)
       .attr("dy", "0em")
       .text(firstPart);
     textElement
       .append("tspan")
-      .attr("x", roomCenterX + xOffset)
+      .attr("x", roomCenterX + xBuildingOffset + xRoomOffset)
       .attr("dy", "1em")
       .text(secondPart);
     textElement.on("click", function () {

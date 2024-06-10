@@ -8,11 +8,13 @@ export type RoomInJson = {
   name: string;
   person: string;
   adress: string;
-  xOffset: number;
-  yOffset: number;
+  xTextOffset: number;
+  yTextOffset: number;
+  textFontSize: number;
 };
 
-export const getFontSizeOfRoom = (roomWidth: number, roomHeight: number, text: string) => {
+export const getFontSizeOfRoom = (roomWidth: number, roomHeight: number, text: string, fontSizeOverride: number = -1) => {
+  if (fontSizeOverride > 0) return `${fontSizeOverride}em`;
   const emInPx = 16;
   const fontSize = 8;
   const charWidth = 0.6 * emInPx * fontSize;

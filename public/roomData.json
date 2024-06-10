@@ -24,6 +24,14 @@
     "name": ""
   },
   {
+    "id": "ZU330",
+    "xTextOffset": 300
+  },
+  {
+    "id": "ZU524",
+    "xTextOffset": 150
+  },
+  {
     "id": "MZ_Patio_1",
     "name": "MZPatio"
   },
@@ -32,15 +40,11 @@
     "name": ""
   },
   {
+    "id": "TR_L002",
+    "yTextOffset": 30
+  },
+  {
     "id": "TR_L021",
-    "name": ""
-  },
-  {
-    "id": "TR_L0_storage_0",
-    "name": ""
-  },
-  {
-    "id": "TR_L0_storage_1",
     "name": ""
   },
   {
@@ -52,11 +56,36 @@
     "name": ""
   },
   {
-    "id": "TR_L121",
-    "name": ""
+    "id": "TR_L024",
+    "yTextOffset": 30
+  },
+  {
+    "id": "TR_L022",
+    "yTextOffset": 30
+  },
+  {
+    "id": "TR_L110",
+    "yTextOffset": 20
+  },
+  {
+    "id": "TR_L111",
+    "yTextOffset": 30
   },
   {
     "id": "TR_L201",
+    "name": ""
+  },
+  {
+    "id": "TR_L209",
+    "yTextOffset": 30
+  },
+  {
+    "id": "TR_L210",
+    "textFontSize": "3.5",
+    "yTextOffset": 20
+  },
+  {
+    "id": "TR_L121",
     "name": ""
   },
   {
@@ -69,14 +98,55 @@
   },
   {
     "id": "TR_L306",
-    "name": ""
+    "yTextOffset": 25
+  },
+  {
+    "id": "TR_L310",
+    "yTextOffset": 25
   },
   {
     "id": "TR_L307",
     "name": ""
   },
   {
-    "id": "TR_L3_storage_0",
+    "id": "TR_L315",
+    "name": ""
+  },
+  {
+    "id": "TR_L316",
+    "textFontSize": "2.5",
+    "yTextOffset": -45
+  },
+  {
+    "id": "K03.1",
+    "xTextOffset": 200
+  },
+  {
+    "id": "MZ118",
+    "name": ""
+  },
+  {
+    "id": "MZ119",
+    "name": ""
+  },
+  {
+    "id": "MZ120",
+    "name": ""
+  },
+  {
+    "id": "MZ213",
+    "name": ""
+  },
+  {
+    "id": "MZ214",
+    "name": ""
+  },
+  {
+    "id": "MZ312",
+    "name": ""
+  },
+  {
+    "id": "MZ313",
     "name": ""
   }
 ]
