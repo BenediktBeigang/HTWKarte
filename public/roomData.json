@@ -1,27 +1,19 @@
 [
   {
-    "name": "ZU116a",
-    "id": "ZU116a_2"
+    "id": "ZU116a_2",
+    "name": "ZU116a"
   },
   {
-    "name": "ZU116b",
-    "id": "ZU116b_2"
+    "id": "ZU116b_2",
+    "name": "ZU116b"
   },
   {
-    "name": "",
-    "id": "ZU233"
+    "id": "ZU233",
+    "name": ""
   },
   {
     "id": "ZU410",
     "person": "Prof. Dr. rer. nat. Karsten Weicker"
-  },
-  {
-    "id": "ZU_lager_1",
-    "name": ""
-  },
-  {
-    "id": "ZU_lager_2",
-    "name": ""
   },
   {
     "id": "ZU330",
@@ -30,6 +22,86 @@
   {
     "id": "ZU524",
     "xTextOffset": 150
+  },
+  {
+    "id": "ZU101",
+    "name": ""
+  },
+  {
+    "id": "ZU102",
+    "name": ""
+  },
+  {
+    "id": "ZU103",
+    "name": ""
+  },
+  {
+    "id": "ZU104",
+    "name": ""
+  },
+  {
+    "id": "ZU201",
+    "name": ""
+  },
+  {
+    "id": "ZU202",
+    "name": ""
+  },
+  {
+    "id": "ZU203",
+    "name": ""
+  },
+  {
+    "id": "ZU204",
+    "name": ""
+  },
+  {
+    "id": "ZU301",
+    "name": ""
+  },
+  {
+    "id": "ZU302",
+    "name": ""
+  },
+  {
+    "id": "ZU303",
+    "name": ""
+  },
+  {
+    "id": "ZU304",
+    "name": ""
+  },
+  {
+    "id": "ZU401",
+    "name": ""
+  },
+  {
+    "id": "ZU402",
+    "name": ""
+  },
+  {
+    "id": "ZU403",
+    "name": ""
+  },
+  {
+    "id": "ZU404",
+    "name": ""
+  },
+  {
+    "id": "ZU501",
+    "name": ""
+  },
+  {
+    "id": "ZU502",
+    "name": ""
+  },
+  {
+    "id": "ZU503",
+    "name": ""
+  },
+  {
+    "id": "ZU504",
+    "name": ""
   },
   {
     "id": "MZ_Patio_1",
@@ -147,6 +219,90 @@
   },
   {
     "id": "MZ313",
+    "name": ""
+  },
+  {
+    "id": "GU004",
+    "name": ""
+  },
+  {
+    "id": "GU004_A",
+    "name": ""
+  },
+  {
+    "id": "GU006",
+    "name": ""
+  },
+  {
+    "id": "GU006_A",
+    "name": ""
+  },
+  {
+    "id": "GU106",
+    "name": ""
+  },
+  {
+    "id": "GU106_A",
+    "name": ""
+  },
+  {
+    "id": "GU107",
+    "name": ""
+  },
+  {
+    "id": "GU108",
+    "name": ""
+  },
+  {
+    "id": "GU108_A",
+    "name": ""
+  },
+  {
+    "id": "GU207",
+    "name": ""
+  },
+  {
+    "id": "GU207_A",
+    "name": ""
+  },
+  {
+    "id": "GU209",
+    "name": ""
+  },
+  {
+    "id": "GU209_A",
+    "name": ""
+  },
+  {
+    "id": "GU217",
+    "yTextOffset": 130
+  },
+  {
+    "id": "GU305",
+    "name": ""
+  },
+  {
+    "id": "GU305_A",
+    "name": ""
+  },
+  {
+    "id": "GU307",
+    "name": ""
+  },
+  {
+    "id": "GU307_A",
+    "name": ""
+  },
+  {
+    "id": "GU_outside_1",
+    "name": ""
+  },
+  {
+    "id": "GU_outside_1_A",
+    "name": ""
+  },
+  {
+    "id": "GU_outside_2",
     "name": ""
   }
 ]
