@@ -1,8 +1,9 @@
 import * as d3 from "d3";
 import { MutableRefObject } from "react";
-import { HTWK_LIGHT_TEXT } from "./Color";
-import { getFontSizeOfRoom, getRoomName, roomClickedHandler, RoomInJson, splitRoomName } from "./Room";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
+import { HTWK_LIGHT_TEXT } from "./Color";
+import { FinishedBuildings } from "./Constants";
+import { getFontSizeOfRoom, getRoomName, roomClickedHandler, RoomInJson, splitRoomName } from "./Room";
 
 export type BuildingInJson = {
   type: string;
@@ -241,12 +242,11 @@ export const drawBuildingOutlines = (
   dataOfBuildings: BuildingInJson[],
 ) => {
   dataOfBuildings.map((building) => {
-    const skipBuildings = ["GU", "ZU", "MZ", "TR_L"];
     if (
       !buildingContainer ||
       !building.geometry.coordinates ||
       building.geometry.coordinates.length === 0 ||
-      skipBuildings.includes(building.properties.Abbreviation)
+      FinishedBuildings.includes(building.properties.Abbreviation)
     )
       return;
     const polygon = building.geometry.coordinates[0].map((coord) => {
