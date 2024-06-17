@@ -219,6 +219,31 @@
     "name": ""
   },
   {
+    "id": "TR_A223",
+    "yTextOffset": 20
+  },
+  {
+    "id": "TR_A223a",
+    "textFontSize": "6",
+    "xTextOffset": 100
+  },
+  {
+    "id": "TR_A224a",
+    "xTextOffset": 40
+  },
+  {
+    "id": "TR_A224",
+    "yTextOffset": 30
+  },
+  {
+    "id": "TR_A229",
+    "name": ""
+  },
+  {
+    "id": "TR_A230",
+    "name": ""
+  },
+  {
     "id": "K03.1",
     "xTextOffset": 200
   },

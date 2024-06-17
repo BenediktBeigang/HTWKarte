@@ -588,7 +588,7 @@
       "Address": "Gustav-Freytag-Straße 43",
       "Campus": "Campus-Karl-Liebknecht-Strasse",
       "Location_SVG": [12.374926, 51.31305],
-      "Floors": [1, 0],
+      "Floors": [2, 1, 0],
       "TextXOffset": 0,
       "TextYOffset": 1530
     },
