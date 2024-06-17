@@ -264,6 +264,13 @@
       <feComposite result="comp1" operator="in" in="flood" in2="offset" id="feComposite448"/>
       <feComposite result="comp2" operator="over" in="SourceGraphic" in2="comp1" id="feComposite449"/>
     </filter>
+    <filter style="color-interpolation-filters:sRGB" id="filter2" x="-0.019568903" y="-0.14603302" width="1.0391378" height="1.292066">
+      <feFlood result="flood" flood-opacity="1.000000" flood-color="rgb(0,0,0)" id="feFlood1"/>
+      <feGaussianBlur result="blur" in="SourceGraphic" stdDeviation="2.000000" id="feGaussianBlur1"/>
+      <feOffset result="offset" in="blur" dx="0.000000" dy="-0.000000" id="feOffset1"/>
+      <feComposite result="comp1" operator="in" in="flood" in2="offset" id="feComposite1"/>
+      <feComposite result="comp2" operator="over" in="SourceGraphic" in2="comp1" id="feComposite2"/>
+    </filter>
   </defs>
   <g id="floor_1" transform="matrix(40.994169,0,0,40.994169,1.00188,-8910.757)" style="display:inline">
     <rect style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#4c5a5f;fill-opacity:1;stroke-width:0" id="rect386" width="5.5373797" height="6.4268985" x="13.21393" y="219.30579"/>
@@ -279,9 +286,9 @@
       <rect style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#454c7f;fill-opacity:1;stroke-width:894.98;stroke-dasharray:none" id="TR_A127" width="1398.5122" height="732.93799" x="3002.0608" y="346.42688"/>
       <rect style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#454c7f;fill-opacity:1;stroke-width:904.584;stroke-dasharray:none" id="TR_A128" width="1425.9751" height="734.35352" x="4400.5728" y="346.42688"/>
       <rect style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#454c7f;fill-opacity:1;stroke-width:906.166;stroke-dasharray:none" id="TR_A129" width="1037.7507" height="1012.595" x="2901.2595" y="-978.55005"/>
-      <rect style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#454c7f;fill-opacity:1;stroke-width:398.451;stroke-dasharray:none" id="TR_A130" width="408.24942" height="497.66846" x="3530.761" y="-1476.2185"/>
-      <path style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#454c7f;fill-opacity:1;stroke:none;stroke-width:35;stroke-dasharray:none" d="m 2901.259,-1252.6729 h 629.5015 v 180.3122 h -211.3637 v 93.81057 H 2901.259 Z" id="TR_A131"/>
-      <rect style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#454c7f;fill-opacity:1;stroke-width:107.519;stroke-dasharray:none" id="TR_A131.1" width="193.86378" height="76.312012" x="3319.3972" y="-1072.3606"/>
+      <path style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#454c7f;fill-opacity:1;stroke:none;stroke-width:35;stroke-dasharray:none" d="m 2901.259,-1252.6729 h 629.5015 v 180.3122 h -211.3637 v 93.81057 H 2901.259 Z" id="TR_A130"/>
+      <rect style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#454c7f;fill-opacity:1;stroke-width:107.519;stroke-dasharray:none" id="TR_A130-1" width="193.86378" height="76.312012" x="3319.3972" y="-1072.3606"/>
+      <rect style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#454c7f;fill-opacity:1;stroke-width:398.451;stroke-dasharray:none" id="TR_A131" width="408.24942" height="497.66846" x="3530.761" y="-1476.2185"/>
       <path style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#454c7f;fill-opacity:1;stroke-width:0;stroke-dasharray:none" d="m 6501.8351,1080.7803 -675.2872,1e-4 V 921.78032 l 306.0001,2e-5 v -202 l -1e-4,-145.1967 h 369.2872 z" id="TR_A132"/>
       <rect style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#454c7f;fill-opacity:1;stroke-width:344.182;stroke-dasharray:none" id="TR_A133" width="328.71338" height="461.19418" x="6519.335" y="592.08362"/>
       <rect style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;opacity:1;fill:#454c7f;fill-opacity:1;stroke-width:1013.17;stroke-dasharray:none" id="TR_A134" width="1055.4193" height="1244.6859" x="5642.043" y="-1210.641"/>

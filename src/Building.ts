@@ -3,7 +3,13 @@ import { MutableRefObject } from "react";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
 import { HTWK_LIGHT_TEXT } from "./Color";
 import { FinishedBuildings } from "./Constants";
-import { getFontSizeOfRoom, getRoomName, roomClickedHandler, RoomInJson, splitRoomName } from "./Room";
+import {
+  getFontSizeOfRoom,
+  getRoomName,
+  roomClickedHandler,
+  RoomInJson,
+  splitRoomName,
+} from "./Room";
 
 export type BuildingInJson = {
   type: string;

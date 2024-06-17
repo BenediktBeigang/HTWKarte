@@ -42,8 +42,9 @@ export const splitRoomName = (name: string): string[] => {
 
 export const getRoomName = (roomID: string, rooms: RoomInJson[]) => {
   if (!rooms || !Array.isArray(rooms)) return "";
-  const room = rooms.find((room: RoomInJson) => room.id === roomID);
-  return room && (room.name || room.name === "") ? room.name : roomID;
+  const room: RoomInJson | undefined = rooms.find((room: RoomInJson) => room.id === roomID);
+  const roomName = room?.name ?? roomID;
+  return roomName.replace("-", ".");
 };
 
 export const updateRoomHighlighting = (roomID: string, active: boolean) => {
