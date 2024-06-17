@@ -478,7 +478,11 @@
       "Abbreviation": "FE",
       "Location": [12.374281348047788, 51.31285],
       "Address": "Gustav-Freytag-Straße 41 a",
-      "Campus": "Campus-Karl-Liebknecht-Strasse"
+      "Campus": "Campus-Karl-Liebknecht-Strasse",
+      "Location_SVG": [12.374, 51.31288],
+      "Floors": [1, 0],
+      "TextXOffset": 0,
+      "TextYOffset": 0
     },
     "geometry": {
       "coordinates": [
