@@ -582,7 +582,7 @@
   {
     "type": "Feature",
     "properties": {
-      "Name": "Treffts-Bau-A",
+      "Name": "Trefftz-Bau-A",
       "Abbreviation": "TR_A",
       "Location": [12.375679, 51.312875],
       "Address": "Gustav-Freytag-Straße 43",
@@ -628,7 +628,7 @@
   {
     "type": "Feature",
     "properties": {
-      "Name": "Treffts-Bau-B",
+      "Name": "Trefftz-Bau-B",
       "Abbreviation": "TR_B",
       "Location": [12.37596, 51.31325],
       "Address": "Gustav-Freytag-Straße 45",
@@ -652,7 +652,7 @@
   {
     "type": "Feature",
     "properties": {
-      "Name": "Treffts-Bau-C",
+      "Name": "Trefftz-Bau-C",
       "Abbreviation": "TR_C",
       "Location": [12.37585, 51.31349],
       "Address": "Eichendorffstraße 14",
@@ -678,7 +678,7 @@
   {
     "type": "Feature",
     "properties": {
-      "Name": "Treffts-Bau-L",
+      "Name": "Trefftz-Bau-L",
       "Abbreviation": "TR_L",
       "Location": [12.37517, 51.31314],
       "Address": "Gustav-Freytag-Straße 43",
