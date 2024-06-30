@@ -1,14 +1,9 @@
 import * as d3 from "d3";
 import { MutableRefObject } from "react";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
-import { HTWK_LIGHT_TEXT } from "./Color";
 import { FinishedBuildings } from "./Constants";
 import {
-  getFontSizeOfRoom,
-  getRoomName,
-  roomClickedHandler,
-  RoomInJson,
-  splitRoomName,
+  roomClickedHandler
 } from "./Room";
 
 export type BuildingInJson = {
@@ -71,6 +66,9 @@ const prepareRooms = (
   const validBuildingAbbreviation = specialAbbreviationForRooms(buildingAbbreviation, level);
   if (level === -1) console.log(validBuildingAbbreviation);
   const floor = d3.select(`#${buildingAbbreviation}_${level}`);
+
+  floor.selectAll("path[id^='roomNames_']").attr("pointer-events", "none");
+
   const rooms = Array.from(
     floor
       .selectAll(
@@ -79,63 +77,14 @@ const prepareRooms = (
       .nodes(),
   );
 
-  const xBuildingOffset =
-    stateRef.current.state.dataOfBuildings.find(
-      (b) => b.properties.Abbreviation === buildingAbbreviation,
-    )?.properties.TextXOffset ?? 0;
-
-  const yBuildingOffset =
-    stateRef.current.state.dataOfBuildings.find(
-      (b) => b.properties.Abbreviation === buildingAbbreviation,
-    )?.properties.TextYOffset ?? 0;
-
   rooms.forEach((room: any) => {
     const room_d3 = d3.select(room);
     const roomID: string = room_d3.attr("id");
     room_d3.on("click", function () {
       roomClickedHandler(roomID, stateRef);
     });
-    const roomBBox = room.getBBox();
-    const roomCenterX: number = roomBBox.x + roomBBox.width / 2;
-    const roomCenterY: number = roomBBox.y + roomBBox.height / 2;
 
-    const roomData: RoomInJson | undefined = stateRef.current.state.dataOfRooms.find(
-      (r) => r.id === roomID,
-    );
-    const xRoomOffset = roomData?.xTextOffset ?? 0;
-    const yRoomOffset = roomData?.yTextOffset ?? 0;
-    
-    const roomName: string = getRoomName(roomID, stateRef.current.state.dataOfRooms);
-    const [firstPart, secondPart] = splitRoomName(roomName);
-
-    const textElement = floor
-      .append("text")
-      .attr("x", roomCenterX + xBuildingOffset)
-      .attr("y", roomCenterY + yBuildingOffset + Number(yRoomOffset))
-      .attr("text-anchor", "middle")
-      .attr("dominant-baseline", "central")
-      .attr(
-        "font-size",
-        getFontSizeOfRoom(roomBBox.width, roomBBox.height, roomName, roomData?.textFontSize ?? -1),
-      )
-      .attr("font-family", "Source Sans Pro, sans-serif")
-      .attr("fill", HTWK_LIGHT_TEXT)
-      .attr("opacity", 0.65)
-      .attr("font-weight", 1000)
-      .style("cursor", "default");
-    textElement
-      .append("tspan")
-      .attr("x", roomCenterX + xBuildingOffset + xRoomOffset)
-      .attr("dy", "0em")
-      .text(firstPart);
-    textElement
-      .append("tspan")
-      .attr("x", roomCenterX + xBuildingOffset + xRoomOffset)
-      .attr("dy", "1em")
-      .text(secondPart);
-    textElement.on("click", function () {
-      roomClickedHandler(roomID, stateRef);
-    });
+    return;
   });
 };
 
