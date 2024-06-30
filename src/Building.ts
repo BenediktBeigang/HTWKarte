@@ -47,14 +47,6 @@ export const cleanBuilding = (buildingAbbreviation: string) => {
   return buildingSVG;
 };
 
-const specialAbbreviationForRooms = (buildingAbbreviation: string, level: number): string => {
-  switch (buildingAbbreviation) {
-    case "MZ":
-      if (level === -1) return "K";
-  }
-  return buildingAbbreviation;
-};
-
 const prepareRooms = (
   level: number,
   buildingAbbreviation: string,
@@ -63,16 +55,13 @@ const prepareRooms = (
     dispatch: (value: CampusContextAction) => void;
   }>,
 ) => {
-  const validBuildingAbbreviation = specialAbbreviationForRooms(buildingAbbreviation, level);
-  if (level === -1) console.log(validBuildingAbbreviation);
   const floor = d3.select(`#${buildingAbbreviation}_${level}`);
-
   floor.selectAll("path[id^='roomNames_']").attr("pointer-events", "none");
 
   const rooms = Array.from(
     floor
       .selectAll(
-        `g[id='floor_${level}'] > g[id='rooms_${level}'] *[id*='${validBuildingAbbreviation}']`,
+        `g[id='floor_${level}'] > g[id='rooms_${level}'] *[id*='${buildingAbbreviation}']`,
       )
       .nodes(),
   );
@@ -97,6 +86,10 @@ export const switchToFloor = (
   }>,
 ) => {
   cleanBuilding(buildingAbbreviation);
+  if (buildingAbbreviation === "None" || !buildingAbbreviation) {
+    console.log("No building selected");
+    return;
+  }
 
   const pathToFloor = `/Assets/Buildings/${buildingAbbreviation}/${buildingAbbreviation}_${newLevel}.svg`;
   const buildingSVG = d3.select(`#${buildingAbbreviation}`);
