@@ -632,7 +632,9 @@
       "Abbreviation": "TR_B",
       "Location": [12.37596, 51.31325],
       "Address": "Gustav-Freytag-Straße 45",
-      "Campus": "Campus-Karl-Liebknecht-Strasse"
+      "Campus": "Campus-Karl-Liebknecht-Strasse",
+      "Location_SVG": [12.3759, 51.313451],
+      "Floors": [1, 0]
     },
     "geometry": {
       "coordinates": [
@@ -656,7 +658,9 @@
       "Abbreviation": "TR_C",
       "Location": [12.37585, 51.31349],
       "Address": "Eichendorffstraße 14",
-      "Campus": "Campus-Karl-Liebknecht-Strasse"
+      "Campus": "Campus-Karl-Liebknecht-Strasse",
+      "Location_SVG": [12.375663, 51.313568],
+      "Floors": [0]
     },
     "geometry": {
       "coordinates": [

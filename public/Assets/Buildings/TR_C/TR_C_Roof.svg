@@ -1,0 +1,16 @@
+<svg width="4000" height="1400" viewBox="0 0 4000 1400" version="1.1" id="svg1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+  <defs id="defs1">
+    <marker style="overflow:visible" id="Triangle" refX="0" refY="0" orient="auto-start-reverse" markerWidth="1" markerHeight="1" viewBox="0 0 1 1" preserveAspectRatio="xMidYMid">
+      <path transform="scale(0.5)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="M 5.77,0 -2.88,5 V -5 Z" id="path597"/>
+    </marker>
+  </defs>
+  <g id="roof" style="display:inline" transform="translate(0,-900)">
+    <path style="font-variation-settings:'wght' 700;fill:#99aac7;fill-opacity:1;stroke-width:10" d="M 38.165474,2277.019 V 1010.3907 l 507.720946,633.3141 z" id="path91"/>
+    <path style="font-variation-settings:'wght' 700;fill:#90a1c1;fill-opacity:1;stroke-width:10" d="M 38.165474,1010.3907 H 3844.3078 v 633.3141 H 545.88642 Z" id="path92"/>
+    <path style="font-variation-settings:'wght' 700;fill:#90a1c1;fill-opacity:1;stroke-width:10" d="m 1645.38,2277.3411 1174.7711,-633.6363 0.1989,633.6362 z" id="path93"/>
+    <path style="font-variation-settings:'wght' 700;fill:#99aac7;fill-opacity:1;stroke-width:10" d="m 3844.3078,2191.8478 v 85.1712 l -1024.157,0.3221 v -633.6365 z" id="path94"/>
+    <path style="font-variation-settings:'wght' 700;fill:#abbbd2;fill-opacity:1;stroke-width:10" d="M 545.88642,1643.7048 H 2820.1508 L 1645.38,2277.3411 38.165474,2277.019 Z" id="path96"/>
+    <path style="font-variation-settings:'wght' 700;fill:#abbbd2;fill-opacity:1;stroke-width:10" d="m 2820.1508,1643.705 1024.157,-2e-4 v 548.143 z" id="path97"/>
+    <rect style="font-variation-settings:'wght' 700;fill:#eff3f7;fill-opacity:1;stroke-width:5.7386" id="rect97" width="322.31622" height="160.54034" x="1327.2941" y="1978.4807"/>
+  </g>
+</svg>
