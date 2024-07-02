@@ -40,6 +40,15 @@ export const adressOfBuilding = (abbreviation: string, buildingData: BuildingInJ
   return building ? building.properties.Address : "";
 };
 
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+export const removeRoof = async (buildingAbbreviation: string, delay: number = 0) => {
+  if (delay > 0) await wait(delay);
+  const buildingSVG = d3.select(`#${buildingAbbreviation}`);
+  if (!buildingSVG) return;
+  buildingSVG.select(`#${buildingAbbreviation}_roof`).remove();
+  return buildingSVG;
+};
+
 export const cleanBuilding = (buildingAbbreviation: string) => {
   const buildingSVG = d3.select(`#${buildingAbbreviation}`);
   if (!buildingSVG) return;
@@ -138,7 +147,6 @@ export const drawRoof = (buildingAbbreviation: string, buildingSVG: any = null) 
   d3.xml(pathToRoof).then((xmlData: XMLDocument) => {
     const floorSVG_data = document.importNode(xmlData.documentElement, true);
     const floorSVG = d3.select(buildingSVG.node()).append(() => floorSVG_data);
-    console.log(buildingAbbreviation);
     floorSVG.attr("id", `${buildingAbbreviation}_roof`);
     floorSVG.style("opacity", 0);
     floorSVG.transition().duration(200).style("opacity", 1);

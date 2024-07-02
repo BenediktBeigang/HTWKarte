@@ -13,7 +13,12 @@ export type RoomInJson = {
   textFontSize: number;
 };
 
-export const getFontSizeOfRoom = (roomWidth: number, roomHeight: number, text: string, fontSizeOverride: number = -1) => {
+export const getFontSizeOfRoom = (
+  roomWidth: number,
+  roomHeight: number,
+  text: string,
+  fontSizeOverride: number = -1,
+) => {
   if (fontSizeOverride > 0) return `${fontSizeOverride}em`;
   const emInPx = 16;
   const fontSize = 8;
@@ -32,7 +37,6 @@ export const getFontSizeOfRoom = (roomWidth: number, roomHeight: number, text: s
 };
 
 export const splitRoomName = (name: string): string[] => {
-  if (name.startsWith("K")) return [name.slice(0, 1), name.slice(1)];
   if (name.startsWith("TR_L")) return [name.slice(0, 4), name.slice(4)];
   if (name.startsWith("TR_A")) return [name.slice(0, 4), name.slice(4)];
   if (name.startsWith("TR_B")) return [name.slice(0, 4), name.slice(4)];
@@ -76,4 +80,32 @@ export const roomClickedHandler = (
   }
   stateRef.current.dispatch({ type: "UPDATE_ROOM", currentRoomID: idOfClickedRoom });
   updateRoomHighlighting(idOfClickedRoom, true);
+};
+
+export type ParsedRoomID = {
+  buildingAbbreviation: string;
+  level: number;
+  room: string;
+};
+
+export const parseRoomID = (roomID: string | undefined): ParsedRoomID | undefined => {
+  if (!roomID) return undefined;
+  try {
+    if (roomID.startsWith("TR")) return parseTrefftzRoomID(roomID);
+    return {
+      buildingAbbreviation: roomID.slice(0, 2),
+      level: parseInt(roomID.slice(2, 3)),
+      room: roomID.slice(3, roomID.length),
+    };
+  } catch (error) {
+    return undefined;
+  }
+};
+
+const parseTrefftzRoomID = (roomID: string): ParsedRoomID => {
+  return {
+    buildingAbbreviation: roomID.slice(0, 4),
+    level: parseInt(roomID.slice(4, 5)),
+    room: roomID.slice(5, roomID.length),
+  };
 };

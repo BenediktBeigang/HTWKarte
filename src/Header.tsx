@@ -66,7 +66,7 @@ export const Header = () => {
   );
 
   return (
-    <AppBar position="fixed" elevation={0} sx={{ backgroundColor: HTWKALENDER_GRAY + "cc" }}>
+    <AppBar position="fixed" elevation={0} sx={{ backgroundColor: HTWKALENDER_GRAY + "00" }}>
       <Toolbar>
         <Box display="flex">
           <Box m={1}>
