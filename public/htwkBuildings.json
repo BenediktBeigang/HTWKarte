@@ -660,7 +660,7 @@
       "Address": "Eichendorffstraße 14",
       "Campus": "Campus-Karl-Liebknecht-Strasse",
       "Location_SVG": [12.375663, 51.313568],
-      "Floors": [0]
+      "Floors": [1, 0]
     },
     "geometry": {
       "coordinates": [
