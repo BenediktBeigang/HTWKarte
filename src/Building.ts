@@ -1,5 +1,6 @@
 import * as d3 from "d3";
 import { MutableRefObject } from "react";
+import { CampusInJson } from "./Campus";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
 import { FinishedBuildings } from "./Constants";
 import {
@@ -217,4 +218,26 @@ export const drawBuildingOutlines = (
       .attr("stroke-width", 20)
       .attr("stroke-linejoin", "round");
   });
+};
+
+export const drawCampusOutlines = (
+  buildingContainer: d3.Selection<SVGGElement, unknown, HTMLElement, any>,
+  projection: d3.GeoProjection,
+  dataOfCampus: CampusInJson[],
+  campusName: string,
+) => {
+  // find right campus and draw it
+  const campus = dataOfCampus.find((c) => c.properties.Name === campusName);
+  if (!campus || !campus.geometry.coordinates) return;
+  const polygon = campus.geometry.coordinates[0].map((coord) => {
+    return projection([coord[0], coord[1]]);
+  });
+
+  buildingContainer
+    .append("polygon")
+    .attr("points", polygon.join(" "))
+    .attr("fill", "none")
+    .attr("stroke", "red")
+    .attr("stroke-width", 100)
+    .attr("stroke-linejoin", "round");
 };
