@@ -10,7 +10,7 @@ const MIN_ZOOM: number = window.innerWidth * 0.000001;
 const MAX_ZOOM: number = window.innerWidth * 0.0005;
 
 const START_ZOOM: number = 0.03 as const;
-const START_ZOOM_FOR_ROOM: number = 0.04 as const;
+const START_ZOOM_FOR_ROOM: number = 0.1 as const;
 
 const mapCenter: [number, number] = [36000 / 2, 58000 / 2];
 
@@ -93,7 +93,8 @@ const createZoom = async(
         // setInitialZoomPositionReached(true);
       },
     );
-  });
+  },
+  true);
   return zoom;
 };
 
@@ -106,6 +107,7 @@ const moveToCampusCenter = (
   projection: d3.GeoProjection,
   buildingContainer: any,
   onEndCallback: () => void,
+  withRoomZoom: boolean = false,
 ) => {
   const state = stateRef.current.state;
   const campus = state.dataOfCampus.find((c) => c.properties.Name === state.currentCampus);
@@ -119,7 +121,7 @@ const moveToCampusCenter = (
     stateRef,
     36000 / 2,
     58000 / 2 - 5000,
-    START_ZOOM,
+    withRoomZoom ? START_ZOOM_FOR_ROOM : START_ZOOM,
     0,
     onEndCallback,
   );
