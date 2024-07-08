@@ -30,6 +30,7 @@ export const faqData = [
   },
   {
     question: "Wie genau sind die Informationen und Pläne?",
-    answer: "Wir können nicht für alle Angaben garantieren, geben uns aber viel Mühe die Realität so gut es geht abzubilden. Oft arbeiten wir mit veralteten Plänen und Informationen, wir versuchen aber immer wenn wir auf Fehler stoßen oder hingewiesen werden diese zu korrigieren.",
+    answer:
+      "Wir können nicht für alle Angaben garantieren, geben uns aber viel Mühe die Realität so gut es geht abzubilden. Oft arbeiten wir mit veralteten Plänen und Informationen, wir versuchen aber immer wenn wir auf Fehler stoßen oder hingewiesen werden diese zu korrigieren.",
   },
 ];

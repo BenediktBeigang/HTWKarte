@@ -3,9 +3,7 @@ import { MutableRefObject } from "react";
 import { CampusInJson } from "./Campus";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
 import { FinishedBuildings } from "./Constants";
-import {
-  roomClickedHandler
-} from "./Room";
+import { roomClickedHandler } from "./Room";
 
 export type BuildingInJson = {
   type: string;
@@ -70,9 +68,7 @@ const prepareRooms = (
 
   const rooms = Array.from(
     floor
-      .selectAll(
-        `g[id='floor_${level}'] > g[id='rooms_${level}'] *[id*='${buildingAbbreviation}']`,
-      )
+      .selectAll(`g[id='floor_${level}'] > g[id='rooms_${level}'] *[id*='${buildingAbbreviation}']`)
       .nodes(),
   );
 
@@ -240,4 +236,16 @@ export const drawCampusOutlines = (
     .attr("stroke", "red")
     .attr("stroke-width", 100)
     .attr("stroke-linejoin", "round");
+};
+
+export const drawCampusMarker = (
+  buildingContainer: d3.Selection<SVGGElement, unknown, HTMLElement, any>,
+  marker: [number, number],
+) => {
+  buildingContainer
+    .append("circle")
+    .attr("cx", marker[0])
+    .attr("cy", marker[1])
+    .attr("r", 20)
+    .attr("fill", "red");
 };

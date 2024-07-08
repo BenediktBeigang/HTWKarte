@@ -11,7 +11,7 @@ import {
   createBuildings,
   drawBuildingOutlines,
   drawRoof,
-  loadBuilding
+  loadBuilding,
 } from "./Building";
 import { useCampusState } from "./campus-context";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
@@ -162,7 +162,6 @@ const Campus = () => {
     updateCurrentBuilding(stateRef);
   }, [state.zoomPositionReached, state.position, state.zoomFactor]);
 
-
   // Get the campus map width and height
   const campus = state.dataOfCampus.find(
     (campus) => campus.properties.Name === state.currentCampus,
@@ -202,21 +201,17 @@ const Campus = () => {
     drawBuildingOutlines(buildingContainer, projection, state.dataOfBuildings);
     // drawCampusOutlines(buildingContainer, projection, state.dataOfCampus, state.currentCampus);
 
-    const zoom: any = createZoom(
-      campusSVG,
-      buildingContainer,
-      projection,
-      stateRef,
-    );
+    const zoom: any = createZoom(campusSVG, buildingContainer, projection, stateRef);
 
-    initialZoomPosition(
-      campusSVG,
-      buildingContainer,
-      stateRef,
-      roomID,
-      projection,
-    );
-  }, [CAMPUS_MAP_HEIGHT, CAMPUS_MAP_WIDTH, roomID, state.currentCampus, state.dataOfBuildings, state.dataOfCampus]);
+    initialZoomPosition(campusSVG, buildingContainer, stateRef, roomID, projection);
+  }, [
+    CAMPUS_MAP_HEIGHT,
+    CAMPUS_MAP_WIDTH,
+    roomID,
+    state.currentCampus,
+    state.dataOfBuildings,
+    state.dataOfCampus,
+  ]);
 
   // print zoom factor and position in console
   // useEffect(() => {

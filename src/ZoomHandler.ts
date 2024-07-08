@@ -77,19 +77,22 @@ const initialZoomPosition = async (
   projection: d3.GeoProjection,
 ) => {
   let roomSearchResult: any | undefined;
-  let targetPosition: [x:number, y:number];
+  let targetPosition: [x: number, y: number];
 
   try {
     if (roomID === undefined) throw new Error("No room provided");
     // Search for room in SVG
     roomSearchResult = await findRoomInSVG(roomID, stateRef);
-    const { roomSVG, buildingAbbreviation } = roomSearchResult;
+    const { roomSVG, buildingAbbreviation, floorSVG, roomsContainer } = roomSearchResult;
     targetPosition = extractRoomCoordinates(
       roomSVG,
       buildingAbbreviation,
+      floorSVG,
+      roomsContainer,
     );
   } catch (error) {
-    if (roomSearchResult && roomSearchResult.buildingAbbreviation) removeRoof(roomSearchResult.buildingAbbreviation);
+    if (roomSearchResult && roomSearchResult.buildingAbbreviation)
+      removeRoof(roomSearchResult.buildingAbbreviation);
     moveToCampusCenter(
       stateRef,
       campusSVG,
@@ -152,8 +155,8 @@ const moveToCampusCenter = (
   zoomToPixelPosition(
     campusSVG,
     buildingContainer,
-    (MapWidth / 2) + xOffset,
-    (MapHeight / 2) + yOffset,
+    MapWidth / 2 + xOffset,
+    MapHeight / 2 + yOffset,
     zoomFactor,
     stateRef,
     projection,
@@ -248,7 +251,7 @@ const findRoomInSVG = async (
   switchToInside(stateRef, building, level);
   console.log("Building:", buildingAbbreviation, "Level:", level);
 
-  const { roomSVG } = await waitForSVGSelection(
+  const { roomSVG, floorContainer, roomsContainer } = await waitForSVGSelection(
     `svg[id='${buildingAbbreviation}_${level}']`,
     3000,
   ).then((floorContainer: any) => {
@@ -258,13 +261,19 @@ const findRoomInSVG = async (
     return {
       floorContainer,
       roomSVG: rooms.select(`rect[id='${svgRoomID}'], path[id='${svgRoomID}']`),
+      roomsContainer: rooms,
     };
   });
   console.log("Building:", buildingAbbreviation, "Level:", level);
-  return { roomSVG, buildingAbbreviation };
+  return { roomSVG, buildingAbbreviation, floorSVG: floorContainer, roomsContainer };
 };
 
-const extractRoomCoordinates = (roomSVG: any, buildingAbbreviation: string): [number, number] => {
+const extractRoomCoordinates = (
+  roomSVG: any,
+  buildingAbbreviation: string,
+  floorSVG: any,
+  roomsContainer: any,
+): [number, number] => {
   if (!roomSVG.node()) throw new Error("Raum nicht gefunden");
 
   const building: any = d3.select(`#${buildingAbbreviation}`);
@@ -275,12 +284,14 @@ const extractRoomCoordinates = (roomSVG: any, buildingAbbreviation: string): [nu
   const buildingPosY = parseFloat(translate.split(",")[1].split(")")[0]);
 
   const roomBBox = roomSVG.node().getBBox();
-  console.log("building", building);
+  const floorBBox = floorSVG.node().getBBox();
+  const roomsContainerBBox = roomsContainer.node().getBBox();
 
-  const targetPositionX = buildingPosX + roomBBox.x + roomBBox.width / 2;
-  const targetPositionY = buildingPosY + roomBBox.y + roomBBox.height / 2;
-  return [ targetPositionX, targetPositionY ];
+  const targetPositionX =
+    buildingPosX + floorBBox.x + roomsContainerBBox.x + roomBBox.x + roomBBox.width / 2;
+  const targetPositionY =
+    buildingPosY + floorBBox.y - roomsContainerBBox.y + roomBBox.y + roomBBox.width / 2;
+  return [targetPositionX, targetPositionY];
 };
 
 export { createZoom, initialZoomPosition };
-

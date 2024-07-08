@@ -9,7 +9,7 @@ type FaqDataInJson = {
 
 export const FAQ = () => {
   const matches = useMediaQuery("(min-width:600px)");
-  
+
   return (
     <Box
       sx={{
