@@ -12,6 +12,8 @@ const MAX_ZOOM: number = window.innerWidth * 0.0005;
 const START_ZOOM: number = 0.03 as const;
 const START_ZOOM_FOR_ROOM: number = 0.04 as const;
 
+const mapCenter: [number, number] = [36000 / 2, 58000 / 2];
+
 // const svgPositionToLngLat = (
 //   x: number,
 //   y: number,
@@ -71,12 +73,12 @@ const createZoom = async(
   moveToCampusCenter(stateRef, campusSVG, projection, buildingContainer, async () => {
     if (roomID === undefined) return;
     // const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-    // await wait(200);
+    // await wait(2000);
     const [targetPositionX, targetPositionY] = (await roomCoordinates(
       roomID,
       initialZoomPositionReached,
       stateRef,
-    )) ?? [0, 0];
+    )) ?? mapCenter;
     console.log("targetPositionX", targetPositionX, "targetPositionY", targetPositionY);
     zoomToPixelPosition(
       campusSVG,
@@ -94,48 +96,6 @@ const createZoom = async(
   });
   return zoom;
 };
-
-export const zoomToPixelPosition = (
-  campusSVG: any,
-  buildingContainer: any,
-  projection: d3.GeoProjection,
-  stateRef: MutableRefObject<{
-    state: CampusContextProps;
-    dispatch: (value: CampusContextAction) => void;
-  }>,
-  targetX: number,
-  targetY: number,
-  scale: number,
-  duration: number = 750,
-  onEndCallback?: () => void,
-) => {
-  // Define the new zoom transformation
-  const transform = d3.zoomIdentity
-    .translate(campusSVG.node().clientWidth / 2, campusSVG.node().clientHeight / 2)
-    .scale(scale)
-    .translate(-targetX, -targetY);
-
-  // Update state
-  const geoCoord: [number, number] = projection.invert!([targetX, targetY]) as [number, number];
-  stateRef.current.dispatch({ type: "UPDATE_POSITION", position: geoCoord });
-  stateRef.current.dispatch({ type: "UPDATE_ZOOM", zoomFactor: scale });
-
-  // Apply transition to zoom
-  campusSVG
-    .transition()
-    .duration(duration)
-    .call(
-      d3.zoom().on("zoom", (event) => {
-        const { transform } = event;
-        if (buildingContainer) buildingContainer.attr("transform", transform.toString());
-      }).transform,
-      transform,
-    )
-    .on("end", () => {
-      if (onEndCallback) onEndCallback();
-    });
-};
-
 
 const moveToCampusCenter = (
   stateRef: MutableRefObject<{
@@ -165,7 +125,49 @@ const moveToCampusCenter = (
   );
 };
 
-function waitForSVGSelection(selector: string, timeoutMs: number) {
+export const zoomToPixelPosition = (
+  campusSVG: any,
+  buildingContainer: any,
+  projection: d3.GeoProjection,
+  stateRef: MutableRefObject<{
+    state: CampusContextProps;
+    dispatch: (value: CampusContextAction) => void;
+  }>,
+  targetX: number,
+  targetY: number,
+  scale: number,
+  duration: number = 750,
+  onEndCallback?: () => void,
+) => {
+  if (!(campusSVG.node().clientWidth / 2) || !(campusSVG.node().clientHeight / 2)) return;
+  // Define the new zoom transformation
+  const transform = d3.zoomIdentity
+    .translate(campusSVG.node().clientWidth / 2, campusSVG.node().clientHeight / 2)
+    .scale(scale)
+    .translate(-targetX, -targetY);
+
+  // Update state
+  // const geoCoord: [number, number] = projection.invert!([targetX, targetY]) as [number, number];
+  // stateRef.current.dispatch({ type: "UPDATE_POSITION", position: geoCoord });
+  // stateRef.current.dispatch({ type: "UPDATE_ZOOM", zoomFactor: scale });
+
+  // Apply transition to zoom
+  campusSVG
+    .transition()
+    .duration(duration)
+    .call(
+      d3.zoom().on("zoom", (event) => {
+        const { transform } = event;
+        if (buildingContainer) buildingContainer.attr("transform", transform.toString());
+      }).transform,
+      transform,
+    )
+    .on("end", () => {
+      if (onEndCallback) onEndCallback();
+    });
+};
+
+const waitForSVGSelection = (selector: string, timeoutMs: number) => {
   return new Promise((resolve, reject) => {
     const intervalMs = 100;
     let elapsedMs = 0;
@@ -245,7 +247,7 @@ const roomCoordinates = async (
     return [targetPositionX, targetPositionY];
     } catch (error) {
       console.error("Error while zooming to room:", error);
-      return [0, 0];
+      return mapCenter;
     }
 };
 
