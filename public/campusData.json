@@ -5,7 +5,8 @@
       "Name": "Campus-Karl-Liebknecht-Strasse",
       "Location": [12.374, 51.3135],
       "MapWidth": 36000,
-      "MapHeight": 58000
+      "MapHeight": 58000,
+      "CenterYOffset": -5000
     },
     "geometry": {
       "type": "Polygon",

@@ -15,6 +15,7 @@ export type CampusContextProps = {
   dataOfCampus: CampusInJson[];
   insideBuilding: boolean;
   darkMode: boolean;
+  zoomPositionReached: boolean;
 };
 
 export type CampusContextAction =
@@ -29,7 +30,8 @@ export type CampusContextAction =
   | { type: "UPDATE_DATA_OF_BUILDINGS"; dataOfBuildings: BuildingInJson[] }
   | { type: "UPDATE_DATA_OF_CAMPUS"; dataOfCampus: CampusInJson[] }
   | { type: "UPDATE_INSIDE_BUILDING"; insideBuilding: boolean }
-  | { type: "TOGGLE_DARK_MODE" };
+  | { type: "TOGGLE_DARK_MODE" }
+  | { type: "UPDATE_ZOOM_POSITION_REACHED"; zoomPositionReached: boolean };
 
 const campusReducer = (
   state: CampusContextProps,
@@ -60,6 +62,8 @@ const campusReducer = (
       return { ...state, insideBuilding: action.insideBuilding };
     case "TOGGLE_DARK_MODE":
       return { ...state, darkMode: !state.darkMode };
+    case "UPDATE_ZOOM_POSITION_REACHED":
+      return { ...state, zoomPositionReached: action.zoomPositionReached };
     default:
       return state;
   }

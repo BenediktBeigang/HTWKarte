@@ -19,15 +19,23 @@ import {
 } from "@mui/material";
 import "primeicons/primeicons.css";
 import { useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { HTWKALENDER_GRAY } from "./Color";
 import htwkLogo from "/Assets/htwkLogo.svg";
 
 export const Header = () => {
+  const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const handleSearchKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      navigate(`/room/${searchValue}`);
+    }
   };
 
   const drawer = (
@@ -93,6 +101,8 @@ export const Header = () => {
               label="Raum suchen..."
               variant="outlined"
               sx={{ backgroundColor: HTWKALENDER_GRAY + "aa", minWidth: "5em" }}
+              onChange={(e) => setSearchValue(e.target.value)}
+              onKeyDown={handleSearchKeyPress}
             />
           </Box>
         </Box>

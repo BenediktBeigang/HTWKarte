@@ -19,6 +19,7 @@ export const HTWKALENDER_GRAY = "#1b2022";
 // Room-Colors
 export const ROOM = "#454c7f" as const;
 export const ROOM_HIGHTLIGHTED = "#6e79cb" as const;
+export const ROOM_SEARCHED = "#aaad39" as const;
 export const TOILET = "#0ec3b8" as const;
 export const ELEVATOR = "#4c5a5f" as const;
 export const STAIRS = "#4c5a5f" as const;

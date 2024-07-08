@@ -17,7 +17,7 @@ import { useCampusState } from "./campus-context";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
 import { HTWKALENDER_GRAY } from "./Color";
 import { FinishedBuildings } from "./Constants";
-import { createZoom } from "./ZoomHandler";
+import { createZoom, initialZoomPosition } from "./ZoomHandler";
 
 const ZOOM_INSIDE_BUILDING_THRESHOLD: number = 0.00008 * window.innerWidth;
 
@@ -28,6 +28,8 @@ export type CampusInJson = {
     Location: [number, number];
     MapWidth: number;
     MapHeight: number;
+    CenterXOffset: number;
+    CenterYOffset: number;
   };
   geometry: {
     coordinates: Array<Array<[number, number]>>;
@@ -135,7 +137,7 @@ const Campus = () => {
   const stateRef = useRef({ state, dispatch });
   const [alertOpen, setAlertOpen] = useState(false);
   const { roomID } = useParams<{ roomID: string }>();
-  const [initialZoomPositionReached, setInitialZoomPositionReached] = useState(false);
+  // const [initialZoomPositionReached, setInitialZoomPositionReached] = useState(false);
 
   const handleClose = (
     _event?: Event | React.SyntheticEvent<any, Event>,
@@ -156,9 +158,10 @@ const Campus = () => {
 
   // Update the current building when the position or zoom factor changes
   useEffect(() => {
-    if (initialZoomPositionReached === false) return;
+    if (state.zoomPositionReached === false) return;
     updateCurrentBuilding(stateRef);
-  }, [initialZoomPositionReached, state.position, state.zoomFactor]);
+  }, [state.zoomPositionReached, state.position, state.zoomFactor]);
+
 
   // Get the campus map width and height
   const campus = state.dataOfCampus.find(
@@ -204,23 +207,21 @@ const Campus = () => {
       buildingContainer,
       projection,
       stateRef,
-      roomID,
-      initialZoomPositionReached,
-      setInitialZoomPositionReached,
     );
-    // if (!roomProvided) return;
-    // zoomToRoom(roomID, initialZoomPositionReached, stateRef, zoom, projection);
-  }, [CAMPUS_MAP_HEIGHT, CAMPUS_MAP_WIDTH, initialZoomPositionReached, roomID, state.currentCampus, state.dataOfBuildings, state.dataOfCampus]);
+
+    initialZoomPosition(
+      campusSVG,
+      buildingContainer,
+      stateRef,
+      roomID,
+      projection,
+    );
+  }, [CAMPUS_MAP_HEIGHT, CAMPUS_MAP_WIDTH, roomID, state.currentCampus, state.dataOfBuildings, state.dataOfCampus]);
 
   // print zoom factor and position in console
   // useEffect(() => {
   //   console.log("Zoom Factor:", state.zoomFactor, "Position:", state.position);
   // }, [state.position, state.zoomFactor]);
-
-  const abortZoomToRoom = () => {
-    setInitialZoomPositionReached(true);
-    switchToOutside(stateRef);
-  };
 
   return (
     <>

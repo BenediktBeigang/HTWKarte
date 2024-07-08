@@ -14,6 +14,7 @@ export const initialCampusState: CampusContextProps = {
   dataOfCampus: [],
   insideBuilding: false,
   darkMode: true,
+  zoomPositionReached: false,
 };
 
 export const CampusStateContext = createContext<CampusContextProps>(initialCampusState);
