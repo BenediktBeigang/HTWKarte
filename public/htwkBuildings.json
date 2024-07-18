@@ -99,7 +99,11 @@
       "Abbreviation": "HB",
       "Location": [12.373708046968972, 51.3125],
       "Address": "Gustav-Freytag-Straße 40",
-      "Campus": "Campus-Karl-Liebknecht-Strasse"
+      "Campus": "Campus-Karl-Liebknecht-Strasse",
+      "Location_SVG": [12.37345, 51.312617],
+      "Floors": [4, 3, 2, 1, 0],
+      "TextXOffset": 0,
+      "TextYOffset": 0
     },
     "geometry": {
       "coordinates": [
