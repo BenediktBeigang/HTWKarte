@@ -17,7 +17,7 @@ import { useCampusState } from "./campus-context";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
 import { HTWKALENDER_GRAY } from "./Color";
 import { FinishedBuildings } from "./Constants";
-import { createZoom, initialZoomPosition } from "./ZoomHandler";
+import { createZoom, moveToCampusCenter, roomZoomEventHandler } from "./ZoomHandler";
 
 const ZOOM_INSIDE_BUILDING_THRESHOLD: number = 0.00008 * window.innerWidth;
 
@@ -137,7 +137,7 @@ const Campus = () => {
   const stateRef = useRef({ state, dispatch });
   const [alertOpen, setAlertOpen] = useState(false);
   const { roomID } = useParams<{ roomID: string }>();
-  // const [initialZoomPositionReached, setInitialZoomPositionReached] = useState(false);
+  const [roomZoom, setRoomZoom] = useState(undefined);
 
   const handleClose = (
     _event?: Event | React.SyntheticEvent<any, Event>,
@@ -156,11 +156,21 @@ const Campus = () => {
     console.log("Current Building:", state.currentBuilding);
   }, [state.currentBuilding, state.level]);
 
+  useEffect(() => {
+    console.log("Room Zoom: ", state.roomZoomReady);
+    if (state.roomZoomReady === false) return;
+    dispatch({
+      type: "UPDATE_ROOM_ZOOM_READY",
+      roomZoomReady: false,
+    });
+    roomZoomEventHandler(stateRef, roomID);
+  }, [dispatch, roomID, state.roomZoomReady]);
+
   // Update the current building when the position or zoom factor changes
   useEffect(() => {
-    if (state.zoomPositionReached === false) return;
+    if (state.initialZoomReached === false) return;
     updateCurrentBuilding(stateRef);
-  }, [state.zoomPositionReached, state.position, state.zoomFactor]);
+  }, [state.initialZoomReached, state.position, state.zoomFactor]);
 
   // Get the campus map width and height
   const campus = state.dataOfCampus.find(
@@ -203,7 +213,34 @@ const Campus = () => {
 
     const zoom: any = createZoom(campusSVG, buildingContainer, projection, stateRef);
 
-    initialZoomPosition(campusSVG, buildingContainer, stateRef, roomID, projection);
+    moveToCampusCenter(
+      stateRef,
+      campusSVG,
+      buildingContainer,
+      () => {
+        stateRef.current.dispatch({
+          type: "UPDATE_INITIAL_ZOOM_REACHED",
+          initialZoomReached: true,
+        });
+        stateRef.current.dispatch({
+          type: "UPDATE_ROOM_ZOOM_READY",
+          roomZoomReady: true,
+        });
+      },
+      0.03,
+      projection,
+    );
+
+    // stateRef.current.dispatch({
+    //   type: "UPDATE_INITIAL_ZOOM_REACHED",
+    //   initialZoomReached: true,
+    // });
+    // stateRef.current.dispatch({
+    //   type: "UPDATE_ROOM_ZOOM_READY",
+    //   roomZoomReady: true,
+    // });
+
+    // initialZoomPosition(campusSVG, buildingContainer, stateRef, roomID, projection);
   }, [
     CAMPUS_MAP_HEIGHT,
     CAMPUS_MAP_WIDTH,

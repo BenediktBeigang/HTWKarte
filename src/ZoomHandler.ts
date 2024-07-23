@@ -11,6 +11,9 @@ const MAX_ZOOM: number = window.innerWidth * 0.0005;
 const START_ZOOM: number = 0.03 as const;
 const START_ZOOM_FOR_ROOM: number = 0.3 as const;
 
+let PROJECTION: d3.GeoProjection | undefined = undefined;
+let ZOOM_BEHAVIOR: d3.ZoomBehavior<Element, unknown> | undefined = undefined;
+
 const svgPositionToLngLat = (
   x: number,
   y: number,
@@ -52,6 +55,7 @@ const createZoom = (
     dispatch: (value: CampusContextAction) => void;
   }>,
 ) => {
+  PROJECTION = projection;
   // zoom-creation
   const zoom: any = d3.zoom().on("zoom", (event) => {
     const { transform } = event;
@@ -63,24 +67,26 @@ const createZoom = (
   });
   campusSVG.call(zoom);
   zoom.scaleExtent([MIN_ZOOM, MAX_ZOOM]);
+  ZOOM_BEHAVIOR = zoom;
   return zoom;
 };
 
-const initialZoomPosition = async (
-  campusSVG: any,
-  buildingContainer: any,
+export const roomZoomEventHandler = async (
   stateRef: MutableRefObject<{
     state: CampusContextProps;
     dispatch: (value: CampusContextAction) => void;
   }>,
   roomID: string | undefined,
-  projection: d3.GeoProjection,
 ) => {
   let roomSearchResult: any | undefined;
   let targetPosition: [x: number, y: number];
 
+  const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+  await wait(250);
+
   try {
     if (roomID === undefined) throw new Error("No room provided");
+    if (PROJECTION === undefined) throw new Error("Projection not initialized");
     // Search for room in SVG
     roomSearchResult = await findRoomInSVG(roomID, stateRef);
     const { roomSVG, buildingAbbreviation, floorSVG, roomsContainer } = roomSearchResult;
@@ -90,53 +96,34 @@ const initialZoomPosition = async (
       floorSVG,
       roomsContainer,
     );
-  } catch (error) {
-    if (roomSearchResult && roomSearchResult.buildingAbbreviation)
-      removeRoof(roomSearchResult.buildingAbbreviation);
-    moveToCampusCenter(
-      stateRef,
+    removeRoof(roomSearchResult.buildingAbbreviation);
+    updateRoomHighlighting(roomID, true);
+
+    const campusSVG = d3.select(`#campus-svg`);
+    if (campusSVG === undefined) throw new Error("#campus-svg not found");
+    const buildingContainer = d3.select(`#buildingContainer`);
+    if (buildingContainer === undefined) throw new Error("buildingContainer not found");
+
+    zoomToPixelPosition(
       campusSVG,
       buildingContainer,
+      targetPosition[0],
+      targetPosition[1],
+      START_ZOOM_FOR_ROOM,
+      stateRef,
+      PROJECTION,
+      1000,
       () => {
-        stateRef.current.dispatch({
-          type: "UPDATE_ZOOM_POSITION_REACHED",
-          zoomPositionReached: true,
-        });
+        return;
       },
-      START_ZOOM,
-      projection,
     );
+  } catch (error) {
+    console.error(error);
     return;
   }
-  removeRoof(roomSearchResult.buildingAbbreviation);
-  updateRoomHighlighting(roomID, true);
-  moveToCampusCenter(
-    stateRef,
-    campusSVG,
-    buildingContainer,
-    async () => {
-      // Zoom to room
-      zoomToPixelPosition(
-        campusSVG,
-        buildingContainer,
-        targetPosition[0],
-        targetPosition[1],
-        START_ZOOM_FOR_ROOM,
-        stateRef,
-        projection,
-        1000,
-      );
-      stateRef.current.dispatch({
-        type: "UPDATE_ZOOM_POSITION_REACHED",
-        zoomPositionReached: true,
-      });
-    },
-    START_ZOOM_FOR_ROOM,
-    projection,
-  );
 };
 
-const moveToCampusCenter = (
+export const moveToCampusCenter = (
   stateRef: MutableRefObject<{
     state: CampusContextProps;
     dispatch: (value: CampusContextAction) => void;
@@ -165,7 +152,7 @@ const moveToCampusCenter = (
   );
 };
 
-export const zoomToPixelPosition = (
+export const zoomToPixelPosition = async (
   campusSVG: any,
   buildingContainer: any,
   targetX: number,
@@ -180,28 +167,42 @@ export const zoomToPixelPosition = (
   onEndCallback?: () => void,
 ) => {
   if (!(campusSVG.node().clientWidth / 2) || !(campusSVG.node().clientHeight / 2)) return;
-  // Define the new zoom transformation
+
+  const currentTransform = d3.zoomTransform(campusSVG.node());
+  const currentScale = currentTransform.k;
+  const newScale = scale === 0.03 ? scale : 1.3 * currentScale;
+
   const transform = d3.zoomIdentity
-    .translate(campusSVG.node().clientWidth / 2, campusSVG.node().clientHeight / 2)
-    .scale(scale)
-    .translate(-targetX, -targetY);
+      // .scale(0.03)
+      .translate(campusSVG.node().clientWidth / 2, campusSVG.node().clientHeight / 2)
+      .scale(scale)
+      .translate(-targetX, -targetY);
 
   // Update state
   const geoCoord: [number, number] = projection.invert!([targetX, targetY]) as [number, number];
   stateRef.current.dispatch({ type: "UPDATE_POSITION", position: geoCoord });
   stateRef.current.dispatch({ type: "UPDATE_ZOOM", zoomFactor: scale });
 
+  console.log("Zoom to:", targetX, targetY, "Scale:", scale);
   // Apply transition to zoom
+  // campusSVG
+  //   .transition()
+  //   .duration(duration)
+  //   .call(
+  //     d3.zoom().on("zoom", (event) => {
+  //       const { transform } = event;
+  //       if (buildingContainer) buildingContainer.attr("transform", transform.toString());
+  //     }).transform,
+  //     transform,
+  //   )
+  //   .on("end", () => {
+  //     if (onEndCallback) onEndCallback();
+  //   });
+
   campusSVG
     .transition()
     .duration(duration)
-    .call(
-      d3.zoom().on("zoom", (event) => {
-        const { transform } = event;
-        if (buildingContainer) buildingContainer.attr("transform", transform.toString());
-      }).transform,
-      transform,
-    )
+    .call(ZOOM_BEHAVIOR?.transform as any, transform)
     .on("end", () => {
       if (onEndCallback) onEndCallback();
     });
@@ -294,4 +295,5 @@ const extractRoomCoordinates = (
   return [targetPositionX, targetPositionY];
 };
 
-export { createZoom, initialZoomPosition };
+export { createZoom, roomZoomEventHandler as initialZoomPosition };
+
