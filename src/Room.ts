@@ -79,7 +79,7 @@ export const roomClickedHandler = (
     return;
   }
   stateRef.current.dispatch({ type: "UPDATE_ROOM", currentRoomID: idOfClickedRoom });
-  updateRoomHighlighting(idOfClickedRoom, true, false);
+  updateRoomHighlighting(idOfClickedRoom, true);
 };
 
 export type ParsedRoomID = {

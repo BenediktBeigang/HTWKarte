@@ -11,13 +11,19 @@ import {
   createBuildings,
   drawBuildingOutlines,
   drawRoof,
-  loadBuilding,
+  switchToInside
 } from "./Building";
 import { useCampusState } from "./campus-context";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
 import { HTWKALENDER_GRAY } from "./Color";
 import { FinishedBuildings } from "./Constants";
-import { createZoom, moveToCampusCenter, roomZoomEventHandler } from "./ZoomHandler";
+import { ParsedRoomID, parseRoomID } from "./Room";
+import {
+  createZoom,
+  moveToBuilding,
+  moveToCampusCenter,
+  roomZoomEventHandler,
+} from "./ZoomHandler";
 
 const ZOOM_INSIDE_BUILDING_THRESHOLD: number = 0.00008 * window.innerWidth;
 
@@ -78,25 +84,6 @@ const switchToOutside = (
   stateRef.current.dispatch({ type: "UPDATE_INSIDE_BUILDING", insideBuilding: false });
 };
 
-export const switchToInside = (
-  stateRef: MutableRefObject<{
-    state: CampusContextProps;
-    dispatch: (value: CampusContextAction) => void;
-  }>,
-  building: BuildingInJson,
-  level: number = 0,
-) => {
-  stateRef.current.dispatch({
-    type: "UPDATE_BUILDING",
-    currentBuilding: building.properties.Abbreviation,
-  });
-  const newLevelCount = (building.properties.Floors.length ?? 0) - 1;
-  stateRef.current.dispatch({ type: "UPDATE_LEVEL", level });
-  stateRef.current.dispatch({ type: "UPDATE_LEVEL_COUNT", levelCount: newLevelCount });
-  stateRef.current.dispatch({ type: "UPDATE_INSIDE_BUILDING", insideBuilding: true });
-  loadBuilding(building.properties.Abbreviation, level, stateRef);
-};
-
 const updateCurrentBuilding = (
   stateRef: MutableRefObject<{
     state: CampusContextProps;
@@ -137,7 +124,6 @@ const Campus = () => {
   const stateRef = useRef({ state, dispatch });
   const [alertOpen, setAlertOpen] = useState(false);
   const { roomID } = useParams<{ roomID: string }>();
-  const [roomZoom, setRoomZoom] = useState(undefined);
 
   const handleClose = (
     _event?: Event | React.SyntheticEvent<any, Event>,
@@ -157,7 +143,6 @@ const Campus = () => {
   }, [state.currentBuilding, state.level]);
 
   useEffect(() => {
-    console.log("Room Zoom: ", state.roomZoomReady);
     if (state.roomZoomReady === false) return;
     dispatch({
       type: "UPDATE_ROOM_ZOOM_READY",
@@ -213,34 +198,18 @@ const Campus = () => {
 
     const zoom: any = createZoom(campusSVG, buildingContainer, projection, stateRef);
 
-    moveToCampusCenter(
-      stateRef,
-      campusSVG,
-      buildingContainer,
-      () => {
-        stateRef.current.dispatch({
-          type: "UPDATE_INITIAL_ZOOM_REACHED",
-          initialZoomReached: true,
-        });
-        stateRef.current.dispatch({
-          type: "UPDATE_ROOM_ZOOM_READY",
-          roomZoomReady: true,
-        });
-      },
-      0.03,
-      projection,
-    );
-
-    // stateRef.current.dispatch({
-    //   type: "UPDATE_INITIAL_ZOOM_REACHED",
-    //   initialZoomReached: true,
-    // });
-    // stateRef.current.dispatch({
-    //   type: "UPDATE_ROOM_ZOOM_READY",
-    //   roomZoomReady: true,
-    // });
-
-    // initialZoomPosition(campusSVG, buildingContainer, stateRef, roomID, projection);
+    const building: ParsedRoomID | undefined = parseRoomID(roomID);
+    if (!roomID || roomID === "None" || !building)
+      moveToCampusCenter(
+        stateRef,
+        campusSVG,
+      );
+    else
+      moveToBuilding(
+        stateRef,
+        campusSVG,
+        building.buildingAbbreviation,
+      );
   }, [
     CAMPUS_MAP_HEIGHT,
     CAMPUS_MAP_WIDTH,

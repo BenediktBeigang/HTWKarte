@@ -249,3 +249,22 @@ export const drawCampusMarker = (
     .attr("r", 20)
     .attr("fill", "red");
 };
+
+export const switchToInside = (
+  stateRef: MutableRefObject<{
+    state: CampusContextProps;
+    dispatch: (value: CampusContextAction) => void;
+  }>,
+  building: BuildingInJson,
+  level: number = 0,
+) => {
+  stateRef.current.dispatch({
+    type: "UPDATE_BUILDING",
+    currentBuilding: building.properties.Abbreviation,
+  });
+  const newLevelCount = (building.properties.Floors.length ?? 0) - 1;
+  stateRef.current.dispatch({ type: "UPDATE_LEVEL", level });
+  stateRef.current.dispatch({ type: "UPDATE_LEVEL_COUNT", levelCount: newLevelCount });
+  stateRef.current.dispatch({ type: "UPDATE_INSIDE_BUILDING", insideBuilding: true });
+  loadBuilding(building.properties.Abbreviation, level, stateRef);
+};

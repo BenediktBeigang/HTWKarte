@@ -18,15 +18,18 @@ import {
   Typography,
 } from "@mui/material";
 import "primeicons/primeicons.css";
-import { useState } from "react";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { useCampusState } from "./campus-context";
 import { HTWKALENDER_GRAY } from "./Color";
+import { roomZoomEventHandler } from "./ZoomHandler";
 import htwkLogo from "/Assets/htwkLogo.svg";
 
 export const Header = () => {
-  const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [state, dispatch] = useCampusState();
+  const stateRef = useRef({ state, dispatch });
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -34,9 +37,22 @@ export const Header = () => {
 
   const handleSearchKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      navigate(`/room/${searchValue}`);
+      event.preventDefault();
+      dispatch({
+        type: "UPDATE_ROOM_ZOOM_READY",
+        roomZoomReady: false,
+      });
+      stateRef.current.dispatch({
+        type: "UPDATE_INITIAL_ZOOM_REACHED",
+        initialZoomReached: false,
+      });
+      roomZoomEventHandler(stateRef, searchValue);
     }
   };
+
+  useEffect(() => {
+    stateRef.current = { state, dispatch };
+  }, [state, dispatch]);
 
   const drawer = (
     <Box
