@@ -11,7 +11,7 @@ import {
   createBuildings,
   drawBuildingOutlines,
   drawRoof,
-  switchToInside
+  switchToInside,
 } from "./Building";
 import { useCampusState } from "./campus-context";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
@@ -199,17 +199,8 @@ const Campus = () => {
     const zoom: any = createZoom(campusSVG, buildingContainer, projection, stateRef);
 
     const building: ParsedRoomID | undefined = parseRoomID(roomID);
-    if (!roomID || roomID === "None" || !building)
-      moveToCampusCenter(
-        stateRef,
-        campusSVG,
-      );
-    else
-      moveToBuilding(
-        stateRef,
-        campusSVG,
-        building.buildingAbbreviation,
-      );
+    if (!roomID || roomID === "None" || !building) moveToCampusCenter(stateRef, campusSVG);
+    else moveToBuilding(stateRef, campusSVG, building.buildingAbbreviation);
   }, [
     CAMPUS_MAP_HEIGHT,
     CAMPUS_MAP_WIDTH,

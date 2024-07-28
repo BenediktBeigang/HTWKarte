@@ -51,7 +51,7 @@ export const removeRoof = async (buildingAbbreviation: string, delay: number = 0
 export const cleanBuilding = (buildingAbbreviation: string) => {
   const buildingSVG = d3.select(`#${buildingAbbreviation}`);
   if (!buildingSVG) return;
-  buildingSVG.selectAll("*").transition().duration(200).style("opacity", 0).remove();
+  buildingSVG.selectAll("*").remove();
   return buildingSVG;
 };
 

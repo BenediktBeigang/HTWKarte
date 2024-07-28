@@ -2,7 +2,7 @@ import * as d3 from "d3";
 import { MutableRefObject } from "react";
 import { BuildingInJson, removeRoof, switchToInside } from "./Building.ts";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer.ts";
-import { ParsedRoomID, parseRoomID, updateRoomHighlighting } from "./Room.ts";
+import { ParsedRoomID, parseRoomID, pingRoom } from "./Room.ts";
 
 const MIN_ZOOM: number = window.innerWidth * 0.00001;
 const MAX_ZOOM: number = window.innerWidth * 0.0005;
@@ -97,7 +97,7 @@ export const roomZoomEventHandler = async (
       roomsContainer,
     );
     removeRoof(roomSearchResult.buildingAbbreviation);
-    updateRoomHighlighting(roomID, true);
+    pingRoom(roomID);
 
     const campusSVG = d3.select(`#campus-svg`);
     if (campusSVG === undefined) throw new Error("#campus-svg not found");
@@ -163,15 +163,7 @@ export const moveToBuilding = (
   const [lng, lat] = building!.properties.Location;
   const [x, y] = lngLatToSvgPosition([lng, lat], PROJECTION, START_ZOOM_FOR_ROOM);
 
-  zoomToPixelPosition(
-    campusSVG,
-    -x,
-    -y,
-    START_ZOOM_FOR_ROOM,
-    stateRef,
-    0,
-    false,
-  );
+  zoomToPixelPosition(campusSVG, -x, -y, START_ZOOM_FOR_ROOM, stateRef, 0, false);
 };
 
 export const zoomToPixelPosition = async (
@@ -255,12 +247,17 @@ const findRoomInSVG = async (
 ) => {
   if (!roomID) return;
   const parsedRoomID: ParsedRoomID | undefined = parseRoomID(roomID);
-  if (parsedRoomID === undefined) return;
+  const oldParsedRoomID: ParsedRoomID | undefined = parseRoomID(
+    stateRef.current.state.currentRoomID,
+  );
+  if (parsedRoomID === undefined || oldParsedRoomID === undefined) return;
   const { buildingAbbreviation, level } = parsedRoomID;
+  // const { buildingAbbreviation: oldBuildingAbbreviation, level: oldLevel } = oldParsedRoomID;
   const building: BuildingInJson | undefined = stateRef.current.state.dataOfBuildings.find(
     (building) => building.properties.Abbreviation === buildingAbbreviation,
   );
   if (!building || building.properties.Floors.includes(level) === false) return;
+  // if (oldBuildingAbbreviation !== buildingAbbreviation || oldLevel !== level)
   switchToInside(stateRef, building, level);
   console.log("Building:", buildingAbbreviation, "Level:", level);
 
@@ -308,4 +305,3 @@ const extractRoomCoordinates = (
 };
 
 export { createZoom, roomZoomEventHandler as initialZoomPosition };
-

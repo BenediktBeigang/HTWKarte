@@ -64,6 +64,28 @@ export const updateRoomHighlighting = (roomID: string, active: boolean) => {
     .style("fill", active ? ROOM_HIGHTLIGHTED : ROOM);
 };
 
+export const pingRoom = (roomID: string) => {
+  if (roomID === "") return;
+  const room = d3.select(`#${roomID}`);
+  if (!room) {
+    console.error(`Room ${roomID} not found`);
+    return;
+  }
+  blinkRoom(room, 3);
+};
+
+const blinkRoom = (room: d3.Selection<d3.BaseType, unknown, HTMLElement, any>, times: number) => {
+  if (times <= 0) return;
+  room
+    .transition()
+    .duration(300)
+    .style("fill", ROOM_HIGHTLIGHTED)
+    .transition()
+    .duration(300)
+    .style("fill", ROOM)
+    .on("end", () => blinkRoom(room, times - 1));
+};
+
 export const roomClickedHandler = (
   idOfClickedRoom: string,
   stateRef: MutableRefObject<{
