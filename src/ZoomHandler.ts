@@ -107,7 +107,7 @@ export const roomZoomEventHandler = async (
     if (targetPosition === undefined) throw new Error("Target position not found");
     if (targetPosition[0] === 0 || targetPosition[1] === 0)
       throw new Error("Target position is 0,0");
-    zoomToPixelPosition(
+    await zoomToPixelPosition(
       campusSVG,
       targetPosition[0],
       targetPosition[1],
@@ -122,7 +122,7 @@ export const roomZoomEventHandler = async (
   }
 };
 
-export const moveToCampusCenter = (
+export const moveToCampusCenter = async (
   stateRef: MutableRefObject<{
     state: CampusContextProps;
     dispatch: (value: CampusContextAction) => void;
@@ -134,18 +134,26 @@ export const moveToCampusCenter = (
   const { MapWidth, MapHeight } = campus!.properties;
   const xOffset = campus!.properties.CenterXOffset ?? 0;
   const yOffset = campus!.properties.CenterYOffset ?? 0;
-  zoomToPixelPosition(
+  await zoomToPixelPosition(
     campusSVG,
     MapWidth / 2 + xOffset,
     MapHeight / 2 + yOffset,
     START_ZOOM_CAMPUS,
     stateRef,
     0,
-    true,
+    false,
   );
+  stateRef.current.dispatch({
+    type: "UPDATE_INITIAL_ZOOM_REACHED",
+    initialZoomReached: true,
+  });
+  stateRef.current.dispatch({
+    type: "UPDATE_ROOM_ZOOM_READY",
+    roomZoomReady: false,
+  });
 };
 
-export const moveToBuilding = (
+export const moveToBuilding = async (
   stateRef: MutableRefObject<{
     state: CampusContextProps;
     dispatch: (value: CampusContextAction) => void;
@@ -163,7 +171,15 @@ export const moveToBuilding = (
   const [lng, lat] = building!.properties.Location;
   const [x, y] = lngLatToSvgPosition([lng, lat], PROJECTION, START_ZOOM_FOR_ROOM);
 
-  zoomToPixelPosition(campusSVG, -x, -y, START_ZOOM_FOR_ROOM, stateRef, 0, false);
+  await zoomToPixelPosition(campusSVG, -x, -y, START_ZOOM_FOR_ROOM, stateRef, 0, false);
+  stateRef.current.dispatch({
+    type: "UPDATE_ROOM_ZOOM_READY",
+    roomZoomReady: true,
+  });
+  stateRef.current.dispatch({
+    type: "UPDATE_INITIAL_ZOOM_REACHED",
+    initialZoomReached: false,
+  });
 };
 
 export const zoomToPixelPosition = async (
@@ -183,8 +199,8 @@ export const zoomToPixelPosition = async (
   if (!(viewportWidth / 2) || !(viewportHeight / 2) || !PROJECTION) return;
 
   campusSVG.interrupt();
-  const translateX = roomZoom ? viewportWidth / 2 - targetX * scale : -targetX * scale;
-  const translateY = roomZoom ? viewportHeight / 2 - targetY * scale : -targetY * scale;
+  const translateX = viewportWidth / 2 - targetX * scale;
+  const translateY = viewportHeight / 2 - targetY * scale;
   const transformToNewPosition = d3.zoomIdentity.translate(translateX, translateY).scale(scale);
 
   // Update state
@@ -206,10 +222,6 @@ export const zoomToPixelPosition = async (
       });
 
   await campusSVG.call(ZOOM_BEHAVIOR?.transform as any, transformToNewPosition);
-  stateRef.current.dispatch({
-    type: "UPDATE_ROOM_ZOOM_READY",
-    roomZoomReady: true,
-  });
 };
 
 const waitForSVGSelection = (selector: string, timeoutMs: number) => {
