@@ -4,10 +4,21 @@ import { BuildingInJson, removeRoof, switchToInside } from "./Building.ts";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer.ts";
 import { ParsedRoomID, parseRoomID, pingRoom } from "./Room.ts";
 
-const MIN_ZOOM: number = window.innerWidth * 0.00001;
-const MAX_ZOOM: number = window.innerWidth * 0.0005;
+const START_ZOOM_CAMPUS = () => {
+  if (window.innerWidth < 500) return 0.01;
+  if (window.innerWidth < 1000) return 0.02;
+  return 0.03;
+};
 
-const START_ZOOM_CAMPUS: number = 0.03 as const;
+const maxZoom = () => {
+  if (window.innerWidth < 500) return 0.4;
+  if (window.innerWidth < 1000) return 0.5;
+  return 0.6;
+};
+
+const MIN_ZOOM: number = START_ZOOM_CAMPUS();
+const MAX_ZOOM: number = maxZoom();
+
 const START_ZOOM_FOR_ROOM: number = 0.2 as const;
 
 let PROJECTION: d3.GeoProjection | undefined = undefined;
@@ -32,7 +43,7 @@ const svgPositionToLngLat = (
 const lngLatToSvgPosition = (
   lngLatPosition: [number, number],
   projection: d3.GeoProjection,
-  zoomFactor: number = START_ZOOM_CAMPUS,
+  zoomFactor: number = START_ZOOM_CAMPUS(),
 ): [number, number] => {
   const viewport = d3.select("#campus-svg");
   if (viewport.empty()) return [0, 0];
@@ -138,7 +149,7 @@ export const moveToCampusCenter = async (
     campusSVG,
     MapWidth / 2 + xOffset,
     MapHeight / 2 + yOffset,
-    START_ZOOM_CAMPUS,
+    START_ZOOM_CAMPUS(),
     stateRef,
     0,
     false,
