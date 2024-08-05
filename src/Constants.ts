@@ -7,4 +7,5 @@ export const FinishedBuildings = [
   "TR_B",
   "TR_C",
   "FE",
+  "HB",
 ] as string[];
