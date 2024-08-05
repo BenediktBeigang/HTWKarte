@@ -19,35 +19,47 @@ import {
 } from "@mui/material";
 import "primeicons/primeicons.css";
 import { useEffect, useRef, useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useCampusState } from "./campus-context";
 import { HTWKALENDER_GRAY } from "./Color";
-import { roomZoomEventHandler } from "./ZoomHandler";
 import htwkLogo from "/Assets/htwkLogo.svg";
+
+const correctRoomSearchTerm = (searchedRoomID: string) => {
+  const roomID = searchedRoomID.toUpperCase();
+  const roomIDWithoutSpaces = roomID.replace(/\s/g, "");
+  return roomIDWithoutSpaces;
+};
 
 export const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [state, dispatch] = useCampusState();
   const stateRef = useRef({ state, dispatch });
+  const navigate = useNavigate();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   const handleSearchKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      dispatch({
-        type: "UPDATE_ROOM_ZOOM_READY",
-        roomZoomReady: false,
-      });
-      stateRef.current.dispatch({
-        type: "UPDATE_INITIAL_ZOOM_REACHED",
-        initialZoomReached: false,
-      });
-      roomZoomEventHandler(stateRef, searchValue);
-    }
+    if (event.key !== "Enter") return;
+
+    const correctedRoomID: string = correctRoomSearchTerm(searchValue);
+    setSearchValue(correctedRoomID);
+    navigate(`/room/${correctedRoomID}`);
+    if (inputRef.current) inputRef.current.blur();
+
+    // event.preventDefault();
+    // dispatch({
+    //   type: "UPDATE_ROOM_ZOOM_READY",
+    //   roomZoomReady: false,
+    // });
+    // stateRef.current.dispatch({
+    //   type: "UPDATE_INITIAL_ZOOM_REACHED",
+    //   initialZoomReached: false,
+    // });
+    // roomZoomEventHandler(stateRef, searchValue);
   };
 
   useEffect(() => {
@@ -118,7 +130,9 @@ export const Header = () => {
               variant="outlined"
               sx={{ backgroundColor: HTWKALENDER_GRAY + "aa", minWidth: "5em" }}
               onChange={(e) => setSearchValue(e.target.value)}
+              value={searchValue}
               onKeyDown={handleSearchKeyPress}
+              inputRef={inputRef}
             />
           </Box>
         </Box>

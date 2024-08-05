@@ -105,14 +105,14 @@ export const roomClickedHandler = (
 };
 
 export type ParsedRoomID = {
-  buildingAbbreviation: string;
-  level: number;
-  room: string;
+  buildingAbbreviation: string | undefined;
+  level: number | undefined;
+  room: string | undefined;
 };
 
-export const parseRoomID = (roomID: string | undefined): ParsedRoomID | undefined => {
-  if (!roomID) return undefined;
+export const parseRoomID = (roomID: string | undefined): ParsedRoomID => {
   try {
+    if (!roomID) throw new Error("Room ID is undefined");
     if (roomID.startsWith("TR")) return parseTrefftzRoomID(roomID);
     return {
       buildingAbbreviation: roomID.slice(0, 2),
@@ -120,7 +120,11 @@ export const parseRoomID = (roomID: string | undefined): ParsedRoomID | undefine
       room: roomID.slice(3, roomID.length),
     };
   } catch (error) {
-    return undefined;
+    return {
+      buildingAbbreviation: undefined,
+      level: undefined,
+      room: undefined,
+    };
   }
 };
 

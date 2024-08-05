@@ -373,7 +373,7 @@
     "properties": {
       "Name": "Medienzentrum",
       "Abbreviation": "MZ",
-      "Location": [12.3743, 51.3124],
+      "Location": [12.3744, 51.31235],
       "Location_SVG": [12.373954, 51.312511],
       "Address": "Gustav-Freytag-Straße 40 a",
       "Floors": [3, 2, 1, 0, -1],
@@ -401,7 +401,7 @@
     "properties": {
       "Name": "Gutenberg-Bau",
       "Abbreviation": "GU",
-      "Location": [12.37497, 51.31245],
+      "Location": [12.3751, 51.31245],
       "Location_SVG": [12.374551592814928, 51.31256],
       "Address": "Gustav-Freytag-Straße 42",
       "Floors": [3, 2, 1, 0],
@@ -476,7 +476,7 @@
     "properties": {
       "Name": "Fechner-Bau",
       "Abbreviation": "FE",
-      "Location": [12.374281348047788, 51.31285],
+      "Location": [12.3744, 51.3128],
       "Address": "Gustav-Freytag-Straße 41 a",
       "Campus": "Campus-Karl-Liebknecht-Strasse",
       "Location_SVG": [12.374, 51.31288],
@@ -630,7 +630,7 @@
     "properties": {
       "Name": "Trefftz-Bau-B",
       "Abbreviation": "TR_B",
-      "Location": [12.37596, 51.31325],
+      "Location": [12.3762, 51.31325],
       "Address": "Gustav-Freytag-Straße 45",
       "Campus": "Campus-Karl-Liebknecht-Strasse",
       "Location_SVG": [12.3759, 51.313451],
@@ -656,7 +656,7 @@
     "properties": {
       "Name": "Trefftz-Bau-C",
       "Abbreviation": "TR_C",
-      "Location": [12.37585, 51.31349],
+      "Location": [12.376, 51.31349],
       "Address": "Eichendorffstraße 14",
       "Campus": "Campus-Karl-Liebknecht-Strasse",
       "Location_SVG": [12.375663, 51.313568],
@@ -684,7 +684,7 @@
     "properties": {
       "Name": "Trefftz-Bau-L",
       "Abbreviation": "TR_L",
-      "Location": [12.37517, 51.31314],
+      "Location": [12.3753, 51.31305],
       "Address": "Gustav-Freytag-Straße 43",
       "Campus": "Campus-Karl-Liebknecht-Strasse",
       "Location_SVG": [12.3748, 51.31322],
@@ -772,7 +772,7 @@
     "properties": {
       "Name": "Zuse-Bau",
       "Abbreviation": "ZU",
-      "Location": [12.375992667746544, 51.31247],
+      "Location": [12.3762, 51.31247],
       "Location_SVG": [12.3756565, 51.3125247],
       "Address": "Gustav-Freytag-Straße 42 a",
       "Floors": [5, 4, 3, 2, 1, 0],

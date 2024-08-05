@@ -16,6 +16,10 @@ export const initialCampusState: CampusContextProps = {
   darkMode: true,
   initialZoomReached: false,
   roomZoomReady: false,
+  snackbarItem: {
+    message: "",
+    severity: "info",
+  },
 };
 
 export const CampusStateContext = createContext<CampusContextProps>(initialCampusState);

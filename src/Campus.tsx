@@ -25,7 +25,11 @@ import {
   roomZoomEventHandler,
 } from "./ZoomHandler";
 
-const ZOOM_INSIDE_BUILDING_THRESHOLD: number = 0.00008 * window.innerWidth;
+const ZOOM_INSIDE_BUILDING_THRESHOLD = () => {
+  if (window.innerWidth < 500) return 0.05;
+  if (window.innerWidth < 1000) return 0.1;
+  return 0.1;
+};
 
 export type CampusInJson = {
   type: string;
@@ -92,7 +96,7 @@ const updateCurrentBuilding = (
 ) => {
   const state = stateRef.current.state;
 
-  if (state.zoomFactor < ZOOM_INSIDE_BUILDING_THRESHOLD) {
+  if (state.zoomFactor < ZOOM_INSIDE_BUILDING_THRESHOLD()) {
     if (!state.insideBuilding) return;
     switchToOutside(stateRef);
     return;
@@ -198,9 +202,28 @@ const Campus = () => {
 
     const zoom: any = createZoom(campusSVG, buildingContainer, projection, stateRef);
 
-    const building: ParsedRoomID | undefined = parseRoomID(roomID);
-    if (!roomID || roomID === "None" || !building) moveToCampusCenter(stateRef, campusSVG);
-    else moveToBuilding(stateRef, campusSVG, building.buildingAbbreviation);
+    if (!roomID) {
+      moveToCampusCenter(stateRef, campusSVG);
+      return;
+    }
+
+    const { buildingAbbreviation }: ParsedRoomID = parseRoomID(roomID);
+
+    if (
+      !buildingAbbreviation ||
+      (buildingAbbreviation && FinishedBuildings.includes(buildingAbbreviation) === false)
+    ) {
+      moveToCampusCenter(stateRef, campusSVG);
+      stateRef.current.dispatch({
+        type: "UPDATE_SNACKBAR_ITEM",
+        snackbarItem: {
+          message: "Gebäude nicht gefunden",
+          severity: "error",
+        },
+      });
+      return;
+    }
+    moveToBuilding(stateRef, campusSVG, buildingAbbreviation);
   }, [
     CAMPUS_MAP_HEIGHT,
     CAMPUS_MAP_WIDTH,

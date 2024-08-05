@@ -2,6 +2,12 @@ import * as d3 from "d3";
 import { MutableRefObject } from "react";
 import { BuildingInJson, removeRoof, switchToInside } from "./Building.ts";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer.ts";
+import { FinishedBuildings } from "./Constants.ts";
+import {
+  MissingBuildingException,
+  MissingRoomException,
+  MissingRoomWithValidBuildingException,
+} from "./CustomExceptions.ts";
 import { ParsedRoomID, parseRoomID, pingRoom } from "./Room.ts";
 
 const START_ZOOM_CAMPUS = () => {
@@ -16,10 +22,16 @@ const maxZoom = () => {
   return 0.6;
 };
 
+const START_ZOOM_ROOM = () => {
+  if (window.innerWidth < 500) return 0.1;
+  if (window.innerWidth < 1000) return 0.15;
+  return 0.2;
+};
+
 const MIN_ZOOM: number = START_ZOOM_CAMPUS();
 const MAX_ZOOM: number = maxZoom();
 
-const START_ZOOM_FOR_ROOM: number = 0.2 as const;
+// const START_ZOOM_FOR_ROOM: number = 0.2 as const;
 
 let PROJECTION: d3.GeoProjection | undefined = undefined;
 let ZOOM_BEHAVIOR: d3.ZoomBehavior<Element, unknown> | undefined = undefined;
@@ -96,11 +108,14 @@ export const roomZoomEventHandler = async (
   await wait(250);
 
   try {
-    if (roomID === undefined) throw new Error("No room provided");
+    if (roomID === undefined) throw new MissingRoomException(`${roomID} is not a known room`);
     if (PROJECTION === undefined) throw new Error("Projection not initialized");
-    // Search for room in SVG
+
     roomSearchResult = await findRoomInSVG(roomID, stateRef);
+    if (!roomSearchResult) throw new MissingRoomException(`${roomID} is not a known room`);
+
     const { roomSVG, buildingAbbreviation, floorSVG, roomsContainer } = roomSearchResult;
+
     targetPosition = extractRoomCoordinates(
       roomSVG,
       buildingAbbreviation,
@@ -127,9 +142,22 @@ export const roomZoomEventHandler = async (
       1000,
       true,
     );
-  } catch (error) {
-    console.error(error);
-    return;
+  } catch (error: unknown) {
+    if (error instanceof MissingRoomWithValidBuildingException) return;
+    if (error instanceof MissingRoomException)
+      return stateRef.current.dispatch({
+        type: "UPDATE_SNACKBAR_ITEM",
+        snackbarItem: {
+          message: "Raum nicht gefunden",
+          severity: "error",
+        },
+      });
+    if (error instanceof Error) return console.error(error);
+  } finally {
+    stateRef.current.dispatch({
+      type: "UPDATE_INITIAL_ZOOM_REACHED",
+      initialZoomReached: true,
+    });
   }
 };
 
@@ -172,17 +200,19 @@ export const moveToBuilding = async (
   campusSVG: any,
   buildingAbbreviation: string,
 ) => {
-  if (!PROJECTION) return;
+  if (!PROJECTION) throw new Error("Projection not initialized");
+  if (!buildingAbbreviation)
+    throw new MissingBuildingException(`${buildingAbbreviation} is not a known building`);
+
   const state = stateRef.current.state;
 
   const building: BuildingInJson | undefined = state.dataOfBuildings.find(
     (b) => b.properties.Abbreviation === buildingAbbreviation,
   );
-  if (!building) return;
   const [lng, lat] = building!.properties.Location;
-  const [x, y] = lngLatToSvgPosition([lng, lat], PROJECTION, START_ZOOM_FOR_ROOM);
+  const [x, y] = lngLatToSvgPosition([lng, lat], PROJECTION, 1);
 
-  await zoomToPixelPosition(campusSVG, -x, -y, START_ZOOM_FOR_ROOM, stateRef, 0, false);
+  await zoomToPixelPosition(campusSVG, -x, -y, START_ZOOM_ROOM(), stateRef, 0, false);
   stateRef.current.dispatch({
     type: "UPDATE_ROOM_ZOOM_READY",
     roomZoomReady: true,
@@ -213,6 +243,9 @@ export const zoomToPixelPosition = async (
   const translateX = viewportWidth / 2 - targetX * scale;
   const translateY = viewportHeight / 2 - targetY * scale;
   const transformToNewPosition = d3.zoomIdentity.translate(translateX, translateY).scale(scale);
+  // if (buildingZoom) {
+  //   transformToNewPosition = d3.zoomIdentity.translate(translateX, translateY).scale(scale);
+  // }
 
   // Update state
   const geoCoord: [number, number] = PROJECTION!.invert!([targetX, targetY]) as [number, number];
@@ -269,20 +302,24 @@ const findRoomInSVG = async (
   }>,
 ) => {
   if (!roomID) return;
-  const parsedRoomID: ParsedRoomID | undefined = parseRoomID(roomID);
-  const oldParsedRoomID: ParsedRoomID | undefined = parseRoomID(
-    stateRef.current.state.currentRoomID,
-  );
-  if (parsedRoomID === undefined || oldParsedRoomID === undefined) return;
-  const { buildingAbbreviation, level } = parsedRoomID;
-  // const { buildingAbbreviation: oldBuildingAbbreviation, level: oldLevel } = oldParsedRoomID;
+  const parsedRoomID: ParsedRoomID = parseRoomID(roomID);
+  if (parsedRoomID === undefined) throw new MissingRoomException(`${roomID} is not a known room`);
+  const { buildingAbbreviation, level, room } = parsedRoomID;
+  if (!buildingAbbreviation)
+    throw new MissingBuildingException(`${buildingAbbreviation} is not a known building`);
+  if (buildingAbbreviation && FinishedBuildings.includes(buildingAbbreviation) && !level && !room)
+    throw new MissingRoomWithValidBuildingException(
+      `${level}${room} is not a known room in ${buildingAbbreviation}`,
+    );
+
   const building: BuildingInJson | undefined = stateRef.current.state.dataOfBuildings.find(
     (building) => building.properties.Abbreviation === buildingAbbreviation,
   );
-  if (!building || building.properties.Floors.includes(level) === false) return;
-  // if (oldBuildingAbbreviation !== buildingAbbreviation || oldLevel !== level)
+  if (!building)
+    throw new MissingBuildingException(`${buildingAbbreviation} is not a known building`);
+  if (!level || building.properties.Floors.includes(level) === false)
+    throw new MissingRoomException(`Level ${level} is unknown in ${buildingAbbreviation}`);
   switchToInside(stateRef, building, level);
-  console.log("Building:", buildingAbbreviation, "Level:", level);
 
   const { roomSVG, floorContainer, roomsContainer } = await waitForSVGSelection(
     `svg[id='${buildingAbbreviation}_${level}']`,
@@ -297,7 +334,8 @@ const findRoomInSVG = async (
       roomsContainer: rooms,
     };
   });
-  console.log("Building:", buildingAbbreviation, "Level:", level);
+  if (roomSVG.empty())
+    throw new MissingRoomException(`${room} is not a known room on level ${level}`);
   return { roomSVG, buildingAbbreviation, floorSVG: floorContainer, roomsContainer };
 };
 

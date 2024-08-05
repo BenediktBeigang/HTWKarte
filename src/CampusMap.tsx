@@ -1,4 +1,5 @@
 import Campus from "./Campus";
+import CustomSnackbar from "./CustomSnackbar";
 import { Header } from "./Header";
 import LevelButtons from "./LevelButtons";
 import RoomInfo from "./RoomInfo";
@@ -10,6 +11,7 @@ export const CampusMap = () => {
       <Campus />
       <LevelButtons />
       <RoomInfo />
+      <CustomSnackbar />
       {/* <Button
         onClick={() => {
           dispatch({ type: "UPDATE_CAMPUS", currentCampus: "None" });
