@@ -1,9 +1,9 @@
-import { Box, SnackbarCloseReason } from "@mui/material";
+import { Box } from "@mui/material";
 import * as turf from "@turf/turf";
 import * as d3 from "d3";
 import { Feature, GeoJsonProperties, Polygon } from "geojson";
 import $ from "jquery";
-import { MutableRefObject, useEffect, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import {
   BuildingInJson,
@@ -126,16 +126,7 @@ const updateCurrentBuilding = (
 const Campus = () => {
   const [state, dispatch] = useCampusState();
   const stateRef = useRef({ state, dispatch });
-  const [alertOpen, setAlertOpen] = useState(false);
   const { roomID } = useParams<{ roomID: string }>();
-
-  const handleClose = (
-    _event?: Event | React.SyntheticEvent<any, Event>,
-    reason?: SnackbarCloseReason,
-  ) => {
-    if (reason === "clickaway") return;
-    setAlertOpen(false);
-  };
 
   // Update stateRef to provide access to the current state and dispatch function to extracted functions
   useEffect(() => {
@@ -200,7 +191,7 @@ const Campus = () => {
     drawBuildingOutlines(buildingContainer, projection, state.dataOfBuildings);
     // drawCampusOutlines(buildingContainer, projection, state.dataOfCampus, state.currentCampus);
 
-    const zoom: any = createZoom(campusSVG, buildingContainer, projection, stateRef);
+    createZoom(campusSVG, buildingContainer, projection, stateRef);
 
     if (!roomID) {
       moveToCampusCenter(stateRef, campusSVG);
