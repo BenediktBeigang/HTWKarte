@@ -1,8 +1,8 @@
 import * as d3 from "d3";
 import { MutableRefObject } from "react";
+import { FinishedBuildings } from "../Constants";
+import { CampusContextAction, CampusContextProps } from "../State/campus-reducer";
 import { CampusInJson } from "./Campus";
-import { CampusContextAction, CampusContextProps } from "./campus-reducer";
-import { FinishedBuildings } from "./Constants";
 import { roomClickedHandler } from "./Room";
 
 export type BuildingInJson = {

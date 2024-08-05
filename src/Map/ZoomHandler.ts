@@ -1,13 +1,13 @@
 import * as d3 from "d3";
 import { MutableRefObject } from "react";
-import { BuildingInJson, removeRoof, switchToInside } from "./Building.ts";
-import { CampusContextAction, CampusContextProps } from "./campus-reducer.ts";
-import { FinishedBuildings } from "./Constants.ts";
+import { FinishedBuildings } from "../Constants.ts";
 import {
   MissingBuildingException,
   MissingRoomException,
   MissingRoomWithValidBuildingException,
-} from "./CustomExceptions.ts";
+} from "../CustomExceptions.ts";
+import { CampusContextAction, CampusContextProps } from "../State/campus-reducer.ts";
+import { BuildingInJson, removeRoof, switchToInside } from "./Building.ts";
 import { ParsedRoomID, parseRoomID, pingRoom } from "./Room.ts";
 
 const START_ZOOM_CAMPUS = () => {
@@ -307,7 +307,13 @@ const findRoomInSVG = async (
   const { buildingAbbreviation, level, room } = parsedRoomID;
   if (!buildingAbbreviation)
     throw new MissingBuildingException(`${buildingAbbreviation} is not a known building`);
-  if (buildingAbbreviation && FinishedBuildings.includes(buildingAbbreviation) && !level && !room)
+  if (
+    buildingAbbreviation &&
+    FinishedBuildings.includes(buildingAbbreviation) &&
+    !level &&
+    level !== 0 &&
+    !room
+  )
     throw new MissingRoomWithValidBuildingException(
       `${level}${room} is not a known room in ${buildingAbbreviation}`,
     );
@@ -317,7 +323,7 @@ const findRoomInSVG = async (
   );
   if (!building)
     throw new MissingBuildingException(`${buildingAbbreviation} is not a known building`);
-  if (!level || building.properties.Floors.includes(level) === false)
+  if ((!level && level !== 0) || building.properties.Floors.includes(level) === false)
     throw new MissingRoomException(`Level ${level} is unknown in ${buildingAbbreviation}`);
   switchToInside(stateRef, building, level);
 

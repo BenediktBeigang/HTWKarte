@@ -4,11 +4,11 @@ import { styled } from "@mui/system";
 import * as d3 from "d3";
 import * as React from "react";
 import { MutableRefObject, useEffect, useRef } from "react";
-import { BuildingInJson, switchToFloor } from "./Building";
-import { useCampusState } from "./campus-context";
-import { CampusContextAction, CampusContextProps } from "./campus-reducer";
+import { FinishedBuildings } from "../Constants";
+import { BuildingInJson, switchToFloor } from "../Map/Building";
+import { useCampusState } from "../State/campus-context";
+import { CampusContextAction, CampusContextProps } from "../State/campus-reducer";
 import { HTWK_DARK_TEXT, HTWK_GRAY, HTWK_LIGHT_GRAY, HTWK_YELLOW } from "./Color";
-import { FinishedBuildings } from "./Constants";
 
 const buttonSize: number = 3 as const;
 

@@ -1,6 +1,6 @@
 import { Alert, Snackbar, SnackbarCloseReason } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useCampusState } from "./campus-context";
+import { useCampusState } from "../State/campus-context";
 
 export type SnackbarItem = {
   message: string;

@@ -1,6 +1,6 @@
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { Box, Grid, Typography } from "@mui/material";
-import { Header } from "../Header";
+import { Header } from "../UI/Header";
 
 const ContactInfo = ({
   icon,

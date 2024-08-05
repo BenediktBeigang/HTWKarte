@@ -1,5 +1,5 @@
 import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
-import { Header } from "../Header";
+import { Header } from "../UI/Header";
 import { faqData } from "./faqData";
 
 type FaqDataInJson = {

@@ -5,6 +5,10 @@ import { Feature, GeoJsonProperties, Polygon } from "geojson";
 import $ from "jquery";
 import { MutableRefObject, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
+import { FinishedBuildings } from "../Constants";
+import { useCampusState } from "../State/campus-context";
+import { CampusContextAction, CampusContextProps } from "../State/campus-reducer";
+import { HTWKALENDER_GRAY } from "../UI/Color";
 import {
   BuildingInJson,
   cleanBuilding,
@@ -13,10 +17,6 @@ import {
   drawRoof,
   switchToInside,
 } from "./Building";
-import { useCampusState } from "./campus-context";
-import { CampusContextAction, CampusContextProps } from "./campus-reducer";
-import { HTWKALENDER_GRAY } from "./Color";
-import { FinishedBuildings } from "./Constants";
 import { ParsedRoomID, parseRoomID } from "./Room";
 import {
   createZoom,

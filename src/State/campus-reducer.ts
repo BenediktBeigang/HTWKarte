@@ -1,7 +1,7 @@
-import { BuildingInJson } from "./Building";
-import { CampusInJson } from "./Campus";
-import { SnackbarItem } from "./CustomSnackbar";
-import { RoomInJson } from "./Room";
+import { BuildingInJson } from "../Map/Building";
+import { CampusInJson } from "../Map/Campus";
+import { RoomInJson } from "../Map/Room";
+import { SnackbarItem } from "../UI/CustomSnackbar";
 
 export type CampusContextProps = {
   position: [number, number];

@@ -4,10 +4,10 @@ import { useTheme } from "@mui/material/styles";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import React, { useEffect } from "react";
-import { adressOfBuilding, fullBuildingName } from "./Building";
-import { useCampusState } from "./campus-context";
+import { adressOfBuilding, fullBuildingName } from "../Map/Building";
+import { getRoomName, RoomInJson, splitRoomName, updateRoomHighlighting } from "../Map/Room";
+import { useCampusState } from "../State/campus-context";
 import { ROOM } from "./Color";
-import { getRoomName, RoomInJson, splitRoomName, updateRoomHighlighting } from "./Room";
 import "./RoomInfo.css";
 
 type RoomInfo = {

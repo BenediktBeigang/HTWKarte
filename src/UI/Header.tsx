@@ -1,7 +1,4 @@
-import ContactMailIcon from "@mui/icons-material/ContactMail";
-import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import MenuIcon from "@mui/icons-material/Menu";
-import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import {
   AppBar,
   Box,
@@ -20,7 +17,7 @@ import {
 import "primeicons/primeicons.css";
 import { useEffect, useRef, useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useCampusState } from "./campus-context";
+import { useCampusState } from "../State/campus-context";
 import { HTWKALENDER_GRAY } from "./Color";
 import htwkLogo from "/Assets/htwkLogo.svg";
 
@@ -28,6 +25,19 @@ const correctRoomSearchTerm = (searchedRoomID: string) => {
   const roomID = searchedRoomID.toUpperCase();
   const roomIDWithoutSpaces = roomID.replace(/\s/g, "");
   return roomIDWithoutSpaces;
+};
+
+const HeaderButton = (subPage: string, iconName: string) => {
+  return (
+    <MuiLink to={`/${subPage}`} component={RouterLink}>
+      <ListItemButton>
+        <ListItemIcon>
+          <i className={iconName} style={{ fontSize: "1.2rem" }} />
+        </ListItemIcon>
+        <ListItemText primary={subPage} />
+      </ListItemButton>
+    </MuiLink>
+  );
 };
 
 export const Header = () => {
@@ -72,32 +82,9 @@ export const Header = () => {
         margin: "0.5em",
       }}
     >
-      <MuiLink to="/faq" component={RouterLink}>
-        <ListItemButton>
-          <ListItemIcon>
-            <LibraryBooksIcon />
-          </ListItemIcon>
-          <ListItemText primary="faq" sx={{ textDecoration: "none" }} />
-        </ListItemButton>
-      </MuiLink>
-
-      <MuiLink to="/imprint" component={RouterLink}>
-        <ListItemButton>
-          <ListItemIcon>
-            <ContactMailIcon />
-          </ListItemIcon>
-          <ListItemText primary="imprint" />
-        </ListItemButton>
-      </MuiLink>
-
-      <MuiLink to="/privacy" component={RouterLink}>
-        <ListItemButton>
-          <ListItemIcon>
-            <WarningAmberIcon />
-          </ListItemIcon>
-          <ListItemText primary="privacy" />
-        </ListItemButton>
-      </MuiLink>
+      {HeaderButton("faq", "pi pi-book")}
+      {HeaderButton("imprint", "pi pi-id-card")}
+      {HeaderButton("privacy", "pi pi-exclamation-triangle")}
     </Box>
   );
 
@@ -151,32 +138,9 @@ export const Header = () => {
         </Drawer>
         <Hidden smDown>
           <Box display="flex" ml="auto" sx={{ height: "100%" }}>
-            <MuiLink to="/faq" component={RouterLink}>
-              <ListItemButton>
-                <ListItemIcon>
-                  <i className="pi pi-book" style={{ fontSize: "1.2rem" }} />
-                </ListItemIcon>
-                <ListItemText primary="faq" />
-              </ListItemButton>
-            </MuiLink>
-
-            <MuiLink to="/imprint" component={RouterLink}>
-              <ListItemButton>
-                <ListItemIcon>
-                  <i className="pi pi-id-card" style={{ fontSize: "1.2rem" }} />
-                </ListItemIcon>
-                <ListItemText primary="imprint" />
-              </ListItemButton>
-            </MuiLink>
-
-            <MuiLink to="/privacy" component={RouterLink}>
-              <ListItemButton>
-                <ListItemIcon>
-                  <i className="pi pi-exclamation-triangle" style={{ fontSize: "1.2rem" }} />
-                </ListItemIcon>
-                <ListItemText primary="privacy" />
-              </ListItemButton>
-            </MuiLink>
+            {HeaderButton("faq", "pi pi-book")}
+            {HeaderButton("imprint", "pi pi-id-card")}
+            {HeaderButton("privacy", "pi pi-exclamation-triangle")}
           </Box>
         </Hidden>
       </Toolbar>

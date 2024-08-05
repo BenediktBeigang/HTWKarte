@@ -1,7 +1,8 @@
 import * as d3 from "d3";
 import { MutableRefObject } from "react";
-import { CampusContextAction, CampusContextProps } from "./campus-reducer";
-import { ROOM, ROOM_HIGHTLIGHTED } from "./Color";
+import { CampusContextAction, CampusContextProps } from "../State/campus-reducer";
+import { ROOM, ROOM_HIGHTLIGHTED } from "../UI/Color";
+import { BuildingInJson } from "./Building";
 
 export type RoomInJson = {
   id: string;
@@ -134,4 +135,16 @@ const parseTrefftzRoomID = (roomID: string): ParsedRoomID => {
     level: parseInt(roomID.slice(4, 5)),
     room: roomID.slice(5, roomID.length),
   };
+};
+
+export const campusOfRoom = (
+  room: string | undefined,
+  dataOfCBuildings: BuildingInJson[],
+): string => {
+  if (!room) return "None";
+  const roomAbbreviation = room.substring(0, 2);
+  const building = dataOfCBuildings.find(
+    (building) => building.properties.Abbreviation === roomAbbreviation,
+  );
+  return building === undefined ? "None" : building.properties.Campus;
 };

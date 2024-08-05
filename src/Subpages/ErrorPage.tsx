@@ -1,8 +1,10 @@
+import { Box, Typography } from "@mui/material";
+import { Header } from "../UI/Header";
 import ErrorPage_SVG from "/Assets/ErrorSVG.svg";
 
 export const ErrorPage = () => {
   return (
-    <div
+    <Box
       style={{
         display: "flex",
         flexDirection: "column",
@@ -11,10 +13,13 @@ export const ErrorPage = () => {
         height: "100vh",
       }}
     >
-      <div style={{ width: "30%" }}>
+      <Header />
+      <Box style={{ width: "30%" }}>
         <img src={ErrorPage_SVG} style={{ width: "100%" }} alt="Error" />
-      </div>
-      <h1>Seite nicht gefunden.</h1>
-    </div>
+      </Box>
+      <Typography variant="h5" align="center">
+        Upps! Diese Seite ist wohl gerade in der Mensa.
+      </Typography>
+    </Box>
   );
 };
