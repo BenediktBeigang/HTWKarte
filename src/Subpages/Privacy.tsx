@@ -18,17 +18,17 @@ export const Privacy = () => {
         justifyContent="center"
         alignItems="center"
         sx={{
-            paddingTop: (matches ? "7em" : "10em"),
-            maxWidth: {
-                xs: "90%",
-                sm: "60%",
-            },
-            overflowX: "hidden",
-            overflowY: "scroll",
-            scrollbarWidth: "none",
-            "&::-webkit-scrollbar": {
-                display: "none",
-            },
+          paddingTop: matches ? "7em" : "10em",
+          maxWidth: {
+            xs: "90%",
+            sm: "60%",
+          },
+          overflowX: "hidden",
+          overflowY: "scroll",
+          scrollbarWidth: "none",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
         }}
       >
         <Typography variant={matches ? "h2" : "h4"} gutterBottom>
@@ -101,7 +101,7 @@ export const Privacy = () => {
             </List>
             <br />
           </Typography>
-          <Typography variant="body1" sx={{ marginBottom: "3em"}} gutterBottom component="div">
+          <Typography variant="body1" sx={{ marginBottom: "3em" }} gutterBottom component="div">
             <b style={{ marginBottom: "0.5em", display: "inline-block" }}>
               Änderungen dieser Datenschutzrichtlinie
             </b>

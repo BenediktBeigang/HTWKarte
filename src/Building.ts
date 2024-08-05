@@ -1,10 +1,9 @@
 import * as d3 from "d3";
 import { MutableRefObject } from "react";
+import { CampusInJson } from "./Campus";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
 import { FinishedBuildings } from "./Constants";
-import {
-  roomClickedHandler
-} from "./Room";
+import { roomClickedHandler } from "./Room";
 
 export type BuildingInJson = {
   type: string;
@@ -40,10 +39,19 @@ export const adressOfBuilding = (abbreviation: string, buildingData: BuildingInJ
   return building ? building.properties.Address : "";
 };
 
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+export const removeRoof = async (buildingAbbreviation: string, delay: number = 0) => {
+  if (delay > 0) await wait(delay);
+  const buildingSVG = d3.select(`#${buildingAbbreviation}`);
+  if (!buildingSVG) return;
+  buildingSVG.select(`#${buildingAbbreviation}_roof`).remove();
+  return buildingSVG;
+};
+
 export const cleanBuilding = (buildingAbbreviation: string) => {
   const buildingSVG = d3.select(`#${buildingAbbreviation}`);
   if (!buildingSVG) return;
-  buildingSVG.selectAll("*").transition().duration(200).style("opacity", 0).remove();
+  buildingSVG.selectAll("*").remove();
   return buildingSVG;
 };
 
@@ -60,9 +68,7 @@ const prepareRooms = (
 
   const rooms = Array.from(
     floor
-      .selectAll(
-        `g[id='floor_${level}'] > g[id='rooms_${level}'] *[id*='${buildingAbbreviation}']`,
-      )
+      .selectAll(`g[id='floor_${level}'] > g[id='rooms_${level}'] *[id*='${buildingAbbreviation}']`)
       .nodes(),
   );
 
@@ -138,7 +144,6 @@ export const drawRoof = (buildingAbbreviation: string, buildingSVG: any = null) 
   d3.xml(pathToRoof).then((xmlData: XMLDocument) => {
     const floorSVG_data = document.importNode(xmlData.documentElement, true);
     const floorSVG = d3.select(buildingSVG.node()).append(() => floorSVG_data);
-    console.log(buildingAbbreviation);
     floorSVG.attr("id", `${buildingAbbreviation}_roof`);
     floorSVG.style("opacity", 0);
     floorSVG.transition().duration(200).style("opacity", 1);
@@ -209,4 +214,57 @@ export const drawBuildingOutlines = (
       .attr("stroke-width", 20)
       .attr("stroke-linejoin", "round");
   });
+};
+
+export const drawCampusOutlines = (
+  buildingContainer: d3.Selection<SVGGElement, unknown, HTMLElement, any>,
+  projection: d3.GeoProjection,
+  dataOfCampus: CampusInJson[],
+  campusName: string,
+) => {
+  // find right campus and draw it
+  const campus = dataOfCampus.find((c) => c.properties.Name === campusName);
+  if (!campus || !campus.geometry.coordinates) return;
+  const polygon = campus.geometry.coordinates[0].map((coord) => {
+    return projection([coord[0], coord[1]]);
+  });
+
+  buildingContainer
+    .append("polygon")
+    .attr("points", polygon.join(" "))
+    .attr("fill", "none")
+    .attr("stroke", "red")
+    .attr("stroke-width", 100)
+    .attr("stroke-linejoin", "round");
+};
+
+export const drawCampusMarker = (
+  buildingContainer: d3.Selection<SVGGElement, unknown, HTMLElement, any>,
+  marker: [number, number],
+) => {
+  buildingContainer
+    .append("circle")
+    .attr("cx", marker[0])
+    .attr("cy", marker[1])
+    .attr("r", 20)
+    .attr("fill", "red");
+};
+
+export const switchToInside = (
+  stateRef: MutableRefObject<{
+    state: CampusContextProps;
+    dispatch: (value: CampusContextAction) => void;
+  }>,
+  building: BuildingInJson,
+  level: number = 0,
+) => {
+  stateRef.current.dispatch({
+    type: "UPDATE_BUILDING",
+    currentBuilding: building.properties.Abbreviation,
+  });
+  const newLevelCount = (building.properties.Floors.length ?? 0) - 1;
+  stateRef.current.dispatch({ type: "UPDATE_LEVEL", level });
+  stateRef.current.dispatch({ type: "UPDATE_LEVEL_COUNT", levelCount: newLevelCount });
+  stateRef.current.dispatch({ type: "UPDATE_INSIDE_BUILDING", insideBuilding: true });
+  loadBuilding(building.properties.Abbreviation, level, stateRef);
 };

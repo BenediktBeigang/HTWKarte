@@ -62,14 +62,13 @@ export const Imprint = () => {
           Impressum
         </Typography>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "2em" }}>
-            <Typography variant="body1" gutterBottom>
-              <b style={{ marginBottom: "0.5em", display: "inline-block" }}>Postanschrift:</b>{" "}
-              <br />
-              HTWK Leipzig <br />
-              Fachschaftsrat Informatik & Medien <br />
-              Postfach 30 11 66 <br />
-              04251 Leipzig
-            </Typography>          
+          <Typography variant="body1" gutterBottom>
+            <b style={{ marginBottom: "0.5em", display: "inline-block" }}>Postanschrift:</b> <br />
+            HTWK Leipzig <br />
+            Fachschaftsrat Informatik & Medien <br />
+            Postfach 30 11 66 <br />
+            04251 Leipzig
+          </Typography>
           <Typography variant="body1" gutterBottom component="div">
             <b style={{ marginBottom: "0.5em", display: "inline-block" }}>
               Verantwortlicher der Website

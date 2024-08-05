@@ -13,7 +13,12 @@ export type RoomInJson = {
   textFontSize: number;
 };
 
-export const getFontSizeOfRoom = (roomWidth: number, roomHeight: number, text: string, fontSizeOverride: number = -1) => {
+export const getFontSizeOfRoom = (
+  roomWidth: number,
+  roomHeight: number,
+  text: string,
+  fontSizeOverride: number = -1,
+) => {
   if (fontSizeOverride > 0) return `${fontSizeOverride}em`;
   const emInPx = 16;
   const fontSize = 8;
@@ -32,7 +37,6 @@ export const getFontSizeOfRoom = (roomWidth: number, roomHeight: number, text: s
 };
 
 export const splitRoomName = (name: string): string[] => {
-  if (name.startsWith("K")) return [name.slice(0, 1), name.slice(1)];
   if (name.startsWith("TR_L")) return [name.slice(0, 4), name.slice(4)];
   if (name.startsWith("TR_A")) return [name.slice(0, 4), name.slice(4)];
   if (name.startsWith("TR_B")) return [name.slice(0, 4), name.slice(4)];
@@ -60,6 +64,28 @@ export const updateRoomHighlighting = (roomID: string, active: boolean) => {
     .style("fill", active ? ROOM_HIGHTLIGHTED : ROOM);
 };
 
+export const pingRoom = (roomID: string) => {
+  if (roomID === "") return;
+  const room = d3.select(`#${roomID}`);
+  if (!room) {
+    console.error(`Room ${roomID} not found`);
+    return;
+  }
+  blinkRoom(room, 3);
+};
+
+const blinkRoom = (room: d3.Selection<d3.BaseType, unknown, HTMLElement, any>, times: number) => {
+  if (times <= 0) return;
+  room
+    .transition()
+    .duration(300)
+    .style("fill", ROOM_HIGHTLIGHTED)
+    .transition()
+    .duration(300)
+    .style("fill", ROOM)
+    .on("end", () => blinkRoom(room, times - 1));
+};
+
 export const roomClickedHandler = (
   idOfClickedRoom: string,
   stateRef: MutableRefObject<{
@@ -76,4 +102,36 @@ export const roomClickedHandler = (
   }
   stateRef.current.dispatch({ type: "UPDATE_ROOM", currentRoomID: idOfClickedRoom });
   updateRoomHighlighting(idOfClickedRoom, true);
+};
+
+export type ParsedRoomID = {
+  buildingAbbreviation: string | undefined;
+  level: number | undefined;
+  room: string | undefined;
+};
+
+export const parseRoomID = (roomID: string | undefined): ParsedRoomID => {
+  try {
+    if (!roomID) throw new Error("Room ID is undefined");
+    if (roomID.startsWith("TR")) return parseTrefftzRoomID(roomID);
+    return {
+      buildingAbbreviation: roomID.slice(0, 2),
+      level: parseInt(roomID.slice(2, 3)),
+      room: roomID.slice(3, roomID.length),
+    };
+  } catch (error) {
+    return {
+      buildingAbbreviation: undefined,
+      level: undefined,
+      room: undefined,
+    };
+  }
+};
+
+const parseTrefftzRoomID = (roomID: string): ParsedRoomID => {
+  return {
+    buildingAbbreviation: roomID.slice(0, 4),
+    level: parseInt(roomID.slice(4, 5)),
+    room: roomID.slice(5, roomID.length),
+  };
 };

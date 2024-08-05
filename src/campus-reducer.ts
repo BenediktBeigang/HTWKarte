@@ -1,5 +1,6 @@
 import { BuildingInJson } from "./Building";
 import { CampusInJson } from "./Campus";
+import { SnackbarItem } from "./CustomSnackbar";
 import { RoomInJson } from "./Room";
 
 export type CampusContextProps = {
@@ -15,6 +16,9 @@ export type CampusContextProps = {
   dataOfCampus: CampusInJson[];
   insideBuilding: boolean;
   darkMode: boolean;
+  initialZoomReached: boolean;
+  roomZoomReady?: boolean;
+  snackbarItem: SnackbarItem;
 };
 
 export type CampusContextAction =
@@ -29,7 +33,10 @@ export type CampusContextAction =
   | { type: "UPDATE_DATA_OF_BUILDINGS"; dataOfBuildings: BuildingInJson[] }
   | { type: "UPDATE_DATA_OF_CAMPUS"; dataOfCampus: CampusInJson[] }
   | { type: "UPDATE_INSIDE_BUILDING"; insideBuilding: boolean }
-  | { type: "TOGGLE_DARK_MODE" };
+  | { type: "TOGGLE_DARK_MODE" }
+  | { type: "UPDATE_INITIAL_ZOOM_REACHED"; initialZoomReached: boolean }
+  | { type: "UPDATE_ROOM_ZOOM_READY"; roomZoomReady: boolean }
+  | { type: "UPDATE_SNACKBAR_ITEM"; snackbarItem: SnackbarItem };
 
 const campusReducer = (
   state: CampusContextProps,
@@ -60,6 +67,12 @@ const campusReducer = (
       return { ...state, insideBuilding: action.insideBuilding };
     case "TOGGLE_DARK_MODE":
       return { ...state, darkMode: !state.darkMode };
+    case "UPDATE_INITIAL_ZOOM_REACHED":
+      return { ...state, initialZoomReached: action.initialZoomReached };
+    case "UPDATE_ROOM_ZOOM_READY":
+      return { ...state, roomZoomReady: action.roomZoomReady };
+    case "UPDATE_SNACKBAR_ITEM":
+      return { ...state, snackbarItem: action.snackbarItem };
     default:
       return state;
   }

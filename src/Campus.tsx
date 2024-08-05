@@ -1,4 +1,4 @@
-import { Alert, Snackbar, SnackbarCloseReason } from "@mui/material";
+import { Box, SnackbarCloseReason } from "@mui/material";
 import * as turf from "@turf/turf";
 import * as d3 from "d3";
 import { Feature, GeoJsonProperties, Polygon } from "geojson";
@@ -11,15 +11,25 @@ import {
   createBuildings,
   drawBuildingOutlines,
   drawRoof,
-  loadBuilding,
+  switchToInside,
 } from "./Building";
 import { useCampusState } from "./campus-context";
 import { CampusContextAction, CampusContextProps } from "./campus-reducer";
 import { HTWKALENDER_GRAY } from "./Color";
 import { FinishedBuildings } from "./Constants";
-import { createZoom } from "./ZoomHandler";
+import { ParsedRoomID, parseRoomID } from "./Room";
+import {
+  createZoom,
+  moveToBuilding,
+  moveToCampusCenter,
+  roomZoomEventHandler,
+} from "./ZoomHandler";
 
-const ZOOM_INSIDE_BUILDING_THRESHOLD: number = 0.00008 * window.innerWidth;
+const ZOOM_INSIDE_BUILDING_THRESHOLD = () => {
+  if (window.innerWidth < 500) return 0.05;
+  if (window.innerWidth < 1000) return 0.1;
+  return 0.1;
+};
 
 export type CampusInJson = {
   type: string;
@@ -28,6 +38,8 @@ export type CampusInJson = {
     Location: [number, number];
     MapWidth: number;
     MapHeight: number;
+    CenterXOffset: number;
+    CenterYOffset: number;
   };
   geometry: {
     coordinates: Array<Array<[number, number]>>;
@@ -76,24 +88,6 @@ const switchToOutside = (
   stateRef.current.dispatch({ type: "UPDATE_INSIDE_BUILDING", insideBuilding: false });
 };
 
-const switchToInside = (
-  stateRef: MutableRefObject<{
-    state: CampusContextProps;
-    dispatch: (value: CampusContextAction) => void;
-  }>,
-  building: BuildingInJson,
-) => {
-  stateRef.current.dispatch({
-    type: "UPDATE_BUILDING",
-    currentBuilding: building.properties.Abbreviation,
-  });
-  const newLevelCount = (building.properties.Floors.length ?? 0) - 1;
-  stateRef.current.dispatch({ type: "UPDATE_LEVEL", level: 0 });
-  stateRef.current.dispatch({ type: "UPDATE_LEVEL_COUNT", levelCount: newLevelCount });
-  stateRef.current.dispatch({ type: "UPDATE_INSIDE_BUILDING", insideBuilding: true });
-  loadBuilding(building.properties.Abbreviation, 0, stateRef);
-};
-
 const updateCurrentBuilding = (
   stateRef: MutableRefObject<{
     state: CampusContextProps;
@@ -102,12 +96,12 @@ const updateCurrentBuilding = (
 ) => {
   const state = stateRef.current.state;
 
-  if (state.zoomFactor < ZOOM_INSIDE_BUILDING_THRESHOLD) {
+  if (state.zoomFactor < ZOOM_INSIDE_BUILDING_THRESHOLD()) {
     if (!state.insideBuilding) return;
     switchToOutside(stateRef);
     return;
   }
-  
+
   const buildingsToUpdate: BuildingInJson[] = state.dataOfBuildings.filter((building) =>
     FinishedBuildings.includes(building.properties.Abbreviation),
   );
@@ -133,6 +127,7 @@ const Campus = () => {
   const [state, dispatch] = useCampusState();
   const stateRef = useRef({ state, dispatch });
   const [alertOpen, setAlertOpen] = useState(false);
+  const { roomID } = useParams<{ roomID: string }>();
 
   const handleClose = (
     _event?: Event | React.SyntheticEvent<any, Event>,
@@ -141,9 +136,6 @@ const Campus = () => {
     if (reason === "clickaway") return;
     setAlertOpen(false);
   };
-
-  // use routerparams to get the roomID
-  const { roomID } = useParams<{ roomID: string }>();
 
   // Update stateRef to provide access to the current state and dispatch function to extracted functions
   useEffect(() => {
@@ -154,10 +146,20 @@ const Campus = () => {
     console.log("Current Building:", state.currentBuilding);
   }, [state.currentBuilding, state.level]);
 
+  useEffect(() => {
+    if (state.roomZoomReady === false) return;
+    dispatch({
+      type: "UPDATE_ROOM_ZOOM_READY",
+      roomZoomReady: false,
+    });
+    roomZoomEventHandler(stateRef, roomID);
+  }, [dispatch, roomID, state.roomZoomReady]);
+
   // Update the current building when the position or zoom factor changes
   useEffect(() => {
+    if (state.initialZoomReached === false) return;
     updateCurrentBuilding(stateRef);
-  }, [state.position, state.zoomFactor]);
+  }, [state.initialZoomReached, state.position, state.zoomFactor]);
 
   // Get the campus map width and height
   const campus = state.dataOfCampus.find(
@@ -196,17 +198,53 @@ const Campus = () => {
     createBuildings(buildingContainer, projection, state.dataOfBuildings);
 
     drawBuildingOutlines(buildingContainer, projection, state.dataOfBuildings);
+    // drawCampusOutlines(buildingContainer, projection, state.dataOfCampus, state.currentCampus);
 
-    createZoom(campusSVG, buildingContainer, projection, stateRef);
-  }, [CAMPUS_MAP_HEIGHT, CAMPUS_MAP_WIDTH, roomID, state.dataOfBuildings, state.dataOfCampus]);
+    const zoom: any = createZoom(campusSVG, buildingContainer, projection, stateRef);
+
+    if (!roomID) {
+      moveToCampusCenter(stateRef, campusSVG);
+      return;
+    }
+
+    const { buildingAbbreviation }: ParsedRoomID = parseRoomID(roomID);
+
+    if (
+      !buildingAbbreviation ||
+      (buildingAbbreviation && FinishedBuildings.includes(buildingAbbreviation) === false)
+    ) {
+      moveToCampusCenter(stateRef, campusSVG);
+      stateRef.current.dispatch({
+        type: "UPDATE_SNACKBAR_ITEM",
+        snackbarItem: {
+          message: "Gebäude nicht gefunden",
+          severity: "error",
+        },
+      });
+      return;
+    }
+    moveToBuilding(stateRef, campusSVG, buildingAbbreviation);
+  }, [
+    CAMPUS_MAP_HEIGHT,
+    CAMPUS_MAP_WIDTH,
+    roomID,
+    state.currentCampus,
+    state.dataOfBuildings,
+    state.dataOfCampus,
+  ]);
+
+  // print zoom factor and position in console
+  // useEffect(() => {
+  //   console.log("Zoom Factor:", state.zoomFactor, "Position:", state.position);
+  // }, [state.position, state.zoomFactor]);
 
   return (
     <>
-      <div
+      <Box
         id="campus-container"
         style={{ width: "100%", height: "100%", backgroundColor: HTWKALENDER_GRAY }}
-      ></div>
-      <Snackbar
+      ></Box>
+      {/* <Snackbar
         key={`${roomID}-${Date.now()}`}
         open={alertOpen}
         autoHideDuration={6000}
@@ -216,7 +254,7 @@ const Campus = () => {
         {alertOpen ? (
           <Alert severity="warning">Raum {roomID} ist keinem Gebäude zuzuordnen.</Alert>
         ) : undefined}
-      </Snackbar>
+      </Snackbar> */}
     </>
   );
 };
