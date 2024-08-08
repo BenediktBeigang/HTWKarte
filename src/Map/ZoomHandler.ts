@@ -2,6 +2,7 @@ import * as d3 from "d3";
 import { MutableRefObject } from "react";
 import { FinishedBuildings } from "../Constants.ts";
 import {
+  FloorSVGLoadingTimeoutException,
   MissingBuildingException,
   MissingRoomException,
   MissingRoomWithValidBuildingException,
@@ -31,7 +32,7 @@ const START_ZOOM_ROOM = () => {
 const MIN_ZOOM: number = START_ZOOM_CAMPUS();
 const MAX_ZOOM: number = maxZoom();
 
-// const START_ZOOM_FOR_ROOM: number = 0.2 as const;
+const FLOOR_LOADING_TIMEOUT = 5000;
 
 let PROJECTION: d3.GeoProjection | undefined = undefined;
 let ZOOM_BEHAVIOR: d3.ZoomBehavior<Element, unknown> | undefined = undefined;
@@ -109,7 +110,6 @@ export const roomZoomEventHandler = async (
     if (PROJECTION === undefined) throw new Error("Projection not initialized");
 
     roomSearchResult = await findRoomInSVG(roomID, stateRef);
-    console.log("SVG found:", roomSearchResult);
     if (!roomSearchResult) throw new MissingRoomException(`${roomID} is not a known room`);
 
     const { roomSVG, buildingAbbreviation, floorSVG, roomsContainer } = roomSearchResult;
@@ -142,6 +142,14 @@ export const roomZoomEventHandler = async (
     );
   } catch (error: unknown) {
     if (error instanceof MissingRoomWithValidBuildingException) return;
+    if (error instanceof FloorSVGLoadingTimeoutException)
+      return stateRef.current.dispatch({
+        type: "UPDATE_SNACKBAR_ITEM",
+        snackbarItem: {
+          message: "Raum konnte nicht gefunden werden, da das Laden der Etage zu lange gedauert hat",
+          severity: "error",
+        },
+      });
     if (error instanceof MissingRoomException)
       return stateRef.current.dispatch({
         type: "UPDATE_SNACKBAR_ITEM",
@@ -278,22 +286,18 @@ const waitForSVGSelection = async (selector: string, timeoutMs: number) => {
       if (selectedElement.empty() === false) {
         clearInterval(intervalId);
         clearTimeout(timeoutId);
-        console.log("svgSelection found this:", selectedElement);
         resolve(selectedElement);
       } else if (elapsedMs >= timeoutMs) {
         clearInterval(intervalId);
         clearTimeout(timeoutId);
-        console.log("timeout reached");
-        reject(new Error("Timeout erreicht, Element nicht gefunden"));
+        reject(new FloorSVGLoadingTimeoutException("Loading of floor took to long."));
       }
-      console.log("Search iteration", elapsedMs);
       elapsedMs += intervalMs;
     }, intervalMs);
 
     const timeoutId = setTimeout(() => {
       clearInterval(intervalId);
-      console.log("timeout reached in setTimeout");
-      reject(new Error("Timeout erreicht, Element nicht gefunden"));
+      reject(new FloorSVGLoadingTimeoutException("Loading of floor took to long."));
     }, timeoutMs);
   });
 };
@@ -331,17 +335,13 @@ const findRoomInSVG = async (
     throw new MissingRoomException(`Level ${level} is unknown in ${buildingAbbreviation}`);
   switchToInside(stateRef, building, level);
 
-  console.log("Building ready to search");
-
   const { roomSVG, floorContainer, roomsContainer } = await waitForSVGSelection(
     `svg[id='${buildingAbbreviation}_${level}']`,
-    3000,
+    FLOOR_LOADING_TIMEOUT,
   ).then((floorContainer: any) => {
-    console.log("floorContainer:", floorContainer);
     const floorSVG = floorContainer.select(`g[id='floor_${level}']`);
     const rooms = floorSVG.select(`g[id='rooms_${level}']`);
     const svgRoomID = roomID!.replace(".", "-");
-    console.log("after waitForSVGSelection:", floorSVG, rooms);
     return {
       floorContainer,
       roomSVG: rooms.select(`rect[id='${svgRoomID}'], path[id='${svgRoomID}']`),
