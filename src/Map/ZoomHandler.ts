@@ -278,10 +278,12 @@ const waitForSVGSelection = async (selector: string, timeoutMs: number) => {
       if (selectedElement !== null) {
         clearInterval(intervalId);
         clearTimeout(timeoutId);
+        console.log("svgSelection found this:", selectedElement);
         resolve(selectedElement);
       } else if (elapsedMs >= timeoutMs) {
         clearInterval(intervalId);
         clearTimeout(timeoutId);
+        console.log("timeout reached");
         reject(new Error("Timeout erreicht, Element nicht gefunden"));
       }
       console.log("Search iteration", elapsedMs);
@@ -290,6 +292,7 @@ const waitForSVGSelection = async (selector: string, timeoutMs: number) => {
 
     const timeoutId = setTimeout(() => {
       clearInterval(intervalId);
+      console.log("timeout reached in setTimeout");
       reject(new Error("Timeout erreicht, Element nicht gefunden"));
     }, timeoutMs);
   });
@@ -334,6 +337,7 @@ const findRoomInSVG = async (
     `svg[id='${buildingAbbreviation}_${level}']`,
     3000,
   ).then((floorContainer: any) => {
+    console.log("floorContainer:", floorContainer);
     const floorSVG = floorContainer.select(`g[id='floor_${level}']`);
     const rooms = floorSVG.select(`g[id='rooms_${level}']`);
     const svgRoomID = roomID!.replace(".", "-");
