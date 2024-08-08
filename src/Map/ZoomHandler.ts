@@ -275,7 +275,7 @@ const waitForSVGSelection = async (selector: string, timeoutMs: number) => {
 
     const intervalId = setInterval(() => {
       const selectedElement = d3.select(selector);
-      if (selectedElement !== null) {
+      if (selectedElement.empty() === false) {
         clearInterval(intervalId);
         clearTimeout(timeoutId);
         console.log("svgSelection found this:", selectedElement);
