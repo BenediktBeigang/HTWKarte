@@ -44,7 +44,7 @@ export const removeRoof = async (buildingAbbreviation: string, delay: number = 0
   if (delay > 0) await wait(delay);
   const buildingSVG = d3.select(`#${buildingAbbreviation}`);
   if (!buildingSVG) return;
-  buildingSVG.select(`#${buildingAbbreviation}_roof`).remove();
+  buildingSVG.selectAll(`#${buildingAbbreviation}_roof`).remove();
   return buildingSVG;
 };
 
@@ -133,13 +133,13 @@ export const loadBuilding = (
   const oldBuildingSVG = cleanBuilding(state.currentBuilding);
   if (!buildingSVG || !oldBuildingSVG) return;
 
-  cleanBuilding(state.currentBuilding);
-  drawRoof(state.currentBuilding, oldBuildingSVG);
+  drawRoof(state.currentBuilding);
   switchToFloor(buildingAbbreviation, startFloor, stateRef);
 };
 
-export const drawRoof = (buildingAbbreviation: string, buildingSVG: any = null) => {
-  if (!buildingSVG) buildingSVG = d3.select(`#${buildingAbbreviation}`);
+export const drawRoof = (buildingAbbreviation: string) => {
+  if (!buildingAbbreviation || buildingAbbreviation === "None") return;
+  const buildingSVG = d3.select(`#${buildingAbbreviation}`);
   const pathToRoof = `/Assets/Buildings/${buildingAbbreviation}/${buildingAbbreviation}_Roof.svg`;
   d3.xml(pathToRoof).then((xmlData: XMLDocument) => {
     const floorSVG_data = document.importNode(xmlData.documentElement, true);
@@ -158,7 +158,7 @@ const drawBuilding = (
 ) => {
   if (!buildingSVG || location.length !== 2) return;
 
-  drawRoof(buildingAbbreviation, buildingSVG);
+  drawRoof(buildingAbbreviation);
 
   const pixelLocation = projection([location[0], location[1]]);
   if (!pixelLocation) return;

@@ -104,14 +104,12 @@ export const roomZoomEventHandler = async (
   let roomSearchResult: any | undefined;
   let targetPosition: [x: number, y: number];
 
-  const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-  await wait(250);
-
   try {
     if (roomID === undefined) throw new MissingRoomException(`${roomID} is not a known room`);
     if (PROJECTION === undefined) throw new Error("Projection not initialized");
 
     roomSearchResult = await findRoomInSVG(roomID, stateRef);
+    console.log("SVG found:", roomSearchResult);
     if (!roomSearchResult) throw new MissingRoomException(`${roomID} is not a known room`);
 
     const { roomSVG, buildingAbbreviation, floorSVG, roomsContainer } = roomSearchResult;
@@ -123,7 +121,6 @@ export const roomZoomEventHandler = async (
       roomsContainer,
     );
     removeRoof(roomSearchResult.buildingAbbreviation);
-    pingRoom(roomID);
 
     const campusSVG = d3.select(`#campus-svg`);
     if (campusSVG === undefined) throw new Error("#campus-svg not found");
@@ -141,6 +138,7 @@ export const roomZoomEventHandler = async (
       stateRef,
       1000,
       true,
+      roomID,
     );
   } catch (error: unknown) {
     if (error instanceof MissingRoomWithValidBuildingException) return;
@@ -234,6 +232,7 @@ export const zoomToPixelPosition = async (
   }>,
   duration: number = 750,
   roomZoom: boolean = false,
+  roomID: string = "",
 ) => {
   const viewportWidth = campusSVG.node().clientWidth;
   const viewportHeight = campusSVG.node().clientHeight;
@@ -259,6 +258,7 @@ export const zoomToPixelPosition = async (
       .duration(duration)
       .call(ZOOM_BEHAVIOR?.transform as any, transformToNewPosition)
       .on("end", async () => {
+        if (roomID) pingRoom(roomID);
         stateRef.current.dispatch({
           type: "UPDATE_INITIAL_ZOOM_REACHED",
           initialZoomReached: true,
@@ -268,7 +268,7 @@ export const zoomToPixelPosition = async (
   await campusSVG.call(ZOOM_BEHAVIOR?.transform as any, transformToNewPosition);
 };
 
-const waitForSVGSelection = (selector: string, timeoutMs: number) => {
+const waitForSVGSelection = async (selector: string, timeoutMs: number) => {
   return new Promise((resolve, reject) => {
     const intervalMs = 100;
     let elapsedMs = 0;
@@ -284,6 +284,7 @@ const waitForSVGSelection = (selector: string, timeoutMs: number) => {
         clearTimeout(timeoutId);
         reject(new Error("Timeout erreicht, Element nicht gefunden"));
       }
+      console.log("Search iteration", elapsedMs);
       elapsedMs += intervalMs;
     }, intervalMs);
 
@@ -326,6 +327,8 @@ const findRoomInSVG = async (
   if ((!level && level !== 0) || building.properties.Floors.includes(level) === false)
     throw new MissingRoomException(`Level ${level} is unknown in ${buildingAbbreviation}`);
   switchToInside(stateRef, building, level);
+
+  console.log("Building ready to search");
 
   const { roomSVG, floorContainer, roomsContainer } = await waitForSVGSelection(
     `svg[id='${buildingAbbreviation}_${level}']`,

@@ -72,7 +72,7 @@ export const pingRoom = (roomID: string) => {
     console.error(`Room ${roomID} not found`);
     return;
   }
-  blinkRoom(room, 3);
+  blinkRoom(room, 2);
 };
 
 const blinkRoom = (room: d3.Selection<d3.BaseType, unknown, HTMLElement, any>, times: number) => {
