@@ -337,6 +337,7 @@ const findRoomInSVG = async (
     const floorSVG = floorContainer.select(`g[id='floor_${level}']`);
     const rooms = floorSVG.select(`g[id='rooms_${level}']`);
     const svgRoomID = roomID!.replace(".", "-");
+    console.log("after waitForSVGSelection:", floorSVG, rooms);
     return {
       floorContainer,
       roomSVG: rooms.select(`rect[id='${svgRoomID}'], path[id='${svgRoomID}']`),
