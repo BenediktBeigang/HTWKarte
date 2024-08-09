@@ -1,6 +1,5 @@
 import { BuildingInJson } from "../Map/Building";
 import { CampusInJson } from "../Map/Campus";
-import { RoomInJson } from "../Map/Room";
 import { SnackbarItem } from "../UI/CustomSnackbar";
 
 export type CampusContextProps = {
@@ -11,9 +10,8 @@ export type CampusContextProps = {
   level: number;
   levelCount: number;
   currentRoomID: string;
-  dataOfRooms: RoomInJson[];
-  dataOfBuildings: BuildingInJson[];
-  dataOfCampus: CampusInJson[];
+  buildingInfo?: BuildingInJson;
+  campusInfo?: CampusInJson;
   insideBuilding: boolean;
   darkMode: boolean;
   initialZoomReached: boolean;
@@ -29,9 +27,8 @@ export type CampusContextAction =
   | { type: "UPDATE_LEVEL"; level: number }
   | { type: "UPDATE_LEVEL_COUNT"; levelCount: number }
   | { type: "UPDATE_ROOM"; currentRoomID: string }
-  | { type: "UPDATE_DATA_OF_ROOMS"; dataOfRooms: RoomInJson[] }
-  | { type: "UPDATE_DATA_OF_BUILDINGS"; dataOfBuildings: BuildingInJson[] }
-  | { type: "UPDATE_DATA_OF_CAMPUS"; dataOfCampus: CampusInJson[] }
+  | { type: "UPDATE_BUILDING_INFO"; dataOfBuilding: BuildingInJson }
+  | { type: "UPDATE_CAMPUS_INFO"; dataOfCampus: CampusInJson }
   | { type: "UPDATE_INSIDE_BUILDING"; insideBuilding: boolean }
   | { type: "TOGGLE_DARK_MODE" }
   | { type: "UPDATE_INITIAL_ZOOM_REACHED"; initialZoomReached: boolean }
@@ -57,12 +54,10 @@ const campusReducer = (
       return { ...state, levelCount: action.levelCount };
     case "UPDATE_ROOM":
       return { ...state, currentRoomID: action.currentRoomID };
-    case "UPDATE_DATA_OF_ROOMS":
-      return { ...state, dataOfRooms: action.dataOfRooms };
-    case "UPDATE_DATA_OF_BUILDINGS":
-      return { ...state, dataOfBuildings: action.dataOfBuildings };
-    case "UPDATE_DATA_OF_CAMPUS":
-      return { ...state, dataOfCampus: action.dataOfCampus };
+    case "UPDATE_BUILDING_INFO":
+      return { ...state, buildingInfo: action.dataOfBuilding };
+    case "UPDATE_CAMPUS_INFO":
+      return { ...state, campusInfo: action.dataOfCampus };
     case "UPDATE_INSIDE_BUILDING":
       return { ...state, insideBuilding: action.insideBuilding };
     case "TOGGLE_DARK_MODE":

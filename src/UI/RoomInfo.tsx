@@ -4,8 +4,7 @@ import { useTheme } from "@mui/material/styles";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import React, { useEffect } from "react";
-import { adressOfBuilding, fullBuildingName } from "../Map/Building";
-import { getRoomName, RoomInJson, splitRoomName, updateRoomHighlighting } from "../Map/Room";
+import { splitRoomName, updateRoomHighlighting } from "../Map/Room";
 import { useCampusState } from "../State/campus-context";
 import { ROOM } from "./Color";
 import "./RoomInfo.css";
@@ -13,7 +12,7 @@ import "./RoomInfo.css";
 type RoomInfo = {
   name: string;
   building: string;
-  person: string;
+  person?: string;
   adress: string;
 };
 
@@ -33,40 +32,28 @@ const RoomInfoStyle = {
   padding: "1em",
 };
 
-const getRoomInfo = (roomID: string, rooms: RoomInJson[], building: string, adress: string) => {
-  const roomData = rooms.find((room) => room.id === roomID);
-  let roomName = getRoomName(roomID, rooms);
-  roomName = splitRoomName(roomName).join(" ") ?? roomName;
-
+const prepareRoomInfo = (roomID: string, buildingName: string, buildingAdress: string) => {
   const room: RoomInfo = {
-    name: roomName,
-    building: building ?? "",
-    person: roomData?.person ?? "",
-    adress: adress ?? "",
+    name: splitRoomName(roomID)?.join(" ") ?? roomID,
+    building: buildingName ?? "",
+    person: "",
+    adress: buildingAdress ?? "",
   };
-
   return room;
 };
 
 const RoomInfo = () => {
-  const [{ currentRoomID, dataOfRooms, currentBuilding, dataOfBuildings }, dispatch] =
-    useCampusState();
+  const [{ currentRoomID, currentBuilding, buildingInfo }, dispatch] = useCampusState();
   const [roomInfo, setRoomInfo] = React.useState<RoomInfo>(defaultRoom);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
   useEffect(() => {
-    if (currentRoomID === "None") return;
-    if (!dataOfBuildings) return;
+    if (currentRoomID === "None" || !buildingInfo) return;
     setRoomInfo(
-      getRoomInfo(
-        currentRoomID,
-        dataOfRooms,
-        fullBuildingName(currentBuilding, dataOfBuildings),
-        adressOfBuilding(currentBuilding, dataOfBuildings),
-      ),
+      prepareRoomInfo(currentRoomID, buildingInfo.properties.Name, buildingInfo.properties.Address),
     );
-  }, [currentBuilding, currentRoomID, dataOfBuildings, dataOfRooms]);
+  }, [buildingInfo, currentBuilding, currentRoomID]);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (

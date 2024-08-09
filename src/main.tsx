@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@mui/material";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -23,12 +24,25 @@ const router = createBrowserRouter([
   { path: "/privacy", element: <Privacy /> },
 ]);
 
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <CampusProvider>
-        <RouterProvider router={router} />
-      </CampusProvider>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <CampusProvider>
+          <RouterProvider router={router} />
+        </CampusProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
   </React.StrictMode>,
 );
+
+// const updateSW = registerSW({
+//   onNeedRefresh() {
+//     // Handle the need to refresh the application (optional)
+//   },
+//   onOfflineReady() {
+//     // Handle offline-ready event (optional)
+//   },
+// });

@@ -25,20 +25,6 @@ export type BuildingInJson = {
   };
 };
 
-export const fullBuildingName = (abbreviation: string, buildingData: BuildingInJson[]) => {
-  const building = buildingData.find(
-    (building) => building.properties.Abbreviation === abbreviation,
-  );
-  return building ? building.properties.Name : "";
-};
-
-export const adressOfBuilding = (abbreviation: string, buildingData: BuildingInJson[]) => {
-  const building = buildingData.find(
-    (building) => building.properties.Abbreviation === abbreviation,
-  );
-  return building ? building.properties.Address : "";
-};
-
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 export const removeRoof = async (buildingAbbreviation: string, delay: number = 0) => {
   if (delay > 0) await wait(delay);
@@ -92,10 +78,7 @@ export const switchToFloor = (
   }>,
 ) => {
   cleanBuilding(buildingAbbreviation);
-  if (buildingAbbreviation === "None" || !buildingAbbreviation) {
-    console.log("No building selected");
-    return;
-  }
+  if (buildingAbbreviation === "None" || !buildingAbbreviation) return;
 
   const pathToFloor = `/Assets/Buildings/${buildingAbbreviation}/${buildingAbbreviation}_${newLevel}.svg`;
   const buildingSVG = d3.select(`#${buildingAbbreviation}`);
@@ -116,22 +99,18 @@ export const switchToFloor = (
 
 export const loadBuilding = (
   buildingAbbreviation: string,
+  buildingInfo: BuildingInJson,
   startFloor: number,
   stateRef: MutableRefObject<{
     state: CampusContextProps;
     dispatch: (value: CampusContextAction) => void;
   }>,
 ) => {
+  if (!buildingInfo.properties.Floors) return;
   const state = stateRef.current.state;
-  const buildingInData: any = state.dataOfBuildings.find(
-    (b) => b.properties.Abbreviation === buildingAbbreviation,
-  );
-  const levels: number[] = buildingInData.properties.Floors;
-  if (!levels) return;
 
-  const buildingSVG = cleanBuilding(buildingAbbreviation);
-  const oldBuildingSVG = cleanBuilding(state.currentBuilding);
-  if (!buildingSVG || !oldBuildingSVG) return;
+  cleanBuilding(buildingAbbreviation);
+  cleanBuilding(state.currentBuilding);
 
   drawRoof(state.currentBuilding);
   switchToFloor(buildingAbbreviation, startFloor, stateRef);
@@ -255,16 +234,16 @@ export const switchToInside = (
     state: CampusContextProps;
     dispatch: (value: CampusContextAction) => void;
   }>,
-  building: BuildingInJson,
+  buildingInfo: BuildingInJson,
   level: number = 0,
 ) => {
   stateRef.current.dispatch({
     type: "UPDATE_BUILDING",
-    currentBuilding: building.properties.Abbreviation,
+    currentBuilding: buildingInfo.properties.Abbreviation,
   });
-  const newLevelCount = (building.properties.Floors.length ?? 0) - 1;
+  const newLevelCount = (buildingInfo.properties.Floors.length ?? 0) - 1;
   stateRef.current.dispatch({ type: "UPDATE_LEVEL", level });
   stateRef.current.dispatch({ type: "UPDATE_LEVEL_COUNT", levelCount: newLevelCount });
   stateRef.current.dispatch({ type: "UPDATE_INSIDE_BUILDING", insideBuilding: true });
-  loadBuilding(building.properties.Abbreviation, level, stateRef);
+  loadBuilding(buildingInfo.properties.Abbreviation, buildingInfo, level, stateRef);
 };
