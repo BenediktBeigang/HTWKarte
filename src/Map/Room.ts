@@ -37,12 +37,18 @@ export const getFontSizeOfRoom = (
   return `${newFontSize}em`;
 };
 
-export const splitRoomName = (name: string): string[] => {
-  if (name.startsWith("TR_L")) return [name.slice(0, 4), name.slice(4)];
-  if (name.startsWith("TR_A")) return [name.slice(0, 4), name.slice(4)];
-  if (name.startsWith("TR_B")) return [name.slice(0, 4), name.slice(4)];
-  if (name.startsWith("TR_C")) return [name.slice(0, 4), name.slice(4)];
-  return [name.slice(0, 2), name.slice(2)];
+export const splitRoomName = (
+  name: string,
+): [buildingAbbreviation: string, roomName: string] | undefined => {
+  try {
+    if (name.startsWith("TR_L")) return [name.slice(0, 4), name.slice(4)];
+    if (name.startsWith("TR_A")) return [name.slice(0, 4), name.slice(4)];
+    if (name.startsWith("TR_B")) return [name.slice(0, 4), name.slice(4)];
+    if (name.startsWith("TR_C")) return [name.slice(0, 4), name.slice(4)];
+    return [name.slice(0, 2), name.slice(2)];
+  } catch (error) {
+    return undefined;
+  }
 };
 
 export const getRoomName = (roomID: string, rooms: RoomInJson[]) => {
@@ -53,12 +59,8 @@ export const getRoomName = (roomID: string, rooms: RoomInJson[]) => {
 };
 
 export const updateRoomHighlighting = (roomID: string, active: boolean) => {
-  if (roomID === "") return;
   const room = d3.select(`#${roomID}`);
-  if (!room) {
-    console.error(`Room ${roomID} not found`);
-    return;
-  }
+  if (roomID === "" || !room) return;
   room
     .transition()
     .duration(300)
@@ -66,12 +68,8 @@ export const updateRoomHighlighting = (roomID: string, active: boolean) => {
 };
 
 export const pingRoom = (roomID: string) => {
-  if (roomID === "") return;
   const room = d3.select(`#${roomID}`);
-  if (!room) {
-    console.error(`Room ${roomID} not found`);
-    return;
-  }
+  if (roomID === "" || !room) return;
   blinkRoom(room, 2);
 };
 

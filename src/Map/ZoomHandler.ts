@@ -101,6 +101,7 @@ export const roomZoomEventHandler = async (
     dispatch: (value: CampusContextAction) => void;
   }>,
   roomID: string | undefined,
+  completeBuildingInfo: BuildingInJson[],
 ) => {
   let roomSearchResult: any | undefined;
   let targetPosition: [x: number, y: number];
@@ -109,7 +110,7 @@ export const roomZoomEventHandler = async (
     if (roomID === undefined) throw new MissingRoomException(`${roomID} is not a known room`);
     if (PROJECTION === undefined) throw new Error("Projection not initialized");
 
-    roomSearchResult = await findRoomInSVG(roomID, stateRef);
+    roomSearchResult = await findRoomInSVG(roomID, stateRef, completeBuildingInfo);
     if (!roomSearchResult) throw new MissingRoomException(`${roomID} is not a known room`);
 
     const { roomSVG, buildingAbbreviation, floorSVG, roomsContainer } = roomSearchResult;
@@ -146,7 +147,8 @@ export const roomZoomEventHandler = async (
       return stateRef.current.dispatch({
         type: "UPDATE_SNACKBAR_ITEM",
         snackbarItem: {
-          message: "Raum konnte nicht gefunden werden, da das Laden der Etage zu lange gedauert hat",
+          message:
+            "Raum konnte nicht gefunden werden, da das Laden der Etage zu lange gedauert hat",
           severity: "error",
         },
       });
@@ -174,11 +176,11 @@ export const moveToCampusCenter = async (
   }>,
   campusSVG: any,
 ) => {
-  const state = stateRef.current.state;
-  const campus = state.dataOfCampus.find((c) => c.properties.Name === state.currentCampus);
-  const { MapWidth, MapHeight } = campus!.properties;
-  const xOffset = campus!.properties.CenterXOffset ?? 0;
-  const yOffset = campus!.properties.CenterYOffset ?? 0;
+  const campusInfoProperties = stateRef.current.state.campusInfo?.properties;
+  if (!campusInfoProperties) return;
+  const { MapWidth, MapHeight } = campusInfoProperties;
+  const xOffset = campusInfoProperties.CenterXOffset ?? 0;
+  const yOffset = campusInfoProperties.CenterYOffset ?? 0;
   await zoomToPixelPosition(
     campusSVG,
     MapWidth / 2 + xOffset,
@@ -204,18 +206,11 @@ export const moveToBuilding = async (
     dispatch: (value: CampusContextAction) => void;
   }>,
   campusSVG: any,
-  buildingAbbreviation: string,
+  buildingInfo: BuildingInJson,
 ) => {
   if (!PROJECTION) throw new Error("Projection not initialized");
-  if (!buildingAbbreviation)
-    throw new MissingBuildingException(`${buildingAbbreviation} is not a known building`);
 
-  const state = stateRef.current.state;
-
-  const building: BuildingInJson | undefined = state.dataOfBuildings.find(
-    (b) => b.properties.Abbreviation === buildingAbbreviation,
-  );
-  const [lng, lat] = building!.properties.Location;
+  const [lng, lat] = buildingInfo.properties.Location;
   const [x, y] = lngLatToSvgPosition([lng, lat], PROJECTION, 1);
 
   await zoomToPixelPosition(campusSVG, -x, -y, START_ZOOM_ROOM(), stateRef, 0, false);
@@ -308,6 +303,7 @@ const findRoomInSVG = async (
     state: CampusContextProps;
     dispatch: (value: CampusContextAction) => void;
   }>,
+  completeBuildingInfo: BuildingInJson[],
 ) => {
   if (!roomID) return;
   const parsedRoomID: ParsedRoomID = parseRoomID(roomID);
@@ -326,7 +322,7 @@ const findRoomInSVG = async (
       `${level}${room} is not a known room in ${buildingAbbreviation}`,
     );
 
-  const building: BuildingInJson | undefined = stateRef.current.state.dataOfBuildings.find(
+  const building: BuildingInJson | undefined = completeBuildingInfo.find(
     (building) => building.properties.Abbreviation === buildingAbbreviation,
   );
   if (!building)

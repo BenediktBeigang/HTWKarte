@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { FinishedBuildings } from "../Constants";
 import { useCampusState } from "../State/campus-context";
 import { CampusContextAction, CampusContextProps } from "../State/campus-reducer";
+import { useBuildingInfo, useCampusInfo } from "../State/Querys";
 import { HTWKALENDER_GRAY } from "../UI/Color";
 import {
   BuildingInJson,
@@ -47,19 +48,11 @@ export type CampusInJson = {
   };
 };
 
-const createProjection = (
-  campusName: string,
-  stateRef: MutableRefObject<{
-    state: CampusContextProps;
-  }>,
-): d3.GeoProjection | undefined => {
-  const state = stateRef.current.state;
-  const campus = state.dataOfCampus.find((campusData) => campusData.properties.Name === campusName);
+const createProjection = (campus: CampusInJson): d3.GeoProjection | undefined => {
   const boundingBox: Feature<Polygon, GeoJsonProperties> = campus as Feature<
     Polygon,
     GeoJsonProperties
   >;
-  if (!campus || !campus.properties.MapWidth || !campus.properties.MapHeight) return undefined;
 
   const projection = d3.geoMercator();
   projection.fitExtent(
@@ -93,6 +86,7 @@ const updateCurrentBuilding = (
     state: CampusContextProps;
     dispatch: (value: CampusContextAction) => void;
   }>,
+  completeBuildingInfo: BuildingInJson[],
 ) => {
   const state = stateRef.current.state;
 
@@ -102,7 +96,7 @@ const updateCurrentBuilding = (
     return;
   }
 
-  const buildingsToUpdate: BuildingInJson[] = state.dataOfBuildings.filter((building) =>
+  const buildingsToUpdate: BuildingInJson[] = completeBuildingInfo.filter((building) =>
     FinishedBuildings.includes(building.properties.Abbreviation),
   );
 
@@ -127,6 +121,8 @@ const Campus = () => {
   const [state, dispatch] = useCampusState();
   const stateRef = useRef({ state, dispatch });
   const { roomID } = useParams<{ roomID: string }>();
+  const { data: campusInfo_data } = useCampusInfo();
+  const { data: buildingInfo_data } = useBuildingInfo();
 
   // Update stateRef to provide access to the current state and dispatch function to extracted functions
   useEffect(() => {
@@ -138,30 +134,46 @@ const Campus = () => {
   }, [state.currentBuilding, state.level]);
 
   useEffect(() => {
-    if (state.roomZoomReady === false) return;
+    if (!buildingInfo_data || state.roomZoomReady === false) return;
     dispatch({
       type: "UPDATE_ROOM_ZOOM_READY",
       roomZoomReady: false,
     });
-    roomZoomEventHandler(stateRef, roomID);
-  }, [dispatch, roomID, state.roomZoomReady]);
+    roomZoomEventHandler(stateRef, roomID, buildingInfo_data);
+  }, [buildingInfo_data, dispatch, roomID, state.roomZoomReady]);
 
   // Update the current building when the position or zoom factor changes
   useEffect(() => {
-    if (state.initialZoomReached === false) return;
-    updateCurrentBuilding(stateRef);
-  }, [state.initialZoomReached, state.position, state.zoomFactor]);
+    if (!buildingInfo_data || state.initialZoomReached === false) return;
+    updateCurrentBuilding(stateRef, buildingInfo_data);
+  }, [buildingInfo_data, state.initialZoomReached, state.position, state.zoomFactor]);
 
-  // Get the campus map width and height
-  const campus = state.dataOfCampus.find(
-    (campus) => campus.properties.Name === state.currentCampus,
-  )?.properties;
-  const CAMPUS_MAP_WIDTH: number = campus ? campus.MapWidth : 0;
-  const CAMPUS_MAP_HEIGHT: number = campus ? campus.MapHeight : 0;
+  useEffect(() => {
+    if (!campusInfo_data) return;
+    dispatch({
+      type: "UPDATE_CAMPUS_INFO",
+      dataOfCampus: campusInfo_data.find(
+        (campus: CampusInJson) => campus.properties.Name === state.currentCampus,
+      ),
+    });
+  }, [campusInfo_data, state.currentCampus, dispatch]);
+
+  useEffect(() => {
+    if (!buildingInfo_data || state.currentBuilding === "None") return;
+    dispatch({
+      type: "UPDATE_BUILDING_INFO",
+      dataOfBuilding: buildingInfo_data.find(
+        (building: BuildingInJson) => building.properties.Abbreviation === state.currentBuilding,
+      ),
+    });
+  }, [buildingInfo_data, state.currentBuilding, dispatch]);
 
   // Create the campus map
   useEffect(() => {
-    if (state.dataOfCampus.length === 0) return;
+    if (state.campusInfo === undefined || buildingInfo_data === undefined) return;
+    const CAMPUS_MAP_WIDTH: number = state.campusInfo.properties.MapWidth;
+    const CAMPUS_MAP_HEIGHT: number = state.campusInfo.properties.MapHeight;
+
     $("#campus-container").children().remove();
     const campusSVG = d3
       .select("#campus-container")
@@ -180,15 +192,12 @@ const Campus = () => {
       .style("width", "100%")
       .style("height", "100%");
 
-    const projection: d3.GeoProjection | undefined = createProjection(
-      "Campus-Karl-Liebknecht-Strasse",
-      stateRef,
-    );
+    const projection: d3.GeoProjection | undefined = createProjection(state.campusInfo);
     if (!projection) return;
 
-    createBuildings(buildingContainer, projection, state.dataOfBuildings);
+    createBuildings(buildingContainer, projection, buildingInfo_data);
 
-    drawBuildingOutlines(buildingContainer, projection, state.dataOfBuildings);
+    drawBuildingOutlines(buildingContainer, projection, buildingInfo_data);
     // drawCampusOutlines(buildingContainer, projection, state.dataOfCampus, state.currentCampus);
 
     createZoom(campusSVG, buildingContainer, projection, stateRef);
@@ -214,15 +223,14 @@ const Campus = () => {
       });
       return;
     }
-    moveToBuilding(stateRef, campusSVG, buildingAbbreviation);
-  }, [
-    CAMPUS_MAP_HEIGHT,
-    CAMPUS_MAP_WIDTH,
-    roomID,
-    state.currentCampus,
-    state.dataOfBuildings,
-    state.dataOfCampus,
-  ]);
+
+    const buildingInfo = buildingInfo_data.find(
+      (building: BuildingInJson) => building.properties.Abbreviation === buildingAbbreviation,
+    );
+    if (!buildingInfo) return;
+
+    moveToBuilding(stateRef, campusSVG, buildingInfo);
+  }, [buildingInfo_data, roomID, state.campusInfo, state.currentCampus]);
 
   // print zoom factor and position in console
   // useEffect(() => {
@@ -235,17 +243,6 @@ const Campus = () => {
         id="campus-container"
         style={{ width: "100%", height: "100%", backgroundColor: HTWKALENDER_GRAY }}
       ></Box>
-      {/* <Snackbar
-        key={`${roomID}-${Date.now()}`}
-        open={alertOpen}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      >
-        {alertOpen ? (
-          <Alert severity="warning">Raum {roomID} ist keinem Gebäude zuzuordnen.</Alert>
-        ) : undefined}
-      </Snackbar> */}
     </>
   );
 };

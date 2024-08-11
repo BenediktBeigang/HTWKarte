@@ -115,18 +115,10 @@ const LevelButtons = (): JSX.Element => {
   const [state, dispatch] = useCampusState();
   const stateRef = useRef({ state, dispatch });
   const [hoverLevel, setHoverLevel] = React.useState<number | null>(null);
+  const buildingInfo: BuildingInJson | undefined = state.buildingInfo;
 
-  let building: BuildingInJson | undefined;
-  let minFloor: number;
-  let adjustedLevel: number = 0;
-
-  if (FinishedBuildings.includes(state.currentBuilding)) {
-    building = state.dataOfBuildings.find(
-      (b) => b.properties.Abbreviation === state.currentBuilding,
-    );
-    minFloor = building ? Math.min(...building.properties.Floors) : 0;
-    adjustedLevel = state.level - minFloor;
-  }
+  const minFloor: number = buildingInfo ? Math.min(...buildingInfo.properties.Floors) : 0;
+  const adjustedLevel: number = state.level - minFloor;
 
   useEffect(() => {
     hoverAnimation(adjustedLevel, state.levelCount, hoverLevel);
@@ -140,7 +132,7 @@ const LevelButtons = (): JSX.Element => {
     stateRef.current = { state, dispatch };
   }, [state, dispatch]);
 
-  if (!FinishedBuildings.includes(state.currentBuilding)) return <></>;
+  if (!buildingInfo || !FinishedBuildings.includes(state.currentBuilding)) return <></>;
 
   return (
     <ToggleButtonGroup
@@ -154,19 +146,18 @@ const LevelButtons = (): JSX.Element => {
       style={buttonGroupStyle(state.levelCount)}
     >
       <div id="level-marker" style={markerStyle(state.levelCount + 1)} />
-      {building &&
-        building.properties.Floors.map((level) => (
-          <StyledToggleButton
-            key={level}
-            value={level}
-            onMouseEnter={() => setHoverLevel(level)}
-            onMouseLeave={() => setHoverLevel(null)}
-            aria-label={`Level ${level}`}
-            levelcount={0}
-          >
-            {level}
-          </StyledToggleButton>
-        ))}
+      {buildingInfo.properties.Floors.map((level) => (
+        <StyledToggleButton
+          key={level}
+          value={level}
+          onMouseEnter={() => setHoverLevel(level)}
+          onMouseLeave={() => setHoverLevel(null)}
+          aria-label={`Level ${level}`}
+          levelcount={0}
+        >
+          {level}
+        </StyledToggleButton>
+      ))}
     </ToggleButtonGroup>
   );
 };

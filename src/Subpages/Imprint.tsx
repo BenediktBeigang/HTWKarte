@@ -82,13 +82,13 @@ export const Imprint = () => {
               alt="Mail Icon"
             />
             <ContactInfo
-              icon="./Assets/Icons/discordIcon.svg"
+              icon="/Icons/discord.svg"
               text="HTWK Software Discord Server (Bene)"
               link="https://discord.gg/Z3gcuy7ZB5"
               alt="Discord Icon"
             />
             <ContactInfo
-              icon="./Assets/Icons/gitlabIcon.svg"
+              icon="/Icons/gitlab.svg"
               text="GitLab Repository"
               link="https://gitlab.dit.htwk-leipzig.de/htwk-software/htwkarte"
               alt="GitLab Icon"

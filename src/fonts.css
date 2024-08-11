@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 @font-face {
   font-family: "Source Sans Pro";
-  src: url("/fonts/SourceSans3-VariableFont_wght.ttf") format("truetype");
+  src: url("/Fonts/SourceSans3-VariableFont_wght.ttf") format("truetype");
   font-weight: 400 900;
   font-style: normal;
 }

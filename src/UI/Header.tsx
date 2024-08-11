@@ -19,7 +19,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useCampusState } from "../State/campus-context";
 import { HTWKALENDER_GRAY } from "./Color";
-import htwkLogo from "/Assets/htwkLogo.svg";
+import htwkKarte from "/favicon.ico";
 
 const correctRoomSearchTerm = (searchedRoomID: string) => {
   const roomID = searchedRoomID.toUpperCase();
@@ -27,10 +27,12 @@ const correctRoomSearchTerm = (searchedRoomID: string) => {
   return roomIDWithoutSpaces;
 };
 
-const HeaderButton = (subPage: string, iconName: string) => {
+const HeaderButton = (subPage: string, iconName: string, selected: boolean) => {
   return (
     <MuiLink to={`/${subPage}`} component={RouterLink}>
-      <ListItemButton>
+      <ListItemButton
+        sx={{ backgroundColor: selected ? "#454c7f" : "inherit", borderRadius: "5px" }}
+      >
         <ListItemIcon>
           <i className={iconName} style={{ fontSize: "1.2rem" }} />
         </ListItemIcon>
@@ -47,6 +49,7 @@ export const Header = () => {
   const stateRef = useRef({ state, dispatch });
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
+  const currentSubPage = window.location.pathname.split("/")[1];
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -82,9 +85,9 @@ export const Header = () => {
         margin: "0.5em",
       }}
     >
-      {HeaderButton("faq", "pi pi-book")}
-      {HeaderButton("imprint", "pi pi-id-card")}
-      {HeaderButton("privacy", "pi pi-exclamation-triangle")}
+      {HeaderButton("faq", "pi pi-book", currentSubPage === "faq")}
+      {HeaderButton("imprint", "pi pi-id-card", currentSubPage === "imprint")}
+      {HeaderButton("privacy", "pi pi-exclamation-triangle", currentSubPage === "privacy")}
     </Box>
   );
 
@@ -95,7 +98,7 @@ export const Header = () => {
           <Box m={1}>
             <MuiLink to="/" component={RouterLink}>
               <IconButton edge="start" color="inherit" aria-label="logo">
-                <img src={htwkLogo} alt="HTWK-Logo" style={{ height: "2em" }} />
+                <img src={htwkKarte} alt="HTWK-Logo" style={{ height: "2em" }} />
               </IconButton>
             </MuiLink>
           </Box>
@@ -138,9 +141,9 @@ export const Header = () => {
         </Drawer>
         <Hidden smDown>
           <Box display="flex" ml="auto" sx={{ height: "100%" }}>
-            {HeaderButton("faq", "pi pi-book")}
-            {HeaderButton("imprint", "pi pi-id-card")}
-            {HeaderButton("privacy", "pi pi-exclamation-triangle")}
+            {HeaderButton("faq", "pi pi-book", currentSubPage === "faq")}
+            {HeaderButton("imprint", "pi pi-id-card", currentSubPage === "imprint")}
+            {HeaderButton("privacy", "pi pi-exclamation-triangle", currentSubPage === "privacy")}
           </Box>
         </Hidden>
       </Toolbar>
