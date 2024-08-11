@@ -20,6 +20,7 @@ build-image:
   services:
     - docker:20.10.7-dind
   tags:
+    - docker
     - fdit
   script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
@@ -35,6 +36,9 @@ deploy:
     - apk add --no-cache openssh-client sed # install dependencies
     - eval $(ssh-agent -s) # set some ssh variables
     - ssh-add <(echo "$CI_SSH_KEY" | tr -d '\r')
+  tags:
+    - docker
+    - fdit
   script:
     # ssh to the server and start the service
     - >
