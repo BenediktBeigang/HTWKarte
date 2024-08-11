@@ -37,12 +37,3 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     </QueryClientProvider>
   </React.StrictMode>,
 );
-
-// const updateSW = registerSW({
-//   onNeedRefresh() {
-//     // Handle the need to refresh the application (optional)
-//   },
-//   onOfflineReady() {
-//     // Handle offline-ready event (optional)
-//   },
-// });

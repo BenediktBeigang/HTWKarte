@@ -31,7 +31,7 @@ export const FAQ = () => {
           "::-webkit-scrollbar": {
             display: "none",
           },
-          "scrollbar-width": "none",
+          scrollbarWidth: "none",
         }}
       >
         <Box sx={{ justifyContent: "center", width: "auto", padding: "1em" }}>

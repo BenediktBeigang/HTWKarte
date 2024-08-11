@@ -80,7 +80,7 @@ export const switchToFloor = (
   cleanBuilding(buildingAbbreviation);
   if (buildingAbbreviation === "None" || !buildingAbbreviation) return;
 
-  const pathToFloor = `/Assets/Buildings/${buildingAbbreviation}/${buildingAbbreviation}_${newLevel}.svg`;
+  const pathToFloor = `/Buildings/${buildingAbbreviation}/${buildingAbbreviation}_${newLevel}.svg`;
   const buildingSVG = d3.select(`#${buildingAbbreviation}`);
   if (!buildingSVG) return;
 
@@ -119,7 +119,7 @@ export const loadBuilding = (
 export const drawRoof = (buildingAbbreviation: string) => {
   if (!buildingAbbreviation || buildingAbbreviation === "None") return;
   const buildingSVG = d3.select(`#${buildingAbbreviation}`);
-  const pathToRoof = `/Assets/Buildings/${buildingAbbreviation}/${buildingAbbreviation}_Roof.svg`;
+  const pathToRoof = `/Buildings/${buildingAbbreviation}/${buildingAbbreviation}_Roof.svg`;
   d3.xml(pathToRoof).then((xmlData: XMLDocument) => {
     const floorSVG_data = document.importNode(xmlData.documentElement, true);
     const floorSVG = d3.select(buildingSVG.node()).append(() => floorSVG_data);

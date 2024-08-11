@@ -19,7 +19,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useCampusState } from "../State/campus-context";
 import { HTWKALENDER_GRAY } from "./Color";
-import htwkLogo from "/Assets/htwkLogo.svg";
+import htwkLogo from "/Icons/htwk.svg";
 
 const correctRoomSearchTerm = (searchedRoomID: string) => {
   const roomID = searchedRoomID.toUpperCase();
