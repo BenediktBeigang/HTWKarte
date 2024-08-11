@@ -3,7 +3,7 @@ import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
-  base: "/", 
+  base: "/",
   plugins: [
     react(),
     VitePWA({
@@ -20,7 +20,7 @@ export default defineConfig({
         name: "HTWKarte",
         short_name: "htwkarte",
         description: "Interaktive Campus-Karte der HTWK Leipzig",
-        theme_color: "#ffed00",
+        theme_color: "#454c7f",
         background_color: "#1b2022",
         icons: [
           {

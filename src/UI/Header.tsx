@@ -28,10 +28,11 @@ const correctRoomSearchTerm = (searchedRoomID: string) => {
 };
 
 const HeaderButton = (subPage: string, iconName: string, selected: boolean) => {
-  console.log(subPage, iconName, selected);
   return (
     <MuiLink to={`/${subPage}`} component={RouterLink}>
-      <ListItemButton sx={{ backgroundColor: selected ? '#454c7f' : "inherit", borderRadius: '5px' }}>
+      <ListItemButton
+        sx={{ backgroundColor: selected ? "#454c7f" : "inherit", borderRadius: "5px" }}
+      >
         <ListItemIcon>
           <i className={iconName} style={{ fontSize: "1.2rem" }} />
         </ListItemIcon>
@@ -49,7 +50,6 @@ export const Header = () => {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const currentSubPage = window.location.pathname.split("/")[1];
-  console.log(currentSubPage);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);

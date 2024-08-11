@@ -20,9 +20,10 @@ npm install
 npm run dev
 ----
 
-.If you want to test out the app in https mode, you can run:
+.If you want to test the app in https mode on link:http://localhost:4433[localhost:4433], you can run:
 [source,bash]
 ----
+npm run build
 npm run serve
 ----
 
