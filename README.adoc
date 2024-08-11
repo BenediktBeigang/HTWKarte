@@ -1,30 +1,48 @@
 = HTWKarte
 
-This project wants to make the locations of the HTWK Leipzig transparent. Find your next lecture-room, search for the room of your professor or get an overview of all the campuses that the HTWK has to offer.
+This project wants to make the locations of the HTWK Leipzig transparent. Find your next lecture-room or get an general overview of the HTWK.
 
-.See the current state of development link:https://htwkarte.pages.dev/[here]
+.See the deployed app at: link:https://htwkarte.de/[htwkarte.de]
 ****
 ****
 
 == How to run it locally
 
-`npm install` - Installs all dependencies that are needed to run the project. +
-`npm run dev` - Starts the app and can be viewed on link:http://localhost:3000[http://localhost:3000] in the browser.
+.Install all dependencies that are needed to run the project with:
+[source,bash]
+----
+npm install
+----
+
+.Start the app and view it on link:http://localhost:3000[localhost:3000] in the browser with:
+[source,bash]
+----
+npm run dev
+----
+
+.If you want to test out the app in https mode, you can run:
+[source,bash]
+----
+npm run serve
+----
 
 == Tech-Stack
 
 * Primary Tools
-** Node.js
-** React + TS + Vite
-** D3.js
-** Material-UI
-** Leaflet (upcoming, for city-view)
+** link:https://nodejs.org/[Node.js]
+** link:https://react.dev/[React + TS]
+** link:https://vitejs.dev/[Vite]
+** link:https://d3js.org/[D3.js]
+** link:https://mui.com/material-ui/[Material-UI]
 * Secondary Tools
-** Inkscape (for svg creation)
+** link:https://inkscape.org[Inkscape] (primarily for floor-SVGs)
 
 == Gallery
 
 .The main campus at the Karl-Liebknecht-Straße
-image::Documentation/img/CampusView_v2.png[]
-.A view inside the Zuse-Bau with all the rooms on floor 4 
-image::Documentation/img/InsideZuse.png[]
+image::Documentation/img/CampusView_v4.png[]
+
+---
+
+.A view inside the one building 
+image::Documentation/img/Inside.png[]
