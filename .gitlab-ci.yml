@@ -19,6 +19,8 @@ build-image:
   image: docker:20.10.7
   services:
     - docker:20.10.7-dind
+  tags:
+    - fdit
   script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
     - docker build -t $DOCKER_IMAGE:latest .
