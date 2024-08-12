@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.2.1",
   "type": "module",
+  "proxy": "https://asist-app.de",
   "scripts": {
     "dev": "vite",
     "dev-clean": "vite --force",

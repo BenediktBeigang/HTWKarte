@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import { useTheme } from "@mui/material/styles";
@@ -6,14 +7,22 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import React, { useEffect } from "react";
 import { splitRoomName, updateRoomHighlighting } from "../Map/Room";
 import { useCampusState } from "../State/campus-context";
-import { ROOM } from "./Color";
+import { RoomInJson } from "../State/RoomMapping";
+import { HTWK_LIGHT_TEXT, ROOM } from "./Color";
 import "./RoomInfo.css";
 
 type RoomInfo = {
   name: string;
   building: string;
-  person?: string;
   adress: string;
+  person?: string;
+  email?: string;
+  telephone?: [
+    {
+      number: string;
+    },
+  ];
+  department?: string;
 };
 
 const defaultRoom: RoomInfo = {
@@ -32,28 +41,55 @@ const RoomInfoStyle = {
   padding: "1em",
 };
 
-const prepareRoomInfo = (roomID: string, buildingName: string, buildingAdress: string) => {
+const preparePersonName = (firstName?: string, lastName?: string) => {
+  if (!firstName && !lastName) return undefined;
+  return `${firstName} ${lastName}`;
+};
+
+const prepareRoomInfo = (
+  roomID: string,
+  buildingName: string,
+  buildingAdress: string,
+  personInRoom: RoomInJson,
+) => {
   const room: RoomInfo = {
     name: splitRoomName(roomID)?.join(" ") ?? roomID,
     building: buildingName ?? "",
-    person: "",
     adress: buildingAdress ?? "",
+    person: preparePersonName(personInRoom.firstName, personInRoom.lastName) ?? "",
+    email: personInRoom.email ?? "",
+    telephone: personInRoom.telephone ?? [],
+    department: personInRoom.department
   };
   return room;
 };
 
+const RoomInfoRow = (content: string | any, muiVariant: any = "body1") => {
+  return (
+    <ListItem>
+      <Typography variant={muiVariant}>{content}</Typography>
+    </ListItem>
+  );
+};
+
 const RoomInfo = () => {
-  const [{ currentRoomID, currentBuilding, buildingInfo }, dispatch] = useCampusState();
+  const [{ currentRoomID, currentBuilding, buildingInfo, roomInfo_htwk }, dispatch] =
+    useCampusState();
   const [roomInfo, setRoomInfo] = React.useState<RoomInfo>(defaultRoom);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
   useEffect(() => {
-    if (currentRoomID === "None" || !buildingInfo) return;
+    if (currentRoomID === "None" || !buildingInfo || !roomInfo_htwk) return;
     setRoomInfo(
-      prepareRoomInfo(currentRoomID, buildingInfo.properties.Name, buildingInfo.properties.Address),
+      prepareRoomInfo(
+        currentRoomID,
+        buildingInfo.properties.Name,
+        buildingInfo.properties.Address,
+        roomInfo_htwk.find((room) => room.roomID === currentRoomID) ?? ({} as RoomInJson),
+      ),
     );
-  }, [buildingInfo, currentBuilding, currentRoomID]);
+  }, [buildingInfo, currentBuilding, currentRoomID, roomInfo_htwk]);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -84,9 +120,18 @@ const RoomInfo = () => {
       >
         <h1>{roomInfo.name}</h1>
         <List>
-          {roomInfo.building && <ListItem>{`${roomInfo.building}`}</ListItem>}
-          {roomInfo.person && <ListItem>{`${roomInfo.person}`}</ListItem>}
-          {roomInfo.adress && <ListItem>{`${roomInfo.adress}`}</ListItem>}
+          {roomInfo.building && RoomInfoRow(roomInfo.building)}
+          {roomInfo.adress && RoomInfoRow(roomInfo.adress)}
+          {roomInfo.person && RoomInfoRow(roomInfo.person, "h6")}
+          {roomInfo.email &&
+            RoomInfoRow(
+              <a
+                style={{ color: HTWK_LIGHT_TEXT }}
+                href={`mailto:${roomInfo.email}`}
+              >{`${roomInfo.email}`}</a>,
+            )}
+          {roomInfo.telephone && RoomInfoRow(roomInfo.telephone[0].number)}
+          {roomInfo.department && RoomInfoRow(roomInfo.department)}
         </List>
       </div>
     </SwipeableDrawer>

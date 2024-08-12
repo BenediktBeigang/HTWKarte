@@ -4,16 +4,6 @@ import { CampusContextAction, CampusContextProps } from "../State/campus-reducer
 import { ROOM, ROOM_HIGHTLIGHTED } from "../UI/Color";
 import { BuildingInJson } from "./Building";
 
-export type RoomInJson = {
-  id: string;
-  name: string;
-  person: string;
-  adress: string;
-  xTextOffset: number;
-  yTextOffset: number;
-  textFontSize: number;
-};
-
 export const getFontSizeOfRoom = (
   roomWidth: number,
   roomHeight: number,
@@ -51,10 +41,8 @@ export const splitRoomName = (
   }
 };
 
-export const getRoomName = (roomID: string, rooms: RoomInJson[]) => {
-  if (!rooms || !Array.isArray(rooms)) return "";
-  const room: RoomInJson | undefined = rooms.find((room: RoomInJson) => room.id === roomID);
-  const roomName = room?.name ?? roomID;
+export const getRoomName = (roomID: string) => {
+  const roomName = roomID;
   return roomName.replace("-", ".");
 };
 
