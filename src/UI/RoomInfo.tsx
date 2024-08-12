@@ -1,15 +1,14 @@
-import { Typography } from "@mui/material";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
+import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import React, { useEffect } from "react";
 import { splitRoomName, updateRoomHighlighting } from "../Map/Room";
 import { useCampusState } from "../State/campus-context";
-import { RoomInJson } from "../State/RoomMapping";
-import { HTWK_LIGHT_TEXT, ROOM } from "./Color";
+import { ContactInJson } from "../State/RoomMapping";
+import { HTWKALENDER_GRAY } from "./Color";
 import "./RoomInfo.css";
+import { BuildingBox, ContactBox, RoomNameBox } from "./RoomInfoComponents";
 
 type RoomInfo = {
   name: string;
@@ -33,7 +32,6 @@ const defaultRoom: RoomInfo = {
 };
 
 const RoomInfoStyle = {
-  backgroundColor: ROOM,
   color: "#ffffffdd",
   fontFamily: "Source Sans 3, sans-serif",
   width: "100%",
@@ -50,7 +48,7 @@ const prepareRoomInfo = (
   roomID: string,
   buildingName: string,
   buildingAdress: string,
-  personInRoom: RoomInJson,
+  personInRoom: ContactInJson,
 ) => {
   const room: RoomInfo = {
     name: splitRoomName(roomID)?.join(" ") ?? roomID,
@@ -59,37 +57,29 @@ const prepareRoomInfo = (
     person: preparePersonName(personInRoom.firstName, personInRoom.lastName) ?? "",
     email: personInRoom.email ?? "",
     telephone: personInRoom.telephone ?? [],
-    department: personInRoom.department
+    department: personInRoom.department,
   };
   return room;
 };
 
-const RoomInfoRow = (content: string | any, muiVariant: any = "body1") => {
-  return (
-    <ListItem>
-      <Typography variant={muiVariant}>{content}</Typography>
-    </ListItem>
-  );
-};
-
 const RoomInfo = () => {
-  const [{ currentRoomID, currentBuilding, buildingInfo, roomInfo_htwk }, dispatch] =
-    useCampusState();
+  const [{ currentRoomID, buildingInfo, contactInfo: roomInfo_htwk }, dispatch] = useCampusState();
   const [roomInfo, setRoomInfo] = React.useState<RoomInfo>(defaultRoom);
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const desktopMode = useMediaQuery(theme.breakpoints.up("sm"));
 
   useEffect(() => {
-    if (currentRoomID === "None" || !buildingInfo || !roomInfo_htwk) return;
+    if (currentRoomID === "None" || !buildingInfo || !roomInfo_htwk)
+      return setRoomInfo(defaultRoom);
     setRoomInfo(
       prepareRoomInfo(
         currentRoomID,
         buildingInfo.properties.Name,
         buildingInfo.properties.Address,
-        roomInfo_htwk.find((room) => room.roomID === currentRoomID) ?? ({} as RoomInJson),
+        roomInfo_htwk.find((room) => room.roomID === currentRoomID) ?? ({} as ContactInJson),
       ),
     );
-  }, [buildingInfo, currentBuilding, currentRoomID, roomInfo_htwk]);
+  }, [buildingInfo, currentRoomID, roomInfo_htwk]);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -107,33 +97,27 @@ const RoomInfo = () => {
 
   return (
     <SwipeableDrawer
-      anchor={matches ? "left" : "bottom"}
+      anchor={desktopMode ? "left" : "bottom"}
       open={currentRoomID !== "None"}
       onClose={toggleDrawer(false)}
       onOpen={toggleDrawer(true)}
     >
-      <div
+      <Box
         role="presentation"
         onClick={toggleDrawer(false)}
         onKeyDown={toggleDrawer(false)}
         style={RoomInfoStyle}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1em",
+          backgroundColor: HTWKALENDER_GRAY,
+        }}
       >
-        <h1>{roomInfo.name}</h1>
-        <List>
-          {roomInfo.building && RoomInfoRow(roomInfo.building)}
-          {roomInfo.adress && RoomInfoRow(roomInfo.adress)}
-          {roomInfo.person && RoomInfoRow(roomInfo.person, "h6")}
-          {roomInfo.email &&
-            RoomInfoRow(
-              <a
-                style={{ color: HTWK_LIGHT_TEXT }}
-                href={`mailto:${roomInfo.email}`}
-              >{`${roomInfo.email}`}</a>,
-            )}
-          {roomInfo.telephone && RoomInfoRow(roomInfo.telephone[0].number)}
-          {roomInfo.department && RoomInfoRow(roomInfo.department)}
-        </List>
-      </div>
+        {roomInfo.name && <RoomNameBox roomInfo={roomInfo} />}
+        {roomInfo.building && <BuildingBox roomInfo={roomInfo} />}
+        {roomInfo.person && <ContactBox roomInfo={roomInfo} />}
+      </Box>
     </SwipeableDrawer>
   );
 };

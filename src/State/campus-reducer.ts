@@ -1,6 +1,6 @@
 import { BuildingInJson } from "../Map/Building";
 import { CampusInJson } from "../Map/Campus";
-import { RoomInJson } from "../State/RoomMapping";
+import { ContactInJson } from "../State/RoomMapping";
 import { SnackbarItem } from "../UI/CustomSnackbar";
 
 export type CampusContextProps = {
@@ -11,7 +11,7 @@ export type CampusContextProps = {
   level: number;
   levelCount: number;
   currentRoomID: string;
-  roomInfo_htwk?: RoomInJson[];
+  contactInfo?: ContactInJson[];
   buildingInfo?: BuildingInJson;
   campusInfo?: CampusInJson;
   insideBuilding: boolean;
@@ -29,7 +29,7 @@ export type CampusContextAction =
   | { type: "UPDATE_LEVEL"; level: number }
   | { type: "UPDATE_LEVEL_COUNT"; levelCount: number }
   | { type: "UPDATE_ROOM"; currentRoomID: string }
-  | { type: "UPDATE_ROOM_INFO"; dataOfRoom: RoomInJson[] }
+  | { type: "UPDATE_CONTACT_INFO"; dataOfContact: ContactInJson[] }
   | { type: "UPDATE_BUILDING_INFO"; dataOfBuilding: BuildingInJson }
   | { type: "UPDATE_CAMPUS_INFO"; dataOfCampus: CampusInJson }
   | { type: "UPDATE_INSIDE_BUILDING"; insideBuilding: boolean }
@@ -57,8 +57,8 @@ const campusReducer = (
       return { ...state, levelCount: action.levelCount };
     case "UPDATE_ROOM":
       return { ...state, currentRoomID: action.currentRoomID };
-    case "UPDATE_ROOM_INFO":
-      return { ...state, roomInfo_htwk: action.dataOfRoom };
+    case "UPDATE_CONTACT_INFO":
+      return { ...state, contactInfo: action.dataOfContact };
     case "UPDATE_BUILDING_INFO":
       return { ...state, buildingInfo: action.dataOfBuilding };
     case "UPDATE_CAMPUS_INFO":

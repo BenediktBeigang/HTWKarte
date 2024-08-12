@@ -17,7 +17,7 @@ type RoomInJson_htwk = {
   };
 };
 
-export type RoomInJson = {
+export type ContactInJson = {
   roomID: string;
   firstName: string;
   lastName: string;
@@ -66,8 +66,8 @@ const extractRoomID = (roomTitle: string): string | undefined => {
   return `${roomAbbreveation}${roomNumber}`;
 };
 
-const convert = (htwkRoomAPI_data: RoomInJson_htwk[]): RoomInJson[] => {
-  const convertedData: RoomInJson[] = [];
+const convert = (htwkRoomAPI_data: RoomInJson_htwk[]): ContactInJson[] => {
+  const convertedData: ContactInJson[] = [];
 
   for (const room of htwkRoomAPI_data) {
     const roomID = extractRoomID(room.room.title);
@@ -93,8 +93,8 @@ const RoomMapping = () => {
     if (!htwkRoomAPI_data) return;
     const convertedData = convert(htwkRoomAPI_data.contacts);
     dispatch({
-      type: "UPDATE_ROOM_INFO",
-      dataOfRoom: convertedData,
+      type: "UPDATE_CONTACT_INFO",
+      dataOfContact: convertedData,
     });
   }, [htwkRoomAPI_data, dispatch]);
 

@@ -31,7 +31,13 @@ const HeaderButton = (subPage: string, iconName: string, selected: boolean) => {
   return (
     <MuiLink to={`/${subPage}`} component={RouterLink}>
       <ListItemButton
-        sx={{ backgroundColor: selected ? "#454c7f" : "inherit", borderRadius: "5px" }}
+        sx={{
+          backgroundColor: selected ? "#454c7f" : "inherit",
+          borderRadius: "5px",
+          "&:hover": {
+            backgroundColor: selected ? "#454c7faa" : "",
+          },
+        }}
       >
         <ListItemIcon>
           <i className={iconName} style={{ fontSize: "1.2rem" }} />
