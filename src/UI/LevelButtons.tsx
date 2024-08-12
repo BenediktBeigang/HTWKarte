@@ -142,8 +142,6 @@ const LevelButtons = (): JSX.Element => {
   }, [state, dispatch]);
 
   if (!buildingInfo || !FinishedBuildings.includes(state.currentBuilding)) return <></>;
-  
-  hoverAnimation(0, state.levelCount, 0);
 
   return (
     <ToggleButtonGroup
