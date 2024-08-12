@@ -25,10 +25,10 @@ type RoomInfo = {
 };
 
 const defaultRoom: RoomInfo = {
-  name: "unknown",
-  building: "unknown",
-  person: "unknown",
-  adress: "unknown",
+  name: "",
+  building: "",
+  person: "",
+  adress: "",
 };
 
 const RoomInfoStyle = {

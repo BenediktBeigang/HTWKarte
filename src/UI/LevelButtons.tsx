@@ -65,12 +65,22 @@ const StyledToggleButton = styled(ToggleButton)<{ levelcount: number }>(({ level
   padding: "0",
 }));
 
-const hoverAnimation = (level: number, levelCount: number, hoverLevel: number | null) => {
-  const marker = d3.select("#level-marker");
-  const boxHeight = 100 / (levelCount + 1);
+const levelBoxHeight = (levelCount: number) => {
+  return 100 / levelCount;
+}
+
+const levelSelectorTop = (levelCount: number, level: number) => {
+  const boxHeight = levelBoxHeight(levelCount);
   let newTop = level ? 100 - boxHeight * level : 100;
   newTop -= boxHeight;
   newTop += boxHeight * 0.05;
+  return newTop;
+}
+
+const hoverAnimation = (level: number, levelCount: number, hoverLevel: number | null) => {
+  const marker = d3.select("#level-marker");
+
+  let newTop = levelSelectorTop(levelCount + 1, level);
   if (isNaN(newTop)) return;
 
   if (hoverLevel === null) {
@@ -78,6 +88,7 @@ const hoverAnimation = (level: number, levelCount: number, hoverLevel: number | 
     return;
   }
 
+  const boxHeight = levelBoxHeight(levelCount + 1);
   let hoverTop = 100 - boxHeight * hoverLevel;
   hoverTop -= boxHeight;
   hoverTop += boxHeight * 0.05;
@@ -90,10 +101,8 @@ const hoverAnimation = (level: number, levelCount: number, hoverLevel: number | 
 
 const levelChangeAnimation = (level: number, levelCount: number) => {
   const marker = d3.select("#level-marker");
-  const boxHeight = 100 / (levelCount + 1);
-  let newTop = level ? 100 - boxHeight * level : 100;
-  newTop -= boxHeight;
-  newTop += boxHeight * 0.05;
+
+  const newTop = levelSelectorTop(levelCount + 1, level);
   if (isNaN(newTop)) return;
   marker.transition().duration(200).style("top", `${newTop}%`);
 };
@@ -133,6 +142,8 @@ const LevelButtons = (): JSX.Element => {
   }, [state, dispatch]);
 
   if (!buildingInfo || !FinishedBuildings.includes(state.currentBuilding)) return <></>;
+  
+  hoverAnimation(0, state.levelCount, 0);
 
   return (
     <ToggleButtonGroup

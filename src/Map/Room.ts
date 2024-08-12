@@ -103,7 +103,7 @@ export const parseRoomID = (roomID: string | undefined): ParsedRoomID => {
     if (roomID.startsWith("TR")) return parseTrefftzRoomID(roomID);
     return {
       buildingAbbreviation: roomID.slice(0, 2),
-      level: parseInt(roomID.slice(2, 3)),
+      level: parseLevel(roomID),
       room: roomID.slice(3, roomID.length),
     };
   } catch (error) {
@@ -115,10 +115,15 @@ export const parseRoomID = (roomID: string | undefined): ParsedRoomID => {
   }
 };
 
+const parseLevel = (roomID: string, TR: boolean = false): number => {
+  const level = TR ? roomID.slice(4, 5) : roomID.slice(2, 3);
+  return (level === "K") ? -1 : parseInt(level);
+}
+
 const parseTrefftzRoomID = (roomID: string): ParsedRoomID => {
   return {
     buildingAbbreviation: roomID.slice(0, 4),
-    level: parseInt(roomID.slice(4, 5)),
+    level: parseLevel(roomID, true),
     room: roomID.slice(5, roomID.length),
   };
 };
