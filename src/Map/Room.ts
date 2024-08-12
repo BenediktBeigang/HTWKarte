@@ -4,16 +4,6 @@ import { CampusContextAction, CampusContextProps } from "../State/campus-reducer
 import { ROOM, ROOM_HIGHTLIGHTED } from "../UI/Color";
 import { BuildingInJson } from "./Building";
 
-export type RoomInJson = {
-  id: string;
-  name: string;
-  person: string;
-  adress: string;
-  xTextOffset: number;
-  yTextOffset: number;
-  textFontSize: number;
-};
-
 export const getFontSizeOfRoom = (
   roomWidth: number,
   roomHeight: number,
@@ -51,10 +41,8 @@ export const splitRoomName = (
   }
 };
 
-export const getRoomName = (roomID: string, rooms: RoomInJson[]) => {
-  if (!rooms || !Array.isArray(rooms)) return "";
-  const room: RoomInJson | undefined = rooms.find((room: RoomInJson) => room.id === roomID);
-  const roomName = room?.name ?? roomID;
+export const getRoomName = (roomID: string) => {
+  const roomName = roomID;
   return roomName.replace("-", ".");
 };
 
@@ -115,7 +103,7 @@ export const parseRoomID = (roomID: string | undefined): ParsedRoomID => {
     if (roomID.startsWith("TR")) return parseTrefftzRoomID(roomID);
     return {
       buildingAbbreviation: roomID.slice(0, 2),
-      level: parseInt(roomID.slice(2, 3)),
+      level: parseLevel(roomID),
       room: roomID.slice(3, roomID.length),
     };
   } catch (error) {
@@ -127,10 +115,15 @@ export const parseRoomID = (roomID: string | undefined): ParsedRoomID => {
   }
 };
 
+const parseLevel = (roomID: string, TR: boolean = false): number => {
+  const level = TR ? roomID.slice(4, 5) : roomID.slice(2, 3);
+  return (level === "K") ? -1 : parseInt(level);
+}
+
 const parseTrefftzRoomID = (roomID: string): ParsedRoomID => {
   return {
     buildingAbbreviation: roomID.slice(0, 4),
-    level: parseInt(roomID.slice(4, 5)),
+    level: parseLevel(roomID, true),
     room: roomID.slice(5, roomID.length),
   };
 };

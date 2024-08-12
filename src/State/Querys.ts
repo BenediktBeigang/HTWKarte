@@ -25,3 +25,16 @@ export const useCampusInfo = () => {
     staleTime: ONE_DAY_IN_MS,
   });
 };
+
+export const useHtwkRoomAPI = () => {
+  return useQuery({
+    queryKey: ["htwkRoomAPI"],
+    queryFn: () =>
+      fetch(
+        // "https://asist-app.de/asist/rest/app/telephone/htwkl/search/_",
+        "https://corsproxy.io/?" +
+          encodeURIComponent("https://asist-app.de/asist/rest/app/telephone/htwkl/search/_"),
+      ).then((res) => res.json()),
+    staleTime: ONE_DAY_IN_MS,
+  });
+};

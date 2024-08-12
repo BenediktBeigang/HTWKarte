@@ -1,30 +1,37 @@
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
+import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import React, { useEffect } from "react";
 import { splitRoomName, updateRoomHighlighting } from "../Map/Room";
 import { useCampusState } from "../State/campus-context";
-import { ROOM } from "./Color";
+import { ContactInJson } from "../State/RoomMapping";
+import { HTWKALENDER_GRAY } from "./Color";
 import "./RoomInfo.css";
+import { BuildingBox, ContactBox, RoomNameBox } from "./RoomInfoComponents";
 
 type RoomInfo = {
   name: string;
   building: string;
-  person?: string;
   adress: string;
+  person?: string;
+  email?: string;
+  telephone?: [
+    {
+      number: string;
+    },
+  ];
+  department?: string;
 };
 
 const defaultRoom: RoomInfo = {
-  name: "unknown",
-  building: "unknown",
-  person: "unknown",
-  adress: "unknown",
+  name: "",
+  building: "",
+  person: "",
+  adress: "",
 };
 
 const RoomInfoStyle = {
-  backgroundColor: ROOM,
   color: "#ffffffdd",
   fontFamily: "Source Sans 3, sans-serif",
   width: "100%",
@@ -32,28 +39,47 @@ const RoomInfoStyle = {
   padding: "1em",
 };
 
-const prepareRoomInfo = (roomID: string, buildingName: string, buildingAdress: string) => {
+const preparePersonName = (firstName?: string, lastName?: string) => {
+  if (!firstName && !lastName) return undefined;
+  return `${firstName} ${lastName}`;
+};
+
+const prepareRoomInfo = (
+  roomID: string,
+  buildingName: string,
+  buildingAdress: string,
+  personInRoom: ContactInJson,
+) => {
   const room: RoomInfo = {
     name: splitRoomName(roomID)?.join(" ") ?? roomID,
     building: buildingName ?? "",
-    person: "",
     adress: buildingAdress ?? "",
+    person: preparePersonName(personInRoom.firstName, personInRoom.lastName) ?? "",
+    email: personInRoom.email ?? "",
+    telephone: personInRoom.telephone ?? [],
+    department: personInRoom.department,
   };
   return room;
 };
 
 const RoomInfo = () => {
-  const [{ currentRoomID, currentBuilding, buildingInfo }, dispatch] = useCampusState();
+  const [{ currentRoomID, buildingInfo, contactInfo: roomInfo_htwk }, dispatch] = useCampusState();
   const [roomInfo, setRoomInfo] = React.useState<RoomInfo>(defaultRoom);
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const desktopMode = useMediaQuery(theme.breakpoints.up("sm"));
 
   useEffect(() => {
-    if (currentRoomID === "None" || !buildingInfo) return;
+    if (currentRoomID === "None" || !buildingInfo || !roomInfo_htwk)
+      return setRoomInfo(defaultRoom);
     setRoomInfo(
-      prepareRoomInfo(currentRoomID, buildingInfo.properties.Name, buildingInfo.properties.Address),
+      prepareRoomInfo(
+        currentRoomID,
+        buildingInfo.properties.Name,
+        buildingInfo.properties.Address,
+        roomInfo_htwk.find((room) => room.roomID === currentRoomID) ?? ({} as ContactInJson),
+      ),
     );
-  }, [buildingInfo, currentBuilding, currentRoomID]);
+  }, [buildingInfo, currentRoomID, roomInfo_htwk]);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -71,24 +97,27 @@ const RoomInfo = () => {
 
   return (
     <SwipeableDrawer
-      anchor={matches ? "left" : "bottom"}
+      anchor={desktopMode ? "left" : "bottom"}
       open={currentRoomID !== "None"}
       onClose={toggleDrawer(false)}
       onOpen={toggleDrawer(true)}
     >
-      <div
+      <Box
         role="presentation"
         onClick={toggleDrawer(false)}
         onKeyDown={toggleDrawer(false)}
         style={RoomInfoStyle}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1em",
+          backgroundColor: HTWKALENDER_GRAY,
+        }}
       >
-        <h1>{roomInfo.name}</h1>
-        <List>
-          {roomInfo.building && <ListItem>{`${roomInfo.building}`}</ListItem>}
-          {roomInfo.person && <ListItem>{`${roomInfo.person}`}</ListItem>}
-          {roomInfo.adress && <ListItem>{`${roomInfo.adress}`}</ListItem>}
-        </List>
-      </div>
+        {roomInfo.name && <RoomNameBox roomInfo={roomInfo} />}
+        {roomInfo.building && <BuildingBox roomInfo={roomInfo} />}
+        {roomInfo.person && <ContactBox roomInfo={roomInfo} />}
+      </Box>
     </SwipeableDrawer>
   );
 };

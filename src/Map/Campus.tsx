@@ -9,6 +9,7 @@ import { FinishedBuildings } from "../Constants";
 import { useCampusState } from "../State/campus-context";
 import { CampusContextAction, CampusContextProps } from "../State/campus-reducer";
 import { useBuildingInfo, useCampusInfo } from "../State/Querys";
+import RoomMapping from "../State/RoomMapping";
 import { HTWKALENDER_GRAY } from "../UI/Color";
 import {
   BuildingInJson,
@@ -243,6 +244,7 @@ const Campus = () => {
         id="campus-container"
         style={{ width: "100%", height: "100%", backgroundColor: HTWKALENDER_GRAY }}
       ></Box>
+      <RoomMapping />
     </>
   );
 };
