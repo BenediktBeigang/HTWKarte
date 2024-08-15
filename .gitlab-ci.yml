@@ -26,8 +26,8 @@ build-image:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
     - docker build -t $DOCKER_IMAGE:latest .
     - docker push $DOCKER_IMAGE:latest
-  only:
-    - main
+  #only:
+  #  - main
 
 deploy:
   stage: deploy
@@ -53,8 +53,6 @@ deploy:
       docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY &&
       docker compose -f ./docker-compose.prod.yml down && docker compose -f ./docker-compose.prod.yml up -d --remove-orphans && docker logout
 
-  only:
-    - main
-    - 26-docker-compose-and-ssl-certificates
-
+  #only:
+  #  - main
 
