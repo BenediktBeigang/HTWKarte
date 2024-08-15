@@ -41,7 +41,7 @@ deploy:
     - fdit
   script:
     # replace some placeholders
-    - sed -i -e "s|DOCKER_REGISTRY_REPO|$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG|" docker-compose.prod.yml
+    - sed -i -e "s|DOCKER_REGISTRY_REPO|$CI_REGISTRY_IMAGE|" docker-compose.prod.yml
     # upload necessary files to the server
     - >
       scp -P $CI_SSH_PORT -o StrictHostKeyChecking=no -o LogLevel=ERROR ./docker-compose.prod.yml ./nginx.conf
