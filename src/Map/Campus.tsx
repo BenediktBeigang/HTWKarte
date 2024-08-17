@@ -76,7 +76,7 @@ const switchToOutside = (
   cleanBuilding(state.currentBuilding);
   drawRoof(state.currentBuilding);
   stateRef.current.dispatch({ type: "UPDATE_BUILDING", currentBuilding: "None" });
-  stateRef.current.dispatch({ type: "UPDATE_LEVEL_COUNT", levelCount: -1 });
+  stateRef.current.dispatch({ type: "UPDATE_LEVEL_COUNT", levelCount: undefined });
   stateRef.current.dispatch({ type: "UPDATE_LEVEL", level: 0 });
   stateRef.current.dispatch({ type: "UPDATE_ROOM", currentRoomID: "None" });
   stateRef.current.dispatch({ type: "UPDATE_INSIDE_BUILDING", insideBuilding: false });

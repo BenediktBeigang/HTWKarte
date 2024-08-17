@@ -7,7 +7,7 @@ export const initialCampusState: CampusContextProps = {
   currentBuilding: "None",
   currentCampus: "Campus-Karl-Liebknecht-Strasse",
   level: 0,
-  levelCount: -1,
+  levelCount: undefined,
   currentRoomID: "None",
   contactInfo: undefined,
   buildingInfo: undefined,

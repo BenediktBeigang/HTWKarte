@@ -9,7 +9,7 @@ export type CampusContextProps = {
   currentBuilding: string;
   currentCampus: string;
   level: number;
-  levelCount: number;
+  levelCount: number | undefined;
   currentRoomID: string;
   contactInfo?: ContactInJson[];
   buildingInfo?: BuildingInJson;
@@ -27,7 +27,7 @@ export type CampusContextAction =
   | { type: "UPDATE_BUILDING"; currentBuilding: string }
   | { type: "UPDATE_CAMPUS"; currentCampus: string }
   | { type: "UPDATE_LEVEL"; level: number }
-  | { type: "UPDATE_LEVEL_COUNT"; levelCount: number }
+  | { type: "UPDATE_LEVEL_COUNT"; levelCount: number | undefined }
   | { type: "UPDATE_ROOM"; currentRoomID: string }
   | { type: "UPDATE_CONTACT_INFO"; dataOfContact: ContactInJson[] }
   | { type: "UPDATE_BUILDING_INFO"; dataOfBuilding: BuildingInJson }
