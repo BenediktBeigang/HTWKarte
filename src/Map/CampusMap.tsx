@@ -19,7 +19,7 @@ export const CampusMap = () => {
       state.levelCount && (
         <LevelButtons
           levelCount={state.levelCount}
-          startLevel={hasBasement ? 0 + 1 : 0}
+          // startLevel={hasBasement ? state.level + 1 : state.level}
           hasBasement={hasBasement}
         />
       )

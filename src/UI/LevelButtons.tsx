@@ -1,4 +1,4 @@
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { Box, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import * as d3 from "d3";
 import { MutableRefObject, useEffect, useMemo, useRef, useState } from "react";
 import { FinishedBuildings } from "../Constants";
@@ -9,21 +9,18 @@ import { HTWK_DARK_TEXT, HTWK_GRAY, HTWK_LIGHT_GRAY, HTWK_YELLOW } from "./Color
 
 const buttonSize: number = 3 as const;
 
-const SelectionMarker = (
-  // levelCount: number,
-  // level: number,
-  markerHeight: number,
-  markerTop: number,
-): JSX.Element => {
+const SelectionMarker = (markerWidth: number, markerTop: number): JSX.Element => {
+  const offset = markerWidth * 0.125;
+  console.log("calc", `calc(${markerTop}% + ${offset}em)`);
   return (
     <div
       id="level-marker"
       style={{
-        top: `${markerTop}%`,
-        left: "5%",
+        top: `calc(${markerTop}% + ${offset}em)`,
         position: "absolute",
-        width: "90%",
-        height: `${markerHeight * 0.9}%`,
+        left: `${offset}em`,
+        width: `${markerWidth}em`,
+        height: `${markerWidth}em`,
         backgroundColor: HTWK_YELLOW,
         borderRadius: "5px",
       }}
@@ -101,21 +98,26 @@ const handleLevelChange = (
 
 const LevelButtons = ({
   levelCount,
-  startLevel,
+  // startLevel,
   hasBasement,
 }: {
   levelCount: number;
-  startLevel: number;
+  // startLevel: number;
   hasBasement: boolean;
 }): JSX.Element => {
   const [state, dispatch] = useCampusState();
   const stateRef = useRef({ state, dispatch });
   const [hoverLevel, setHoverLevel] = useState<number | undefined>(undefined);
   const buildingInfo: BuildingInJson | undefined = state.buildingInfo;
+  const [startLevel, setStartLevel] = useState<number>(hasBasement ? state.level + 1 : state.level);
 
   const startSelectorHeight = useMemo(() => {
     return 100 / levelCount!;
   }, [levelCount]);
+
+  useEffect(() => {
+    setStartLevel(hasBasement ? state.level + 1 : state.level);
+  }, [hasBasement, state.level]);
 
   // useEffect(() => {
   //   return;
@@ -139,57 +141,65 @@ const LevelButtons = ({
   }
 
   return (
-    <ToggleButtonGroup
-      value={state.level}
-      color="primary"
-      exclusive
-      orientation="vertical"
-      size="large"
-      onChange={(_event, value) =>
-        handleLevelChange(value, state.level, levelCount!, stateRef, hasBasement)
-      }
-      sx={{
-        position: "absolute",
-        bottom: "2em",
-        right: "2em",
-        width: buttonSize + "em",
-        height: buttonSize * levelCount + "em",
-        border: `2px solid ${HTWK_LIGHT_GRAY}`,
-        backgroundColor: HTWK_GRAY,
-        opacity: levelCount === undefined ? "0" : "0.9",
-      }}
-    >
-      {SelectionMarker(startSelectorHeight, calcLevelSelectorTop(levelCount, startLevel))}
-      {buildingInfo.properties.Floors.map((level) => (
-        <ToggleButton
-          key={level}
-          value={level}
-          // onMouseEnter={() => setHoverLevel(level)}
-          // onMouseLeave={() => setHoverLevel(undefined)}
-          sx={{
-            "&.Mui-selected": {
-              backgroundColor: "transparent",
-              color: HTWK_DARK_TEXT,
-              transition: "color 0.3s ease-in-out",
-              "&:hover": {
+    <Box sx={{ bottom: "2em", right: "2em", position: "absolute" }}>
+      <Box
+        sx={{
+          width: "100%",
+          height: buttonSize * levelCount + "em",
+          backgroundColor: HTWK_GRAY,
+          position: "absolute",
+        }}
+      ></Box>
+      {SelectionMarker(buttonSize * 0.8, calcLevelSelectorTop(levelCount, startLevel))}
+      <ToggleButtonGroup
+        value={state.level}
+        color="primary"
+        exclusive
+        orientation="vertical"
+        size="large"
+        onChange={(_event, value) =>
+          handleLevelChange(value, state.level, levelCount!, stateRef, hasBasement)
+        }
+        sx={{
+          width: buttonSize + "em",
+          height: buttonSize * levelCount + "em",
+          border: `2px solid ${HTWK_LIGHT_GRAY}`,
+          // backgroundColor: HTWK_GRAY,
+          background: "transparent",
+          opacity: levelCount === undefined ? "0" : "0.9",
+        }}
+      >
+        {buildingInfo.properties.Floors.map((level) => (
+          <ToggleButton
+            key={level}
+            value={level}
+            // onMouseEnter={() => setHoverLevel(level)}
+            // onMouseLeave={() => setHoverLevel(undefined)}
+            sx={{
+              "&.Mui-selected": {
+                backgroundColor: "transparent",
                 color: HTWK_DARK_TEXT,
-                background: "transparent",
+                transition: "color 0.3s ease-in-out",
+                "&:hover": {
+                  color: HTWK_DARK_TEXT,
+                  background: "transparent",
+                },
               },
-            },
-            transition: "color 0.3s ease-in-out",
-            height: buttonSize + "em",
-            backgroundColor: "transparent",
-            color: HTWK_LIGHT_GRAY,
-            fontSize: "1.5em",
-            fontWeight: "bold",
-            margin: "0",
-            padding: "0",
-          }}
-        >
-          {level}
-        </ToggleButton>
-      ))}
-    </ToggleButtonGroup>
+              transition: "color 0.3s ease-in-out",
+              height: buttonSize + "em",
+              backgroundColor: "transparent",
+              color: HTWK_LIGHT_GRAY,
+              fontSize: "1.5em",
+              fontWeight: "bold",
+              margin: "0",
+              padding: "0",
+            }}
+          >
+            {level}
+          </ToggleButton>
+        ))}
+      </ToggleButtonGroup>
+    </Box>
   );
 };
 
