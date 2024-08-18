@@ -6,6 +6,7 @@ import {
   Drawer,
   Hidden,
   IconButton,
+  keyframes,
   List,
   ListItem,
   ListItemButton,
@@ -36,6 +37,15 @@ const correctRoomSearchTerm = (searchedRoomID: string) => {
   return roomIDWithoutSpaces;
 };
 
+const backgroundColorTransition = keyframes`
+  from {
+    background-color: inherit;
+  }
+  to {
+    background-color: #454c7f;
+  }
+`;
+
 const HeaderButton = (subPage: string, iconName: string, selected: boolean) => {
   return (
     <MuiLink to={`/${subPage}`} component={RouterLink}>
@@ -43,8 +53,9 @@ const HeaderButton = (subPage: string, iconName: string, selected: boolean) => {
         sx={{
           backgroundColor: selected ? "#454c7f" : "inherit",
           borderRadius: "5px",
+          animation: selected ? `${backgroundColorTransition} 1s ease` : "none",
           "&:hover": {
-            backgroundColor: selected ? "#454c7faa" : "",
+            backgroundColor: selected ? "#454c7f" : "",
           },
         }}
       >
@@ -73,7 +84,8 @@ export const Header = () => {
 
   const handleSearchResultButtonPress = (roomID: string) => {
     setSearchValue(roomID);
-    navigate(`/room/${roomID}`);
+    if (window.location.pathname === `/room/${roomID}`) window.location.reload();
+    else navigate(`/room/${roomID}`);
     if (inputRef.current) inputRef.current.blur();
   };
 
@@ -82,7 +94,8 @@ export const Header = () => {
 
     const correctedRoomID: string = correctRoomSearchTerm(searchValue);
     setSearchValue(correctedRoomID);
-    navigate(`/room/${correctedRoomID}`);
+    if (window.location.pathname === `/room/${correctedRoomID}`) window.location.reload();
+    else navigate(`/room/${correctedRoomID}`);
     if (inputRef.current) inputRef.current.blur();
 
     // event.preventDefault();
