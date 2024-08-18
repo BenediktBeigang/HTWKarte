@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { AllBuildingAbbreviations } from "../Constants";
 import { useCampusState } from "./campus-context";
 import { useHtwkRoomAPI } from "./Querys";
 
@@ -43,10 +44,8 @@ const extractRoomID = (roomTitle: string): string | undefined => {
     part.replace(")", "");
   });
 
-  const buildings: string[] = ["ZU", "GU", "MZ", "TR", "FE", "HB", "HO", "E2", "WI", "CL", "CE"];
-
   // search in every roomIDPart if in there is a substring that is one item in the FinishedBuildings array and return this
-  let roomAbbreveation = roomIDParts.find((part) => buildings.includes(part));
+  let roomAbbreveation = roomIDParts.find((part) => AllBuildingAbbreviations.includes(part));
 
   // If Treffts then search for sub building
   if (roomAbbreveation === "TR") {

@@ -8,4 +8,24 @@ export const FinishedBuildings = [
   "TR_C",
   "FE",
   "HB",
+  "NI",
 ] as string[];
+
+export const AllBuildingAbbreviations: string[] = [
+  "ZU",
+  "GU",
+  "MZ",
+  "TR",
+  "FE",
+  "NI",
+  "LI",
+  "FÖ",
+  "GE",
+  "HB",
+  "HO",
+  "E2",
+  "WI",
+  "CL",
+  "CE",
+  "SH",
+];

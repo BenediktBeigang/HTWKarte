@@ -514,7 +514,9 @@
       "Abbreviation": "NI",
       "Location": [12.37288, 51.31325],
       "Address": "Karl-Liebknecht-Straße 134",
-      "Campus": "Campus-Karl-Liebknecht-Strasse"
+      "Campus": "Campus-Karl-Liebknecht-Strasse",
+      "Location_SVG": [12.3726, 51.31369],
+      "Floors": [4, 3, 2, 1, 0, -1]
     },
     "geometry": {
       "coordinates": [
