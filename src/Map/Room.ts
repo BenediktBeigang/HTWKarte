@@ -117,8 +117,8 @@ export const parseRoomID = (roomID: string | undefined): ParsedRoomID => {
 
 const parseLevel = (roomID: string, TR: boolean = false): number => {
   const level = TR ? roomID.slice(4, 5) : roomID.slice(2, 3);
-  return (level === "K") ? -1 : parseInt(level);
-}
+  return level === "K" ? -1 : parseInt(level);
+};
 
 const parseTrefftzRoomID = (roomID: string): ParsedRoomID => {
   return {

@@ -241,7 +241,7 @@ export const switchToInside = (
     type: "UPDATE_BUILDING",
     currentBuilding: buildingInfo.properties.Abbreviation,
   });
-  const newLevelCount = (buildingInfo.properties.Floors.length ?? 0);
+  const newLevelCount = buildingInfo.properties.Floors.length ?? 0;
   stateRef.current.dispatch({ type: "UPDATE_LEVEL", level });
   stateRef.current.dispatch({ type: "UPDATE_LEVEL_COUNT", levelCount: newLevelCount });
   stateRef.current.dispatch({ type: "UPDATE_INSIDE_BUILDING", insideBuilding: true });

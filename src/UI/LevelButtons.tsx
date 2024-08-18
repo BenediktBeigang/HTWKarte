@@ -1,6 +1,6 @@
 import { Box, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import * as d3 from "d3";
-import { MutableRefObject, useEffect, useMemo, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { FinishedBuildings } from "../Constants";
 import { BuildingInJson, switchToFloor } from "../Map/Building";
 import { useCampusState } from "../State/campus-context";
@@ -9,18 +9,16 @@ import { HTWK_DARK_TEXT, HTWK_GRAY, HTWK_LIGHT_GRAY, HTWK_YELLOW } from "./Color
 
 const buttonSize: number = 3 as const;
 
-const SelectionMarker = (markerWidth: number, markerTop: number): JSX.Element => {
-  const offset = markerWidth * 0.125;
-  console.log("calc", `calc(${markerTop}% + ${offset}em)`);
+const SelectionMarker = (markerHeight: number, markerTop: number): JSX.Element => {
   return (
-    <div
+    <Box
       id="level-marker"
-      style={{
-        top: `calc(${markerTop}% + ${offset}em)`,
+      sx={{
+        top: `${markerTop}%`,
         position: "absolute",
-        left: `${offset}em`,
-        width: `${markerWidth}em`,
-        height: `${markerWidth}em`,
+        left: "5%",
+        width: "90%",
+        height: `${markerHeight * 0.9}%`,
         backgroundColor: HTWK_YELLOW,
         borderRadius: "5px",
       }}
@@ -33,7 +31,6 @@ const levelBoxHeight = (levelCount: number) => {
 };
 
 const calcLevelSelectorTop = (levelCount: number, uiLevel: number) => {
-  console.log("levelCount", levelCount, "uiLevel", uiLevel);
   if (levelCount === undefined || uiLevel === undefined) return 0;
   const boxHeight = levelBoxHeight(levelCount);
   let newTop: number = boxHeight * (levelCount - uiLevel - 1);
@@ -41,31 +38,24 @@ const calcLevelSelectorTop = (levelCount: number, uiLevel: number) => {
   return newTop;
 };
 
-// const hoverAnimation = (
-//   level: number,
-//   levelCount: number,
-//   hoverLevel: number | undefined,
-// ) => {
-//   const marker = d3.select("#level-marker");
+const hoverAnimation = (level: number, hoverLevel: number | undefined, levelCount: number) => {
+  const marker = d3.select("#level-marker");
 
-//   let newTop = levelSelectorTop(levelCount, level);
-//   if (isNaN(newTop)) return;
+  let newTop = calcLevelSelectorTop(levelCount, level);
+  if (isNaN(newTop)) return;
 
-//   if (hoverLevel === undefined) {
-//     marker.transition().duration(200).style("top", `${newTop}%`);
-//     return;
-//   }
+  if (hoverLevel === undefined) return marker.transition().duration(200).style("top", `${newTop}%`);
 
-//   const boxHeight = levelBoxHeight(levelCount + 1);
-//   let hoverTop = 100 - boxHeight * hoverLevel;
-//   hoverTop -= boxHeight;
-//   hoverTop += boxHeight * 0.05;
+  const boxHeight = levelBoxHeight(levelCount);
+  let hoverTop = 100 - boxHeight * hoverLevel;
+  hoverTop -= boxHeight;
+  hoverTop += boxHeight * 0.05;
 
-//   const percentage = 0.05;
-//   const diff = (hoverTop - newTop) * percentage;
-//   newTop += diff;
-//   marker.transition().duration(200).style("top", `${newTop}%`);
-// };
+  const percentage = 0.05;
+  const diff = (hoverTop - newTop) * percentage;
+  newTop += diff;
+  marker.transition().duration(200).style("top", `${newTop}%`);
+};
 
 const levelChangeAnimation = (level: number, levelCount: number, oldLevel: number) => {
   const marker = d3.select("#level-marker");
@@ -85,7 +75,6 @@ const handleLevelChange = (
   }>,
   hasBasement: boolean,
 ) => {
-  console.log("newLevel", newLevel, "oldLevel", oldLevel);
   if (newLevel === undefined || newLevel === null) return;
   switchToFloor(stateRef.current.state.currentBuilding, newLevel, stateRef);
   stateRef.current.dispatch({ type: "UPDATE_LEVEL", level: newLevel });
@@ -98,11 +87,9 @@ const handleLevelChange = (
 
 const LevelButtons = ({
   levelCount,
-  // startLevel,
   hasBasement,
 }: {
   levelCount: number;
-  // startLevel: number;
   hasBasement: boolean;
 }): JSX.Element => {
   const [state, dispatch] = useCampusState();
@@ -111,21 +98,16 @@ const LevelButtons = ({
   const buildingInfo: BuildingInJson | undefined = state.buildingInfo;
   const [startLevel, setStartLevel] = useState<number>(hasBasement ? state.level + 1 : state.level);
 
-  const startSelectorHeight = useMemo(() => {
-    return 100 / levelCount!;
-  }, [levelCount]);
-
   useEffect(() => {
     setStartLevel(hasBasement ? state.level + 1 : state.level);
   }, [hasBasement, state.level]);
 
-  // useEffect(() => {
-  //   return;
-  //   const minFloor: number = buildingInfo ? Math.min(...buildingInfo.properties.Floors) : 0;
-  //   const adjustedLevel: number = state.level - minFloor;
-  //   if (levelCount === undefined) return;
-  //   hoverAnimation(adjustedLevel, levelCount, hoverLevel, hasBasement);
-  // }, [buildingInfo, hasBasement, hoverLevel, state.level, levelCount]);
+  useEffect(() => {
+    if (levelCount === undefined || state.level === undefined) return;
+    const uiLevel = hasBasement ? state.level + 1 : state.level;
+    console.log("uiLevel", uiLevel, "hoverLevel", hoverLevel);
+    hoverAnimation(uiLevel, hoverLevel, levelCount);
+  }, [buildingInfo, hasBasement, hoverLevel, state.level, levelCount]);
 
   useEffect(() => {
     stateRef.current = { state, dispatch };
@@ -141,65 +123,57 @@ const LevelButtons = ({
   }
 
   return (
-    <Box sx={{ bottom: "2em", right: "2em", position: "absolute" }}>
-      <Box
-        sx={{
-          width: "100%",
-          height: buttonSize * levelCount + "em",
-          backgroundColor: HTWK_GRAY,
-          position: "absolute",
-        }}
-      ></Box>
-      {SelectionMarker(buttonSize * 0.8, calcLevelSelectorTop(levelCount, startLevel))}
-      <ToggleButtonGroup
-        value={state.level}
-        color="primary"
-        exclusive
-        orientation="vertical"
-        size="large"
-        onChange={(_event, value) =>
-          handleLevelChange(value, state.level, levelCount!, stateRef, hasBasement)
-        }
-        sx={{
-          width: buttonSize + "em",
-          height: buttonSize * levelCount + "em",
-          border: `2px solid ${HTWK_LIGHT_GRAY}`,
-          // backgroundColor: HTWK_GRAY,
-          background: "transparent",
-          opacity: levelCount === undefined ? "0" : "0.9",
-        }}
-      >
-        {buildingInfo.properties.Floors.map((level) => (
-          <ToggleButton
-            key={level}
-            value={level}
-            // onMouseEnter={() => setHoverLevel(level)}
-            // onMouseLeave={() => setHoverLevel(undefined)}
-            sx={{
-              "&.Mui-selected": {
-                backgroundColor: "transparent",
-                color: HTWK_DARK_TEXT,
-                transition: "color 0.3s ease-in-out",
-                "&:hover": {
-                  color: HTWK_DARK_TEXT,
-                  background: "transparent",
-                },
-              },
-              transition: "color 0.3s ease-in-out",
-              height: buttonSize + "em",
+    <ToggleButtonGroup
+      value={state.level}
+      color="primary"
+      exclusive
+      orientation="vertical"
+      size="large"
+      onChange={(_event, value) =>
+        handleLevelChange(value, state.level, levelCount!, stateRef, hasBasement)
+      }
+      sx={{
+        position: "absolute",
+        bottom: "2em",
+        right: "2em",
+        width: `${buttonSize}em`,
+        height: `${buttonSize * levelCount}em`,
+        border: `2px solid ${HTWK_LIGHT_GRAY}`,
+        backgroundColor: HTWK_GRAY,
+        opacity: levelCount === undefined ? "0" : "0.9",
+      }}
+    >
+      {SelectionMarker(100 / levelCount, calcLevelSelectorTop(levelCount, startLevel))}
+      {buildingInfo.properties.Floors.map((level) => (
+        <ToggleButton
+          key={level}
+          value={level}
+          onMouseEnter={() => setHoverLevel(hasBasement ? level + 1 : level)}
+          onMouseLeave={() => setHoverLevel(undefined)}
+          sx={{
+            "&.Mui-selected": {
               backgroundColor: "transparent",
-              color: HTWK_LIGHT_GRAY,
-              fontSize: "1.5em",
-              fontWeight: "bold",
-              margin: "0",
-              padding: "0",
-            }}
-          >
-            {level}
-          </ToggleButton>
-        ))}
-      </ToggleButtonGroup>
-    </Box>
+              color: HTWK_DARK_TEXT,
+              transition: "color 0.3s ease-in-out",
+              "&:hover": {
+                color: HTWK_DARK_TEXT,
+                background: "transparent",
+              },
+            },
+            transition: "color 0.3s ease-in-out",
+            height: `${buttonSize}em`,
+            backgroundColor: "transparent",
+            color: HTWK_LIGHT_GRAY,
+            fontSize: "1.5em",
+            fontWeight: "bold",
+            margin: "0",
+            padding: "0",
+          }}
+        >
+          {level}
+        </ToggleButton>
+      ))}
+    </ToggleButtonGroup>
   );
 };
 
