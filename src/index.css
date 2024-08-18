@@ -15,3 +15,7 @@
 body {
   overflow: hidden;
 }
+
+a[href^="tel:"] {
+  color: white;
+}

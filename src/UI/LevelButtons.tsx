@@ -105,7 +105,6 @@ const LevelButtons = ({
   useEffect(() => {
     if (levelCount === undefined || state.level === undefined) return;
     const uiLevel = hasBasement ? state.level + 1 : state.level;
-    console.log("uiLevel", uiLevel, "hoverLevel", hoverLevel);
     hoverAnimation(uiLevel, hoverLevel, levelCount);
   }, [buildingInfo, hasBasement, hoverLevel, state.level, levelCount]);
 

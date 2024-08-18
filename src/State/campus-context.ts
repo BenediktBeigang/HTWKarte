@@ -20,6 +20,7 @@ export const initialCampusState: CampusContextProps = {
     message: "",
     severity: "info",
   },
+  devMode: false,
 };
 
 export const CampusStateContext = createContext<CampusContextProps>(initialCampusState);

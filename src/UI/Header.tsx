@@ -196,7 +196,12 @@ export const Header = () => {
           display="flex"
           justifyContent="center"
           flexWrap="wrap"
-          sx={{ padding: "0.5em", borderRadius: "10px", backgroundColor: "#ff0000" + "cc" }}
+          sx={{
+            padding: "0.5em",
+            borderRadius: "10px",
+            backgroundColor: state.devMode ? "#00ff00cc" : "#ff0000cc",
+          }}
+          onClick={() => dispatch({ type: "TOGGLE_DEV_MODE" })}
         >
           <Tooltip title="Die Seite befindet sich noch in der Entwicklung. Features können fehlerhaft oder nicht fertiggestellt sein.">
             <Typography>Alpha Version</Typography>

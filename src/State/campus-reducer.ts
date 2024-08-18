@@ -19,6 +19,7 @@ export type CampusContextProps = {
   initialZoomReached: boolean;
   roomZoomReady?: boolean;
   snackbarItem: SnackbarItem;
+  devMode: boolean;
 };
 
 export type CampusContextAction =
@@ -36,7 +37,8 @@ export type CampusContextAction =
   | { type: "TOGGLE_DARK_MODE" }
   | { type: "UPDATE_INITIAL_ZOOM_REACHED"; initialZoomReached: boolean }
   | { type: "UPDATE_ROOM_ZOOM_READY"; roomZoomReady: boolean }
-  | { type: "UPDATE_SNACKBAR_ITEM"; snackbarItem: SnackbarItem };
+  | { type: "UPDATE_SNACKBAR_ITEM"; snackbarItem: SnackbarItem }
+  | { type: "TOGGLE_DEV_MODE" };
 
 const campusReducer = (
   state: CampusContextProps,
@@ -73,6 +75,8 @@ const campusReducer = (
       return { ...state, roomZoomReady: action.roomZoomReady };
     case "UPDATE_SNACKBAR_ITEM":
       return { ...state, snackbarItem: action.snackbarItem };
+    case "TOGGLE_DEV_MODE":
+      return { ...state, devMode: !state.devMode };
     default:
       return state;
   }

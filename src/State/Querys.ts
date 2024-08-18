@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 const ONE_DAY_IN_MS = 86400000 as const;
+const ONE_HOUR_IN_MS = 3600000 as const;
 
 export const useRoomInfo = () => {
   return useQuery({
@@ -36,5 +37,27 @@ export const useHtwkRoomAPI = () => {
           encodeURIComponent("https://asist-app.de/asist/rest/app/telephone/htwkl/search/_"),
       ).then((res) => res.json()),
     staleTime: ONE_DAY_IN_MS,
+  });
+};
+
+export const useEventsInRoom = (roomID: string, devMode: boolean) => {
+  let today: string = "2024-06-04";
+  let tomorrow: string = "2024-06-05";
+
+  if (devMode === false) {
+    const todayObject = new Date();
+    today = todayObject.toISOString().split("T")[0];
+    const tomorrowObject = new Date(todayObject);
+    tomorrowObject.setDate(tomorrowObject.getDate() + 1);
+    tomorrow = tomorrowObject.toISOString().split("T")[0];
+  }
+
+  return useQuery({
+    queryKey: ["eventInRoom", roomID],
+    queryFn: () =>
+      fetch(
+        `https://cal.htwk-leipzig.de/api/schedule?room=${roomID}&from=${today}&to=${tomorrow}&mapped=true`,
+      ).then((res) => res.json()),
+    staleTime: ONE_HOUR_IN_MS,
   });
 };
