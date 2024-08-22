@@ -3,7 +3,7 @@ import { AllBuildingAbbreviations } from "../Constants";
 import { useCampusState } from "./campus-context";
 import { useHtwkRoomAPI } from "./Querys";
 
-type RoomInJson_htwk = {
+type ContactInJson_htwk = {
   firstName: string;
   lastName: string;
   email: string;
@@ -15,6 +15,7 @@ type RoomInJson_htwk = {
   department: string;
   room: {
     title: string;
+    type: number;
   };
 };
 
@@ -65,7 +66,7 @@ const extractRoomID = (roomTitle: string): string | undefined => {
   return `${roomAbbreveation}${roomNumber}`;
 };
 
-const convert = (htwkRoomAPI_data: RoomInJson_htwk[]): ContactInJson[] => {
+const convert = (htwkRoomAPI_data: ContactInJson_htwk[]): ContactInJson[] => {
   const convertedData: ContactInJson[] = [];
 
   for (const room of htwkRoomAPI_data) {
@@ -90,7 +91,7 @@ const RoomMapping = () => {
 
   useEffect(() => {
     if (!htwkRoomAPI_data) return;
-    const convertedData = convert(htwkRoomAPI_data.contacts);
+    const convertedData = convert(htwkRoomAPI_data);
     dispatch({
       type: "UPDATE_CONTACT_INFO",
       dataOfContact: convertedData,

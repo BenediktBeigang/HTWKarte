@@ -32,9 +32,8 @@ export const useHtwkRoomAPI = () => {
     queryKey: ["htwkRoomAPI"],
     queryFn: () =>
       fetch(
-        // "https://asist-app.de/asist/rest/app/telephone/htwkl/search/_",
         "https://corsproxy.io/?" +
-          encodeURIComponent("https://asist-app.de/asist/rest/app/telephone/htwkl/search/_"),
+          encodeURIComponent("https://app.htwk-leipzig.de/api/telephone"),
       ).then((res) => res.json()),
     staleTime: ONE_DAY_IN_MS,
   });
