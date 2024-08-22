@@ -2,7 +2,7 @@
 
 This project wants to make the locations of the HTWK Leipzig transparent. Find your next lecture-room or get an general overview of the HTWK.
 
-.See the deployed app at: link:https://htwkarte.de/[htwkarte.de]
+.See the offical deployed app at: link:https://map.htwk-leipzig.de/[map.htwk-leipzig.de]
 ****
 ****
 
