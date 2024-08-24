@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { AllBuildingAbbreviations } from "../Constants";
 import { useCampusState } from "./campus-context";
-import { useHtwkRoomAPI } from "./Querys";
+import { useCachedEvents, useHtwkContactsAPI } from "./Querys";
 
 type ContactInJson_htwk = {
   firstName: string;
@@ -86,8 +86,9 @@ const convert = (htwkRoomAPI_data: ContactInJson_htwk[]): ContactInJson[] => {
 };
 
 const RoomMapping = () => {
-  const [, dispatch] = useCampusState();
-  const { data: htwkRoomAPI_data } = useHtwkRoomAPI();
+  const [state, dispatch] = useCampusState();
+  const { data: htwkRoomAPI_data } = useHtwkContactsAPI();
+  const { data: cachedEvents } = useCachedEvents(state.devMode);
 
   useEffect(() => {
     if (!htwkRoomAPI_data) return;
@@ -97,6 +98,14 @@ const RoomMapping = () => {
       dataOfContact: convertedData,
     });
   }, [htwkRoomAPI_data, dispatch]);
+
+  useEffect(() => {
+    if (!cachedEvents) return;
+    dispatch({
+      type: "UPDATE_CACHED_EVENTS",
+      cachedEvents,
+    });
+  }, [cachedEvents, dispatch]);
 
   return null;
 };

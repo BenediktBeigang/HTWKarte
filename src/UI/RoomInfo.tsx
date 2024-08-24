@@ -1,10 +1,9 @@
-import { Box, Drawer, Skeleton } from "@mui/material";
+import { Box, Drawer } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import React, { useEffect } from "react";
 import { splitRoomName, updateRoomHighlighting } from "../Map/Room";
 import { useCampusState } from "../State/campus-context";
-import { useEventsInRoom } from "../State/Querys";
 import { ContactInJson } from "../State/RoomMapping";
 import { HTWKALENDER_GRAY } from "./Color";
 import "./RoomInfo.css";
@@ -74,12 +73,14 @@ const prepareRoomInfo = (
 };
 
 const RoomInfo = () => {
-  const [{ currentRoomID, buildingInfo, contactInfo: roomInfo_htwk, devMode }, dispatch] =
-    useCampusState();
+  const [
+    { currentRoomID, buildingInfo, contactInfo: roomInfo_htwk, devMode, cachedEvents },
+    dispatch,
+  ] = useCampusState();
   const [roomInfo, setRoomInfo] = React.useState<RoomInfo>(defaultRoom);
   const theme = useTheme();
   const desktopMode = useMediaQuery(theme.breakpoints.up("sm"));
-  const { data: eventsInRoom, isLoading } = useEventsInRoom(currentRoomID, devMode);
+  const [eventsInRoom, setEventsInRoom] = React.useState<EventInJson[]>([]);
 
   useEffect(() => {
     if (currentRoomID === "None" || !buildingInfo || !roomInfo_htwk)
@@ -93,6 +94,20 @@ const RoomInfo = () => {
       ),
     );
   }, [buildingInfo, currentRoomID, roomInfo_htwk]);
+
+  useEffect(() => {
+    if (currentRoomID === "None" || !cachedEvents) return setEventsInRoom([]);
+    const today = devMode ? "2024-06-04" : new Date().toISOString().split("T")[0];
+    const eventsInRoom: EventInJson[] = cachedEvents.filter(
+      (event) =>
+        event.rooms === currentRoomID &&
+        new Date(event.start).toISOString().split("T")[0] === today,
+    );
+    console.log(eventsInRoom);
+    setEventsInRoom(
+      eventsInRoom.sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()),
+    );
+  }, [cachedEvents, currentRoomID, devMode]);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -145,15 +160,12 @@ const RoomInfo = () => {
             zIndex: 5,
           }}
         />
-        {isLoading ? (
-          <Skeleton variant="rectangular" width="100%" height={400}></Skeleton>
-        ) : (
-          <>
-            {roomInfo.name && <RoomNameBox roomInfo={roomInfo} />}
-            {roomInfo.building && <BuildingBox roomInfo={roomInfo} />}
-            {roomInfo.person && <ContactBox roomInfo={roomInfo} />}
-            {eventsInRoom && <EventBox events={eventsInRoom} devMode={devMode} />}
-          </>
+
+        {roomInfo.name && <RoomNameBox roomInfo={roomInfo} />}
+        {roomInfo.building && <BuildingBox roomInfo={roomInfo} />}
+        {roomInfo.person && <ContactBox roomInfo={roomInfo} />}
+        {eventsInRoom && eventsInRoom.length > 0 && (
+          <EventBox events={eventsInRoom} devMode={devMode} />
         )}
       </Box>
     </Drawer>

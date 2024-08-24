@@ -12,6 +12,7 @@ export const initialCampusState: CampusContextProps = {
   contactInfo: undefined,
   buildingInfo: undefined,
   campusInfo: undefined,
+  cachedEvents: undefined,
   insideBuilding: false,
   darkMode: true,
   initialZoomReached: false,

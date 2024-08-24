@@ -2,6 +2,9 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
+const ONE_DAY_IN_SEC = 60 * 60 * 24;
+const ONE_WEEK_IN_SEC = ONE_DAY_IN_SEC * 7;
+
 export default defineConfig({
   base: "/",
   plugins: [
@@ -45,7 +48,7 @@ export default defineConfig({
               cacheName: "images-cache",
               expiration: {
                 maxEntries: 100,
-                maxAgeSeconds: 60 * 60 * 24 * 7, // Eine Woche
+                maxAgeSeconds: ONE_WEEK_IN_SEC,
               },
             },
           },
@@ -54,6 +57,38 @@ export default defineConfig({
             handler: "StaleWhileRevalidate",
             options: {
               cacheName: "google-fonts-stylesheets",
+            },
+          },
+          {
+            urlPattern: ({ url }) =>
+              url.origin === "https://app.htwk-leipzig.de" &&
+              url.pathname.startsWith("/api/telephone"),
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "htwk-api-cache",
+              networkTimeoutSeconds: 10,
+              expiration: {
+                maxEntries: 5,
+                maxAgeSeconds: ONE_WEEK_IN_SEC,
+              },
+            },
+          },
+          {
+            urlPattern: ({ url }) =>
+              url.origin === "https://cal.htwk-leipzig.de" &&
+              url.pathname.startsWith("/api/schedule") &&
+              url.searchParams.has("from") &&
+              url.searchParams.has("to") &&
+              url.searchParams.get("mapped") === "true" &&
+              !url.searchParams.has("room"),
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "htwk-schedule-cache",
+              networkTimeoutSeconds: 3,
+              expiration: {
+                maxEntries: 1,
+                maxAgeSeconds: ONE_WEEK_IN_SEC,
+              },
             },
           },
         ],

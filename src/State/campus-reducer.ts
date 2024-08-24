@@ -2,6 +2,7 @@ import { BuildingInJson } from "../Map/Building";
 import { CampusInJson } from "../Map/Campus";
 import { ContactInJson } from "../State/RoomMapping";
 import { SnackbarItem } from "../UI/CustomSnackbar";
+import { EventInJson } from "../UI/RoomInfo";
 
 export type CampusContextProps = {
   position: [number, number];
@@ -14,6 +15,7 @@ export type CampusContextProps = {
   contactInfo?: ContactInJson[];
   buildingInfo?: BuildingInJson;
   campusInfo?: CampusInJson;
+  cachedEvents?: EventInJson[];
   insideBuilding: boolean;
   darkMode: boolean;
   initialZoomReached: boolean;
@@ -33,6 +35,7 @@ export type CampusContextAction =
   | { type: "UPDATE_CONTACT_INFO"; dataOfContact: ContactInJson[] }
   | { type: "UPDATE_BUILDING_INFO"; dataOfBuilding: BuildingInJson }
   | { type: "UPDATE_CAMPUS_INFO"; dataOfCampus: CampusInJson }
+  | { type: "UPDATE_CACHED_EVENTS"; cachedEvents: EventInJson[] }
   | { type: "UPDATE_INSIDE_BUILDING"; insideBuilding: boolean }
   | { type: "TOGGLE_DARK_MODE" }
   | { type: "UPDATE_INITIAL_ZOOM_REACHED"; initialZoomReached: boolean }
@@ -65,6 +68,8 @@ const campusReducer = (
       return { ...state, buildingInfo: action.dataOfBuilding };
     case "UPDATE_CAMPUS_INFO":
       return { ...state, campusInfo: action.dataOfCampus };
+    case "UPDATE_CACHED_EVENTS":
+      return { ...state, cachedEvents: action.cachedEvents };
     case "UPDATE_INSIDE_BUILDING":
       return { ...state, insideBuilding: action.insideBuilding };
     case "TOGGLE_DARK_MODE":

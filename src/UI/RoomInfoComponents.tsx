@@ -1,6 +1,7 @@
 import EventIcon from "@mui/icons-material/Event";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
+import SensorsIcon from "@mui/icons-material/Sensors";
 import { Divider, keyframes, List, ListItem, Paper, Typography } from "@mui/material";
 import { format, FormatOptions } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
@@ -105,7 +106,7 @@ export const BuildingBox = ({ roomInfo }: { roomInfo: RoomInfo }) => {
   );
 };
 
-const pulsate = keyframes`
+const borderPulsate = keyframes`
   0% {
     border: 2px solid ${HTWK_YELLOW + "00"};
   }
@@ -114,6 +115,18 @@ const pulsate = keyframes`
   }
   100% {
     border: 2px solid ${HTWK_YELLOW + "00"};
+  }
+`;
+
+const colorPulsate = keyframes`
+  0% {
+    color: ${HTWK_YELLOW + "00"};
+  }
+  50% {
+    color: ${HTWK_YELLOW + "ff"};
+  }
+  100% {
+    color: ${HTWK_YELLOW + "00"};
   }
 `;
 
@@ -145,7 +158,8 @@ const Event = ({ isNow, eventData }: { isNow: boolean; eventData: EventInJson })
         ml: "1em",
         padding: "1em",
         backgroundColor: "#ffffff55",
-        animation: isNow ? `${pulsate} 3s infinite` : "none",
+        animation: isNow ? `${borderPulsate} 3s infinite` : "none",
+        position: "relative",
       }}
     >
       <Typography sx={{ textAlign: "right" }}>
@@ -159,6 +173,16 @@ const Event = ({ isNow, eventData }: { isNow: boolean; eventData: EventInJson })
         <br />
         {`${eventData.name}`}
       </Typography>
+      {isNow && (
+        <SensorsIcon
+          sx={{
+            position: "absolute",
+            top: "0.3em",
+            right: "0.3em",
+            animation: `${colorPulsate} 3s infinite`,
+          }}
+        />
+      )}
     </Paper>
   );
 };
@@ -168,7 +192,7 @@ const isEventNow = (event: EventInJson, devMode: boolean): boolean => {
   return now >= new Date(event.start) && now <= new Date(event.end);
 };
 
-export const EventBox = ({ events, devMode }: { events: [EventInJson]; devMode: boolean }) => {
+export const EventBox = ({ events, devMode }: { events: EventInJson[]; devMode: boolean }) => {
   return (
     <Paper
       sx={{

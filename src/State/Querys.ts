@@ -27,9 +27,9 @@ export const useCampusInfo = () => {
   });
 };
 
-export const useHtwkRoomAPI = () => {
+export const useHtwkContactsAPI = () => {
   return useQuery({
-    queryKey: ["htwkRoomAPI"],
+    queryKey: ["htwkContactsAPI"],
     queryFn: () =>
       fetch(
         "https://corsproxy.io/?" + encodeURIComponent("https://app.htwk-leipzig.de/api/telephone"),
@@ -43,23 +43,24 @@ export const useHtwkRoomAPI = () => {
   });
 };
 
-export const useEventsInRoom = (roomID: string, devMode: boolean) => {
-  let today: string = "2024-06-04";
-  let tomorrow: string = "2024-06-05";
+export const useCachedEvents = (devMode: boolean) => {
+  let today = "2024-06-04";
+  let dayInTwoWeeks = "2024-06-18";
 
   if (devMode === false) {
     const todayObject = new Date();
     today = todayObject.toISOString().split("T")[0];
-    const tomorrowObject = new Date(todayObject);
-    tomorrowObject.setDate(tomorrowObject.getDate() + 1);
-    tomorrow = tomorrowObject.toISOString().split("T")[0];
+
+    const dayInTwoWeeksObject = new Date(todayObject);
+    dayInTwoWeeksObject.setDate(todayObject.getDate() + 14);
+    dayInTwoWeeks = dayInTwoWeeksObject.toISOString().split("T")[0];
   }
 
   return useQuery({
-    queryKey: ["eventInRoom", roomID],
+    queryKey: ["cachedEvents", devMode],
     queryFn: () =>
       fetch(
-        `https://cal.htwk-leipzig.de/api/schedule?room=${roomID}&from=${today}&to=${tomorrow}&mapped=true`,
+        `https://cal.htwk-leipzig.de/api/schedule?from=${today}&to=${dayInTwoWeeks}&mapped=true`,
       ).then((res) => res.json()),
     staleTime: ONE_HOUR_IN_MS,
   });
