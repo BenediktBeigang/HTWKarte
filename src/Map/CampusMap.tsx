@@ -3,8 +3,8 @@ import { useMemo } from "react";
 import { useCampusState } from "../State/campus-context";
 import CustomSnackbar from "../UI/CustomSnackbar";
 import { Header } from "../UI/Header";
+import InfoDrawer from "../UI/InfoDrawer";
 import LevelButtons from "../UI/LevelButtons";
-import RoomInfo from "../UI/RoomInfo";
 import Campus from "./Campus";
 
 export const CampusMap = () => {
@@ -19,7 +19,7 @@ export const CampusMap = () => {
       <Header />
       <Campus />
       {state.levelCount && <LevelButtons levelCount={state.levelCount} hasBasement={hasBasement} />}
-      <RoomInfo />
+      <InfoDrawer />
       <CustomSnackbar />
     </Box>
   );

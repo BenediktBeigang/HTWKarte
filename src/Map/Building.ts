@@ -18,6 +18,8 @@ export type BuildingInJson = {
     TextXOffset: number;
     TextYOffset: number;
     Campus: string;
+    Janitor: string;
+    Description: string;
   };
   geometry: {
     coordinates: Array<Array<[number, number]>>;
@@ -112,11 +114,17 @@ export const loadBuilding = (
   cleanBuilding(buildingAbbreviation);
   cleanBuilding(state.currentBuilding);
 
-  drawRoof(state.currentBuilding);
+  drawRoof(state.currentBuilding, stateRef);
   switchToFloor(buildingAbbreviation, startFloor, stateRef);
 };
 
-export const drawRoof = (buildingAbbreviation: string) => {
+export const drawRoof = (
+  buildingAbbreviation: string,
+  stateRef: MutableRefObject<{
+    state: CampusContextProps;
+    dispatch: (value: CampusContextAction) => void;
+  }>,
+) => {
   if (!buildingAbbreviation || buildingAbbreviation === "None") return;
   const buildingSVG = d3.select(`#${buildingAbbreviation}`);
   const pathToRoof = `/Buildings/${buildingAbbreviation}/${buildingAbbreviation}_Roof.svg`;
@@ -126,6 +134,12 @@ export const drawRoof = (buildingAbbreviation: string) => {
     floorSVG.attr("id", `${buildingAbbreviation}_roof`);
     floorSVG.style("opacity", 0);
     floorSVG.transition().duration(200).style("opacity", 1);
+    floorSVG.on("click", () => {
+      stateRef.current.dispatch({
+        type: "UPDATE_FOCUSED_BUILDING",
+        focusedBuilding: buildingAbbreviation,
+      });
+    });
   });
 };
 
@@ -134,10 +148,14 @@ const drawBuilding = (
   buildingSVG: any,
   location: number[],
   projection: d3.GeoProjection,
+  stateRef: MutableRefObject<{
+    state: CampusContextProps;
+    dispatch: (value: CampusContextAction) => void;
+  }>,
 ) => {
   if (!buildingSVG || location.length !== 2) return;
 
-  drawRoof(buildingAbbreviation);
+  drawRoof(buildingAbbreviation, stateRef);
 
   const pixelLocation = projection([location[0], location[1]]);
   if (!pixelLocation) return;
@@ -148,6 +166,10 @@ export const createBuildings = (
   buildingContainer: d3.Selection<SVGGElement, unknown, HTMLElement, any>,
   projection: d3.GeoProjection,
   dataOfBuildings: BuildingInJson[],
+  stateRef: MutableRefObject<{
+    state: CampusContextProps;
+    dispatch: (value: CampusContextAction) => void;
+  }>,
 ) => {
   dataOfBuildings.map((building) => {
     if (
@@ -164,6 +186,7 @@ export const createBuildings = (
       nextBuildingSVG,
       building.properties.Location_SVG,
       projection,
+      stateRef,
     );
   });
 };

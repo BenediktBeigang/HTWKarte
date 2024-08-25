@@ -6,7 +6,9 @@
       "Abbreviation": "LI",
       "Location": [12.373775, 51.31323],
       "Address": "Karl-Liebknecht-Straße 145",
-      "Campus": "Campus-Karl-Liebknecht-Strasse"
+      "Campus": "Campus-Karl-Liebknecht-Strasse",
+      "Janitor": "André Trostdorf",
+      "Description": "Der Lipsius-Bau ist ein Hochschulgebäude mit zwanzig Seminarräumen und drei Hörsälen, sowie über fünfzehn Laborräumen. Direkt dahinter liegt die Mensa, deren Eingänge sich im Foyer befinden."
     },
     "geometry": {
       "coordinates": [
@@ -103,7 +105,9 @@
       "Location_SVG": [12.37345, 51.312617],
       "Floors": [4, 3, 2, 1, 0, -1],
       "TextXOffset": 0,
-      "TextYOffset": 0
+      "TextYOffset": 0,
+      "Janitor": "Uwe Junghanns",
+      "Description": "Die Hochschulbibliothek bietet umfassende Literatur für Studium und Forschung, einschließlich gedruckter und elektronischer Medien. Sie dient als Lernort mit Lese-, Lern- und Computerarbeitsplätzen. Vorort ist ein Kopierer mit dem Dokumente kopiert und gescannt werden können."
     },
     "geometry": {
       "coordinates": [
@@ -127,7 +131,9 @@
       "Abbreviation": "CE",
       "Location": [12.400578, 51.333212010542525],
       "Address": "Eilenburger Straße 13",
-      "Campus": "Campus-Eilenburger-Strasse"
+      "Campus": "Campus-Eilenburger-Strasse",
+      "Janitor": "Steffen Dlugosch",
+      "Description": "Der Campus Eilenburger Straße beherbergt heute mehrere interdisziplinäre Drittmittelprojekte der HTWK Leipzig, wie zum Beispiel die Startbahn 13, mit der Studierende Hilfe bei der Unternehmensgründung erhalten."
     },
     "geometry": {
       "coordinates": [
@@ -175,7 +181,9 @@
       "Abbreviation": "CL",
       "Location": [12.373815, 51.31428],
       "Address": "Karl-Liebknecht-Straße 143",
-      "Campus": "Campus-Karl-Liebknecht-Strasse"
+      "Campus": "Campus-Karl-Liebknecht-Strasse",
+      "Janitor": "Frank Naumann",
+      "Description": "Auf dem Campus Liebknechtstraße befinden sich im Unter- und Erdgeschoss verschiedene Forschungsgruppen und Institute, darunter das Institut für Betonbau und die G² Gruppe Geotechnik. In der zweiten Etage sind die Forschungsverwaltung und das Forschungs- und Transferzentrum (FTZ) der HTWK Leipzig untergebracht, in der dritten Etage das Referat Forschung und das Graduiertenzentrum (GradZ)."
     },
     "geometry": {
       "coordinates": [
@@ -246,7 +254,9 @@
       "Abbreviation": "E2",
       "Location": [12.372037309603314, 51.31364],
       "Address": "Eichendorffstraße 2",
-      "Campus": "Campus-Karl-Liebknecht-Strasse"
+      "Campus": "Campus-Karl-Liebknecht-Strasse",
+      "Janitor": "Frank Naumann",
+      "Description": "Das Gebäude in der Eichendorffstraße ist sowohl Sitz des/der Kanzlers/Kanzlerin als auch derjenige der Hauptverwaltung. Im Gebäude sind die Büros der Mitarbeiter aller Dezernate untergebracht."
     },
     "geometry": {
       "coordinates": [
@@ -274,7 +284,9 @@
       "Abbreviation": "FÖ",
       "Location": [12.372140532223426, 51.31436],
       "Address": "Kochstraße 85",
-      "Campus": "Campus-Karl-Liebknecht-Strasse"
+      "Campus": "Campus-Karl-Liebknecht-Strasse",
+      "Janitor": "Frank Naumann",
+      "Description": "Der Föppl-Bau ist ausgestattet mit Hörsälen für Experimentalvorlesungen und weiteren Seminarräumen und Laboren. Besondere Aufmerksamkeit wurde der modernen technischen Ausstattung gewidmet."
     },
     "geometry": {
       "coordinates": [
@@ -310,7 +322,9 @@
       "Abbreviation": "GE",
       "Location": [12.37255, 51.31463],
       "Address": "Karl-Liebknecht-Straße 132",
-      "Campus": "Campus-Karl-Liebknecht-Strasse"
+      "Campus": "Campus-Karl-Liebknecht-Strasse",
+      "Janitor": "Mathias Breitkopf",
+      "Description": "Der Geutebrück-Bau war bislang ein Vorlesungs und Seminargebäude. Derzeit ist es bis auf weiteres geschlossen, da es saniert wird."
     },
     "geometry": {
       "coordinates": [
@@ -353,7 +367,9 @@
       "Abbreviation": "HO",
       "Location": [12.33597, 51.32752],
       "Address": "Zschochersche Straße 69",
-      "Campus": "Campus-Digitale-Transformation"
+      "Campus": "Campus-Digitale-Transformation",
+      "Janitor": "Diethard Krey",
+      "Description": "Der Hopper-Bau in Leipzig-Plagwitz ist seit März 2020 Heimat der Stiftungsfakultät Digitale Transformation. Auf fünf Etagen verteilen sich Seminarräume, PC-Pools, Forschungslabore, sowie Arbeitsräume für Studierende."
     },
     "geometry": {
       "coordinates": [
@@ -383,7 +399,9 @@
       "Floors": [3, 2, 1, 0, -1],
       "TextXOffset": 885,
       "TextYOffset": 1500,
-      "Campus": "Campus-Karl-Liebknecht-Strasse"
+      "Campus": "Campus-Karl-Liebknecht-Strasse",
+      "Janitor": "Steffen Dlugosch",
+      "Description": "Das Medienzentrum bietet moderne Audio- und Video-Studios, Schnitt- und Compositing-Arbeitsplätze, Druck- und Buchbindereimaschinensäle, sowie Labore für die Druckvorstufe und die Verpackungstechnik."
     },
     "geometry": {
       "coordinates": [
@@ -410,7 +428,9 @@
       "Address": "Gustav-Freytag-Straße 42",
       "Floors": [3, 2, 1, 0],
       "TextYOffset": 820,
-      "Campus": "Campus-Karl-Liebknecht-Strasse"
+      "Campus": "Campus-Karl-Liebknecht-Strasse",
+      "Janitor": "Steffen Dlugosch",
+      "Description": "Der Gutenberg-Bau ist ein Lehr- und Laborgebäude der Fakultät Informatik und Medien. Es beinhaltet Hörsäle, Seminarräume und zwei Mac-Pools."
     },
     "geometry": {
       "coordinates": [
@@ -445,7 +465,8 @@
       "Abbreviation": "MN",
       "Location": [12.37416, 51.313205071012106],
       "Address": "Karl-Liebknecht-Straße 145",
-      "Campus": "Campus-Karl-Liebknecht-Strasse"
+      "Campus": "Campus-Karl-Liebknecht-Strasse",
+      "Description": "Die Mensa Academica bietet in zwei Speisesälen Platz für jeweils 230 Personen, durch deren runde Bauform eine angenehme und ruhige Atmosphäre erzeugt wird. Zwischen den Speisesälen liegt die Cafeteria der Mensa Academica, die das Essensangebot durch eine Auswahl an Getränken und Snacks erweitert. Die insgesamt 100 Plätze der Cafeteria sind auf drei Stufen, unter einem großen Glasdach, verteilt."
     },
     "geometry": {
       "coordinates": [
@@ -486,7 +507,9 @@
       "Location_SVG": [12.374, 51.31288],
       "Floors": [1, 0],
       "TextXOffset": 0,
-      "TextYOffset": 0
+      "TextYOffset": 0,
+      "Janitor": "André Trostdorf",
+      "Description": "Der Fechner-Bau ist als Anbau direkt mit dem Lipsius-Bau verbunden. Hier stehen neben einem großen Experimentalhörsaal, noch zwei kleinere Hörsäle vorrangig für Chemie und Physik zur Verfügung."
     },
     "geometry": {
       "coordinates": [
@@ -516,7 +539,9 @@
       "Address": "Karl-Liebknecht-Straße 134",
       "Campus": "Campus-Karl-Liebknecht-Strasse",
       "Location_SVG": [12.3726, 51.31369],
-      "Floors": [4, 3, 2, 1, 0, -1]
+      "Floors": [4, 3, 2, 1, 0, -1],
+      "Janitor": "Stephan Becker",
+      "Description": "Der Nieper-Bau ist das neuste Lehr- und Laborgebäude der HTWK Leipzig und beheimatet die Fakultät Maschinenbau und Energietechnik. Es bietet neben Hörsälen und Seminarräumen auch moderne Labore und Werkstätten, wie zum Beispiel ein Roboterlabor."
     },
     "geometry": {
       "coordinates": [
@@ -538,7 +563,9 @@
       "Abbreviation": "SH",
       "Location": [12.33646, 51.32693],
       "Address": "Zschochersche Straße 69, Innenhof",
-      "Campus": "Campus-Digitale-Transformation"
+      "Campus": "Campus-Digitale-Transformation",
+      "Janitor": "Diethard Krey",
+      "Description": "Der im Innenhof des Hopper-Baus gelegene Shannon-Bau, wird von der Stiftungsfakultät Digitale Transformation genutzt. Er verfügt über zwei Hörsäle für jeweils 150 Studierende. Darüber hinaus sind acht Labore in dem dreietagigen Gebäude zu finden."
     },
     "geometry": {
       "coordinates": [
@@ -562,7 +589,9 @@
       "Abbreviation": "SP",
       "Location": [12.3837, 51.31026],
       "Address": "Arno-Nitzsche-Straße 29",
-      "Campus": "Arno-Nitzsche-Strasse"
+      "Campus": "Arno-Nitzsche-Strasse",
+      "Janitor": "Rico Schiemann",
+      "Description": "Die Sporthalle der HTWK Leipzig bietet Platz für rund 30 Hochschul-Sportkurse. Neben einer großen Halle mit einer 8,5 Meter hohen Kletterwand, gibt es einen Kraftraum mit Geräten und mehrere Fitness-Räume."
     },
     "geometry": {
       "coordinates": [
@@ -596,7 +625,9 @@
       "Location_SVG": [12.374926, 51.31305],
       "Floors": [2, 1, 0, -1],
       "TextXOffset": 0,
-      "TextYOffset": 1530
+      "TextYOffset": 1530,
+      "Janitor": "Steffen Kopsch",
+      "Description": "Im Trefftz-Bau-A ist neben Vorlesungs- und Seminarräumen auch das Rektorat zu finden. Außerdem gibt es einen Sportraum für Mitarbeitende."
     },
     "geometry": {
       "coordinates": [
@@ -640,7 +671,9 @@
       "Address": "Gustav-Freytag-Straße 45",
       "Campus": "Campus-Karl-Liebknecht-Strasse",
       "Location_SVG": [12.3759, 51.313451],
-      "Floors": [1, 0]
+      "Floors": [1, 0],
+      "Janitor": "Steffen Kopsch",
+      "Description": "Der Trefftz-Bau-B verbindet den Trefftz-Bau-A mit dem Trefftz-Bau-C. Hier sind ein paar Vorlesungs- und Seminarräume untergebracht."
     },
     "geometry": {
       "coordinates": [
@@ -666,7 +699,9 @@
       "Address": "Eichendorffstraße 14",
       "Campus": "Campus-Karl-Liebknecht-Strasse",
       "Location_SVG": [12.375663, 51.313568],
-      "Floors": [1, 0, -1]
+      "Floors": [1, 0, -1],
+      "Janitor": "Steffen Kopsch",
+      "Description": "Im Trefftz-Bau-C sitzt das Prüfungsamt. Im Keller ist das Eichamt E14 untergebracht, eine von Studierenden betriebener Club, der jeden Freitag ab 20 Uhr offen hat."
     },
     "geometry": {
       "coordinates": [
@@ -696,7 +731,9 @@
       "Location_SVG": [12.3748, 51.31322],
       "Floors": [3, 2, 1, 0],
       "TextXOffset": 0,
-      "TextYOffset": 630
+      "TextYOffset": 630,
+      "Janitor": "Steffen Kopsch",
+      "Description": "Der Trefftz-Bau-C ist mit dem Trefftz-Bau-A verbunden und bietet weitere Vorlesungs- und Seminarräume."
     },
     "geometry": {
       "coordinates": [
@@ -726,7 +763,9 @@
       "Abbreviation": "WI",
       "Location": [12.36616203969345, 51.33299642784445],
       "Address": "Wächterstraße 13",
-      "Campus": "Wiener-Bau"
+      "Campus": "Wiener-Bau",
+      "Janitor": "Mike Heisig",
+      "Description": "Der Wiener-Bau ist das Hochschulgebäude der Fakultät Elektrotechnik und Informationstechnik. Es ist neben den Vorlesungs und Seminarräumen, mit den für die Fakultät notwendigen Laboren und Werkstätten ausgestattet."
     },
     "geometry": {
       "coordinates": [
@@ -783,7 +822,9 @@
       "Address": "Gustav-Freytag-Straße 42 a",
       "Floors": [5, 4, 3, 2, 1, 0],
       "TextYOffset": 420,
-      "Campus": "Campus-Karl-Liebknecht-Strasse"
+      "Campus": "Campus-Karl-Liebknecht-Strasse",
+      "Janitor": "Uwe Junghanns",
+      "Description": "Im Zuse-Bau befinden sich Windows und Linux-Pools die von der Informatik als Seminarräume genutzt werden. Der Zuse-Bau ist über drei Geschosse mit dem Gutenberg-Bau verbunden."
     },
     "geometry": {
       "coordinates": [

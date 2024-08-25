@@ -2,7 +2,7 @@ import { BuildingInJson } from "../Map/Building";
 import { CampusInJson } from "../Map/Campus";
 import { ContactInJson } from "../State/RoomMapping";
 import { SnackbarItem } from "../UI/CustomSnackbar";
-import { EventInJson } from "../UI/RoomInfo";
+import { EventInJson } from "../UI/InfoDrawer";
 
 export type CampusContextProps = {
   position: [number, number];
@@ -22,6 +22,7 @@ export type CampusContextProps = {
   roomZoomReady?: boolean;
   snackbarItem: SnackbarItem;
   devMode: boolean;
+  focusedBuilding?: string;
 };
 
 export type CampusContextAction =
@@ -41,7 +42,8 @@ export type CampusContextAction =
   | { type: "UPDATE_INITIAL_ZOOM_REACHED"; initialZoomReached: boolean }
   | { type: "UPDATE_ROOM_ZOOM_READY"; roomZoomReady: boolean }
   | { type: "UPDATE_SNACKBAR_ITEM"; snackbarItem: SnackbarItem }
-  | { type: "TOGGLE_DEV_MODE" };
+  | { type: "TOGGLE_DEV_MODE" }
+  | { type: "UPDATE_FOCUSED_BUILDING"; focusedBuilding: string | undefined };
 
 const campusReducer = (
   state: CampusContextProps,
@@ -82,6 +84,8 @@ const campusReducer = (
       return { ...state, snackbarItem: action.snackbarItem };
     case "TOGGLE_DEV_MODE":
       return { ...state, devMode: !state.devMode };
+    case "UPDATE_FOCUSED_BUILDING":
+      return { ...state, focusedBuilding: action.focusedBuilding };
     default:
       return state;
   }

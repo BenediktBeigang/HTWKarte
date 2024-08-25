@@ -1,5 +1,6 @@
 import EventIcon from "@mui/icons-material/Event";
 import HomeIcon from "@mui/icons-material/Home";
+import InfoIcon from "@mui/icons-material/Info";
 import PersonIcon from "@mui/icons-material/Person";
 import SensorsIcon from "@mui/icons-material/Sensors";
 import { Divider, keyframes, List, ListItem, Paper, Typography } from "@mui/material";
@@ -7,7 +8,7 @@ import { format, FormatOptions } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { Fragment } from "react/jsx-runtime";
 import { HTWK_LIGHT_TEXT, HTWK_YELLOW } from "./Color";
-import RoomInfo, { EventInJson } from "./RoomInfo";
+import { BuildingInfo, ContactInfo, EventInJson } from "./InfoDrawer";
 
 const BOX_COLOR = "#495079"; // ROOM + "dd";
 
@@ -40,7 +41,7 @@ const InfoBox = ({ icon, content }: { icon: JSX.Element; content: JSX.Element[] 
   );
 };
 
-export const RoomNameBox = ({ roomInfo }: { roomInfo: RoomInfo }) => {
+export const TitleBox = ({ title }: { title: string }) => {
   return (
     <Paper
       sx={{
@@ -51,29 +52,56 @@ export const RoomNameBox = ({ roomInfo }: { roomInfo: RoomInfo }) => {
         flexDirection: "column",
         justifyContent: "left",
         backgroundColor: BOX_COLOR,
+        paddingLeft: "1em",
+        paddingRight: "1em",
       }}
     >
       <Typography variant="h4" align="center">
-        {roomInfo.name}
+        {title}
       </Typography>
     </Paper>
   );
 };
 
-export const ContactBox = ({ roomInfo }: { roomInfo: RoomInfo }) => {
+export const ImageBox = ({ building }: { building: string }) => {
+  return (
+    <Paper
+      sx={{
+        top: 0,
+        zIndex: 1,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "left",
+        backgroundColor: BOX_COLOR,
+      }}
+    >
+      <img
+        src={`/Images/${building}.png`}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          borderRadius: "0.5em",
+        }}
+      ></img>
+    </Paper>
+  );
+};
+
+export const ContactBox = ({ contact }: { contact: ContactInfo }) => {
   const contactContent = [];
 
-  if (roomInfo.person) contactContent.push(RoomInfoRow(roomInfo.person));
-  if (roomInfo.email)
+  if (contact.person) contactContent.push(RoomInfoRow(contact.person));
+  if (contact.email)
     contactContent.push(
       RoomInfoRow(
-        <a style={{ color: HTWK_LIGHT_TEXT }} href={`mailto:${roomInfo.email}`}>
-          {roomInfo.email}
+        <a style={{ color: HTWK_LIGHT_TEXT }} href={`mailto:${contact.email}`}>
+          {contact.email}
         </a>,
       ),
     );
-  if (roomInfo.telephone) {
-    const phoneNumber = roomInfo.telephone[0].number;
+  if (contact.telephone && contact.telephone.length > 0) {
+    const phoneNumber = contact.telephone[0].number;
     contactContent.push(
       RoomInfoRow(
         <a style={{ color: HTWK_LIGHT_TEXT + " !important" }} href={`tel:${phoneNumber}`}>
@@ -82,7 +110,7 @@ export const ContactBox = ({ roomInfo }: { roomInfo: RoomInfo }) => {
       ),
     );
   }
-  if (roomInfo.department) contactContent.push(RoomInfoRow(roomInfo.department));
+  if (contact.department) contactContent.push(RoomInfoRow(contact.department));
 
   return (
     <InfoBox
@@ -92,16 +120,26 @@ export const ContactBox = ({ roomInfo }: { roomInfo: RoomInfo }) => {
   );
 };
 
-export const BuildingBox = ({ roomInfo }: { roomInfo: RoomInfo }) => {
+export const BuildingBox = ({ building }: { building: BuildingInfo }) => {
   const buildingContent = [];
 
-  if (roomInfo.building) buildingContent.push(RoomInfoRow(roomInfo.building));
-  if (roomInfo.adress) buildingContent.push(RoomInfoRow(roomInfo.adress));
+  if (building.abbreviation) buildingContent.push(RoomInfoRow("Gebäudekürzel: " + building.abbreviation));
+  if (building.address) buildingContent.push(RoomInfoRow(building.address));
+  if (building.janitor) buildingContent.push(RoomInfoRow("Hausmeister: " + building.janitor));
 
   return (
     <InfoBox
       icon={<HomeIcon sx={{ alignSelf: "center", mb: "0.4em" }} />}
       content={buildingContent}
+    />
+  );
+};
+
+export const DescriptionBox = ({ description }: { description: string }) => {
+  return (
+    <InfoBox
+      icon={<InfoIcon sx={{ alignSelf: "center", mb: "0.4em" }} />}
+      content={[RoomInfoRow(description)]}
     />
   );
 };
@@ -200,7 +238,13 @@ export const EventBox = ({ events, devMode }: { events: EventInJson[]; devMode: 
       }}
     >
       <List
-        sx={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: "0.7em" }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          gap: "0.7em",
+          pb: "1em",
+        }}
       >
         <EventIcon sx={{ alignSelf: "center" }} />
         <Divider variant="middle" />

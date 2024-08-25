@@ -74,7 +74,7 @@ const switchToOutside = (
 ) => {
   const state = stateRef.current.state;
   cleanBuilding(state.currentBuilding);
-  drawRoof(state.currentBuilding);
+  drawRoof(state.currentBuilding, stateRef);
   stateRef.current.dispatch({ type: "UPDATE_BUILDING", currentBuilding: "None" });
   stateRef.current.dispatch({ type: "UPDATE_LEVEL_COUNT", levelCount: undefined });
   stateRef.current.dispatch({ type: "UPDATE_LEVEL", level: 0 });
@@ -196,7 +196,7 @@ const Campus = () => {
     const projection: d3.GeoProjection | undefined = createProjection(state.campusInfo);
     if (!projection) return;
 
-    createBuildings(buildingContainer, projection, buildingInfo_data);
+    createBuildings(buildingContainer, projection, buildingInfo_data, stateRef);
 
     drawBuildingOutlines(buildingContainer, projection, buildingInfo_data);
     // drawCampusOutlines(buildingContainer, projection, state.dataOfCampus, state.currentCampus);
