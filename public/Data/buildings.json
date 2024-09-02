@@ -2,12 +2,54 @@
   {
     "type": "Feature",
     "properties": {
-      "Name": "Lipsius",
+      "Name": "Mensa",
+      "Abbreviation": "MN",
+      "Location": [12.37416, 51.313205071012106],
+      "Address": "Karl-Liebknecht-Straße 145",
+      "Campus": "Campus-Karl-Liebknecht-Strasse",
+      "Location_SVG": [12.373827, 51.313507],
+      "Floors": [],
+      "Description": "Die Mensa Academica bietet in zwei Speisesälen Platz für jeweils 230 Personen, durch deren runde Bauform eine angenehme und ruhige Atmosphäre erzeugt wird. Zwischen den Speisesälen liegt die Cafeteria der Mensa Academica, die das Essensangebot durch eine Auswahl an Getränken und Snacks erweitert. Die insgesamt 100 Plätze der Cafeteria sind auf drei Stufen, unter einem großen Glasdach, verteilt."
+    },
+    "geometry": {
+      "coordinates": [
+        [
+          [12.373934269995601, 51.313478867795226],
+          [12.373928859312144, 51.3132970599699],
+          [12.373892649490045, 51.313297898242695],
+          [12.373891292150688, 51.31324102398739],
+          [12.373896488930654, 51.31324102398739],
+          [12.373907553043267, 51.3132232106646],
+          [12.373912749823234, 51.3132048734133],
+          [12.373908558874462, 51.313181611295704],
+          [12.373893806724908, 51.31315950178947],
+          [12.373888442307248, 51.31315950178947],
+          [12.37388723637838, 51.313100945138046],
+          [12.373923537844576, 51.31310100547793],
+          [12.373917687252145, 51.312917175981426],
+          [12.374455395872104, 51.31291148787878],
+          [12.374462408312041, 51.31317392235175],
+          [12.374502641446526, 51.31317297929198],
+          [12.374502641446526, 51.31320221412639],
+          [12.374462408312041, 51.31320231891107],
+          [12.374470413736105, 51.31347377921304],
+          [12.373934269995601, 51.313478867795226]
+        ]
+      ],
+      "type": "Polygon"
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "Name": "Lipsius-Bau",
       "Abbreviation": "LI",
       "Location": [12.373775, 51.31323],
       "Address": "Karl-Liebknecht-Straße 145",
       "Campus": "Campus-Karl-Liebknecht-Strasse",
       "Janitor": "André Trostdorf",
+      "Location_SVG": [12.37356, 51.313685],
+      "Floors": [4, 3, 2, 1, 0],
       "Description": "Der Lipsius-Bau ist ein Hochschulgebäude mit zwanzig Seminarräumen und drei Hörsälen, sowie über fünfzehn Laborräumen. Direkt dahinter liegt die Mensa, deren Eingänge sich im Foyer befinden."
     },
     "geometry": {
@@ -461,50 +503,12 @@
   {
     "type": "Feature",
     "properties": {
-      "Name": "Mensa",
-      "Abbreviation": "MN",
-      "Location": [12.37416, 51.313205071012106],
-      "Address": "Karl-Liebknecht-Straße 145",
-      "Campus": "Campus-Karl-Liebknecht-Strasse",
-      "Description": "Die Mensa Academica bietet in zwei Speisesälen Platz für jeweils 230 Personen, durch deren runde Bauform eine angenehme und ruhige Atmosphäre erzeugt wird. Zwischen den Speisesälen liegt die Cafeteria der Mensa Academica, die das Essensangebot durch eine Auswahl an Getränken und Snacks erweitert. Die insgesamt 100 Plätze der Cafeteria sind auf drei Stufen, unter einem großen Glasdach, verteilt."
-    },
-    "geometry": {
-      "coordinates": [
-        [
-          [12.373934269995601, 51.313478867795226],
-          [12.373928859312144, 51.3132970599699],
-          [12.373892649490045, 51.313297898242695],
-          [12.373891292150688, 51.31324102398739],
-          [12.373896488930654, 51.31324102398739],
-          [12.373907553043267, 51.3132232106646],
-          [12.373912749823234, 51.3132048734133],
-          [12.373908558874462, 51.313181611295704],
-          [12.373893806724908, 51.31315950178947],
-          [12.373888442307248, 51.31315950178947],
-          [12.37388723637838, 51.313100945138046],
-          [12.373923537844576, 51.31310100547793],
-          [12.373917687252145, 51.312917175981426],
-          [12.374455395872104, 51.31291148787878],
-          [12.374462408312041, 51.31317392235175],
-          [12.374502641446526, 51.31317297929198],
-          [12.374502641446526, 51.31320221412639],
-          [12.374462408312041, 51.31320231891107],
-          [12.374470413736105, 51.31347377921304],
-          [12.373934269995601, 51.313478867795226]
-        ]
-      ],
-      "type": "Polygon"
-    }
-  },
-  {
-    "type": "Feature",
-    "properties": {
       "Name": "Fechner-Bau",
       "Abbreviation": "FE",
       "Location": [12.3744, 51.3128],
       "Address": "Gustav-Freytag-Straße 41 a",
       "Campus": "Campus-Karl-Liebknecht-Strasse",
-      "Location_SVG": [12.374, 51.31288],
+      "Location_SVG": [12.37395, 51.31288],
       "Floors": [1, 0],
       "TextXOffset": 0,
       "TextYOffset": 0,

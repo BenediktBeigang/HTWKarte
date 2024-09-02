@@ -1,9 +1,10 @@
+import DiningIcon from "@mui/icons-material/Dining";
 import EventIcon from "@mui/icons-material/Event";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import PersonIcon from "@mui/icons-material/Person";
 import SensorsIcon from "@mui/icons-material/Sensors";
-import { Divider, keyframes, List, ListItem, Paper, Typography } from "@mui/material";
+import { Box, Divider, keyframes, Link, List, ListItem, Paper, Typography } from "@mui/material";
 import { format, FormatOptions } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { Fragment } from "react/jsx-runtime";
@@ -123,9 +124,27 @@ export const ContactBox = ({ contact }: { contact: ContactInfo }) => {
 export const BuildingBox = ({ building }: { building: BuildingInfo }) => {
   const buildingContent = [];
 
-  if (building.abbreviation) buildingContent.push(RoomInfoRow("Gebäudekürzel: " + building.abbreviation));
+  if (building.abbreviation)
+    buildingContent.push(RoomInfoRow("Gebäudekürzel: " + building.abbreviation));
   if (building.address) buildingContent.push(RoomInfoRow(building.address));
   if (building.janitor) buildingContent.push(RoomInfoRow("Hausmeister: " + building.janitor));
+  if (building.abbreviation === "MN")
+    buildingContent.push(
+      RoomInfoRow(
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <DiningIcon sx={{ marginRight: "0.2em" }} />
+          <Link
+            style={{ color: HTWK_LIGHT_TEXT }}
+            href="https://mensa.heylinus.de/"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{ textDecoration: "underline", paddingTop: "0.05em" }}
+          >
+            Mensa App
+          </Link>
+        </Box>,
+      ),
+    );
 
   return (
     <InfoBox

@@ -201,7 +201,8 @@ export const drawBuildingOutlines = (
       !buildingContainer ||
       !building.geometry.coordinates ||
       building.geometry.coordinates.length === 0 ||
-      FinishedBuildings.includes(building.properties.Abbreviation)
+      FinishedBuildings.includes(building.properties.Abbreviation) ||
+      building.properties.Abbreviation === "MN"
     )
       return;
     const polygon = building.geometry.coordinates[0].map((coord) => {
