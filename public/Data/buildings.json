@@ -49,7 +49,7 @@
       "Campus": "Campus-Karl-Liebknecht-Strasse",
       "Janitor": "André Trostdorf",
       "Location_SVG": [12.37356, 51.313685],
-      "Floors": [4, 3, 2, 1, 0],
+      "Floors": [4, 3, 2, 1, 0, -1],
       "Description": "Der Lipsius-Bau ist ein Hochschulgebäude mit zwanzig Seminarräumen und drei Hörsälen, sowie über fünfzehn Laborräumen. Direkt dahinter liegt die Mensa, deren Eingänge sich im Foyer befinden."
     },
     "geometry": {

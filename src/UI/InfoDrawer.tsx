@@ -161,7 +161,7 @@ const InfoDrawer = () => {
         />
 
         {currentRoomID !== "None" && (
-          <TitleBox title={splitRoomName(currentRoomID)?.join(" ") ?? currentRoomID} />
+          <TitleBox title={splitRoomName(currentRoomID)?.join(" ").replace("-", ".") ?? currentRoomID} />
         )}
         {currentRoomID === "None" && focusedBuilding !== undefined && (
           <TitleBox
