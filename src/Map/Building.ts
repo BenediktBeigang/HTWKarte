@@ -56,7 +56,9 @@ const prepareRooms = (
 
   const rooms = Array.from(
     floor
-      .selectAll(`g[id='floor_${level}'] > g[id='rooms_${level}'] *[id*='${buildingAbbreviation}']`)
+      .selectAll(
+        `g[id='floor_${level}'] > g[id='rooms_${level}'] *[id*='${buildingAbbreviation.replace("Ö", "O")}']`,
+      )
       .nodes(),
   );
 

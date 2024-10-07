@@ -47,6 +47,7 @@ export const getRoomName = (roomID: string) => {
 };
 
 export const updateRoomHighlighting = (roomID: string, active: boolean) => {
+  roomID = roomID.replace("Ö", "O");
   const room = d3.select(`#${roomID}`);
   if (roomID === "" || !room) return;
   room
@@ -56,6 +57,7 @@ export const updateRoomHighlighting = (roomID: string, active: boolean) => {
 };
 
 export const pingRoom = (roomID: string) => {
+  roomID = roomID.replace("Ö", "O");
   const room = d3.select(`#${roomID}`);
   if (roomID === "" || !room) return;
   blinkRoom(room, 2);
@@ -87,7 +89,7 @@ export const roomClickedHandler = (
     stateRef.current.dispatch({ type: "UPDATE_ROOM", currentRoomID: "None" });
     return;
   }
-  stateRef.current.dispatch({ type: "UPDATE_ROOM", currentRoomID: idOfClickedRoom });
+  stateRef.current.dispatch({ type: "UPDATE_ROOM", currentRoomID: idOfClickedRoom.replace("FO", "FÖ") });
   updateRoomHighlighting(idOfClickedRoom, true);
 };
 

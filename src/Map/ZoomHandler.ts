@@ -337,7 +337,7 @@ const findRoomInSVG = async (
   ).then((floorContainer: any) => {
     const floorSVG = floorContainer.select(`g[id='floor_${level}']`);
     const rooms = floorSVG.select(`g[id='rooms_${level}']`);
-    const svgRoomID = roomID!.replace(".", "-");
+    const svgRoomID = roomID!.replace(".", "-").replace("Ö", "O");
     return {
       floorContainer,
       roomSVG: rooms.select(`rect[id='${svgRoomID}'], path[id='${svgRoomID}']`),
