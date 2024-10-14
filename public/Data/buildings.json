@@ -327,7 +327,7 @@
       "Location": [12.372140532223426, 51.31436],
       "Address": "Kochstraße 85",
       "Location_SVG": [12.37165, 51.31445],
-      "Floors": [1, 0],
+      "Floors": [3, 2, 1, 0],
       "Campus": "Campus-Karl-Liebknecht-Strasse",
       "Janitor": "Frank Naumann",
       "Description": "Der Föppl-Bau ist ausgestattet mit Hörsälen für Experimentalvorlesungen und weiteren Seminarräumen und Laboren. Besondere Aufmerksamkeit wurde der modernen technischen Ausstattung gewidmet."
