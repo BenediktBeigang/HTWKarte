@@ -216,8 +216,8 @@ export const Header = () => {
           }}
           onClick={() => dispatch({ type: "TOGGLE_DEV_MODE" })}
         >
-          <Tooltip title="Die Seite befindet sich noch in der Entwicklung. Features können fehlerhaft oder nicht fertiggestellt sein.">
-            <Typography>Alpha Version</Typography>
+          <Tooltip title="Die Seite befindet sich noch in der Entwicklung. Sind Features fehlerhaft melde dies bitte.">
+            <Typography>Beta Version</Typography>
           </Tooltip>
         </Box>
         <Drawer variant="temporary" anchor="top" open={mobileOpen} onClose={handleDrawerToggle}>

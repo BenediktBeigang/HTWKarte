@@ -2,7 +2,12 @@ export const faqData = [
   {
     question: "Was ist die HTWKarte?",
     answer:
-      "Die HTWKarte visualisiert alle von der HTWK genutzten Gebäude mit ihren Räumen und ermöglicht den Nutzern schnell ihre Räume zu finden. Das Projekt wird von Studierenden für Studierende entwickelt und ist derzeit noch in Entwicklung.",
+      "Die HTWKarte visualisiert alle von der HTWK genutzten Gebäude mit ihren Räumen und ermöglicht den Nutzern schnell ihre Räume zu finden. Das Projekt wird von Studierenden für Studierende entwickelt.",
+  },
+  {
+    question: "Was kann ich derzeit suchen?",
+    answer:
+      "Die Suchleiste ermöglicht derzeit entweder die direkte Suche nach einem Raum oder die Suche nach dem Büro einer Person. Wird direkt nach einem Raum gesucht ist darauf zu achten das richtige Format zu wählen: BBERR (BB: Gebäudekürzel, E: Etage, RR: Raumnummer).",
   },
   {
     question: "Ich habe einen Fehler/Inkonsistenz gefunden, was kann ich tun?",
@@ -22,11 +27,11 @@ export const faqData = [
   {
     question: "Kann ich an der HTWKarte mitarbeiten?",
     answer:
-      "Das Projekt entsteht im Rahmen des Moduls Progressiv-Web-Apps und ist daher eine Prüfungsleistung. Nach Abschluss des Moduls wird die HTWKarte OpenSource und jeder kann daran mitarbeiten. Du kannst aber natürlich schon jetzt dir das Repo auf dem GitLab-Server angucken.",
+      "Ja das geht! Das Repository ist auf dem GitLab-Server der HTWK Leipzig zu finden.",
   },
   {
     question: "Kann ich die App auch offline nutzen?",
-    answer: "Ja dies wird bald möglich sein. Das Feature ist derzeit in Entwicklung.",
+    answer: "Ja dies ist möglich. Wenn du Google-Chrome verwendest kannst du die HTWKarte lokal installieren.",
   },
   {
     question: "Wie genau sind die Informationen und Pläne?",

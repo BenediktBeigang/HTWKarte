@@ -69,20 +69,23 @@ const extractRoomID = (roomTitle: string): string | undefined => {
 const convert = (htwkRoomAPI_data: ContactInJson_htwk[]): ContactInJson[] => {
   const convertedData: ContactInJson[] = [];
 
-  for (const room of htwkRoomAPI_data) {
-    const roomID = extractRoomID(room.room.title);
-    if (!roomID) continue;
-    convertedData.push({
-      roomID,
-      firstName: room.firstName,
-      lastName: room.lastName,
-      email: room.email,
-      telephone: room.telephone,
-      department: room.department,
-    });
+  try {
+    for (const room of htwkRoomAPI_data) {
+      const roomID = extractRoomID(room.room.title);
+      if (!roomID) continue;
+      convertedData.push({
+        roomID,
+        firstName: room.firstName,
+        lastName: room.lastName,
+        email: room.email,
+        telephone: room.telephone,
+        department: room.department,
+      });
+    }
+    return convertedData;
+  } catch (e) {
+    return [];
   }
-
-  return convertedData;
 };
 
 const RoomMapping = () => {
@@ -92,7 +95,7 @@ const RoomMapping = () => {
 
   useEffect(() => {
     if (!htwkRoomAPI_data) return;
-    const convertedData = convert(htwkRoomAPI_data);
+    const convertedData = convert(htwkRoomAPI_data["hydra:member"]);
     dispatch({
       type: "UPDATE_CONTACT_INFO",
       dataOfContact: convertedData,
