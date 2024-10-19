@@ -511,7 +511,7 @@
       "Address": "Gustav-Freytag-Straße 41 a",
       "Campus": "Campus-Karl-Liebknecht-Strasse",
       "Location_SVG": [12.37395, 51.31288],
-      "Floors": [1, 0],
+      "Floors": [4, 3, 2, 1, 0],
       "TextXOffset": 0,
       "TextYOffset": 0,
       "Janitor": "André Trostdorf",
