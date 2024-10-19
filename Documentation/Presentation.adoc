@@ -1,0 +1,26 @@
+= Präsentation der HTWKarte
+
+* Grundlegende Technologien
+** React
+** Typescript
+** Vite
+** Material-UI
+
+* Kartenansicht
+** D3.js
+** Erst leaflet.js, dann D3.js weil das Nachladen der Kacheln nervig ist
+** Erstellung der SVGs für die Etagen mit Bauplänen
+** Erst Probleme mit Performance bei vielen SVGs, sodass nur noch Roofs und die derzeit sichtbare Etage geladen werden
+** Dynamisches erzeugen der Raumnamen ebenfalls nicht performant, sodass diese in Inkscape erstellt wurden und als ein großer Pfad geladen werden (macht Karte jedoch weniger flexibel)
+** Box-shadows der Treppen ersetzt durch schwarze linien da unterschied nicht wirklich erkennbar aber filter sehr große performenceeinbußen hat 
+
+* Ressourcen und APIs
+** Von der HTWK-api wird die telephone api genutzt und vom HTWKalender die schedule API (NetworkFirst, wird eine Woche vorgehalten)
+** Alle anderen Ressourcen ändern sich so selten, dass sie als statische Assets behandelt werden können im PWA Modus via vite-plugin-pwa
+** TanStack Query für Caching und Handling der API-Requests
+** vite-plugin-pwa für PWA Funktionalität
+** Event Info
+** Büro Info
+
+* Gebäude Info
+* Link-out vom HTWKalender

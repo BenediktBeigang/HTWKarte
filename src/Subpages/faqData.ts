@@ -26,12 +26,12 @@ export const faqData = [
   },
   {
     question: "Kann ich an der HTWKarte mitarbeiten?",
-    answer:
-      "Ja das geht! Das Repository ist auf dem GitLab-Server der HTWK Leipzig zu finden.",
+    answer: "Ja das geht! Das Repository ist auf dem GitLab-Server der HTWK Leipzig zu finden.",
   },
   {
     question: "Kann ich die App auch offline nutzen?",
-    answer: "Ja dies ist möglich. Wenn du Google-Chrome verwendest kannst du die HTWKarte lokal installieren.",
+    answer:
+      "Ja dies ist möglich. Wenn du Google-Chrome verwendest kannst du die HTWKarte lokal installieren.",
   },
   {
     question: "Wie genau sind die Informationen und Pläne?",

@@ -296,6 +296,7 @@
       "Abbreviation": "E2",
       "Location": [12.372037309603314, 51.31364],
       "Address": "Eichendorffstraße 2",
+      "Location_SVG": [12.372037309603314, 51.31364],
       "Campus": "Campus-Karl-Liebknecht-Strasse",
       "Janitor": "Frank Naumann",
       "Description": "Das Gebäude in der Eichendorffstraße ist sowohl Sitz des/der Kanzlers/Kanzlerin als auch derjenige der Hauptverwaltung. Im Gebäude sind die Büros der Mitarbeiter aller Dezernate untergebracht."
@@ -326,7 +327,7 @@
       "Abbreviation": "FÖ",
       "Location": [12.372140532223426, 51.31436],
       "Address": "Kochstraße 85",
-      "Location_SVG": [12.37165, 51.31445],
+      "Location_SVG": [12.37155, 51.31445],
       "Floors": [3, 2, 1, 0],
       "Campus": "Campus-Karl-Liebknecht-Strasse",
       "Janitor": "Frank Naumann",

@@ -214,8 +214,7 @@ export const drawBuildingOutlines = (
     buildingContainer
       .append("polygon")
       .attr("points", polygon.join(" "))
-      .attr("fill", "none")
-      .attr("stroke", "red")
+      .attr("fill", "#393e3f")
       .attr("stroke-width", 20)
       .attr("stroke-linejoin", "round");
   });

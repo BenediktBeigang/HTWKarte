@@ -17,6 +17,8 @@ import {
   Toolbar,
   Tooltip,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import "primeicons/primeicons.css";
 import { useEffect, useRef, useState } from "react";
@@ -77,6 +79,8 @@ export const Header = () => {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const currentSubPage = window.location.pathname.split("/")[1];
+  const theme = useTheme();
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -158,6 +162,7 @@ export const Header = () => {
             </MuiLink>
           </Box>
         </Box>
+        {isLargeScreen && <Typography sx={{ fontSize: "2em", mr: "0.5em" }}>HTWKarte</Typography>}
         <Hidden smUp>
           <IconButton
             color="inherit"

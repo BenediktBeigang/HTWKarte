@@ -10,7 +10,6 @@ import { useCampusState } from "../State/campus-context";
 import { CampusContextAction, CampusContextProps } from "../State/campus-reducer";
 import { useBuildingInfo, useCampusInfo } from "../State/Querys";
 import RoomMapping from "../State/RoomMapping";
-import { HTWKALENDER_GRAY } from "../UI/Color";
 import {
   BuildingInJson,
   cleanBuilding,
@@ -19,6 +18,7 @@ import {
   drawRoof,
   switchToInside,
 } from "./Building";
+import { drawEntrances, drawParkingLots, drawStreets } from "./MapBackground";
 import { ParsedRoomID, parseRoomID } from "./Room";
 import {
   createZoom,
@@ -200,6 +200,9 @@ const Campus = () => {
 
     drawBuildingOutlines(buildingContainer, projection, buildingInfo_data);
     // drawCampusOutlines(buildingContainer, projection, state.dataOfCampus, state.currentCampus);
+    drawStreets(buildingContainer, projection);
+    drawEntrances(buildingContainer, projection);
+    drawParkingLots(buildingContainer);
 
     createZoom(campusSVG, buildingContainer, projection, stateRef);
 
@@ -240,10 +243,7 @@ const Campus = () => {
 
   return (
     <>
-      <Box
-        id="campus-container"
-        style={{ width: "100%", height: "100%", backgroundColor: HTWKALENDER_GRAY }}
-      ></Box>
+      <Box id="campus-container" style={{ width: "100%", height: "100%" }}></Box>
       <RoomMapping />
     </>
   );
