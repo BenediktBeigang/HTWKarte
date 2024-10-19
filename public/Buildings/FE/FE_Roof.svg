@@ -1,8 +1,5 @@
 <svg width="4007" height="1500" viewBox="0 0 4007 1500" version="1.1" id="svg1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
   <defs id="defs1">
-    <linearGradient id="swatch446">
-      <stop style="stop-color:#4c5a5f;stop-opacity:1" offset="0" id="stop446"/>
-    </linearGradient>
     <marker style="overflow:visible" id="Triangle" refX="0" refY="0" orient="auto-start-reverse" markerWidth="1" markerHeight="1" viewBox="0 0 1 1" preserveAspectRatio="xMidYMid">
       <path transform="scale(0.5)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="M 5.77,0 -2.88,5 V -5 Z" id="path597"/>
     </marker>
