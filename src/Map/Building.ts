@@ -133,15 +133,19 @@ export const drawRoof = (
   d3.xml(pathToRoof).then((xmlData: XMLDocument) => {
     const floorSVG_data = document.importNode(xmlData.documentElement, true);
     const floorSVG = d3.select(buildingSVG.node()).append(() => floorSVG_data);
-    floorSVG.attr("id", `${buildingAbbreviation}_roof`);
-    floorSVG.style("opacity", 0);
-    floorSVG.transition().duration(200).style("opacity", 1);
-    floorSVG.on("click", () => {
-      stateRef.current.dispatch({
-        type: "UPDATE_FOCUSED_BUILDING",
-        focusedBuilding: buildingAbbreviation,
+    try {
+      floorSVG.attr("id", `${buildingAbbreviation}_roof`);
+      floorSVG.style("opacity", 0);
+      floorSVG.transition().duration(200).style("opacity", 1);
+      floorSVG.on("click", () => {
+        stateRef.current.dispatch({
+          type: "UPDATE_FOCUSED_BUILDING",
+          focusedBuilding: buildingAbbreviation,
+        });
       });
-    });
+    } catch (e) {
+      return;
+    }
   });
 };
 

@@ -139,7 +139,7 @@ const InfoDrawer = () => {
         onClick={toggleDrawer(false)}
         onKeyDown={toggleDrawer(false)}
         style={RoomInfoStyle}
-        maxWidth="25em"
+        maxWidth={desktopMode ? "25em" : "100%"}
         sx={{
           display: "flex",
           flexDirection: "column",

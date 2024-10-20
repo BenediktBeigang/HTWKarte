@@ -113,13 +113,14 @@ export const roomZoomEventHandler = async (
     roomSearchResult = await findRoomInSVG(roomID, stateRef, completeBuildingInfo);
     if (!roomSearchResult) throw new MissingRoomException(`${roomID} is not a known room`);
 
-    const { roomSVG, buildingAbbreviation, floorSVG, roomsContainer } = roomSearchResult;
+    const { roomSVG, buildingAbbreviation, floorSVG, roomsContainer, level } = roomSearchResult;
 
     targetPosition = extractRoomCoordinates(
       roomSVG,
       buildingAbbreviation,
       floorSVG,
       roomsContainer,
+      level,
     );
     removeRoof(roomSearchResult.buildingAbbreviation);
 
@@ -346,7 +347,7 @@ const findRoomInSVG = async (
   });
   if (roomSVG.empty())
     throw new MissingRoomException(`${room} is not a known room on level ${level}`);
-  return { roomSVG, buildingAbbreviation, floorSVG: floorContainer, roomsContainer };
+  return { roomSVG, buildingAbbreviation, floorSVG: floorContainer, roomsContainer, level };
 };
 
 const extractRoomCoordinates = (
@@ -354,6 +355,7 @@ const extractRoomCoordinates = (
   buildingAbbreviation: string,
   floorSVG: any,
   roomsContainer: any,
+  level: number,
 ): [number, number] => {
   if (!roomSVG.node()) throw new Error("Raum nicht gefunden");
 
@@ -368,10 +370,13 @@ const extractRoomCoordinates = (
   const floorBBox = floorSVG.node().getBBox();
   const roomsContainerBBox = roomsContainer.node().getBBox();
 
+  const offsetX = buildingAbbreviation === "MZ" && level === 2 ? 1500 : 0;
+
   const targetPositionX =
-    buildingPosX + floorBBox.x + roomsContainerBBox.x + roomBBox.x + roomBBox.width / 2;
+    buildingPosX + floorBBox.x + roomsContainerBBox.x + roomBBox.x + roomBBox.width / 2 + offsetX;
   const targetPositionY =
     buildingPosY + floorBBox.y - roomsContainerBBox.y + roomBBox.y + roomBBox.width / 2;
+
   return [targetPositionX, targetPositionY];
 };
 

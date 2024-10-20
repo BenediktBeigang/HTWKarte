@@ -3,6 +3,7 @@ import {
   AppBar,
   Box,
   Button,
+  Divider,
   Drawer,
   Hidden,
   IconButton,
@@ -15,7 +16,6 @@ import {
   Link as MuiLink,
   TextField,
   Toolbar,
-  Tooltip,
   Typography,
   useMediaQuery,
   useTheme,
@@ -80,7 +80,7 @@ export const Header = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const currentSubPage = window.location.pathname.split("/")[1];
   const theme = useTheme();
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("md"));
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -144,6 +144,8 @@ export const Header = () => {
         margin: "0.5em",
       }}
     >
+      <Typography sx={{ marginX: "0.5em", fontSize: "2em" }}>HTWKarte</Typography>
+      <Divider />
       {HeaderButton("faq", "pi pi-book", currentSubPage === "faq")}
       {HeaderButton("imprint", "pi pi-id-card", currentSubPage === "imprint")}
       {HeaderButton("privacy", "pi pi-exclamation-triangle", currentSubPage === "privacy")}
@@ -210,7 +212,7 @@ export const Header = () => {
             )}
           </Box>
         </Box>
-        <Box
+        {/* <Box
           display="flex"
           justifyContent="center"
           flexWrap="wrap"
@@ -224,7 +226,7 @@ export const Header = () => {
           <Tooltip title="Die Seite befindet sich noch in der Entwicklung. Sind Features fehlerhaft melde dies bitte.">
             <Typography>Beta Version</Typography>
           </Tooltip>
-        </Box>
+        </Box> */}
         <Drawer variant="temporary" anchor="top" open={mobileOpen} onClose={handleDrawerToggle}>
           {drawer}
         </Drawer>
