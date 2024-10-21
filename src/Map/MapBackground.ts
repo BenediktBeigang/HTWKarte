@@ -33,6 +33,30 @@ export const drawStreets = (
     [12.3756, 51.31375],
   ];
   addStreet(buildingContainer, projection, trCStr);
+
+  const parkingStrR1: [number, number][] = [
+    [12.37561, 51.31247],
+    [12.37561, 51.31268],
+  ];
+  addStreet(buildingContainer, projection, parkingStrR1);
+
+  const parkingStrL1: [number, number][] = [
+    [12.37547, 51.31247],
+    [12.37547, 51.31268],
+  ];
+  addStreet(buildingContainer, projection, parkingStrL1);
+
+  const parkingStrR2: [number, number][] = [
+    [12.37561, 51.3122],
+    [12.37561, 51.31233],
+  ];
+  addStreet(buildingContainer, projection, parkingStrR2);
+
+  const parkingStrL2: [number, number][] = [
+    [12.37547, 51.3122],
+    [12.37547, 51.31233],
+  ];
+  addStreet(buildingContainer, projection, parkingStrL2);
 };
 
 const addStreet = (
@@ -82,10 +106,11 @@ export const drawEntrances = (
   addEntrance(buildingContainer, projection([12.3749, 51.312868]) ?? [0, 0], 90); // a west
   addEntrance(buildingContainer, projection([12.37609, 51.31277]) ?? [0, 0]); // a east
   addEntrance(buildingContainer, projection([12.3758, 51.313065]) ?? [0, 0], 180); // a north
-  addEntrance(buildingContainer, projection([12.37588, 51.313069]) ?? [0, 0], 90); // b north
+  addEntrance(buildingContainer, projection([12.37588, 51.313069]) ?? [0, 0], 90); // b west
+  addEntrance(buildingContainer, projection([12.3763, 51.313069]) ?? [0, 0], 270); // b east
   addEntrance(buildingContainer, projection([12.3757, 51.3131]) ?? [0, 0], 270); // l building
   addEntrance(buildingContainer, projection([12.375845, 51.31342]) ?? [0, 0]); // c building
-  addEntrance(buildingContainer, projection([12.37598, 51.313575]) ?? [0, 0], 180); // eichamt
+  addEntrance(buildingContainer, projection([12.37598, 51.313575]) ?? [0, 0], 180, true); // eichamt
 
   // NI
   addEntrance(buildingContainer, projection([12.373, 51.313028]) ?? [0, 0], 270);
@@ -99,6 +124,7 @@ const addEntrance = (
   buildingContainer: d3.Selection<SVGGElement, unknown, HTMLElement, any>,
   position: [number, number],
   rotation: number = 0,
+  lower: boolean = false,
 ) => {
   const [x, y] = position;
   const size = 150;
@@ -106,11 +132,11 @@ const addEntrance = (
   const polygon = buildingContainer
     .append("polygon")
     .attr("points", `${x},${y - size} ${x - size},${y + size} ${x + size},${y + size}`)
-    .attr("fill", HTWK_YELLOW)
     .attr("stroke", HTWK_YELLOW)
-    .attr("stroke-width", 1)
+    .attr("stroke-width", 40)
     .attr("stroke-linecap", "round")
     .attr("stroke-linejoin", "round");
+  lower ? polygon.attr("fill", "transparent") : polygon.attr("fill", HTWK_YELLOW);
 
   if (rotation !== 0) {
     polygon.attr("transform", `rotate(${rotation}, ${x}, ${y})`);
@@ -146,4 +172,29 @@ export const drawParkingLots = (
     .attr("fill", "white")
     .attr("font-size", "4000px")
     .text(textContent);
+};
+
+export const drawNotAccessible = (
+  buildingContainer: d3.Selection<SVGGElement, unknown, HTMLElement, any>,
+) => {
+  addNotAccessible(buildingContainer, 17000, 22300); // LI north-west
+  addNotAccessible(buildingContainer, 21300, 22300); // LI north-east
+  addNotAccessible(buildingContainer, 16900, 33200); // LI south
+  addNotAccessible(buildingContainer, 25000, 34100); // GU
+  addNotAccessible(buildingContainer, 23200, 31000); // TR_A west
+  addNotAccessible(buildingContainer, 32300, 32800); // TR_A east
+};
+
+const addNotAccessible = (
+  buildingContainer: d3.Selection<SVGGElement, unknown, HTMLElement, any>,
+  x: number,
+  y: number,
+) => {
+  buildingContainer
+    .append("svg:image")
+    .attr("x", x)
+    .attr("y", y)
+    .attr("width", 700)
+    .attr("height", 700)
+    .attr("xlink:href", "/Icons/notAccessible.svg");
 };

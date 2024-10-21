@@ -18,7 +18,7 @@ import {
   drawRoof,
   switchToInside,
 } from "./Building";
-import { drawEntrances, drawParkingLots, drawStreets } from "./MapBackground";
+import { drawEntrances, drawNotAccessible, drawParkingLots, drawStreets } from "./MapBackground";
 import { ParsedRoomID, parseRoomID } from "./Room";
 import {
   createZoom,
@@ -203,6 +203,7 @@ const Campus = () => {
     drawStreets(buildingContainer, projection);
     drawEntrances(buildingContainer, projection);
     drawParkingLots(buildingContainer);
+    drawNotAccessible(buildingContainer);
 
     createZoom(campusSVG, buildingContainer, projection, stateRef);
 
