@@ -94,7 +94,7 @@ export const Header = () => {
   };
 
   const handleSearchKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key !== "Enter" || !state.contactInfo) return;
+    if (event.key !== "Enter") return;
 
     const correctedRoomID: string = correctRoomSearchTerm(searchValue);
     setSearchValue(correctedRoomID);
