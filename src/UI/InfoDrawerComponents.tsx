@@ -1,13 +1,27 @@
+import CopyIcon from "@mui/icons-material/ContentCopy";
 import DiningIcon from "@mui/icons-material/Dining";
 import EventIcon from "@mui/icons-material/Event";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import PersonIcon from "@mui/icons-material/Person";
 import SensorsIcon from "@mui/icons-material/Sensors";
-import { Box, Divider, keyframes, Link, List, ListItem, Paper, Typography } from "@mui/material";
+import ShareIcon from "@mui/icons-material/Share";
+import {
+  Box,
+  Divider,
+  IconButton,
+  keyframes,
+  Link,
+  List,
+  ListItem,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { format, FormatOptions } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
+import { MutableRefObject } from "react";
 import { Fragment } from "react/jsx-runtime";
+import { CampusContextAction } from "../State/campus-reducer";
 import { HTWK_LIGHT_TEXT, HTWK_YELLOW } from "./Color";
 import { BuildingInfo, ContactInfo, EventInJson } from "./InfoDrawer";
 
@@ -42,25 +56,92 @@ const InfoBox = ({ icon, content }: { icon: JSX.Element; content: JSX.Element[] 
   );
 };
 
-export const TitleBox = ({ title }: { title: string }) => {
+const handleShare = async ({
+  roomID,
+  stateRef,
+}: {
+  roomID: string;
+  stateRef: MutableRefObject<{
+    dispatch: (value: CampusContextAction) => void;
+  }>;
+}) => {
+  const shareData = {
+    title: "HTWKarte",
+    text: "Schau dir diesen Raum der HTWK an:",
+    url: `https://map.htwk-leipzig.de/${roomID}`,
+  };
+  if (navigator.share) {
+    await navigator.share(shareData);
+    return;
+  }
+  if (!navigator.clipboard || !navigator.clipboard.writeText) return;
+  await navigator.clipboard.writeText(shareData.url);
+  stateRef.current.dispatch({
+    type: "UPDATE_SNACKBAR_ITEM",
+    snackbarItem: {
+      message: "Link zum Raum kopiert!",
+      severity: "success",
+    },
+  });
+};
+
+export const TitleBox = ({
+  title,
+  shareButton,
+  currentRoomID,
+  stateRef,
+}: {
+  title: string;
+  shareButton: boolean;
+  currentRoomID: string;
+  stateRef: MutableRefObject<{
+    dispatch: (value: CampusContextAction) => void;
+  }>;
+}) => {
   return (
-    <Paper
+    <Box
       sx={{
         position: "sticky",
         top: 0,
         zIndex: 10,
         display: "flex",
-        flexDirection: "column",
         justifyContent: "left",
-        backgroundColor: BOX_COLOR,
-        paddingLeft: "1em",
-        paddingRight: "1em",
+        flexDirection: "row",
+        width: "100%",
       }}
     >
-      <Typography variant="h4" align="center">
-        {title}
-      </Typography>
-    </Paper>
+      <Paper
+        sx={{
+          width: "100%",
+          backgroundColor: BOX_COLOR,
+          paddingLeft: "1em",
+          paddingRight: "1em",
+          marginRight: shareButton ? "1em" : 0,
+        }}
+      >
+        <Typography variant="h4" align="center">
+          {title}
+        </Typography>
+      </Paper>
+      {shareButton && (
+        <Paper
+          sx={{
+            backgroundColor: HTWK_YELLOW,
+            paddingLeft: "1em",
+            paddingRight: "1em",
+            height: "3em",
+          }}
+        >
+          <IconButton onClick={() => handleShare({ roomID: currentRoomID, stateRef })}>
+            {typeof navigator.share === "function" ? (
+              <ShareIcon sx={{ color: "#000000ee" }} />
+            ) : (
+              <CopyIcon sx={{ color: "#000000ee" }} />
+            )}
+          </IconButton>
+        </Paper>
+      )}
+    </Box>
   );
 };
 

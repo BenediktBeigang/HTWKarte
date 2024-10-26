@@ -36,7 +36,7 @@ const CustomSnackbar = () => {
         onClose={handleClose}
         severity={state.snackbarItem.severity}
         variant="filled"
-        sx={{ width: "100%" }}
+        sx={{ width: "100%", color: "white" }}
       >
         {state.snackbarItem.message}
       </Alert>

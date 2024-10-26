@@ -1,7 +1,7 @@
 import { Box, Drawer } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BuildingInJson } from "../Map/Building";
 import { splitRoomName, updateRoomHighlighting } from "../Map/Room";
 import { useCampusState } from "../State/campus-context";
@@ -63,6 +63,7 @@ const InfoDrawer = () => {
   const [buildingCard, setBuildingCard] = useState<BuildingInfo | undefined>(undefined);
   const [eventsCard, setEventsCard] = useState<EventInJson[] | undefined>(undefined);
   const { data: buildingInfo_data } = useBuildingInfo();
+  const stateRef = useRef({ dispatch });
 
   const theme = useTheme();
   const desktopMode = useMediaQuery(theme.breakpoints.up("sm"));
@@ -166,6 +167,9 @@ const InfoDrawer = () => {
               splitRoomName(currentRoomID)?.join(" ").replace("-", ".").replace("FO", "FÖ") ??
               currentRoomID
             }
+            shareButton={true}
+            currentRoomID={currentRoomID}
+            stateRef={stateRef}
           />
         )}
         {currentRoomID === "None" && focusedBuilding !== undefined && (
@@ -175,6 +179,9 @@ const InfoDrawer = () => {
                 (building: BuildingInJson) => building.properties.Abbreviation === focusedBuilding,
               ).properties.Name
             }
+            shareButton={false}
+            currentRoomID={""}
+            stateRef={stateRef}
           />
         )}
         {focusedBuilding && <ImageBox building={focusedBuilding} />}
