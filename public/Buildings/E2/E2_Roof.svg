@@ -1,0 +1,16 @@
+<svg width="3700" height="1400" viewBox="0 0 3700 1400" version="1.1" id="svg1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+  <defs id="defs1">
+    <marker style="overflow:visible" id="Triangle" refX="0" refY="0" orient="auto-start-reverse" markerWidth="1" markerHeight="1" viewBox="0 0 1 1" preserveAspectRatio="xMidYMid">
+      <path transform="scale(0.5)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="M 5.77,0 -2.88,5 V -5 Z" id="path597"/>
+    </marker>
+  </defs>
+  <g id="roof" style="display:inline" transform="translate(0,-900)">
+    <path style="font-variation-settings:'wght' 700;fill:#c0c3cb;fill-opacity:1;stroke:#fbfdfe;stroke-width:55;stroke-dasharray:none;stroke-opacity:1" d="m 456.90529,937.83592 376.67812,-4e-5 v 37.82939 l 2838.66259,3e-5 V 2253.7616 H 456.90529 Z" id="path207"/>
+    <rect style="font-variation-settings:'wght' 700;fill:#e1e4e7;fill-opacity:1;stroke:none;stroke-width:40.005;stroke-dasharray:none;stroke-opacity:1" id="rect207" width="351.34628" height="268" x="557.10797" y="1064.9684"/>
+    <rect style="font-variation-settings:'wght' 700;fill:#ada69c;fill-opacity:1;stroke:none;stroke-width:38.6172;stroke-dasharray:none;stroke-opacity:1" id="rect208" width="111.34628" height="788" x="3533.3579" y="1201.7987"/>
+    <rect style="font-variation-settings:'wght' 700;fill:#e3e5e7;fill-opacity:1;stroke:none;stroke-width:57.0497;stroke-dasharray:none;stroke-opacity:1" id="rect209" width="254.63922" height="752.0094" x="174.76605" y="1035.0006"/>
+    <rect style="font-variation-settings:'wght' 700;fill:#f5fcfd;fill-opacity:1;stroke:none;stroke-width:12.127;stroke-dasharray:none;stroke-opacity:1" id="rect255" width="74.157318" height="116.67915" x="3551.9524" y="1821.0636"/>
+    <circle style="font-variation-settings:'wght' 700;fill:#5d5d60;fill-opacity:1;stroke:none;stroke-width:55;stroke-dasharray:none;stroke-opacity:1" id="path255" cx="3589.031" cy="1879.4032" r="22.273863"/>
+    <rect style="font-variation-settings:'wght' 700;fill:#f1f3f3;fill-opacity:1;stroke:none;stroke-width:17.2945;stroke-dasharray:none;stroke-opacity:1" id="rect281" width="78.45739" height="76.259888" x="763.63977" y="1113.3802"/>
+  </g>
+</svg>

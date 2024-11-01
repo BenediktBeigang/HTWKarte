@@ -11,6 +11,7 @@ export const FinishedBuildings = [
   "NI",
   "LI",
   "FÖ",
+  "E2",
 ] as string[];
 
 export const AllBuildingAbbreviations: string[] = [

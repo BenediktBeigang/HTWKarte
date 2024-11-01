@@ -306,7 +306,13 @@ const Event = ({ isNow, eventData }: { isNow: boolean; eventData: EventInJson })
         {formatEventTime(eventData.end, "Europe/Berlin")}
       </Typography>
       <Divider orientation="vertical" flexItem />
-      <Typography>
+      <Typography
+        sx={{
+          wordWrap: "break-word",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}
+      >
         {`${formatEventType(eventData.eventType)}`}
         <br />
         {`${eventData.name}`}

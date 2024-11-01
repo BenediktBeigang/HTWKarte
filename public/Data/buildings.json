@@ -296,7 +296,8 @@
       "Abbreviation": "E2",
       "Location": [12.372037309603314, 51.31364],
       "Address": "Eichendorffstraße 2",
-      "Location_SVG": [12.372037309603314, 51.31364],
+      "Location_SVG": [12.3716, 51.31369],
+      "Floors": [0],
       "Campus": "Campus-Karl-Liebknecht-Strasse",
       "Janitor": "Frank Naumann",
       "Description": "Das Gebäude in der Eichendorffstraße ist sowohl Sitz des/der Kanzlers/Kanzlerin als auch derjenige der Hauptverwaltung. Im Gebäude sind die Büros der Mitarbeiter aller Dezernate untergebracht."

@@ -4,17 +4,29 @@ export const drawStreets = (
   buildingContainer: d3.Selection<SVGGElement, unknown, HTMLElement, any>,
   projection: d3.GeoProjection,
 ) => {
-  const gustavFreytagStr: [number, number][] = [
+  const gustavFreytagStrL: [number, number][] = [
     [12.3714, 51.31268],
+    [12.37318, 51.31268],
+  ];
+  addStreet(buildingContainer, projection, gustavFreytagStrL);
+
+  const gustavFreytagStrR: [number, number][] = [
+    [12.37328, 51.31268],
     [12.3765, 51.31268],
   ];
-  addStreet(buildingContainer, projection, gustavFreytagStr);
+  addStreet(buildingContainer, projection, gustavFreytagStrR);
 
-  const eichendorfStr: [number, number][] = [
+  const eichendorfStrL: [number, number][] = [
     [12.3714, 51.31375],
+    [12.37318, 51.31375],
+  ];
+  addStreet(buildingContainer, projection, eichendorfStrL);
+
+  const eichendorfStrR: [number, number][] = [
+    [12.37328, 51.31375],
     [12.3765, 51.31375],
   ];
-  addStreet(buildingContainer, projection, eichendorfStr);
+  addStreet(buildingContainer, projection, eichendorfStrR);
 
   const karlLiebknechtStrL: [number, number][] = [
     [12.37318, 51.3115],
@@ -71,7 +83,7 @@ const addStreet = (
   buildingContainer
     .append("polyline")
     .attr("points", points)
-    .attr("stroke", "#ffffff66")
+    .attr("stroke", "#76797a")
     .attr("stroke-width", 300)
     .attr("stroke-linecap", "round")
     .attr("stroke-linejoin", "round");
@@ -117,7 +129,9 @@ export const drawEntrances = (
 
   // FÖ
   addEntrance(buildingContainer, projection([12.371765, 51.31447]) ?? [0, 0], 180); // north
-  addEntrance(buildingContainer, projection([12.37182, 51.31382]) ?? [0, 0]); // south
+
+  // E2
+  addEntrance(buildingContainer, projection([12.37165, 51.31371]) ?? [0, 0], 180);
 };
 
 const addEntrance = (
