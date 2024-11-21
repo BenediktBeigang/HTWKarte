@@ -1,0 +1,40 @@
+hosts:
+  frontend: &frontend_host "FRONTEND_URL"
+chartName: &chart_name "PLACEHOLDER"
+
+replicaCount: 2
+
+image:
+  repository: "PLACEHOLDER"
+  pullPolicy: Always
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  # service port
+  port: &service_port 80
+  # container port
+  targetPort: 8080
+
+ingress:
+  hosts:
+    - host: *frontend_host
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: *chart_name
+                port:
+                  number: *service_port
+
+# This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
