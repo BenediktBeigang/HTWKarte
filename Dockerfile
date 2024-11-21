@@ -1,26 +1,8 @@
-FROM node:lts-alpine AS build
-
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . .
-RUN npm run build
-
-FROM bitnami/nginx:1.25
-COPY --from=0 /app/dist /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
-
-
 # Build Stage
 FROM node:lts-alpine AS build
 
 # Set working directory
 WORKDIR /app
-
-# Accept build argument for project url and set it
-ARG PROJECT_URL
-ENV PROJECT_URL=${PROJECT_URL}
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
