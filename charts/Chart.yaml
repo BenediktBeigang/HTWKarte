@@ -1,0 +1,8 @@
+apiVersion: v2
+name: htwkarte
+description: The Helm chart for the htwkarte
+version: 0.0.1
+appVersion: "0.0.1"
+
+type: application
+
