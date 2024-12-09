@@ -101,7 +101,7 @@ const InfoDrawer = () => {
     const today = devMode ? "2024-06-04" : new Date().toISOString().split("T")[0];
     const eventsInRoom: EventInJson[] = cachedEvents.filter(
       (event) =>
-        event.rooms === currentRoomID &&
+        event.rooms.split(" ").includes(currentRoomID) &&
         new Date(event.start).toISOString().split("T")[0] === today,
     );
     setEventsCard(
