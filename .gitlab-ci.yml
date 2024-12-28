@@ -8,3 +8,9 @@
 include:
 - local: charts/ci-build-deploy.yml
 - template: Security/Dependency-Scanning.gitlab-ci.yml
+
+stages:
+  - test
+  - build
+  - package
+  - deploy
