@@ -6,11 +6,15 @@
 # Note that environment variables can be set in several places
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 include:
-- local: charts/ci-build-deploy.yml
-- template: Security/Dependency-Scanning.gitlab-ci.yml
+  - local: charts/ci-build-deploy.yml
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/SAST.gitlab-ci.yml
 
 stages:
   - test
   - build
   - package
   - deploy
+
+sast:
+  stage: test
