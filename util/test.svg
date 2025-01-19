@@ -1,0 +1,10 @@
+<svg width="3700" height="1400" viewBox="0 0 3700 1400" version="1.1" id="svg1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+  <g id="floor_0" transform="matrix(40.994169,0,0,40.994169,1.00188,-10510.757)" style="display:inline">
+    <g id="rooms_0" style="display:inline;opacity:1" transform="matrix(0.02439371,0,0,0.02439371,1.031883,291.17494)">
+      <rect style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;fill:#454c7f;fill-opacity:1;stroke-width:394.92;stroke-dasharray:none" id="E2016" width="353.29053" height="523.96552" x="798.79419" y="-1350.0526"/>
+      <rect style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;fill:#454c7f;fill-opacity:1;stroke-width:393.227;stroke-dasharray:none" id="E2001" width="353.05634" height="532.42346" x="798.79419" y="-605.46912"/>
+      <rect style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;fill:#454c7f;fill-opacity:1;stroke-width:386.963;stroke-dasharray:none" id="E2002" width="341.89825" height="532.42346" x="1151.8506" y="-605.46912"/>
+      <rect style="font-variation-settings:'wdth' 70,'wght' 600;display:inline;fill:#454c7f;fill-opacity:1;stroke-width:389.816;stroke-dasharray:none" id="E2003" width="346.95831" height="532.42346" x="1493.7488" y="-605.46912"/>
+    </g>
+  </g>
+</svg>
