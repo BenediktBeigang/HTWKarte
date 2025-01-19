@@ -28,11 +28,13 @@ export const useCampusInfo = () => {
 };
 
 export const useHtwkContactsAPI = () => {
-  return useQuery({
+  const { data } = useQuery({
     queryKey: ["htwkContactsAPI"],
     queryFn: () =>
       fetch(
-        "https://corsproxy.io/?" + encodeURIComponent("https://app.htwk-leipzig.de/api/telephone"),
+        // "https://corsproxy.io/?" + encodeURIComponent("https://app.htwk-leipzig.de/api/telephone"),
+        // "https://app.htwk-leipzig.de/api/telephone",
+        "/Data/contacts.json",
         {
           headers: {
             Accept: "application/ld+json",
@@ -41,6 +43,8 @@ export const useHtwkContactsAPI = () => {
       ).then((res) => res.json()),
     staleTime: ONE_DAY_IN_MS,
   });
+  if (!data || !data.contacts) return [];
+  return data?.contacts;
 };
 
 export const useCachedEvents = (devMode: boolean) => {

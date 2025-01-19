@@ -90,12 +90,12 @@ const convert = (htwkRoomAPI_data: ContactInJson_htwk[]): ContactInJson[] => {
 
 const RoomMapping = () => {
   const [state, dispatch] = useCampusState();
-  const { data: htwkRoomAPI_data } = useHtwkContactsAPI();
+  const htwkRoomAPI_data = useHtwkContactsAPI();
   const { data: cachedEvents } = useCachedEvents(state.devMode);
 
   useEffect(() => {
     if (!htwkRoomAPI_data) return;
-    const convertedData = convert(htwkRoomAPI_data["hydra:member"]);
+    const convertedData = convert(htwkRoomAPI_data);
     dispatch({
       type: "UPDATE_CONTACT_INFO",
       dataOfContact: convertedData,
