@@ -1,8 +1,8 @@
-import { BuildingInJson } from "../Map/Building";
-import { CampusInJson } from "../Map/Campus";
+
+import { BuildingInJson, CampusInJson } from "../Map/MapTypes";
 import { ContactInJson } from "../State/RoomMapping";
 import { SnackbarItem } from "../UI/CustomSnackbar";
-import { EventInJson } from "../UI/InfoDrawer";
+import { EventInJson } from "../UI/InfoDrawer/InfoDrawerTypes";
 
 export type CampusContextProps = {
   position: [number, number];

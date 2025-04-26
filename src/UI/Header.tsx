@@ -5,7 +5,6 @@ import {
   Button,
   Divider,
   Drawer,
-  Hidden,
   IconButton,
   keyframes,
   List,
@@ -56,9 +55,7 @@ const HeaderButton = (subPage: string, iconName: string, selected: boolean) => {
           backgroundColor: selected ? "#454c7f" : "inherit",
           borderRadius: "5px",
           animation: selected ? `${backgroundColorTransition} 1s ease` : "none",
-          "&:hover": {
-            backgroundColor: selected ? "#454c7f" : "",
-          },
+          "&:hover": { backgroundColor: selected ? "#454c7f" : "" },
         }}
       >
         <ListItemIcon>
@@ -139,11 +136,7 @@ export const Header = () => {
   }, [searchValue, state.contactInfo]);
 
   const drawer = (
-    <Box
-      sx={{
-        margin: "0.5em",
-      }}
-    >
+    <Box sx={{ margin: "0.5em" }}>
       <Typography sx={{ marginX: "0.5em", fontSize: "2em" }}>HTWKarte</Typography>
       <Divider />
       {HeaderButton("faq", "pi pi-book", currentSubPage === "faq")}
@@ -165,7 +158,7 @@ export const Header = () => {
           </Box>
         </Box>
         {isLargeScreen && <Typography sx={{ fontSize: "2em", mr: "0.5em" }}>HTWKarte</Typography>}
-        <Hidden smUp>
+        <Box sx={{ display: { xs: "block", md: "none" } }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -174,7 +167,7 @@ export const Header = () => {
           >
             <MenuIcon />
           </IconButton>
-        </Hidden>
+        </Box>
         <Box display="flex" justifyContent="center" flexWrap="wrap">
           <Box m={1}>
             <TextField
@@ -230,13 +223,13 @@ export const Header = () => {
         <Drawer variant="temporary" anchor="top" open={mobileOpen} onClose={handleDrawerToggle}>
           {drawer}
         </Drawer>
-        <Hidden smDown>
+        {isLargeScreen && (
           <Box display="flex" ml="auto" sx={{ height: "100%" }}>
             {HeaderButton("faq", "pi pi-book", currentSubPage === "faq")}
             {HeaderButton("imprint", "pi pi-id-card", currentSubPage === "imprint")}
             {HeaderButton("privacy", "pi pi-exclamation-triangle", currentSubPage === "privacy")}
           </Box>
-        </Hidden>
+        )}
       </Toolbar>
     </AppBar>
   );

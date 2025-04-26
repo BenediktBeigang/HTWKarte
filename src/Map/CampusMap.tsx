@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { useCampusState } from "../State/campus-context";
 import CustomSnackbar from "../UI/CustomSnackbar";
 import { Header } from "../UI/Header";
-import InfoDrawer from "../UI/InfoDrawer";
+import InfoDrawer from "../UI/InfoDrawer/InfoDrawer";
 import LevelButtons from "../UI/LevelButtons";
 import Campus from "./Campus";
 

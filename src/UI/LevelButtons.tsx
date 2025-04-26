@@ -1,15 +1,14 @@
 import { Box, ToggleButton, ToggleButtonGroup } from "@mui/material";
-import * as d3 from "d3";
-import { MutableRefObject, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { FinishedBuildings } from "../Constants";
-import { BuildingInJson, switchToFloor } from "../Map/Building";
+import { BuildingInJson } from "../Map/MapTypes";
 import { useCampusState } from "../State/campus-context";
-import { CampusContextAction, CampusContextProps } from "../State/campus-reducer";
 import { HTWK_DARK_TEXT, HTWK_GRAY, HTWK_LIGHT_GRAY, HTWK_YELLOW } from "./Color";
+import useLevelButton from "./useLevelButton";
 
 const buttonSize: number = 3 as const;
 
-const SelectionMarker = (markerHeight: number, markerTop: number): JSX.Element => {
+const SelectionMarker = (markerHeight: number, markerTop: number): ReactNode => {
   return (
     <Box
       id="level-marker"
@@ -26,77 +25,19 @@ const SelectionMarker = (markerHeight: number, markerTop: number): JSX.Element =
   );
 };
 
-const levelBoxHeight = (levelCount: number) => {
-  return 100 / levelCount;
-};
-
-const calcLevelSelectorTop = (levelCount: number, uiLevel: number) => {
-  if (levelCount === undefined || uiLevel === undefined) return 0;
-  const boxHeight = levelBoxHeight(levelCount);
-  let newTop: number = boxHeight * (levelCount - uiLevel - 1);
-  newTop += boxHeight * 0.05;
-  return newTop;
-};
-
-const hoverAnimation = (level: number, hoverLevel: number | undefined, levelCount: number) => {
-  const marker = d3.select("#level-marker");
-
-  let newTop = calcLevelSelectorTop(levelCount, level);
-  if (isNaN(newTop)) return;
-
-  if (hoverLevel === undefined) return marker.transition().duration(200).style("top", `${newTop}%`);
-
-  const boxHeight = levelBoxHeight(levelCount);
-  let hoverTop = 100 - boxHeight * hoverLevel;
-  hoverTop -= boxHeight;
-  hoverTop += boxHeight * 0.05;
-
-  const percentage = 0.05;
-  const diff = (hoverTop - newTop) * percentage;
-  newTop += diff;
-  marker.transition().duration(200).style("top", `${newTop}%`);
-};
-
-const levelChangeAnimation = (level: number, levelCount: number, oldLevel: number) => {
-  const marker = d3.select("#level-marker");
-  const oldTop = calcLevelSelectorTop(levelCount, oldLevel);
-  marker.style("top", `${oldTop}%`);
-  const newTop = calcLevelSelectorTop(levelCount, level);
-  marker.transition().duration(200).style("top", `${newTop}%`);
-};
-
-const handleLevelChange = (
-  newLevel: number,
-  oldLevel: number,
-  levelCount: number,
-  stateRef: MutableRefObject<{
-    state: CampusContextProps;
-    dispatch: (value: CampusContextAction) => void;
-  }>,
-  hasBasement: boolean,
-) => {
-  if (newLevel === undefined || newLevel === null) return;
-  switchToFloor(stateRef.current.state.currentBuilding, newLevel, stateRef);
-  stateRef.current.dispatch({ type: "UPDATE_LEVEL", level: newLevel });
-  levelChangeAnimation(
-    hasBasement ? newLevel + 1 : newLevel,
-    levelCount,
-    hasBasement ? oldLevel + 1 : oldLevel,
-  );
-};
-
 const LevelButtons = ({
   levelCount,
   hasBasement,
 }: {
   levelCount: number;
   hasBasement: boolean;
-}): JSX.Element => {
+}): ReactNode => {
   const [state, dispatch] = useCampusState();
   const stateRef = useRef({ state, dispatch });
   const [hoverLevel, setHoverLevel] = useState<number | undefined>(undefined);
   const buildingInfo: BuildingInJson | undefined = state.buildingInfo;
   const [startLevel, setStartLevel] = useState<number>(hasBasement ? state.level + 1 : state.level);
+  const { handleLevelChange, hoverAnimation, calcLevelSelectorTop } = useLevelButton();
 
   useEffect(() => {
     setStartLevel(hasBasement ? state.level + 1 : state.level);
@@ -129,7 +70,7 @@ const LevelButtons = ({
       orientation="vertical"
       size="large"
       onChange={(_event, value) =>
-        handleLevelChange(value, state.level, levelCount!, stateRef, hasBasement)
+        handleLevelChange(value, state.level, levelCount!, hasBasement)
       }
       sx={{
         position: "absolute",

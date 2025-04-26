@@ -1,122 +1,19 @@
 import { Box } from "@mui/material";
-import * as turf from "@turf/turf";
 import * as d3 from "d3";
-import { Feature, GeoJsonProperties, Polygon } from "geojson";
 import $ from "jquery";
-import { MutableRefObject, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { FinishedBuildings } from "../Constants";
 import { useCampusState } from "../State/campus-context";
-import { CampusContextAction, CampusContextProps } from "../State/campus-reducer";
-import { useBuildingInfo, useCampusInfo } from "../State/Querys";
+import { useBuildingInfo, useCampusInfo } from "../State/Queries";
 import RoomMapping from "../State/RoomMapping";
-import {
-  BuildingInJson,
-  cleanBuilding,
-  createBuildings,
-  drawBuildingOutlines,
-  drawRoof,
-  switchToInside,
-} from "./Building";
 import { drawEntrances, drawNotAccessible, drawParkingLots, drawStreets } from "./MapBackground";
-import { ParsedRoomID, parseRoomID } from "./Room";
-import {
-  createZoom,
-  moveToBuilding,
-  moveToCampusCenter,
-  roomZoomEventHandler,
-} from "./ZoomHandler";
-
-const ZOOM_INSIDE_BUILDING_THRESHOLD = () => {
-  if (window.innerWidth < 500) return 0.05;
-  if (window.innerWidth < 1000) return 0.1;
-  return 0.1;
-};
-
-export type CampusInJson = {
-  type: string;
-  properties: {
-    Name: string;
-    Location: [number, number];
-    MapWidth: number;
-    MapHeight: number;
-    CenterXOffset: number;
-    CenterYOffset: number;
-  };
-  geometry: {
-    coordinates: Array<Array<[number, number]>>;
-    type: string;
-  };
-};
-
-const createProjection = (campus: CampusInJson): d3.GeoProjection | undefined => {
-  const boundingBox: Feature<Polygon, GeoJsonProperties> = campus as Feature<
-    Polygon,
-    GeoJsonProperties
-  >;
-
-  const projection = d3.geoMercator();
-  projection.fitExtent(
-    [
-      [0, 0],
-      [campus.properties.MapWidth, campus.properties.MapHeight],
-    ],
-    boundingBox,
-  );
-  return projection;
-};
-
-const switchToOutside = (
-  stateRef: MutableRefObject<{
-    state: CampusContextProps;
-    dispatch: (value: CampusContextAction) => void;
-  }>,
-) => {
-  const state = stateRef.current.state;
-  cleanBuilding(state.currentBuilding);
-  drawRoof(state.currentBuilding, stateRef);
-  stateRef.current.dispatch({ type: "UPDATE_BUILDING", currentBuilding: "None" });
-  stateRef.current.dispatch({ type: "UPDATE_LEVEL_COUNT", levelCount: undefined });
-  stateRef.current.dispatch({ type: "UPDATE_LEVEL", level: 0 });
-  stateRef.current.dispatch({ type: "UPDATE_ROOM", currentRoomID: "None" });
-  stateRef.current.dispatch({ type: "UPDATE_INSIDE_BUILDING", insideBuilding: false });
-};
-
-const updateCurrentBuilding = (
-  stateRef: MutableRefObject<{
-    state: CampusContextProps;
-    dispatch: (value: CampusContextAction) => void;
-  }>,
-  completeBuildingInfo: BuildingInJson[],
-) => {
-  const state = stateRef.current.state;
-
-  if (state.zoomFactor < ZOOM_INSIDE_BUILDING_THRESHOLD()) {
-    if (!state.insideBuilding) return;
-    switchToOutside(stateRef);
-    return;
-  }
-
-  const buildingsToUpdate: BuildingInJson[] = completeBuildingInfo.filter((building) =>
-    FinishedBuildings.includes(building.properties.Abbreviation),
-  );
-
-  buildingsToUpdate.forEach((building: BuildingInJson) => {
-    if (!building.properties.Location) return;
-
-    const polygon = turf.polygon(building.geometry.coordinates);
-    const point = turf.point(state.position);
-
-    if (
-      !turf.booleanPointInPolygon(point, polygon) ||
-      building.properties.Abbreviation === state.currentBuilding
-    )
-      return;
-
-    switchToInside(stateRef, building);
-    return;
-  });
-};
+import { BuildingInJson, CampusInJson, ParsedRoomID } from "./MapTypes";
+import useBuildingDrawer from "./useBuildingDrawer";
+import useCampus from "./useCampus";
+import useCampusDrawer from "./useCampusDrawer";
+import useRooms from "./useRooms";
+import useZoom from "./useZoom";
 
 const Campus = () => {
   const [state, dispatch] = useCampusState();
@@ -124,6 +21,11 @@ const Campus = () => {
   const { roomID } = useParams<{ roomID: string }>();
   const { data: campusInfo_data } = useCampusInfo();
   const { data: buildingInfo_data } = useBuildingInfo();
+  const { roomZoomEventHandler, createZoom, moveToCampusCenter, moveToBuilding } = useZoom();
+  const { updateCurrentBuilding, createProjection } = useCampus();
+  const { drawBuildingOutlines } = useCampusDrawer();
+  const { drawBuildingsOnCampus } = useBuildingDrawer();
+  const { parseRoomID } = useRooms();
 
   // Update stateRef to provide access to the current state and dispatch function to extracted functions
   useEffect(() => {
@@ -136,17 +38,14 @@ const Campus = () => {
 
   useEffect(() => {
     if (!buildingInfo_data || state.roomZoomReady === false) return;
-    dispatch({
-      type: "UPDATE_ROOM_ZOOM_READY",
-      roomZoomReady: false,
-    });
-    roomZoomEventHandler(stateRef, roomID, buildingInfo_data);
+    dispatch({ type: "UPDATE_ROOM_ZOOM_READY", roomZoomReady: false });
+    roomZoomEventHandler(roomID, buildingInfo_data);
   }, [buildingInfo_data, dispatch, roomID, state.roomZoomReady]);
 
   // Update the current building when the position or zoom factor changes
   useEffect(() => {
     if (!buildingInfo_data || state.initialZoomReached === false) return;
-    updateCurrentBuilding(stateRef, buildingInfo_data);
+    updateCurrentBuilding(buildingInfo_data);
   }, [buildingInfo_data, state.initialZoomReached, state.position, state.zoomFactor]);
 
   useEffect(() => {
@@ -196,7 +95,7 @@ const Campus = () => {
     const projection: d3.GeoProjection | undefined = createProjection(state.campusInfo);
     if (!projection) return;
 
-    createBuildings(buildingContainer, projection, buildingInfo_data, stateRef);
+    drawBuildingsOnCampus(buildingContainer, projection, buildingInfo_data);
 
     drawBuildingOutlines(buildingContainer, projection, buildingInfo_data);
     // drawCampusOutlines(buildingContainer, projection, state.dataOfCampus, state.currentCampus);
@@ -205,10 +104,10 @@ const Campus = () => {
     drawParkingLots(buildingContainer);
     drawNotAccessible(buildingContainer);
 
-    createZoom(campusSVG, buildingContainer, projection, stateRef);
+    createZoom(campusSVG, buildingContainer, projection);
 
     if (!roomID) {
-      moveToCampusCenter(stateRef, campusSVG);
+      moveToCampusCenter(campusSVG);
       return;
     }
 
@@ -218,13 +117,10 @@ const Campus = () => {
       !buildingAbbreviation ||
       (buildingAbbreviation && FinishedBuildings.includes(buildingAbbreviation) === false)
     ) {
-      moveToCampusCenter(stateRef, campusSVG);
+      moveToCampusCenter(campusSVG);
       stateRef.current.dispatch({
         type: "UPDATE_SNACKBAR_ITEM",
-        snackbarItem: {
-          message: "Gebäude nicht gefunden",
-          severity: "error",
-        },
+        snackbarItem: { message: "Gebäude nicht gefunden", severity: "error" },
       });
       return;
     }
@@ -234,7 +130,7 @@ const Campus = () => {
     );
     if (!buildingInfo) return;
 
-    moveToBuilding(stateRef, campusSVG, buildingInfo);
+    moveToBuilding(campusSVG, buildingInfo);
   }, [buildingInfo_data, roomID, state.campusInfo, state.currentCampus]);
 
   // print zoom factor and position in console

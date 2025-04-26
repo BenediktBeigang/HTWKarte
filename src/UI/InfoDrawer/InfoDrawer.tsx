@@ -1,52 +1,20 @@
 import { Box, Drawer } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import React, { useEffect, useRef, useState } from "react";
-import { BuildingInJson } from "../Map/Building";
-import { splitRoomName, updateRoomHighlighting } from "../Map/Room";
-import { useCampusState } from "../State/campus-context";
-import { useBuildingInfo } from "../State/Querys";
-import { HTWKALENDER_GRAY } from "./Color";
-import {
-  BuildingBox,
-  ContactBox,
-  DescriptionBox,
-  EventBox,
-  ImageBox,
-  TitleBox,
-} from "./InfoDrawerComponents";
+import React, { useEffect, useState } from "react";
+import { BuildingInJson } from "../../Map/MapTypes";
+import useRooms from "../../Map/useRooms";
+import { useCampusState } from "../../State/campus-context";
+import { useBuildingInfo } from "../../State/Queries";
+import { HTWKALENDER_GRAY } from "../Color";
+import BuildingBox from "./BuildingBox";
+import ContactBox from "./ContactBox";
+import DescriptionBox from "./DescriptionBox";
+import EventBox from "./EventBox";
+import ImageBox from "./ImageBox";
+import { BuildingInfo, ContactInfo, EventInJson } from "./InfoDrawerTypes";
 import "./RoomInfo.css";
-
-export type ContactInfo = {
-  roomName: string;
-  person?: string;
-  email?: string;
-  telephone?: [
-    {
-      number: string;
-    },
-  ];
-  department?: string;
-};
-
-export type BuildingInfo = {
-  name: string;
-  address: string;
-  abbreviation: string;
-  janitor?: string;
-  description?: string;
-};
-
-export type EventInJson = {
-  name: string;
-  start: Date;
-  end: Date;
-  day: string;
-  free: boolean;
-  rooms: string;
-  week: string;
-  eventType: string;
-};
+import { TitleBox } from "./TitleBox";
 
 const RoomInfoStyle = {
   color: "#ffffffdd",
@@ -63,7 +31,7 @@ const InfoDrawer = () => {
   const [buildingCard, setBuildingCard] = useState<BuildingInfo | undefined>(undefined);
   const [eventsCard, setEventsCard] = useState<EventInJson[] | undefined>(undefined);
   const { data: buildingInfo_data } = useBuildingInfo();
-  const stateRef = useRef({ dispatch });
+  const { splitRoomName, updateRoomHighlighting } = useRooms();
 
   const theme = useTheme();
   const desktopMode = useMediaQuery(theme.breakpoints.up("sm"));
@@ -127,18 +95,22 @@ const InfoDrawer = () => {
     <Drawer
       anchor={desktopMode ? "left" : "bottom"}
       open={currentRoomID !== "None" || focusedBuilding !== undefined}
-      onClose={toggleDrawer(false)}
-      PaperProps={{
-        sx: {
-          backgroundColor: HTWKALENDER_GRAY,
-          maxHeight: desktopMode ? "100%" : "60%",
+      onClose={(event, reason) => {
+        if (reason === "backdropClick" || reason === "escapeKeyDown") {
+          toggleDrawer(false)(event as any);
+        }
+      }}
+      slotProps={{
+        paper: {
+          sx: {
+            backgroundColor: HTWKALENDER_GRAY,
+            maxHeight: desktopMode ? "100%" : "60%",
+          },
         },
       }}
     >
       <Box
         role="presentation"
-        onClick={toggleDrawer(false)}
-        onKeyDown={toggleDrawer(false)}
         style={RoomInfoStyle}
         maxWidth={desktopMode ? "25em" : "100%"}
         sx={{
@@ -169,7 +141,6 @@ const InfoDrawer = () => {
             }
             shareButton={true}
             currentRoomID={currentRoomID}
-            stateRef={stateRef}
           />
         )}
         {currentRoomID === "None" && focusedBuilding !== undefined && (
@@ -181,7 +152,6 @@ const InfoDrawer = () => {
             }
             shareButton={false}
             currentRoomID={""}
-            stateRef={stateRef}
           />
         )}
         {focusedBuilding && <ImageBox building={focusedBuilding} />}

@@ -14,14 +14,14 @@ const ContactInfo = ({
   alt: string;
 }) => (
   <Grid container alignItems="center" gap={2}>
-    <Grid item sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+    <Grid sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
       {icon === "mui_mail" ? (
         <MailOutlineIcon />
       ) : (
         <img src={icon} alt={alt} style={{ width: "1.5em" }} />
       )}
     </Grid>
-    <Grid item>
+    <Grid>
       <a href={link} style={{ color: "#fff" }}>
         {text}
       </a>
@@ -46,16 +46,11 @@ export const Imprint = () => {
         alignItems="center"
         sx={{
           paddingTop: "5em",
-          maxWidth: {
-            xs: "90%",
-            sm: "45%",
-          },
+          maxWidth: { xs: "90%", sm: "45%" },
           overflowX: "hidden",
           overflowY: "scroll",
           scrollbarWidth: "none",
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
+          "&::-webkit-scrollbar": { display: "none" },
         }}
       >
         <Typography variant="h2" gutterBottom>

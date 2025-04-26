@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { AllBuildingAbbreviations } from "../Constants";
 import { useCampusState } from "./campus-context";
-import { useCachedEvents, useHtwkContactsAPI } from "./Querys";
+import { useCachedEvents, useHtwkContactsAPI } from "./Queries";
 
 type ContactInJson_htwk = {
   firstName: string;
@@ -39,31 +39,31 @@ const extractRoomID = (roomTitle: string): string | undefined => {
   const roomIDParts = roomID?.split(" ");
   if (!roomIDParts) return;
 
-  // remove in every roomIDPart every occurence of '(' or ')'
+  // remove in every roomIDPart every occurrence of '(' or ')'
   roomIDParts?.forEach((part) => {
     part.replace("(", "");
     part.replace(")", "");
   });
 
   // search in every roomIDPart if in there is a substring that is one item in the FinishedBuildings array and return this
-  let roomAbbreveation = roomIDParts.find((part) => AllBuildingAbbreviations.includes(part));
+  let roomAbbreviation = roomIDParts.find((part) => AllBuildingAbbreviations.includes(part));
 
-  // If Treffts then search for sub building
-  if (roomAbbreveation === "TR") {
+  // If Trefftz then search for sub building
+  if (roomAbbreviation === "TR") {
     const TR_building = roomIDParts.find(
       (part) => part === "L" || part === "A" || part === "B" || part === "C",
     );
     if (!TR_building) return;
-    roomAbbreveation = `${roomAbbreveation}_${TR_building}`;
+    roomAbbreviation = `${roomAbbreviation}_${TR_building}`;
   }
-  if (!roomAbbreveation) return;
+  if (!roomAbbreviation) return;
 
   // extract room number and remove the '.' if there is one (could cause problems with rooms like MZK03.1)
   let roomNumber = roomIDParts.find((part) => /\d/.test(part) && part !== "E2");
   if (!roomNumber) return;
   roomNumber = roomNumber.replace(".", "");
 
-  return `${roomAbbreveation}${roomNumber}`;
+  return `${roomAbbreviation}${roomNumber}`;
 };
 
 const convert = (htwkRoomAPI_data: ContactInJson_htwk[]): ContactInJson[] => {
