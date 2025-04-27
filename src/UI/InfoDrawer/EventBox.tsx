@@ -27,11 +27,7 @@ const EventBox = ({ events }: { events: EventInJson[] }) => {
           <b>Heutige Veranstaltungen</b>
         </Typography>
         {events.map((event, index) => (
-          <EventContent
-            key={index}
-            isNow={isEventNow(event)}
-            eventData={{ ...event, notes: "Coole neue Informationen." }}
-          />
+          <EventContent key={index} isNow={isEventNow(event)} eventData={event} />
         ))}
       </List>
     </Paper>
