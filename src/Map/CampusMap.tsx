@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useMemo } from "react";
 import { DATE_OF_LNC_START } from "../Constants";
 import { useCampusState } from "../State/campus-context";
@@ -35,6 +35,12 @@ export const CampusMap = () => {
       {state.levelCount && <LevelButtons levelCount={state.levelCount} hasBasement={hasBasement} />}
       <InfoDrawer />
       <CustomSnackbar />
+      <Typography
+        variant="caption"
+        sx={{ position: "absolute", bottom: 0, right: 0, paddingRight: 1 }}
+      >
+        v0.3.1
+      </Typography>
     </Box>
   );
 };
