@@ -26,6 +26,7 @@ import { useCampusState } from "../State/campus-context";
 import { ContactInJson } from "../State/RoomMapping";
 import { HTWKALENDER_GRAY } from "./Color";
 import htwkKarte from "/favicon.ico";
+import lncLogo from "/Icons/lnc.svg";
 
 const correctRoomSearchTerm = (searchedRoomID: string) => {
   const match = searchedRoomID.match(/^([^0-9]*)([0-9].*)$/);
@@ -98,17 +99,6 @@ export const Header = () => {
     if (window.location.pathname === `/room/${correctedRoomID}`) window.location.reload();
     else navigate(`/room/${correctedRoomID}`);
     if (inputRef.current) inputRef.current.blur();
-
-    // event.preventDefault();
-    // dispatch({
-    //   type: "UPDATE_ROOM_ZOOM_READY",
-    //   roomZoomReady: false,
-    // });
-    // stateRef.current.dispatch({
-    //   type: "UPDATE_INITIAL_ZOOM_REACHED",
-    //   initialZoomReached: false,
-    // });
-    // roomZoomEventHandler(stateRef, searchValue);
   };
 
   useEffect(() => {
@@ -152,7 +142,11 @@ export const Header = () => {
           <Box m={1}>
             <MuiLink to="/" component={RouterLink}>
               <IconButton edge="start" color="inherit" aria-label="logo">
-                <img src={htwkKarte} alt="HTWK-Logo" style={{ height: "2em" }} />
+                {state.lncMode ? (
+                  <img src={lncLogo} alt="LNC-Logo" style={{ height: "2em" }} />
+                ) : (
+                  <img src={htwkKarte} alt="HTWK-Logo" style={{ height: "2em" }} />
+                )}
               </IconButton>
             </MuiLink>
           </Box>

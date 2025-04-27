@@ -1,4 +1,5 @@
 import * as d3 from "d3";
+import { LNC_BUILDINGS, LncBuildingType } from "../Constants";
 import { useCampusState } from "../State/campus-context";
 import { BuildingInJson } from "./MapTypes";
 import useRoofDrawer from "./useRoofDrawer";
@@ -101,6 +102,11 @@ const useBuildingDrawer = () => {
         !buildingContainer ||
         !building.properties.Abbreviation ||
         !building.properties.Location_SVG
+      )
+        return;
+      if (
+        state.lncMode &&
+        LNC_BUILDINGS.includes(building.properties.Abbreviation as LncBuildingType) === false
       )
         return;
       const nextBuildingSVG = buildingContainer

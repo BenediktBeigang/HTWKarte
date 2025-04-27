@@ -32,3 +32,8 @@ export const AllBuildingAbbreviations: string[] = [
   "CE",
   "SH",
 ];
+
+export const LNC_BUILDINGS = ["LI", "FE", "MN"] as const;
+export type LncBuildingType = (typeof LNC_BUILDINGS)[number];
+
+export const DATE_OF_LNC_START = "2025-05-10T14:00:00";

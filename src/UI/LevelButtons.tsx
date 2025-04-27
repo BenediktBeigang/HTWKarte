@@ -69,9 +69,7 @@ const LevelButtons = ({
       exclusive
       orientation="vertical"
       size="large"
-      onChange={(_event, value) =>
-        handleLevelChange(value, state.level, levelCount!, hasBasement)
-      }
+      onChange={(_event, value) => handleLevelChange(value, state.level, levelCount!, hasBasement)}
       sx={{
         position: "absolute",
         bottom: "2em",

@@ -1,4 +1,3 @@
-
 import { BuildingInJson, CampusInJson } from "../Map/MapTypes";
 import { ContactInJson } from "../State/RoomMapping";
 import { SnackbarItem } from "../UI/CustomSnackbar";
@@ -21,7 +20,7 @@ export type CampusContextProps = {
   initialZoomReached: boolean;
   roomZoomReady?: boolean;
   snackbarItem: SnackbarItem;
-  devMode: boolean;
+  lncMode: boolean;
   focusedBuilding?: string;
 };
 
@@ -42,7 +41,7 @@ export type CampusContextAction =
   | { type: "UPDATE_INITIAL_ZOOM_REACHED"; initialZoomReached: boolean }
   | { type: "UPDATE_ROOM_ZOOM_READY"; roomZoomReady: boolean }
   | { type: "UPDATE_SNACKBAR_ITEM"; snackbarItem: SnackbarItem }
-  | { type: "TOGGLE_DEV_MODE" }
+  | { type: "ACTIVATE_LNC_MODE" }
   | { type: "UPDATE_FOCUSED_BUILDING"; focusedBuilding: string | undefined };
 
 const campusReducer = (
@@ -82,8 +81,8 @@ const campusReducer = (
       return { ...state, roomZoomReady: action.roomZoomReady };
     case "UPDATE_SNACKBAR_ITEM":
       return { ...state, snackbarItem: action.snackbarItem };
-    case "TOGGLE_DEV_MODE":
-      return { ...state, devMode: !state.devMode };
+    case "ACTIVATE_LNC_MODE":
+      return { ...state, lncMode: true };
     case "UPDATE_FOCUSED_BUILDING":
       return { ...state, focusedBuilding: action.focusedBuilding };
     default:

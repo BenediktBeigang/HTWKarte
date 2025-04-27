@@ -89,9 +89,9 @@ const convert = (htwkRoomAPI_data: ContactInJson_htwk[]): ContactInJson[] => {
 };
 
 const RoomMapping = () => {
-  const [state, dispatch] = useCampusState();
+  const [, dispatch] = useCampusState();
   const htwkRoomAPI_data = useHtwkContactsAPI();
-  const { data: cachedEvents } = useCachedEvents(state.devMode);
+  const { data: cachedEvents } = useCachedEvents();
 
   useEffect(() => {
     if (!htwkRoomAPI_data) return;

@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { BuildingInJson } from "../Map/MapTypes";
 
 const ONE_DAY_IN_MS = 86400000 as const;
 const ONE_HOUR_IN_MS = 3600000 as const;
@@ -12,9 +13,10 @@ export const useRoomInfo = () => {
 };
 
 export const useBuildingInfo = () => {
-  return useQuery({
+  return useQuery<BuildingInJson[], Error>({
     queryKey: ["buildingInfo"],
-    queryFn: () => fetch("/Data/buildings.json").then((res) => res.json()),
+    queryFn: (): Promise<BuildingInJson[]> =>
+      fetch("/Data/buildings.json").then((res) => res.json() as Promise<BuildingInJson[]>),
     staleTime: ONE_DAY_IN_MS,
   });
 };
@@ -47,21 +49,19 @@ export const useHtwkContactsAPI = () => {
   return data?.contacts;
 };
 
-export const useCachedEvents = (devMode: boolean) => {
+export const useCachedEvents = () => {
   let today = "2024-06-04";
   let dayInTwoWeeks = "2024-06-18";
 
-  if (devMode === false) {
-    const todayObject = new Date();
-    today = todayObject.toISOString().split("T")[0];
+  const todayObject = new Date();
+  today = todayObject.toISOString().split("T")[0];
 
-    const dayInTwoWeeksObject = new Date(todayObject);
-    dayInTwoWeeksObject.setDate(todayObject.getDate() + 14);
-    dayInTwoWeeks = dayInTwoWeeksObject.toISOString().split("T")[0];
-  }
+  const dayInTwoWeeksObject = new Date(todayObject);
+  dayInTwoWeeksObject.setDate(todayObject.getDate() + 14);
+  dayInTwoWeeks = dayInTwoWeeksObject.toISOString().split("T")[0];
 
   return useQuery({
-    queryKey: ["cachedEvents", devMode],
+    queryKey: ["cachedEvents"],
     queryFn: () =>
       fetch(
         `https://cal.htwk-leipzig.de/api/schedule?from=${today}&to=${dayInTwoWeeks}&mapped=true`,

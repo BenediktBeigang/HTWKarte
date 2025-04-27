@@ -12,7 +12,7 @@ const BaseInfoBox = ({ icon, content }: { icon: ReactNode; content: ReactNode[] 
         {content.map((item, index) => (
           <Fragment key={index}>
             {item}
-            {index < content.length - 1 && <Divider variant="middle" />}
+            {index < content.length - 1 && <Divider variant="middle" sx={{ opacity: 0.2 }} />}
           </Fragment>
         ))}
       </List>

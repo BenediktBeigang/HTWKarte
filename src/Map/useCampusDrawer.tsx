@@ -1,7 +1,10 @@
-import { FinishedBuildings } from "../Constants";
+import { FinishedBuildings, LNC_BUILDINGS, LncBuildingType } from "../Constants";
+import { useCampusState } from "../State/campus-context";
 import { BuildingInJson, CampusInJson } from "./MapTypes";
 
 const useCampusDrawer = () => {
+  const [state] = useCampusState();
+
   const drawBuildingOutlines = (
     buildingContainer: d3.Selection<SVGGElement, unknown, HTMLElement, any>,
     projection: d3.GeoProjection,
@@ -12,8 +15,13 @@ const useCampusDrawer = () => {
         !buildingContainer ||
         !building.geometry.coordinates ||
         building.geometry.coordinates.length === 0 ||
-        FinishedBuildings.includes(building.properties.Abbreviation) ||
+        (state.lncMode === false && FinishedBuildings.includes(building.properties.Abbreviation)) ||
         building.properties.Abbreviation === "MN"
+      )
+        return;
+      if (
+        state.lncMode &&
+        LNC_BUILDINGS.includes(building.properties.Abbreviation as LncBuildingType)
       )
         return;
       const polygon = building.geometry.coordinates[0].map((coord) => {

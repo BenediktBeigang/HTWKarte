@@ -4,12 +4,12 @@ import { BOX_COLOR } from "../Color";
 import EventContent from "./EventContent";
 import { EventInJson } from "./InfoDrawerTypes";
 
-const isEventNow = (event: EventInJson, devMode: boolean): boolean => {
-  const now = devMode ? new Date(new Date(event.start).setHours(13, 45, 0, 0)) : new Date();
+const isEventNow = (event: EventInJson): boolean => {
+  const now = new Date();
   return now >= new Date(event.start) && now <= new Date(event.end);
 };
 
-const EventBox = ({ events, devMode }: { events: EventInJson[]; devMode: boolean }) => {
+const EventBox = ({ events }: { events: EventInJson[] }) => {
   return (
     <Paper sx={{ backgroundColor: BOX_COLOR }}>
       <List
@@ -27,7 +27,11 @@ const EventBox = ({ events, devMode }: { events: EventInJson[]; devMode: boolean
           <b>Heutige Veranstaltungen</b>
         </Typography>
         {events.map((event, index) => (
-          <EventContent key={index} isNow={isEventNow(event, devMode)} eventData={event} />
+          <EventContent
+            key={index}
+            isNow={isEventNow(event)}
+            eventData={{ ...event, notes: "Coole neue Informationen." }}
+          />
         ))}
       </List>
     </Paper>

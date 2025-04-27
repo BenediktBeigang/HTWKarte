@@ -25,7 +25,7 @@ const RoomInfoStyle = {
 };
 
 const InfoDrawer = () => {
-  const [{ currentRoomID, contactInfo, devMode, cachedEvents, focusedBuilding }, dispatch] =
+  const [{ currentRoomID, contactInfo, cachedEvents, focusedBuilding }, dispatch] =
     useCampusState();
   const [contactCard, setContactCard] = useState<ContactInfo | undefined>(undefined);
   const [buildingCard, setBuildingCard] = useState<BuildingInfo | undefined>(undefined);
@@ -52,9 +52,10 @@ const InfoDrawer = () => {
   useEffect(() => {
     if (focusedBuilding === undefined || buildingInfo_data === undefined)
       return setBuildingCard(undefined);
-    const buildingInfo: BuildingInJson = buildingInfo_data.find(
+    const buildingInfo: BuildingInJson | undefined = buildingInfo_data.find(
       (building: BuildingInJson) => building.properties.Abbreviation === focusedBuilding,
     );
+    if (!buildingInfo) return setBuildingCard(undefined);
     setBuildingCard({
       name: buildingInfo.properties.Name,
       address: buildingInfo.properties.Address,
@@ -66,7 +67,7 @@ const InfoDrawer = () => {
 
   useEffect(() => {
     if (currentRoomID === "None" || !cachedEvents) return setEventsCard([]);
-    const today = devMode ? "2024-06-04" : new Date().toISOString().split("T")[0];
+    const today = new Date().toISOString().split("T")[0];
     const eventsInRoom: EventInJson[] = cachedEvents.filter(
       (event) =>
         event.rooms.split(" ").includes(currentRoomID) &&
@@ -75,7 +76,7 @@ const InfoDrawer = () => {
     setEventsCard(
       eventsInRoom.sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()),
     );
-  }, [cachedEvents, currentRoomID, devMode]);
+  }, [cachedEvents, currentRoomID]);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -143,12 +144,12 @@ const InfoDrawer = () => {
             currentRoomID={currentRoomID}
           />
         )}
-        {currentRoomID === "None" && focusedBuilding !== undefined && (
+        {currentRoomID === "None" && focusedBuilding !== undefined && buildingInfo_data && (
           <TitleBox
             title={
               buildingInfo_data.find(
                 (building: BuildingInJson) => building.properties.Abbreviation === focusedBuilding,
-              ).properties.Name
+              )?.properties.Name ?? "Building not found"
             }
             shareButton={false}
             currentRoomID={""}
@@ -160,7 +161,7 @@ const InfoDrawer = () => {
           <DescriptionBox description={buildingCard.description} />
         )}
         {contactCard && <ContactBox contact={contactCard} />}
-        {eventsCard && eventsCard.length > 0 && <EventBox events={eventsCard} devMode={devMode} />}
+        {eventsCard && eventsCard.length > 0 && <EventBox events={eventsCard} />}
       </Box>
     </Drawer>
   );

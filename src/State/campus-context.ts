@@ -21,7 +21,7 @@ export const initialCampusState: CampusContextProps = {
     message: "",
     severity: "info",
   },
-  devMode: false,
+  lncMode: false,
   focusedBuilding: undefined,
 };
 

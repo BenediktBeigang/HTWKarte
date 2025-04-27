@@ -60,11 +60,13 @@ const Campus = () => {
 
   useEffect(() => {
     if (!buildingInfo_data || state.currentBuilding === "None") return;
+    const buildingInfo: BuildingInJson | undefined = buildingInfo_data.find(
+      (building: BuildingInJson) => building.properties.Abbreviation === state.currentBuilding,
+    );
+    if (!buildingInfo) return;
     dispatch({
       type: "UPDATE_BUILDING_INFO",
-      dataOfBuilding: buildingInfo_data.find(
-        (building: BuildingInJson) => building.properties.Abbreviation === state.currentBuilding,
-      ),
+      dataOfBuilding: buildingInfo,
     });
   }, [buildingInfo_data, state.currentBuilding, dispatch]);
 
@@ -98,7 +100,6 @@ const Campus = () => {
     drawBuildingsOnCampus(buildingContainer, projection, buildingInfo_data);
 
     drawBuildingOutlines(buildingContainer, projection, buildingInfo_data);
-    // drawCampusOutlines(buildingContainer, projection, state.dataOfCampus, state.currentCampus);
     drawStreets(buildingContainer, projection);
     drawEntrances(buildingContainer, projection);
     drawParkingLots(buildingContainer);

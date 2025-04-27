@@ -44,17 +44,18 @@ const useLevelButton = () => {
 
   const hoverAnimation = (level: number, hoverLevel: number | undefined, levelCount: number) => {
     const marker = d3.select("#level-marker");
-  
+
     let newTop = calcLevelSelectorTop(levelCount, level);
     if (isNaN(newTop)) return;
-  
-    if (hoverLevel === undefined) return marker.transition().duration(200).style("top", `${newTop}%`);
-  
+
+    if (hoverLevel === undefined)
+      return marker.transition().duration(200).style("top", `${newTop}%`);
+
     const boxHeight = levelBoxHeight(levelCount);
     let hoverTop = 100 - boxHeight * hoverLevel;
     hoverTop -= boxHeight;
     hoverTop += boxHeight * 0.05;
-  
+
     const percentage = 0.05;
     const diff = (hoverTop - newTop) * percentage;
     newTop += diff;

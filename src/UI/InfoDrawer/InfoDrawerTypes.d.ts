@@ -23,4 +23,5 @@ export type EventInJson = {
   rooms: string;
   week: string;
   eventType: string;
+  notes: string;
 };

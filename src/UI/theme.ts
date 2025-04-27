@@ -82,5 +82,13 @@ export const theme = createTheme({
         },
       },
     },
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          backgroundColor: HTWK_LIGHT_TEXT,
+          opacity: 0.5,
+        },
+      },
+    },
   },
 });
