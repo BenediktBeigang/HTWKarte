@@ -12,7 +12,7 @@ import ContactBox from "./ContactBox";
 import DescriptionBox from "./DescriptionBox";
 import EventBox from "./EventBox";
 import ImageBox from "./ImageBox";
-import { BuildingInfo, ContactInfo, EventInJson } from "./InfoDrawerTypes";
+import { BuildingInfo, ContactInfo } from "./InfoDrawerTypes";
 import "./RoomInfo.css";
 import { TitleBox } from "./TitleBox";
 
@@ -25,11 +25,9 @@ const RoomInfoStyle = {
 };
 
 const InfoDrawer = () => {
-  const [{ currentRoomID, contactInfo, cachedEvents, focusedBuilding }, dispatch] =
-    useCampusState();
+  const [{ currentRoomID, contactInfo, focusedBuilding }, dispatch] = useCampusState();
   const [contactCard, setContactCard] = useState<ContactInfo | undefined>(undefined);
   const [buildingCard, setBuildingCard] = useState<BuildingInfo | undefined>(undefined);
-  const [eventsCard, setEventsCard] = useState<EventInJson[] | undefined>(undefined);
   const { data: buildingInfo_data } = useBuildingInfo();
   const { splitRoomName, updateRoomHighlighting } = useRooms();
 
@@ -65,19 +63,6 @@ const InfoDrawer = () => {
     });
   }, [buildingInfo_data, focusedBuilding]);
 
-  useEffect(() => {
-    if (currentRoomID === "None" || !cachedEvents) return setEventsCard([]);
-    const today = new Date().toISOString().split("T")[0];
-    const eventsInRoom: EventInJson[] = cachedEvents.filter(
-      (event) =>
-        event.rooms.split(" ").includes(currentRoomID) &&
-        new Date(event.start).toISOString().split("T")[0] === today,
-    );
-    setEventsCard(
-      eventsInRoom.sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()),
-    );
-  }, [cachedEvents, currentRoomID]);
-
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
       event &&
@@ -105,7 +90,8 @@ const InfoDrawer = () => {
         paper: {
           sx: {
             backgroundColor: HTWKALENDER_GRAY,
-            maxHeight: desktopMode ? "100%" : "60%",
+            width: desktopMode ? "25em" : "100%",
+            height: desktopMode ? "100%" : "60%",
           },
         },
       }}
@@ -161,7 +147,7 @@ const InfoDrawer = () => {
           <DescriptionBox description={buildingCard.description} />
         )}
         {contactCard && <ContactBox contact={contactCard} />}
-        {eventsCard && eventsCard.length > 0 && <EventBox events={eventsCard} />}
+        {!buildingCard && <EventBox />}
       </Box>
     </Drawer>
   );

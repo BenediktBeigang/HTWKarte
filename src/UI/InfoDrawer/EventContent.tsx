@@ -4,6 +4,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Box,
   Divider,
   keyframes,
   Stack,
@@ -11,6 +12,7 @@ import {
 } from "@mui/material";
 import { format, FormatOptions } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
+import { useSwipeable } from "react-swipeable";
 import { HTWK_YELLOW } from "../Color";
 import { EventInJson } from "./InfoDrawerTypes";
 
@@ -56,17 +58,52 @@ const formatEventType = (eventType: string): string => {
   }
 };
 
-const EventContent = ({ isNow, eventData }: { isNow: boolean; eventData: EventInJson }) => {
+type EventContentProps = {
+  isNow: boolean;
+  eventData: EventInJson | null;
+  offsetFromNow: number;
+  setOffsetFromNow: (value: number) => void;
+};
+
+const EventContent = ({ isNow, eventData, offsetFromNow, setOffsetFromNow }: EventContentProps) => {
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => {
+      if (offsetFromNow + 1 < 7) setOffsetFromNow(offsetFromNow + 1);
+    },
+    onSwipedRight: () => {
+      if (offsetFromNow - 1 > -7) setOffsetFromNow(offsetFromNow - 1);
+    },
+    trackMouse: true,
+  });
+
+  if (eventData === null)
+    return (
+      <Box
+        {...swipeHandlers}
+        sx={{
+          backgroundColor: "#ffffff55",
+          borderRadius: "5px",
+          padding: "1em",
+        }}
+      >
+        <Typography textAlign="center">Keine Veranstaltungen an diesem Tag.</Typography>
+      </Box>
+    );
+
   return (
     <Accordion
+      {...swipeHandlers}
       disableGutters
       sx={{
-        marginX: "1em",
         backgroundColor: "#ffffff55",
         animation: isNow ? `${borderPulsate} 3s infinite` : "none",
+        borderRadius: "5px",
       }}
     >
-      <AccordionSummary expandIcon={eventData.notes ? <ExpandMoreIcon /> : <></>}>
+      <AccordionSummary
+        sx={{ position: "relative" }}
+        expandIcon={eventData.notes ? <ExpandMoreIcon /> : <></>}
+      >
         <Stack direction="row" spacing={2} sx={{ padding: "0.5em" }}>
           <Typography sx={{ textAlign: "right" }}>
             {formatEventTime(eventData.start, "Europe/Berlin")}
@@ -74,28 +111,35 @@ const EventContent = ({ isNow, eventData }: { isNow: boolean; eventData: EventIn
             {formatEventTime(eventData.end, "Europe/Berlin")}
           </Typography>
           <Divider orientation="vertical" flexItem />
-          <Typography sx={{ wordWrap: "break-word", overflow: "hidden", textOverflow: "ellipsis" }}>
+          <Typography
+            sx={{
+              wordBreak: "break-all",
+              overflowWrap: "break-word",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+          >
             {`${formatEventType(eventData.eventType)}`}
             <br />
             {`${eventData.name}`}
           </Typography>
         </Stack>
+        {isNow && (
+          <SensorsIcon
+            sx={{
+              position: "absolute",
+              top: "0.3em",
+              right: "0.3em",
+              animation: `${colorPulsate} 3s infinite`,
+            }}
+          />
+        )}
       </AccordionSummary>
       {eventData.notes && (
         <AccordionDetails>
           <Divider sx={{ marginBottom: "1em" }} />
           <Typography>{eventData.notes}</Typography>
         </AccordionDetails>
-      )}
-      {isNow && (
-        <SensorsIcon
-          sx={{
-            position: "absolute",
-            top: "0.3em",
-            right: "0.3em",
-            animation: `${colorPulsate} 3s infinite`,
-          }}
-        />
       )}
     </Accordion>
   );
