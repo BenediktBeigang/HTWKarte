@@ -1,0 +1,3 @@
+query cleanup
+gitlab images und roomInfo.json also repo im build process fetchen und einfügen
+image preview verbessern sodass es immer richtig angezeigt wird

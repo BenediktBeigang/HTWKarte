@@ -35,3 +35,12 @@ export type CampusInJson = {
   };
   geometry: { coordinates: Array<Array<[number, number]>>; type: string };
 };
+
+export type RoomEntry = {
+  name: string;
+  description: string;
+  link: string;
+  image: string;
+};
+export type AllRoomEntries = Record<string, RoomEntry>;
+export type RoomInJson = AllRoomEntries[keyof AllRoomEntries];
