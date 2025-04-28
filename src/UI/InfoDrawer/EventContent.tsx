@@ -129,11 +129,12 @@ const EventContent = ({ isNow, eventData, offsetFromNow, setOffsetFromNow }: Eve
               overflowWrap: "break-word",
               overflow: "hidden",
               textOverflow: "ellipsis",
+              whiteSpace: "pre-line",
             }}
           >
             {eventTypeVisible(eventData.eventType) && `${formatEventType(eventData.eventType)}`}
             {eventTypeVisible(eventData.eventType) && <br />}
-            {`${eventData.name}`}
+            {eventData.name}
           </Typography>
         </Stack>
         {isNow && (

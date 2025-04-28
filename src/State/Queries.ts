@@ -7,7 +7,10 @@ const ONE_HOUR_IN_MS = 3600000 as const;
 export const useRoomInfo = () => {
   return useQuery({
     queryKey: ["roomInfo"],
-    queryFn: () => fetch("/Data/rooms.json").then((res) => res.json()),
+    queryFn: () =>
+      fetch(
+        "https://gitlab.dit.htwk-leipzig.de/htwk-software/htwkarte-resources/-/raw/main/roomDescriptions.json",
+      ).then((res) => res.json()),
     staleTime: ONE_DAY_IN_MS,
   });
 };
@@ -50,26 +53,16 @@ export const useHtwkContactsAPI = () => {
 };
 
 export const useCachedEvents = () => {
-  let today = "2024-06-04";
-  let dayInTwoWeeks = "2024-06-18";
-
-  const todayObject = new Date();
-  today = todayObject.toISOString().split("T")[0];
-
-  const dayInTwoWeeksObject = new Date(todayObject);
-  dayInTwoWeeksObject.setDate(todayObject.getDate() + 14);
-  dayInTwoWeeks = dayInTwoWeeksObject.toISOString().split("T")[0];
+  const dayBeforeTwoWeeks = new Date(Date.now() - 14 * ONE_DAY_IN_MS).toISOString().split("T")[0];
+  const dayInTwoWeeks = new Date(Date.now() + 14 * ONE_DAY_IN_MS).toISOString().split("T")[0];
 
   return useQuery({
     queryKey: ["cachedEvents"],
     queryFn: () =>
       fetch(
-        `https://cal.htwk-leipzig.de/api/schedule?from=${today}&to=${dayInTwoWeeks}&mapped=true`,
+        `https://cal.htwk-leipzig.de/api/schedule?from=${dayBeforeTwoWeeks}&to=${dayInTwoWeeks}&mapped=true`,
       )
-        .then((res) => {
-          const test = res.json();
-          return test;
-        })
+        .then((res) => res.json())
         .then((remoteEvents: any[]) =>
           fetch("/Data/lnc_events.json")
             .then((res) => {
@@ -81,3 +74,19 @@ export const useCachedEvents = () => {
     staleTime: ONE_HOUR_IN_MS,
   });
 };
+
+// For testing purposes only
+// export const useCachedEvents = () => {
+//   const dayBeforeTwoWeeks = new Date(Date.now() - 14 * ONE_DAY_IN_MS).toISOString().split("T")[0];
+//   const dayInTwoWeeks = new Date(Date.now() + 14 * ONE_DAY_IN_MS).toISOString().split("T")[0];
+
+//   return useQuery({
+//     queryKey: ["cachedEvents"],
+//     queryFn: () =>
+//       fetch("/Data/lnc_events.json").then((res) => {
+//         const test = res.json();
+//         return test;
+//       }),
+//     staleTime: ONE_HOUR_IN_MS,
+//   });
+// };

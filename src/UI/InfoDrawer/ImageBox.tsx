@@ -1,7 +1,7 @@
 import { Paper } from "@mui/material";
 import { BOX_COLOR } from "../Color";
 
-export const ImageBox = ({ building }: { building: string }) => {
+export const ImageBox = ({ src }: { src: string }) => {
   return (
     <Paper
       sx={{
@@ -14,9 +14,9 @@ export const ImageBox = ({ building }: { building: string }) => {
       }}
     >
       <img
-        src={`/Images/${building}.png`}
+        src={src}
         style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "0.5em" }}
-      ></img>
+      />
     </Paper>
   );
 };

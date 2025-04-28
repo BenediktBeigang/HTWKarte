@@ -1,0 +1,30 @@
+Dies ist eine CSV welche Aussteller in bestimmte bereiche aufteilt. Ich möchte dass du mir den inhalt in eine bestimmte json struktur mappst.
+
+export type EventInJson = {
+  name: string;
+  start: Date;
+  end: Date;
+  day: string;
+  free: boolean;
+  rooms: string;
+  week: string;
+  eventType: string;
+  notes: string;
+};
+
+So sieht die json für ein element aus. Ich möchte also eine liste haben. Es sollen wie folgt die Felder ausgefüllt werden:
+name = zB "• Wanderweg Games\n• Dreambound Studio\n..." als Beispiel also alle _AusstellerIn im Raum_ wie im Beispiel auflisten. Wenn es nur ein eintrag ist kann sich der • gespart werden
+start = "2025-05-10 12:00:00.000Z"
+end = "2025-05-11 01:00:00.000Z"
+day = "Samstag"
+free = false
+rooms = LI... (nur die Räume mit einbeziehen die LI als prefix haben und wichtig ist das "LI" caps ist)
+week = "KW18"
+eventType = "<Kategorie> Bereich" (für Indie, Retro, Artists, AR/VR, Computerspiele (modern), LNC Masters, Brettspiele), sonst diesen weglassen also null
+notes = null
+course = LNC
+
+Zusätzliche Regeln:
+- Events sollen nicht mit aufgenommen werden wenn:
+sie abgesagt wurden
+- Events sollen nur aufgenommen werden wenn sie als Raum LI... stehen haben.

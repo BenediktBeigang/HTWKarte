@@ -28,7 +28,7 @@ const InfoDrawer = () => {
   const [{ currentRoomID, focusedBuilding }, dispatch] = useCampusState();
   const { data: buildingInfo_data } = useBuildingInfo();
   const { splitRoomName, updateRoomHighlighting } = useRooms();
-  const { contactCard, buildingCard } = useInfoDrawer();
+  const { contactCard, buildingCard, roomCard } = useInfoDrawer();
 
   const theme = useTheme();
   const desktopMode = useMediaQuery(theme.breakpoints.up("sm"));
@@ -111,7 +111,8 @@ const InfoDrawer = () => {
             currentRoomID={""}
           />
         )}
-        {focusedBuilding && <ImageBox building={focusedBuilding} />}
+        {focusedBuilding && <ImageBox src={`/Images/${focusedBuilding}.png`} />}
+        {roomCard && <ImageBox src={roomCard.image} />}
         {buildingCard && focusedBuilding && <BuildingBox building={buildingCard} />}
         {buildingCard && focusedBuilding && buildingCard.description && (
           <DescriptionBox description={buildingCard.description} />
