@@ -1,5 +1,5 @@
 # Build Stage
-FROM node:lts-alpine AS build
+FROM docker.io/library/node:lts-alpine AS build
 
 # Set working directory
 WORKDIR /app
@@ -16,7 +16,7 @@ RUN npm run build
 
 # production stage
 # https://hub.docker.com/r/bitnami/nginx -> always runs as non-root user
-FROM bitnami/nginx:1.25 AS prod
+FROM docker.io/bitnami/nginx:1.28 AS prod
 
 # Copy built files from the build stage
 COPY --from=build /app/dist /app
