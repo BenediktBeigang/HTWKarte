@@ -252,7 +252,7 @@
     "course": "LNC"
   },
   {
-    "name": "Science MashUp",
+    "name": "Science MashUp 2025",
     "start": "2025-05-10 12:00:00.000Z",
     "end": "2025-05-11 01:00:00.000Z",
     "day": "Samstag",
@@ -261,6 +261,61 @@
     "week": "KW19",
     "eventType": null,
     "notes": null,
+    "course": "LNC"
+  },
+  {
+    "name": "Eröffnung",
+    "start": "2025-05-10 12:05:00.000Z",
+    "end": "2025-05-10 12:15:00.000Z",
+    "day": "Samstag",
+    "rooms": "LI318",
+    "week": "KW19",
+    "free": false,
+    "notes": "• Prof. Dr. Gabriele Hooffacker\n• Dr. Benjamin Bigl\n• Dr. Sebastian Stoppe\n\n• Prof. Dr. Jean-Alexander Müller\n\n• Jonathan Werneburg: Games und Bücher - ein Primer aus dem Kinderzimmer ",
+    "course": "LNC"
+  },
+  {
+    "name": "Block 1\nNarrative Strukturen und Erzähltechniken in Games und Büchern",
+    "start": "2025-05-10 12:15:00.000Z",
+    "end": "2025-05-10 13:00:00.000Z",
+    "day": "Samstag",
+    "rooms": "LI318",
+    "week": "KW19",
+    "free": false,
+    "notes": "• Robert Böhm: Vom Unzuverlässigen Erzähler zum unzuverlässigen Avatar\n\n• Leon Micheel: Die Idee eines literarischen Systems: Untersuchung intermedialer Merkmale zwischen Videospiel und Buch am Beispiel von \"Metamorphosis\" (Ovid Works 2020) und den Werken Franz Kafkas\n\n• Lara Konkel: Katharsis next Level: Multiperspektivisches Erzählen und Identifikationsangebote in THE LAST OF US PART II\n\n• Roberto Zeugner: \"The Stanley Parable\" als performative Parabel im Unterricht",
+    "course": "LNC"
+  },
+  {
+    "name": "Block 2\nMedienübergreifende Aspekte und kulturelle Bedeutung von Spielen und Büchern",
+    "start": "2025-05-10 13:00:00.000Z",
+    "end": "2025-05-10 13:45:00.000Z",
+    "day": "Samstag",
+    "rooms": "LI318",
+    "week": "KW19",
+    "free": false,
+    "notes": "• Lena Falkenhagen: Zwischen Banalität und Droge: Games im Kulturjournalismus\n\n• Marcus Klöppel & Christian Bachmann: Formen narrativer und spielmechanische Hybridität von Comic, Spiel und Buch\n\n• Alina Menten: Romantik reloaded? Die literarischen Spuren des Waldes in schwedischen Games\n\n• Rudolf Inderst: \"No Running in the Library!\" Zu Bedeutung und Funktion des Schauplatzes 'Bibliothek' in digitalen Spielen",
+    "course": "LNC"
+  },
+  {
+    "name": "Block 3\nInteraktive Formate und die Rolle des Spielers",
+    "start": "2025-05-10 13:45:00.000Z",
+    "end": "2025-05-10 14:30:00.000Z",
+    "day": "Samstag",
+    "rooms": "LI318",
+    "week": "KW19",
+    "free": false,
+    "notes": "• Nadine Trautzsch: Interactive Fiction und KI: Narrative Freiheit als Weg zu digitaler Kompetenz\n\n• Melanie Fussenegger: Games als Gedichte lesen am Beispiel von \"Monument Valley\"\n\n• Lara Konkel: GONE HOME und niemand zu Hause. Der Walking Simulator zwischen Videospiel und Detektivroman\n\n• Jörg Burbach: Von Spielern geschrieben: Der kulturelle Effekt von User Generated Content in Büchern und Spielen",
+    "course": "LNC"
+  },
+  {
+    "name": "Podiumsdiskussion \"Games und Bücher\"",
+    "start": "2025-05-10 14:30:00.000Z",
+    "end": "2025-05-10 15:00:00.000Z",
+    "day": "Samstag",
+    "rooms": "LI318",
+    "week": "KW19",
+    "free": false,
+    "notes": "• Dr. Sebastian Stoppe\n• Dr. Benjamin Bigl",
     "course": "LNC"
   }
 ]

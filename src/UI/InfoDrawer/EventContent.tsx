@@ -125,7 +125,7 @@ const EventContent = ({ isNow, eventData, offsetFromNow, setOffsetFromNow }: Eve
           )}
           <Typography
             sx={{
-              wordBreak: "break-all",
+              wordBreak: "break-word",
               overflowWrap: "break-word",
               overflow: "hidden",
               textOverflow: "ellipsis",
@@ -151,7 +151,17 @@ const EventContent = ({ isNow, eventData, offsetFromNow, setOffsetFromNow }: Eve
       {eventData.notes && (
         <AccordionDetails>
           <Divider sx={{ marginBottom: "1em" }} />
-          <Typography>{eventData.notes}</Typography>
+          <Typography
+            sx={{
+              wordBreak: "break-word",
+              overflowWrap: "break-word",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "pre-line",
+            }}
+          >
+            {eventData.notes}
+          </Typography>
         </AccordionDetails>
       )}
     </Accordion>

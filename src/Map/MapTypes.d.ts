@@ -40,7 +40,6 @@ export type RoomEntry = {
   name: string;
   description: string;
   link: string;
-  image: string;
 };
 export type AllRoomEntries = Record<string, RoomEntry>;
 export type RoomInJson = AllRoomEntries[keyof AllRoomEntries];

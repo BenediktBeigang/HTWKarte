@@ -15,6 +15,12 @@ export const faqData = [
   },
   {
     question:
+      "Ich möchte ein Bild oder eine Beschreibung für einen Raum hinzufügen, wie mache ich das?",
+    answer:
+      "Es gibt zwei Möglichkeiten: Entweder du stellst eine Merge-Request auf GitLab im Repository HTWKarte-resources oder du schickt mir eine E-Mail an benedikt.beigang@stud.htwk-leipzig.de",
+  },
+  {
+    question:
       "Ich habe Zugang zu schwer zugänglichen Bereichen, die interessant für bestimmte Studierende sein könnten (zB Brandschutzpläne von einer nicht öffentlich zugänglichen Etage)?",
     answer:
       "Wir sind immer auf der Suche nach neuen Datenquellen, da die vorhandenen Datenquellen oft veraltet oder manche Bereiche nur schwer zugänglich sind. Du kannst uns erreichen über die Angaben im Impressum.",

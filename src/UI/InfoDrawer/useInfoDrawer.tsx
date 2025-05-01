@@ -67,7 +67,7 @@ const useInfoDrawer = () => {
     const roomInfo: RoomInJson | undefined = roomInfo_data?.[currentRoomID];
     if (!roomInfo) return setRoomCard(null);
     setRoomCard(roomInfo);
-  }, [buildingInfo_data, focusedBuilding]);
+  }, [currentRoomID, roomInfo_data]);
 
   return { handleShare, contactCard, buildingCard, roomCard };
 };

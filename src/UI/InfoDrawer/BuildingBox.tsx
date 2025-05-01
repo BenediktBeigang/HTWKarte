@@ -1,5 +1,5 @@
-import DiningIcon from "@mui/icons-material/Event";
 import HomeIcon from "@mui/icons-material/Info";
+import SmartphoneIcon from "@mui/icons-material/Smartphone";
 import { Box, Divider, Link, Stack, Typography } from "@mui/material";
 import { useCampusState } from "../../State/campus-context";
 import { HTWK_LIGHT_TEXT } from "../Color";
@@ -38,7 +38,7 @@ export const BuildingBox = () => {
             <Divider sx={{ opacity: 0.2 }} />
             {buildingCard.abbreviation === "MN" && (
               <Box sx={{ display: "flex", justifyContent: "Left", alignItems: "center" }}>
-                <DiningIcon sx={{ marginRight: "0.2em" }} />
+                <SmartphoneIcon sx={{ marginRight: "0.2em" }} />
                 <Link
                   style={{ color: HTWK_LIGHT_TEXT }}
                   href="https://mensa.heylinus.de/"
