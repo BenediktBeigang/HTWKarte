@@ -3,7 +3,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./fonts.css";
 import "./index.css";
 import { CampusMap } from "./Map/CampusMap.tsx";
 import RedirectToRoom from "./RedirectToRoom.tsx";

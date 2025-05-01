@@ -104,6 +104,7 @@ const RoomMapping = () => {
 
   useEffect(() => {
     if (!cachedEvents) return;
+    console.log("cachedEvents", cachedEvents);
     dispatch({
       type: "UPDATE_CACHED_EVENTS",
       cachedEvents,
