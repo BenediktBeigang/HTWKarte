@@ -1,6 +1,6 @@
 import CopyIcon from "@mui/icons-material/ContentCopy";
 import ShareIcon from "@mui/icons-material/Share";
-import { Box, IconButton, Paper, Typography } from "@mui/material";
+import { IconButton, Paper, Stack, Typography } from "@mui/material";
 import { BOX_COLOR, HTWK_YELLOW } from "../Color";
 import useInfoDrawer from "./useInfoDrawer";
 
@@ -16,12 +16,11 @@ export const TitleBox = ({
   const { handleShare } = useInfoDrawer();
 
   return (
-    <Box
+    <Stack
       sx={{
         position: "sticky",
         top: 0,
         zIndex: 10,
-        display: "flex",
         justifyContent: "left",
         flexDirection: "row",
         width: "100%",
@@ -58,7 +57,7 @@ export const TitleBox = ({
           </IconButton>
         </Paper>
       )}
-    </Box>
+    </Stack>
   );
 };
 

@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { BuildingInJson } from "../Map/MapTypes";
+import { EventInJson } from "../UI/InfoDrawer/InfoDrawerTypes";
 
 const ONE_DAY_IN_MS = 86400000 as const;
 const ONE_HOUR_IN_MS = 3600000 as const;
@@ -7,10 +8,7 @@ const ONE_HOUR_IN_MS = 3600000 as const;
 export const useRoomInfo = () => {
   return useQuery({
     queryKey: ["roomInfo"],
-    queryFn: () =>
-      fetch(
-        "https://gitlab.dit.htwk-leipzig.de/htwk-software/htwkarte-resources/-/raw/main/roomDescriptions.json",
-      ).then((res) => res.json()),
+    queryFn: () => fetch("/ExternalResources/roomDescriptions.json").then((res) => res.json()),
     staleTime: ONE_DAY_IN_MS,
   });
 };
@@ -65,28 +63,9 @@ export const useCachedEvents = () => {
         .then((res) => res.json())
         .then((remoteEvents: any[]) =>
           fetch("/Data/lnc_events.json")
-            .then((res) => {
-              const test = res.json();
-              return test;
-            })
-            .then((localEvents: any[]) => [...remoteEvents, ...localEvents]),
+            .then((res) => res.json())
+            .then((localEvents: EventInJson[]) => [...remoteEvents, ...localEvents]),
         ),
     staleTime: ONE_HOUR_IN_MS,
   });
 };
-
-// For testing purposes only
-// export const useCachedEvents = () => {
-//   const dayBeforeTwoWeeks = new Date(Date.now() - 14 * ONE_DAY_IN_MS).toISOString().split("T")[0];
-//   const dayInTwoWeeks = new Date(Date.now() + 14 * ONE_DAY_IN_MS).toISOString().split("T")[0];
-
-//   return useQuery({
-//     queryKey: ["cachedEvents"],
-//     queryFn: () =>
-//       fetch("/Data/lnc_events.json").then((res) => {
-//         const test = res.json();
-//         return test;
-//       }),
-//     staleTime: ONE_HOUR_IN_MS,
-//   });
-// };
