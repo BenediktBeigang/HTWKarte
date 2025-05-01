@@ -5,7 +5,7 @@ EG,Eingangshalle,,,Infostand,Zentral,-,-,-,,-
 ,Eingangshalle-Süd,,,sherLOCKROOMS Live Escape Games Leipzig,nicht zugewiesen,Steckdose,1,1,2,-
 ,Eingangshalle-Süd,,,Sticker-Tauschbörse,nicht zugewiesen,-,2,2,,-
 ,Eingangshalle-Süd,,,Notenspur Leipzig e. V.,nicht zugewiesen,Steckdose/Vereteilersteckdose,2,1,5,-
-,Eingangshalle-Süd,,,Cyber Secure Tycoon: The Card Game,Brettspiele,-,3,1,5,-
+,Eingangshalle-Süd,,,bitaggregat GmbH,Brettspiele,-,3,1,5,-
 ,Eingangshalle-Süd,,,,,,,,,-
 ,Eingangshalle-Süd,,,,,,,,,-
 ,Eingangshalle-Süd,,,,,,,,,-
@@ -35,7 +35,7 @@ EG,Mensa (1. Ebene),,,Tabletop Sachsen e.V.,Brettspiele,-,4,3,,-
 ,Li108,großer Seminarraum,10.05.,Smart Driving,Zentral,Steckdosen,8,5,,"größere Fläche in einem SR (1/2 Raum) zum Auslegen der Fahrbahnplatten
 (Dieser Bereich darf von Besuchern nicht betreten werden)
 Tische zum Abgrenzen dieses Bereiches und zur Präsentationszwecken"
-,Li110,,10.05.,LNC Masters Green Room,LNC Masters,-,-,-,,Technik-Orga selbstständig durch die Projektgruppe
+,Li110,,10.05.,Lagerraum Stühle,Zentral,-,-,-,,-
 ,Li112,großer Seminarraum,10.05.,Wanderweg Games,Indie,"Steckdose
 Beamer und Leinwand",2,1,4,-
 ,Li112,,,Dreambound Studio,Indie,2 Steckdosen,8,1,6,-
@@ -56,7 +56,7 @@ Strom",14,5,,-
 ,Li113,,,Binary Bacteria,Indie,Steckdose,2,1,3,-
 ,Nordflur,,,PandaBee Studios,Indie,"Steckdose
 Verteiler",2,2,,-
-,Nordflur,,,Rat King,Indie,Steckdosen,2,1,,-
+,Nordflur,,,RAT KING,Indie,Steckdosen,2,1,,-
 ,Nordflur,,,Games & XR Mitteldeutschland e.V.,Indie,Steckdose,1,1,,-
 ,Li114,,10.05.,TCG,Zentral,,,,,
 ,Li106,Pool,,,,,,,,
@@ -72,18 +72,16 @@ Verteiler",2,2,,-
 ,Haupt-Foyer,,,Radio Paralax,Retro,"LAN, 3 Lan-Kabel, 2-3 Steckdosenleisten",3,6,-,
 ,Li201,,09.05.,LAGERRAUM,Zentral,-,-,-,,-
 ,Li203,großer Seminarraum,10.05.,Haus der Computerspiele,Retro,-,2,5,-,
-,Li203,,,Tom Pieske,Retro,-,1,3,,-
 ,Li203,,,Carrera Bahn,Retro,-,2,4,-,
 ,Li203,,,The DOS Dudes,Retro,-,3,14,,
 ,Li203,,,Arcade-Automat,Retro,-,-,-,-,
-,Li203,,,Flugsimulator,Retro,-,1,1,2,
+,Li203,,,Kultboy.com,Retro,Steckdose,1,1,,Verteiler wird mitgebracht
 ,Li204,großer Seminarraum,10.05.,Tilo Wallis,Retro,Steckdose,2,3,6,-
 ,Li204,,,Eastpixel,Retro,Steckdose,1,1,3,-
 ,Li204,,,Dr. Wuro Industries,Retro,Steckdose,3,2,6,-
-,Li204,,,Jan Fischer,Retro,Steckdose,1,1,,Verteiler wird mitgebracht
 ,Li204,,,Spectrum-User-Club,Retro,5 Shuco-Steckdosen,4,4,,-
 ,Li205,mittelgroßer Seminarraum,10.05.,Amiga Dresden,Computerspiele (modern),Beamer,15,5,,-
-,Li207,,10.05.,Ingeneure (ABSAGE),Zentral,-,-,-,,-
+,Li207,,10.05.,LNC Masters Green Room,LNC Masters,-,-,-,,Technik-Orga selbstständig durch die Projektgruppe
 ,Li209,großer Seminarraum,10.05.,Hiro Akazaki Arts,Artists,Steckdose,1,1,1,-
 ,Li209,,,moony drafts (ABSAGE),Artists,WLAN,2,1,,
 ,Li209,,,Sarah_art_journey,Artists,WLAN,1,1,,
