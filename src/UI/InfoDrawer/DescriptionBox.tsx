@@ -41,12 +41,12 @@ export const DescriptionBox = () => {
             >
               <Typography
                 variant="subtitle1"
-                sx={{ userSelect: "none", textDecoration: "underline" }}
+                sx={{ userSelect: "none", textDecoration: roomCard?.link ? "underline" : "none" }}
               >
                 {roomCard?.name}
               </Typography>
 
-              <OpenInNewIcon sx={{ fontSize: "1.2em" }} />
+              {roomCard?.link && <OpenInNewIcon sx={{ fontSize: "1.2em" }} />}
             </Stack>
           </Link>
         )}
