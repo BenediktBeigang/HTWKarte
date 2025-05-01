@@ -47,7 +47,7 @@ const JumpDayButton = (
 };
 
 const getDayText = (offsetFromToday: number) => {
-  const date = new Date("2025-05-10");
+  const date = new Date();
   date.setDate(date.getDate() + offsetFromToday);
   switch (offsetFromToday) {
     case 0:
