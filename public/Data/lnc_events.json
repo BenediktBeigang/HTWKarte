@@ -24,7 +24,7 @@
     "course": "LNC"
   },
   {
-    "name": "Minecraft",
+    "name": "Minecraft\n Programmieren in Minecraft",
     "start": "2025-05-10 12:00:00.000Z",
     "end": "2025-05-11 01:00:00.000Z",
     "day": "Samstag",
@@ -84,9 +84,45 @@
     "course": "LNC"
   },
   {
-    "name": "TCG",
+    "name": "Trading Card Games & Quizzes",
     "start": "2025-05-10 12:00:00.000Z",
     "end": "2025-05-11 01:00:00.000Z",
+    "day": "Samstag",
+    "free": false,
+    "rooms": "LI114",
+    "week": "KW19",
+    "eventType": null,
+    "notes": null,
+    "course": "LNC"
+  },
+  {
+    "name": "Gaming-Allgemeinwissen-Quiz",
+    "start": "2025-05-10 14:00:00.000Z",
+    "end": "2025-05-10 16:00:00.000Z",
+    "day": "Samstag",
+    "free": false,
+    "rooms": "LI114",
+    "week": "KW19",
+    "eventType": null,
+    "notes": null,
+    "course": "LNC"
+  },
+  {
+    "name": "Pokémon-Quiz",
+    "start": "2025-05-10 16:00:00.000Z",
+    "end": "2025-05-10 19:00:00.000Z",
+    "day": "Samstag",
+    "free": false,
+    "rooms": "LI114",
+    "week": "KW19",
+    "eventType": null,
+    "notes": null,
+    "course": "LNC"
+  },
+  {
+    "name": "Magic-The-Gathering-Quiz",
+    "start": "2025-05-10 19:00:00.000Z",
+    "end": "2025-05-10 21:00:00.000Z",
     "day": "Samstag",
     "free": false,
     "rooms": "LI114",
@@ -216,6 +252,18 @@
     "course": "LNC"
   },
   {
+    "name": "Turnierbeginn",
+    "start": "2025-05-10 15:00:00.000Z",
+    "end": "2025-05-10 21:00:00.000Z",
+    "day": "Samstag",
+    "free": false,
+    "rooms": "LI211",
+    "week": "KW19",
+    "eventType": null,
+    "notes": null,
+    "course": "LNC"
+  },
+  {
     "name": "Leipzig Esports",
     "start": "2025-05-10 12:00:00.000Z",
     "end": "2025-05-11 01:00:00.000Z",
@@ -316,6 +364,138 @@
     "week": "KW19",
     "free": false,
     "notes": "• Dr. Sebastian Stoppe\n• Dr. Benjamin Bigl",
+    "course": "LNC"
+  },
+  {
+    "name": "Garderobe",
+    "start": "2025-05-10 12:00:00.000Z",
+    "end": "2025-05-11 01:00:00.000Z",
+    "day": "Samstag",
+    "rooms": "LI0NorthLobby",
+    "week": "KW19",
+    "free": false,
+    "eventType": null,
+    "notes": null,
+    "course": "LNC"
+  },
+  {
+    "name": "• sherLOCKROOMS Live Escape Games Leipzig\n• Sticker Tauschbörse\n• Notenspur Leipzig e.V.\n• bitaggregat GmbH",
+    "start": "2025-05-10 12:00:00.000Z",
+    "end": "2025-05-11 01:00:00.000Z",
+    "day": "Samstag",
+    "rooms": "LI0SouthLobby",
+    "week": "KW19",
+    "free": false,
+    "eventType": "Verschiedenes",
+    "notes": null,
+    "course": "LNC"
+  },
+  {
+    "name": "Spell Loop",
+    "start": "2025-05-10 12:00:00.000Z",
+    "end": "2025-05-11 01:00:00.000Z",
+    "day": "Samstag",
+    "rooms": "LI1MainLobby",
+    "week": "KW19",
+    "free": false,
+    "eventType": "Indie Bereich",
+    "notes": null,
+    "course": "LNC"
+  },
+  {
+    "name": "• SetActive Media\n• Just2D\n• Hero Saplings",
+    "start": "2025-05-10 12:00:00.000Z",
+    "end": "2025-05-11 01:00:00.000Z",
+    "day": "Samstag",
+    "rooms": "LI1NorthLobby",
+    "week": "KW19",
+    "free": false,
+    "eventType": "Indie Bereich",
+    "notes": null,
+    "course": "LNC"
+  },
+  {
+    "name": "• Tarek Spiegelhalter\n• Stepheight\n• Hannes Bethke\n• Alexander Pfeifer\n• Norrimo (Patrick Eckardt)\n• Moonlit Monitors UG\n• Kimi Schoffers",
+    "start": "2025-05-10 12:00:00.000Z",
+    "end": "2025-05-11 01:00:00.000Z",
+    "day": "Samstag",
+    "rooms": "LI1SouthLobby",
+    "week": "KW19",
+    "free": false,
+    "eventType": "Indie Bereich",
+    "notes": null,
+    "course": "LNC"
+  },
+  {
+    "name": "Radio Paralax",
+    "start": "2025-05-10 12:00:00.000Z",
+    "end": "2025-05-11 01:00:00.000Z",
+    "day": "Samstag",
+    "rooms": "LI2MainLobby",
+    "week": "KW19",
+    "free": false,
+    "eventType": "Retro Bereich",
+    "notes": null,
+    "course": "LNC"
+  },
+  {
+    "name": "• Team Retr-O-Mat\n• LUFTHOHEIT",
+    "start": "2025-05-10 12:00:00.000Z",
+    "end": "2025-05-11 01:00:00.000Z",
+    "day": "Samstag",
+    "rooms": "LI2NorthLobby",
+    "week": "KW19",
+    "free": false,
+    "eventType": "Retro Bereich",
+    "notes": null,
+    "course": "LNC"
+  },
+  {
+    "name": "• Medienspürnase\n• Computerkabinett Ilmenau",
+    "start": "2025-05-10 12:00:00.000Z",
+    "end": "2025-05-11 01:00:00.000Z",
+    "day": "Samstag",
+    "rooms": "LI2SouthLobby",
+    "week": "KW19",
+    "free": false,
+    "eventType": "Retro Bereich",
+    "notes": null,
+    "course": "LNC"
+  },
+  {
+    "name": "Qubi",
+    "start": "2025-05-10 12:00:00.000Z",
+    "end": "2025-05-11 01:00:00.000Z",
+    "day": "Samstag",
+    "rooms": "LI3MainLobby",
+    "week": "KW19",
+    "free": false,
+    "eventType": "AR/VR",
+    "notes": null,
+    "course": "LNC"
+  },
+  {
+    "name": "Gutenbergschule Leipzig",
+    "start": "2025-05-10 12:00:00.000Z",
+    "end": "2025-05-11 01:00:00.000Z",
+    "day": "Samstag",
+    "rooms": "LI3NorthLobby",
+    "week": "KW19",
+    "free": false,
+    "eventType": "AR/VR",
+    "notes": null,
+    "course": "LNC"
+  },
+  {
+    "name": "• Actrio Studio\n• Vaa The Game",
+    "start": "2025-05-10 12:00:00.000Z",
+    "end": "2025-05-11 01:00:00.000Z",
+    "day": "Samstag",
+    "rooms": "LI3SouthLobby",
+    "week": "KW19",
+    "free": false,
+    "eventType": "AR/VR",
+    "notes": null,
     "course": "LNC"
   }
 ]
