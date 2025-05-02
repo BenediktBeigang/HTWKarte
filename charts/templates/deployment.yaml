@@ -16,7 +16,7 @@ spec:
       {{- include "htwkarte.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
+      {{- with .Values.annotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
