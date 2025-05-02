@@ -1,6 +1,5 @@
 hosts:
   frontend: &frontend_host "FRONTEND_URL"
-chartName: &chart_name "PLACEHOLDER"
 
 replicaCount: 2
 
@@ -25,6 +24,6 @@ ingress:
             pathType: ImplementationSpecific
             backend:
               service:
-                name: *chart_name
+                name: htwkarte
                 port:
                   number: *service_port
