@@ -8,13 +8,18 @@ import BaseInfoBox from "./BaseInfoBox";
 import useInfoDrawer from "./useInfoDrawer";
 
 export const DescriptionBox = () => {
-  const { focusedBuilding } = useCampusState()[0];
+  const { focusedBuilding, lncMode } = useCampusState()[0];
   const [descriptionText, setDescriptionText] = useState<string | null>(null);
   const { buildingCard, roomCard } = useInfoDrawer();
 
   useEffect(() => {
-    if (buildingCard && focusedBuilding && buildingCard.description)
-      return setDescriptionText(buildingCard.description);
+    if (buildingCard && focusedBuilding && buildingCard.description) {
+      if (lncMode && buildingCard.abbreviation === "MN")
+        return setDescriptionText(
+          "• Tabletop Sachsen e.V.\n• Spielraum LE e.V.\n• Würfelpech e.V.\n• Primordial\n• RasCoon Productions",
+        );
+      else return setDescriptionText(buildingCard.description);
+    }
     if (roomCard?.description) return setDescriptionText(roomCard.description);
     setDescriptionText(null);
   }, [buildingCard, roomCard]);
@@ -51,7 +56,17 @@ export const DescriptionBox = () => {
           </Link>
         )}
 
-        <Typography>{descriptionText}</Typography>
+        <Typography
+          sx={{
+            wordBreak: "break-word",
+            overflowWrap: "break-word",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "pre-line",
+          }}
+        >
+          {descriptionText}
+        </Typography>
       </Stack>
     </BaseInfoBox>
   );

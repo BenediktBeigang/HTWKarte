@@ -69,3 +69,11 @@ export const useCachedEvents = () => {
     staleTime: ONE_HOUR_IN_MS,
   });
 };
+
+export const useLNCEvents = () => {
+  return useQuery({
+    queryKey: ["lncEvents"],
+    queryFn: () => fetch("/Data/lnc_events.json").then((res) => res.json()),
+    staleTime: ONE_HOUR_IN_MS,
+  });
+};
