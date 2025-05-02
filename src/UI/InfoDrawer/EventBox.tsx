@@ -71,16 +71,17 @@ const EventBox = () => {
   const [offsetFromNow, setOffsetFromNow] = useState<number>(0);
 
   useEffect(() => {
-    if (currentRoomID === "None" || !cachedEvents) return setEventsOnDay([]);
+    if (currentRoomID === "None" || !cachedEvents) return setEventsOnDay("DONT_SHOW");
+
     const date = new Date();
     date.setDate(date.getDate() + offsetFromNow);
-    const dayToShow = date.toISOString().split("T")[0];
 
     const eventsInRoom: EventInJson[] = cachedEvents.filter((event) =>
       event.rooms.split(" ").includes(currentRoomID),
     );
     if (eventsInRoom.length === 0) return setEventsOnDay("DONT_SHOW"); // No events in this room
 
+    const dayToShow = date.toISOString().split("T")[0];
     const eventsInRoomOnThisDay: EventInJson[] = eventsInRoom.filter(
       (event) => new Date(event.start).toISOString().split("T")[0] === dayToShow,
     );
@@ -92,7 +93,6 @@ const EventBox = () => {
     );
   }, [cachedEvents, currentRoomID, offsetFromNow]);
 
-  console.log("eventsOnDay", eventsOnDay);
   if (eventsOnDay === "DONT_SHOW") return <></>;
 
   return (

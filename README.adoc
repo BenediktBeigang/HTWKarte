@@ -41,9 +41,19 @@ npm run serve
 == Gallery
 
 .The main campus at the Karl-Liebknecht-Straße
-image::Documentation/img/CampusView_v4.png[]
+image::Documentation/img/CampusView_v6.png[]
 
 ---
 
 .A view inside the one building 
 image::Documentation/img/Inside.png[]
+
+---
+
+.Events inside a room
+image::Documentation/img/Events.png[]
+
+--- 
+
+.Information about the Professor in a room
+image::Documentation/img/BuroCard.png[]

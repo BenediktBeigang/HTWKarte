@@ -11,6 +11,8 @@ build:
   variables:
     COMMIT_TAG: "latest"
   script:
+    - apk add --no-cache git openssh-client
+    - git clone https://gitlab.dit.htwk-leipzig.de/htwk-software/htwkarte-resources.git public/ExternalResources
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - |
       docker build \

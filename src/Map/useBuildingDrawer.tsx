@@ -1,6 +1,8 @@
 import * as d3 from "d3";
 import { LNC_BUILDINGS, LncBuildingType } from "../Constants";
 import { useCampusState } from "../State/campus-context";
+import { useLNCEvents } from "../State/Queries";
+import { ROOM_INACTIVE } from "../UI/Color";
 import { BuildingInJson } from "./MapTypes";
 import useRoofDrawer from "./useRoofDrawer";
 import useRooms from "./useRooms";
@@ -9,6 +11,7 @@ const useBuildingDrawer = () => {
   const [state, dispatch] = useCampusState();
   const { drawRoof } = useRoofDrawer();
   const { roomClickedHandler } = useRooms();
+  const { data: lncEvents } = useLNCEvents();
 
   const prepareRooms = (level: number, buildingAbbreviation: string) => {
     const floor = d3.select(`#${buildingAbbreviation}_${level}`);
@@ -25,11 +28,10 @@ const useBuildingDrawer = () => {
     rooms.forEach((room: any) => {
       const room_d3 = d3.select(room);
       const roomID: string = room_d3.attr("id");
-      room_d3.on("click", function () {
-        roomClickedHandler(roomID);
-      });
 
-      return;
+      const isActive = !state.lncMode || lncEvents.some((e: any) => e.rooms === roomID);
+      if (!isActive) room_d3.style("fill", ROOM_INACTIVE);
+      else room_d3.on("click", () => roomClickedHandler(roomID));
     });
   };
 
@@ -37,7 +39,10 @@ const useBuildingDrawer = () => {
     cleanBuilding(buildingAbbreviation);
     if (buildingAbbreviation === "None" || !buildingAbbreviation) return;
 
-    const pathToFloor = `/Buildings/${buildingAbbreviation}/${buildingAbbreviation}_${newLevel}.svg`;
+    const LNC_FLOORS = [0, 1, 2, 3];
+    const lncPrefix = state.lncMode && LNC_FLOORS.some((floor) => floor === newLevel) ? "_LNC" : "";
+    const pathToFloor = `/Buildings/${buildingAbbreviation}/${buildingAbbreviation}_${newLevel}${lncPrefix}.svg`;
+
     const buildingSVG = d3.select(`#${buildingAbbreviation}`);
     if (!buildingSVG) return;
 
