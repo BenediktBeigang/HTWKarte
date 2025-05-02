@@ -11,7 +11,7 @@ build:
   before_script:
     - echo 'export COMMIT_TAG=${CI_COMMIT_TAG:-"latest"}' >> .env_file
     - source .env_file
-  script:    
+  script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY_IMAGE"
     - |
       docker build \
