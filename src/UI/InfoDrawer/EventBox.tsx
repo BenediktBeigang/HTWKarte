@@ -3,13 +3,14 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { Divider, IconButton, Paper, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import { DATE_OF_LNC_START } from "../../Constants";
 import { useCampusState } from "../../State/campus-context";
 import { BOX_COLOR, HTWK_YELLOW } from "../Color";
 import EventContent from "./EventContent";
 import { EventInJson } from "./InfoDrawerTypes";
 
-const isEventNow = (event: EventInJson): boolean => {
-  const now = new Date();
+const isEventNow = (event: EventInJson, lncModeOverride: boolean): boolean => {
+  const now = lncModeOverride ? new Date(DATE_OF_LNC_START) : new Date();
   return now >= new Date(event.start) && now <= new Date(event.end);
 };
 
@@ -46,8 +47,8 @@ const JumpDayButton = (
   );
 };
 
-const getDayText = (offsetFromToday: number) => {
-  const date = new Date();
+const getDayText = (offsetFromToday: number, lncModeOverride: boolean) => {
+  const date = lncModeOverride ? new Date(DATE_OF_LNC_START) : new Date();
   date.setDate(date.getDate() + offsetFromToday);
   switch (offsetFromToday) {
     case 0:
@@ -66,14 +67,14 @@ const getDayText = (offsetFromToday: number) => {
 };
 
 const EventBox = () => {
-  const [{ currentRoomID, cachedEvents }] = useCampusState();
+  const [{ currentRoomID, cachedEvents, lncModeOverride }] = useCampusState();
   const [eventsOnDay, setEventsOnDay] = useState<EventInJson[] | null | "DONT_SHOW">(null);
   const [offsetFromNow, setOffsetFromNow] = useState<number>(0);
 
   useEffect(() => {
     if (currentRoomID === "None" || !cachedEvents) return setEventsOnDay("DONT_SHOW");
 
-    const date = new Date();
+    const date = lncModeOverride ? new Date(DATE_OF_LNC_START) : new Date();
     date.setDate(date.getDate() + offsetFromNow);
 
     const eventsInRoom: EventInJson[] = cachedEvents.filter((event) =>
@@ -112,7 +113,7 @@ const EventBox = () => {
         >
           {JumpDayButton(true, offsetFromNow, setOffsetFromNow)}
           <Typography sx={{ userSelect: "none" }}>
-            <b>{getDayText(offsetFromNow)}</b>
+            <b>{getDayText(offsetFromNow, lncModeOverride)}</b>
           </Typography>
           {JumpDayButton(false, offsetFromNow, setOffsetFromNow)}
         </Stack>
@@ -120,7 +121,7 @@ const EventBox = () => {
           eventsOnDay.map((event, index) => (
             <EventContent
               key={index}
-              isNow={isEventNow(event)}
+              isNow={isEventNow(event, lncModeOverride)}
               eventData={event}
               offsetFromNow={offsetFromNow}
               setOffsetFromNow={setOffsetFromNow}

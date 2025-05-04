@@ -21,6 +21,7 @@ export type CampusContextProps = {
   roomZoomReady?: boolean;
   snackbarItem: SnackbarItem;
   lncMode: boolean;
+  lncModeOverride: boolean;
   focusedBuilding?: string;
 };
 
@@ -42,6 +43,7 @@ export type CampusContextAction =
   | { type: "UPDATE_ROOM_ZOOM_READY"; roomZoomReady: boolean }
   | { type: "UPDATE_SNACKBAR_ITEM"; snackbarItem: SnackbarItem }
   | { type: "ACTIVATE_LNC_MODE" }
+  | { type: "UPDATE_LNC_MODE_OVERRIDE" }
   | { type: "UPDATE_FOCUSED_BUILDING"; focusedBuilding: string | undefined };
 
 const campusReducer = (
@@ -83,6 +85,8 @@ const campusReducer = (
       return { ...state, snackbarItem: action.snackbarItem };
     case "ACTIVATE_LNC_MODE":
       return { ...state, lncMode: true };
+    case "UPDATE_LNC_MODE_OVERRIDE":
+      return { ...state, lncModeOverride: true };
     case "UPDATE_FOCUSED_BUILDING":
       return { ...state, focusedBuilding: action.focusedBuilding };
     default:

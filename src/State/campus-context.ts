@@ -22,6 +22,7 @@ export const initialCampusState: CampusContextProps = {
     severity: "info",
   },
   lncMode: false,
+  lncModeOverride: false,
   focusedBuilding: undefined,
 };
 

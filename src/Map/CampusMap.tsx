@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { DATE_OF_LNC_START } from "../Constants";
 import { useCampusState } from "../State/campus-context";
 import CustomSnackbar from "../UI/CustomSnackbar";
@@ -28,6 +28,13 @@ export const CampusMap = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (window.location.pathname.includes("/lnc")) {
+      dispatch({ type: "ACTIVATE_LNC_MODE" });
+      dispatch({ type: "UPDATE_LNC_MODE_OVERRIDE" });
+    }
+  }, []);
+
   return (
     <Box id="campus-map" style={{ width: "100vw", height: "100lvh" }}>
       <Header />
@@ -39,7 +46,7 @@ export const CampusMap = () => {
         variant="caption"
         sx={{ position: "absolute", bottom: 0, right: 0, paddingRight: 1 }}
       >
-        v0.3.1
+        v0.4.0
       </Typography>
     </Box>
   );
