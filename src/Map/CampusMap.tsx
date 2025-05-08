@@ -46,7 +46,7 @@ export const CampusMap = () => {
         variant="caption"
         sx={{ position: "absolute", bottom: 0, right: 0, paddingRight: 1 }}
       >
-        v0.4.0
+        v0.4.1
       </Typography>
     </Box>
   );
