@@ -84,7 +84,9 @@ const EventBox = () => {
 
     const dayToShow = date.toISOString().split("T")[0];
     const eventsInRoomOnThisDay: EventInJson[] = eventsInRoom.filter(
-      (event) => new Date(event.start).toISOString().split("T")[0] === dayToShow,
+      (event) =>
+        new Date(event.start).toISOString().split("T")[0] === dayToShow &&
+        event.name !== "Hochschulinformationstag",
     );
 
     setEventsOnDay(
