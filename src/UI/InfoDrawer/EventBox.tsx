@@ -92,7 +92,6 @@ const EventBox = () => {
     );
   }, [cachedEvents, currentRoomID, offsetFromNow]);
 
-  console.log("eventsOnDay", eventsOnDay);
   if (eventsOnDay === "DONT_SHOW") return <></>;
 
   return (

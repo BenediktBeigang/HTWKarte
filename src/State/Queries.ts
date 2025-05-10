@@ -65,7 +65,19 @@ export const useCachedEvents = () => {
     queryFn: () =>
       fetch(
         `https://cal.htwk-leipzig.de/api/schedule?from=${today}&to=${dayInTwoWeeks}&mapped=true`,
-      ).then((res) => res.json()),
+      )
+        .then((res) => {
+          const test = res.json();
+          return test;
+        })
+        .then((remoteEvents: any[]) =>
+          fetch("/Data/lnc_events.json")
+            .then((res) => {
+              const test = res.json();
+              return test;
+            })
+            .then((localEvents: any[]) => [...remoteEvents, ...localEvents]),
+        ),
     staleTime: ONE_HOUR_IN_MS,
   });
 };

@@ -1,7 +1,7 @@
 import { Box, Drawer } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BuildingInJson } from "../../Map/MapTypes";
 import useRooms from "../../Map/useRooms";
 import { useCampusState } from "../../State/campus-context";
@@ -12,9 +12,9 @@ import ContactBox from "./ContactBox";
 import DescriptionBox from "./DescriptionBox";
 import EventBox from "./EventBox";
 import ImageBox from "./ImageBox";
-import { BuildingInfo, ContactInfo } from "./InfoDrawerTypes";
 import "./RoomInfo.css";
 import { TitleBox } from "./TitleBox";
+import useInfoDrawer from "./useInfoDrawer";
 
 const RoomInfoStyle = {
   color: "#ffffffdd",
@@ -25,43 +25,13 @@ const RoomInfoStyle = {
 };
 
 const InfoDrawer = () => {
-  const [{ currentRoomID, contactInfo, focusedBuilding }, dispatch] = useCampusState();
-  const [contactCard, setContactCard] = useState<ContactInfo | undefined>(undefined);
-  const [buildingCard, setBuildingCard] = useState<BuildingInfo | undefined>(undefined);
+  const [{ currentRoomID, focusedBuilding }, dispatch] = useCampusState();
   const { data: buildingInfo_data } = useBuildingInfo();
   const { splitRoomName, updateRoomHighlighting } = useRooms();
+  const { contactCard, buildingCard } = useInfoDrawer();
 
   const theme = useTheme();
   const desktopMode = useMediaQuery(theme.breakpoints.up("sm"));
-
-  useEffect(() => {
-    if (currentRoomID === "None" || !contactInfo) return setContactCard(undefined);
-    const contact = contactInfo.find((room) => room.roomID === currentRoomID);
-    if (!contact) return setContactCard(undefined);
-    setContactCard({
-      roomName: splitRoomName(currentRoomID)?.join(" ") ?? currentRoomID,
-      person: `${contact.firstName} ${contact.lastName}`,
-      email: contact.email ?? "",
-      telephone: contact.telephone ?? [],
-      department: contact.department,
-    });
-  }, [currentRoomID, contactInfo]);
-
-  useEffect(() => {
-    if (focusedBuilding === undefined || buildingInfo_data === undefined)
-      return setBuildingCard(undefined);
-    const buildingInfo: BuildingInJson | undefined = buildingInfo_data.find(
-      (building: BuildingInJson) => building.properties.Abbreviation === focusedBuilding,
-    );
-    if (!buildingInfo) return setBuildingCard(undefined);
-    setBuildingCard({
-      name: buildingInfo.properties.Name,
-      address: buildingInfo.properties.Address,
-      abbreviation: buildingInfo.properties.Abbreviation,
-      janitor: buildingInfo.properties.Janitor ?? undefined,
-      description: buildingInfo.properties.Description ?? undefined,
-    });
-  }, [buildingInfo_data, focusedBuilding]);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -146,6 +116,7 @@ const InfoDrawer = () => {
         {buildingCard && focusedBuilding && buildingCard.description && (
           <DescriptionBox description={buildingCard.description} />
         )}
+        {/* {roomDescription && <DescriptionBox description={roomDescription} />} */}
         {contactCard && <ContactBox contact={contactCard} />}
         {!buildingCard && <EventBox />}
       </Box>
