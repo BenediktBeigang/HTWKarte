@@ -10,7 +10,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { format, FormatOptions } from "date-fns";
+import { format, FormatOptions, isEqual } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { useSwipeable } from "react-swipeable";
 import { HTWK_YELLOW } from "../Color";
@@ -54,7 +54,7 @@ const formatEventType = (eventType: string): string => {
     case "P":
       return "Praktikum";
     default:
-      return eventType;
+      return eventType ?? "";
   }
 };
 
@@ -90,6 +90,14 @@ const EventContent = ({ isNow, eventData, offsetFromNow, setOffsetFromNow }: Eve
       </Box>
     );
 
+  const eventTypeVisible = (eventType: string) =>
+    eventData.eventType && eventData.eventType !== "nicht zugewiesen" && eventType !== "Zentral";
+  const lncSimpleBox =
+    isEqual(eventData.start, new Date("2025-05-10T12:00:00.000Z")) &&
+    isEqual(eventData.end, new Date("2025-05-11T01:00:00.000Z"));
+
+  isNow = lncSimpleBox ? false : isNow;
+
   return (
     <Accordion
       {...swipeHandlers}
@@ -105,12 +113,16 @@ const EventContent = ({ isNow, eventData, offsetFromNow, setOffsetFromNow }: Eve
         expandIcon={eventData.notes ? <ExpandMoreIcon /> : <></>}
       >
         <Stack direction="row" spacing={2} sx={{ padding: "0.5em" }}>
-          <Typography sx={{ textAlign: "right" }}>
-            {formatEventTime(eventData.start, "Europe/Berlin")}
-            <br />
-            {formatEventTime(eventData.end, "Europe/Berlin")}
-          </Typography>
-          <Divider orientation="vertical" flexItem />
+          {!lncSimpleBox && (
+            <>
+              <Typography sx={{ textAlign: "right" }}>
+                {formatEventTime(eventData.start, "Europe/Berlin")}
+                <br />
+                {formatEventTime(eventData.end, "Europe/Berlin")}
+              </Typography>
+              <Divider orientation="vertical" flexItem />
+            </>
+          )}
           <Typography
             sx={{
               wordBreak: "break-all",
@@ -119,8 +131,8 @@ const EventContent = ({ isNow, eventData, offsetFromNow, setOffsetFromNow }: Eve
               textOverflow: "ellipsis",
             }}
           >
-            {`${formatEventType(eventData.eventType)}`}
-            <br />
+            {eventTypeVisible(eventData.eventType) && `${formatEventType(eventData.eventType)}`}
+            {eventTypeVisible(eventData.eventType) && <br />}
             {`${eventData.name}`}
           </Typography>
         </Stack>
